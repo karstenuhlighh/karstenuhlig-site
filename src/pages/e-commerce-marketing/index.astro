@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+import SubPageLayout from "../../layouts/SubPageLayout.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import NotesList from "../../components/NotesList.astro";
+
+const notes = await getCollection(
+  "e-commerce-marketing",
+  ({ data }) => !data.draft,
+);
+notes.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<SubPageLayout
+  title="E-Commerce & Marketing — Karsten Uhlig"
+  description="Notizen aus 25 Jahren als Operator in einer internationalen E-Commerce-Operation."
+>
+  <PageHeader
+    eyebrow="Bereich"
+    headline="E-Commerce & Marketing"
+    intro="Notizen aus 25 Jahren als Operator in einer internationalen E-Commerce-Operation. Internationale Skalierung, Performance, Brand."
+  />
+  <NotesList notes={notes} basePath="/e-commerce-marketing" />
+</SubPageLayout>

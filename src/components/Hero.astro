@@ -1,0 +1,165 @@
+---
+import Nav from "./Nav.astro";
+---
+
+<section class="hero">
+  <div class="diag-line-1"></div>
+  <div class="diag-line-2"></div>
+  <div class="hero-inner">
+    <Nav />
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Senior Digital Executive</div>
+        <h1 class="headline">Closing the<br />Implementation Gap.</h1>
+        <p class="subtitle">
+          Commerce &amp; Marketing Outcomes through MarTech, Data &amp; AI.
+        </p>
+        <p class="bio">
+          25+ Jahre bonprix (Otto Group), zuletzt VP Product &amp; Technology in
+          einer 1,6-Mrd-E-Commerce-Operation über 20+ Märkte. Mein roter Faden:
+          die Lücke zwischen Strategie-Awareness und tatsächlicher
+          Implementierung schließen. Bei bonprix war das die
+          Datenplattform-Welle — seit 2026 baue ich gezielt
+          Agentic-AI-Expertise auf, um die nächste Transformation im Digitalen
+          Marketing auf Experten-Niveau aktiv mitzugestalten.
+        </p>
+      </div>
+      <div
+        class="portrait"
+        role="img"
+        aria-label="Karsten Uhlig Portrait"
+      >
+      </div>
+    </div>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 320px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(220, 235, 250, 0.06) 60%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 4rem 5rem;
+  }
+  .diag-line-1 {
+    position: absolute;
+    top: 60px;
+    right: 4%;
+    width: 1px;
+    height: 620px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(30, 60, 100, 0.3) 25%,
+      rgba(30, 60, 100, 0.1) 65%,
+      transparent 100%
+    );
+    transform: rotate(18deg);
+    transform-origin: top right;
+    pointer-events: none;
+  }
+  .diag-line-2 {
+    position: absolute;
+    top: 140px;
+    right: 10%;
+    width: 1px;
+    height: 420px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(30, 60, 100, 0.18) 40%,
+      transparent 100%
+    );
+    transform: rotate(18deg);
+    transform-origin: top right;
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 5rem;
+  }
+  .eyebrow {
+    font-size: 12px;
+    color: var(--color-amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .headline {
+    font-size: 56px;
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    margin-bottom: 1.5rem;
+    color: var(--color-ink);
+  }
+  .subtitle {
+    font-size: 17px;
+    color: var(--color-ink-2);
+    margin-bottom: 2.5rem;
+    max-width: 520px;
+  }
+  .bio {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--color-body);
+    max-width: 580px;
+  }
+  .portrait {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background-image: url("/portrait.jpg");
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    position: relative;
+  }
+  .portrait::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(30, 60, 100, 0.18);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .hero-inner {
+      padding: 2rem 1.5rem 3rem;
+    }
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .headline {
+      font-size: 40px;
+    }
+  }
+</style>

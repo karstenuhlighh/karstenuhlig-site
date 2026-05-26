@@ -1,0 +1,53 @@
+---
+---
+
+<div class="stats">
+  <div>
+    <div class="stat-value">25<span class="accent">+</span></div>
+    <div class="stat-label">Jahre Digital Commerce</div>
+  </div>
+  <div>
+    <div class="stat-value">€2 Mrd</div>
+    <div class="stat-label">Peak-Umsatz</div>
+  </div>
+  <div>
+    <div class="stat-value">20<span class="accent">+</span></div>
+    <div class="stat-label">EU-Märkte</div>
+  </div>
+</div>
+
+<style>
+  .stats {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    padding-top: 2.5rem;
+    padding-bottom: 4rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .stat-value {
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+  }
+  .stat-value .accent {
+    color: var(--color-amber);
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--color-ink-3);
+    margin-top: 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .stats {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding-bottom: 2.5rem;
+    }
+  }
+</style>

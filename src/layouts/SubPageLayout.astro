@@ -1,0 +1,36 @@
+---
+import Layout from "./Layout.astro";
+import Nav from "../components/Nav.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <div class="page-shell">
+    <header class="page-header">
+      <Nav />
+    </header>
+    <main class="page-main">
+      <slot />
+    </main>
+  </div>
+</Layout>
+
+<style>
+  .page-shell {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 4rem 5rem;
+  }
+  @media (max-width: 768px) {
+    .page-shell {
+      padding: 2rem 1.5rem 3rem;
+    }
+  }
+</style>

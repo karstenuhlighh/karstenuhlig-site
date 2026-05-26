@@ -1,0 +1,85 @@
+---
+import { getCollection } from "astro:content";
+import SubPageLayout from "../../layouts/SubPageLayout.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import NotesList from "../../components/NotesList.astro";
+
+const notes = await getCollection("agentic-ai", ({ data }) => !data.draft);
+notes.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<SubPageLayout
+  title="Agentic AI — Karsten Uhlig"
+  description="Markt-These zur Implementierungs-Welle und sem-agentic — ein agentisches System für Search-Engine-Marketing."
+>
+  <PageHeader
+    eyebrow="Bereich"
+    headline="Agentic AI"
+    intro="Markt-These zur Implementierungs-Welle und sem-agentic — ein agentisches System für Search-Engine-Marketing aus eigener Hand."
+  />
+
+  <section class="featured">
+    <div class="featured-eyebrow">Featured</div>
+    <a href="/agentic-ai/sem-agentic" class="featured-card">
+      <div class="featured-title">sem-agentic</div>
+      <div class="featured-desc">
+        Working Product Map, Patterns und Erkenntnisse aus dem Bau. Bewusst als
+        Lern- und Bauprojekt positioniert.
+      </div>
+      <div class="featured-meta">Detail-Seite →</div>
+    </a>
+  </section>
+
+  <NotesList notes={notes} basePath="/agentic-ai" />
+</SubPageLayout>
+
+<style>
+  .featured {
+    margin-bottom: 3rem;
+  }
+  .featured-eyebrow {
+    font-size: 11px;
+    color: var(--color-ink-3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .featured-card {
+    display: block;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 3px;
+    padding: 2rem 1.75rem;
+    text-decoration: none;
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+  .featured-card:hover {
+    border-color: rgba(180, 83, 9, 0.45);
+    background: rgba(255, 255, 255, 0.75);
+    transform: translateY(-2px);
+  }
+  .featured-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: -0.015em;
+    margin-bottom: 0.75rem;
+  }
+  .featured-desc {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--color-ink-2);
+    margin-bottom: 1.25rem;
+  }
+  .featured-meta {
+    font-size: 11px;
+    color: var(--color-amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+</style>

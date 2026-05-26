@@ -1,0 +1,98 @@
+---
+const pillars = [
+  {
+    href: "/e-commerce-marketing",
+    title: "E-Commerce & Marketing",
+    desc: "Notizen aus 25 Jahren als Operator in einer internationalen E-Commerce-Operation. Internationale Skalierung, Performance, Brand.",
+  },
+  {
+    href: "/martech",
+    title: "MarTech",
+    desc: "Wie ein Stack tatsächlich Commerce-Outcomes erzeugt. Operating Model, Datenarchitektur, Anwendungen, die produktiv laufen.",
+  },
+  {
+    href: "/agentic-ai",
+    title: "Agentic AI",
+    desc: "Markt-These zur Implementierungs-Welle und sem-agentic — ein agentisches System für Search-Engine-Marketing aus eigener Hand.",
+  },
+];
+---
+
+<section class="pillars-section">
+  <div class="pillars-eyebrow">Meine Schwerpunkte</div>
+  <div class="pillars">
+    {
+      pillars.map(({ href, title, desc }) => (
+        <a href={href} class="pillar">
+          <div class="pillar-title">{title}</div>
+          <div class="pillar-desc">{desc}</div>
+          <div class="pillar-meta">Übersicht →</div>
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .pillars-section {
+    position: relative;
+    padding-top: 1rem;
+  }
+  .pillars-eyebrow {
+    font-size: 11px;
+    color: var(--color-ink-3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .pillar {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 3px;
+    padding: 2rem 1.75rem;
+    cursor: pointer;
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      transform 0.2s ease;
+    text-decoration: none;
+    display: block;
+  }
+  .pillar:hover {
+    border-color: rgba(180, 83, 9, 0.45);
+    background: rgba(255, 255, 255, 0.75);
+    transform: translateY(-2px);
+  }
+  .pillar-title {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: -0.015em;
+    margin-bottom: 0.75rem;
+  }
+  .pillar-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-ink-2);
+    margin-bottom: 1.25rem;
+  }
+  .pillar-meta {
+    font-size: 11px;
+    color: var(--color-amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .pillars {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

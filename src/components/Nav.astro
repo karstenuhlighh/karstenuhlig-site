@@ -1,0 +1,44 @@
+---
+---
+
+<nav class="nav">
+  <div class="nav-logo">Karsten Uhlig</div>
+  <div class="nav-links">
+    <a
+      href="https://www.linkedin.com/in/karstenuhlig"
+      target="_blank"
+      rel="noopener noreferrer">LinkedIn</a
+    >
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6rem;
+  }
+  .nav-logo {
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    font-size: 14px;
+    color: var(--color-ink-2);
+  }
+  .nav-links a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover {
+    color: var(--color-ink);
+  }
+</style>

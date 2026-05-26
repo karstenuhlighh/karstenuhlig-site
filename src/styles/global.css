@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --color-ink: #0F1729;
+  --color-ink-2: #3A4F6C;
+  --color-ink-3: #5B6B82;
+  --color-body: #2A3D55;
+  --color-amber: #B45309;
+  --color-border-soft: rgba(30, 60, 100, 0.14);
+  --color-border: rgba(30, 60, 100, 0.22);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  background: linear-gradient(
+    180deg,
+    #7A9DC0 0%,
+    #94B2CF 18%,
+    #B5CADD 38%,
+    #D6E1ED 60%,
+    #EEF2F7 80%,
+    #FFFFFF 100%
+  );
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

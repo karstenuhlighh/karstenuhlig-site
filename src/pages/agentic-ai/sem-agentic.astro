@@ -1,0 +1,47 @@
+---
+import SubPageLayout from "../../layouts/SubPageLayout.astro";
+import PageHeader from "../../components/PageHeader.astro";
+---
+
+<SubPageLayout
+  title="sem-agentic — Karsten Uhlig"
+  description="Working Product Map, Patterns, Features und Erkenntnisse aus dem Bau eines agentischen Search-Engine-Marketing-Systems."
+>
+  <PageHeader
+    eyebrow="Detail"
+    headline="sem-agentic"
+    intro="Ein agentisches System für Search-Engine-Marketing aus eigener Hand. Bewusst als Lern- und Bauprojekt positioniert — kein Produkt-Pitch."
+  />
+
+  <section class="stub-section">
+    <div class="eyebrow">Im Aufbau</div>
+    <p class="stub-text">
+      Working Product Map, 8 Working Patterns, 8 Product Features, Eval-Stand
+      und Erkenntnisse aus dem Bau folgen hier.
+    </p>
+  </section>
+</SubPageLayout>
+
+<style>
+  .stub-section {
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .eyebrow {
+    font-size: 11px;
+    color: var(--color-ink-3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .stub-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--color-body);
+    font-style: italic;
+    opacity: 0.7;
+    margin: 0;
+    max-width: 680px;
+  }
+</style>

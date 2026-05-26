@@ -1,0 +1,112 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+type AnyNote =
+  | CollectionEntry<"e-commerce-marketing">
+  | CollectionEntry<"martech">
+  | CollectionEntry<"agentic-ai">;
+
+interface Props {
+  notes: AnyNote[];
+  basePath: string; // e.g. "/martech"
+  emptyMessage?: string;
+}
+
+const {
+  notes,
+  basePath,
+  emptyMessage = "Bald hier — erste Notizen sind in Vorbereitung.",
+} = Astro.props;
+
+const dateFmt = new Intl.DateTimeFormat("de-DE", {
+  year: "numeric",
+  month: "long",
+});
+---
+
+<section class="notes-section">
+  <div class="eyebrow">Notizen</div>
+  {
+    notes.length === 0 ? (
+      <p class="notes-empty">{emptyMessage}</p>
+    ) : (
+      <ul class="notes-list">
+        {notes.map((note) => (
+          <li class="notes-item">
+            <a href={`${basePath}/${note.id}`} class="notes-link">
+              <div class="notes-date">{dateFmt.format(note.data.date)}</div>
+              <div class="notes-title">{note.data.title}</div>
+              <div class="notes-excerpt">{note.data.excerpt}</div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</section>
+
+<style>
+  .notes-section {
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .eyebrow {
+    font-size: 11px;
+    color: var(--color-ink-3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+  .notes-empty {
+    font-size: 15px;
+    color: var(--color-body);
+    font-style: italic;
+    opacity: 0.7;
+    margin: 0;
+  }
+  .notes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .notes-link {
+    display: block;
+    padding: 1.5rem 1.75rem;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 3px;
+    text-decoration: none;
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+  .notes-link:hover {
+    border-color: rgba(180, 83, 9, 0.45);
+    background: rgba(255, 255, 255, 0.75);
+    transform: translateY(-1px);
+  }
+  .notes-date {
+    font-size: 11px;
+    color: var(--color-ink-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .notes-title {
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: -0.015em;
+    margin-bottom: 0.5rem;
+  }
+  .notes-excerpt {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-ink-2);
+  }
+</style>
