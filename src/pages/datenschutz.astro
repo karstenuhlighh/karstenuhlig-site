@@ -1,0 +1,30 @@
+---
+import SubPageLayout from "../layouts/SubPageLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+---
+
+<SubPageLayout
+  title="Datenschutz — Karsten Uhlig"
+  description="Datenschutzerklärung nach DSGVO."
+>
+  <PageHeader eyebrow="Rechtliches" headline="Datenschutz" />
+
+  <section class="stub-section">
+    <p class="stub-text">Inhalt folgt.</p>
+  </section>
+</SubPageLayout>
+
+<style>
+  .stub-section {
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .stub-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--color-body);
+    font-style: italic;
+    opacity: 0.7;
+    margin: 0;
+  }
+</style>

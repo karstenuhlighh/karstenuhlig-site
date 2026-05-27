@@ -1,0 +1,67 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-name">Karsten Uhlig</div>
+    <nav class="footer-links" aria-label="Rechtliches">
+      <a href="/impressum">Impressum</a>
+      <a href="/datenschutz">Datenschutz</a>
+    </nav>
+    <div class="footer-copyright">© {year} Karsten Uhlig</div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-border);
+    margin-top: 2rem;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 2rem;
+    font-size: 13px;
+    color: var(--color-ink-3);
+  }
+  .footer-name {
+    justify-self: start;
+    font-weight: 500;
+    color: var(--color-ink-2);
+  }
+  .footer-links {
+    display: flex;
+    gap: 1.75rem;
+    justify-self: center;
+  }
+  .footer-links a {
+    color: var(--color-ink-2);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .footer-links a:hover {
+    color: var(--color-ink);
+  }
+  .footer-copyright {
+    justify-self: end;
+  }
+
+  @media (max-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .footer-name,
+    .footer-links,
+    .footer-copyright {
+      justify-self: center;
+    }
+  }
+</style>
