@@ -1,31 +1,60 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import SubPageLayout from "../layouts/SubPageLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
 ---
 
-<Layout title="Impressum — Karsten Uhlig">
-  <div class="max-w-[720px] mx-auto px-8 py-24">
-    <h1 class="text-4xl font-medium tracking-tight text-[#0F1729] mb-12">Impressum</h1>
+<SubPageLayout
+  title="Impressum — Karsten Uhlig"
+  description="Impressum nach § 5 TMG."
+>
+  <PageHeader eyebrow="Rechtliches" headline="Impressum" />
 
-    <div class="space-y-8 text-[15px] leading-relaxed text-[#2A3D55]">
-      <div>
-        <p>Karsten Uhlig</p>
-        <p>Friedensallee 29</p>
-        <p>22765 Hamburg</p>
-      </div>
-
-      <div>
-        <p class="text-[11px] tracking-widest uppercase text-[#5B6B82] mb-2">Kontakt</p>
-        <p>
-          E-Mail:
-          <a href="mailto:mail@karstenuhlig.de" class="text-[#B45309] hover:underline">
-            mail@karstenuhlig.de
-          </a>
-        </p>
-      </div>
+  <section class="legal-content">
+    <div class="address">
+      <p>Karsten Uhlig</p>
+      <p>Friedensallee 29</p>
+      <p>22765 Hamburg</p>
     </div>
 
-    <div class="mt-16">
-      <a href="/" class="text-[13px] text-[#3A4F6C] hover:text-[#0F1729]">← Zurück</a>
+    <div class="contact">
+      <p class="label">Kontakt</p>
+      <p>
+        E-Mail: <a href="mailto:mail@karstenuhlig.de"
+          >mail@karstenuhlig.de</a
+        >
+      </p>
     </div>
-  </div>
-</Layout>
+  </section>
+</SubPageLayout>
+
+<style>
+  .legal-content {
+    max-width: 720px;
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-body);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .legal-content p {
+    margin: 0;
+  }
+  .legal-content a {
+    color: var(--color-amber);
+    text-decoration: none;
+  }
+  .legal-content a:hover {
+    text-decoration: underline;
+  }
+  .address {
+    margin-bottom: 2.5rem;
+  }
+  .contact .label {
+    font-size: 11px;
+    color: var(--color-ink-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+</style>
