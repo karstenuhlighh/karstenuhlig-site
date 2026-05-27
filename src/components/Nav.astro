@@ -2,7 +2,7 @@
 ---
 
 <nav class="nav">
-  <div class="nav-logo">Karsten Uhlig</div>
+  <a href="/" class="nav-logo">Karsten Uhlig</a>
   <div class="nav-links">
     <a
       href="https://www.linkedin.com/in/karstenuhlig"
@@ -25,6 +25,11 @@
     font-size: 15px;
     letter-spacing: -0.01em;
     color: var(--color-ink);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+  .nav-logo:hover {
+    opacity: 0.7;
   }
   .nav-links {
     display: flex;
