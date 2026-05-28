@@ -14,6 +14,9 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
       <p class="subtitle">
         Commerce &amp; Marketing Outcomes through MarTech, Data &amp; AI.
       </p>
+      <div class="ueber-mich-marker">
+        <div class="ueber-mich-eyebrow">Über mich</div>
+      </div>
       <div
         class="portrait"
         role="img"
@@ -104,15 +107,30 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     grid-template-areas:
-      "eyebrow  portrait"
-      "headline portrait"
-      "subtitle portrait"
-      "bio      portrait"
-      "teaser   teaser";
+      "eyebrow    portrait"
+      "headline   portrait"
+      "subtitle   portrait"
+      "ueber-mich portrait"
+      "bio        portrait"
+      "teaser     teaser";
     column-gap: 4rem;
     row-gap: 0;
     align-items: start;
     margin-bottom: 5rem;
+  }
+  .ueber-mich-marker {
+    grid-area: ueber-mich;
+    padding-top: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .ueber-mich-eyebrow {
+    font-size: 12px;
+    color: var(--color-amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
   }
   .eyebrow {
     grid-area: eyebrow;
@@ -199,13 +217,20 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
       order: 4;
       margin-top: 2rem;
     }
-    .portrait {
+    .ueber-mich-marker {
       order: 5;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      margin-bottom: 0;
+      border-top: 1px solid var(--color-border);
+    }
+    .portrait {
+      order: 6;
       max-width: 220px;
-      margin: 2.5rem auto 0;
+      margin: 1.5rem auto 0;
     }
     .bio {
-      order: 6;
+      order: 7;
       margin-top: 2rem;
     }
   }
