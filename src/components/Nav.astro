@@ -2,8 +2,11 @@
 ---
 
 <nav class="nav">
-  <a href="/" class="nav-logo">Karsten Uhlig</a>
-  <div class="nav-links">
+  <div class="nav-left">
+    <a href="/ueber-mich" class="nav-link">Über mich</a>
+    <a href="/" class="nav-logo">Karsten Uhlig</a>
+  </div>
+  <div class="nav-right">
     <a
       href="https://www.linkedin.com/in/karstenuhlig"
       target="_blank"
@@ -20,6 +23,11 @@
     align-items: center;
     margin-bottom: 6rem;
   }
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
   .nav-logo {
     font-weight: 500;
     font-size: 15px;
@@ -31,19 +39,38 @@
   .nav-logo:hover {
     opacity: 0.7;
   }
-  .nav-links {
+  .nav-link {
+    color: var(--color-ink-2);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+  }
+  .nav-link:hover {
+    color: var(--color-ink);
+  }
+  .nav-right {
     display: flex;
     gap: 2rem;
     font-size: 14px;
     color: var(--color-ink-2);
   }
-  .nav-links a {
+  .nav-right a {
     color: inherit;
     text-decoration: none;
     cursor: pointer;
     transition: color 0.2s ease;
   }
-  .nav-links a:hover {
+  .nav-right a:hover {
     color: var(--color-ink);
+  }
+
+  @media (max-width: 480px) {
+    .nav-left {
+      gap: 1rem;
+    }
+    .nav-link,
+    .nav-right {
+      font-size: 13px;
+    }
   }
 </style>

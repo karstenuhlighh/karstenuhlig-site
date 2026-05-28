@@ -1,5 +1,6 @@
 ---
 import Nav from "./Nav.astro";
+import SemAgenticTeaser from "./SemAgenticTeaser.astro";
 ---
 
 <section class="hero">
@@ -8,27 +9,28 @@ import Nav from "./Nav.astro";
   <div class="hero-inner">
     <Nav />
     <div class="hero-grid">
-      <div>
-        <div class="eyebrow">Senior Digital Executive</div>
-        <h1 class="headline">Closing the<br />Implementation Gap.</h1>
-        <p class="subtitle">
-          Commerce &amp; Marketing Outcomes through MarTech, Data &amp; AI.
-        </p>
-        <p class="bio">
-          25+ Jahre bonprix (Otto Group), zuletzt VP Product &amp; Technology in
-          einer 1,6-Mrd-E-Commerce-Operation über 20+ Märkte. Mein roter Faden:
-          die Lücke zwischen Strategie-Awareness und tatsächlicher
-          Implementierung schließen. Bei bonprix war das die
-          Datenplattform-Welle — seit 2026 baue ich gezielt
-          Agentic-AI-Expertise auf, um die nächste Transformation im Digitalen
-          Marketing auf Experten-Niveau aktiv mitzugestalten.
-        </p>
-      </div>
+      <div class="eyebrow">Senior Digital Executive</div>
+      <h1 class="headline">Closing the<br />Implementation Gap.</h1>
+      <p class="subtitle">
+        Commerce &amp; Marketing Outcomes through MarTech, Data &amp; AI.
+      </p>
       <div
         class="portrait"
         role="img"
         aria-label="Karsten Uhlig Portrait"
       >
+      </div>
+      <p class="bio">
+        25+ Jahre bonprix (Otto Group), zuletzt VP Product &amp; Technology in
+        einer 1,6-Mrd-E-Commerce-Operation über 20+ Märkte. Mein roter Faden:
+        die Lücke zwischen Strategie-Awareness und tatsächlicher
+        Implementierung schließen. Bei bonprix war das die
+        Datenplattform-Welle — seit 2026 baue ich gezielt
+        Agentic-AI-Expertise auf, um die nächste Transformation im Digitalen
+        Marketing auf Experten-Niveau aktiv mitzugestalten.
+      </p>
+      <div class="teaser-area">
+        <SemAgenticTeaser />
       </div>
     </div>
     <slot />
@@ -95,15 +97,25 @@ import Nav from "./Nav.astro";
     transform-origin: top right;
     pointer-events: none;
   }
+
+  /* --- DESKTOP --- Grid mit Named Areas --- */
   .hero-grid {
     position: relative;
     display: grid;
     grid-template-columns: 1.5fr 1fr;
-    gap: 4rem;
-    align-items: center;
+    grid-template-areas:
+      "eyebrow  portrait"
+      "headline portrait"
+      "subtitle portrait"
+      "bio      portrait"
+      "teaser   teaser";
+    column-gap: 4rem;
+    row-gap: 0;
+    align-items: start;
     margin-bottom: 5rem;
   }
   .eyebrow {
+    grid-area: eyebrow;
     font-size: 12px;
     color: var(--color-amber);
     letter-spacing: 0.15em;
@@ -112,6 +124,7 @@ import Nav from "./Nav.astro";
     font-weight: 500;
   }
   .headline {
+    grid-area: headline;
     font-size: 56px;
     font-weight: 500;
     line-height: 1.02;
@@ -120,18 +133,22 @@ import Nav from "./Nav.astro";
     color: var(--color-ink);
   }
   .subtitle {
+    grid-area: subtitle;
     font-size: 17px;
     color: var(--color-ink-2);
     margin-bottom: 2.5rem;
     max-width: 520px;
   }
   .bio {
+    grid-area: bio;
     font-size: 15px;
     line-height: 1.75;
     color: var(--color-body);
     max-width: 580px;
   }
   .portrait {
+    grid-area: portrait;
+    align-self: center;
     width: 100%;
     aspect-ratio: 4 / 5;
     background-image: url("/portrait.png");
@@ -149,17 +166,47 @@ import Nav from "./Nav.astro";
     border-radius: 2px;
     pointer-events: none;
   }
+  .teaser-area {
+    grid-area: teaser;
+    margin-top: 4rem;
+  }
 
+  /* --- MOBILE --- flach gestapelt mit CSS-Order --- */
   @media (max-width: 768px) {
     .hero-inner {
       padding: 2rem 1.5rem 3rem;
     }
     .hero-grid {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 3rem;
+    }
+    .eyebrow {
+      order: 1;
+      margin-bottom: 0.75rem;
     }
     .headline {
-      font-size: 40px;
+      order: 2;
+      font-size: 32px;
+      margin-bottom: 1rem;
+    }
+    .subtitle {
+      order: 3;
+      margin-bottom: 0;
+    }
+    .teaser-area {
+      order: 4;
+      margin-top: 2rem;
+    }
+    .portrait {
+      order: 5;
+      max-width: 220px;
+      margin: 2.5rem auto 0;
+    }
+    .bio {
+      order: 6;
+      margin-top: 2rem;
     }
   }
 </style>
