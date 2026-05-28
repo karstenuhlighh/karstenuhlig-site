@@ -23,15 +23,25 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
         aria-label="Karsten Uhlig Portrait"
       >
       </div>
-      <p class="bio">
-        25+ Jahre bonprix (Otto Group), zuletzt VP Product &amp; Technology in
-        einer 1,6-Mrd-E-Commerce-Operation über 20+ Märkte. Mein roter Faden:
-        die Lücke zwischen Strategie-Awareness und tatsächlicher
-        Implementierung schließen. Bei bonprix war das die
-        Datenplattform-Welle — seit 2026 baue ich gezielt
-        Agentic-AI-Expertise auf, um die nächste Transformation im Digitalen
-        Marketing auf Experten-Niveau aktiv mitzugestalten.
-      </p>
+      <div class="bio">
+        <p>
+          Als Digital Executive habe ich in der Otto Group das
+          Online-Geschäft von bonprix in 20+ Ländern auf über 1,6 Mrd. €
+          Umsatz skaliert und dabei 120+ Mitarbeitende in 25 Teams
+          erfolgreich geführt – mit über 20 Jahren Erfahrung in Retail,
+          E-Commerce und digitaler Transformation.
+        </p>
+        <p>
+          Mein Schwerpunkt liegt in dem Schließen der Lücke zwischen
+          Strategie-Awareness und tatsächlicher organisatorischer und
+          technischer Implementierung.
+        </p>
+        <p>
+          Mein Schwerpunkt in 2026 liegt in der gezielten Ausprägung von
+          Agentic AI-Expertise, um die nächste Transformation im Digitalen
+          Business und Marketing auf Experten-Niveau aktiv mitzugestalten.
+        </p>
+      </div>
       <div class="teaser-area">
         <SemAgenticTeaser />
       </div>
@@ -159,10 +169,16 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   }
   .bio {
     grid-area: bio;
+    max-width: 580px;
+  }
+  .bio p {
     font-size: 15px;
     line-height: 1.75;
     color: var(--color-body);
-    max-width: 580px;
+    margin: 0;
+  }
+  .bio p + p {
+    margin-top: 1rem;
   }
   .portrait {
     grid-area: portrait;

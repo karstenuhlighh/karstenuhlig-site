@@ -10,15 +10,7 @@ const period = "Mai 2026";
   <div class="now-grid">
     <div class="now-card">
       <div class="now-card-label">Im Bau</div>
-      <p class="now-card-body now-placeholder">
-        Inhalt folgt — wird monatlich aktualisiert.
-      </p>
-    </div>
-    <div class="now-card">
-      <div class="now-card-label">Im Denken</div>
-      <p class="now-card-body now-placeholder">
-        Inhalt folgt — wird monatlich aktualisiert.
-      </p>
+      <p class="now-card-body">AgenticAI Pilot für Digital Marketing</p>
     </div>
   </div>
 </section>
@@ -39,9 +31,8 @@ const period = "Mai 2026";
     font-weight: 500;
   }
   .now-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    display: block;
+    max-width: 520px;
   }
   .now-card {
     background: rgba(255, 255, 255, 0.55);
@@ -62,15 +53,5 @@ const period = "Mai 2026";
     line-height: 1.75;
     color: var(--color-body);
     margin: 0;
-  }
-  .now-placeholder {
-    font-style: italic;
-    opacity: 0.65;
-  }
-
-  @media (max-width: 768px) {
-    .now-grid {
-      grid-template-columns: 1fr;
-    }
   }
 </style>
