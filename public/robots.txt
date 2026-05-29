@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://karstenuhlig.de/sitemap-index.xml
