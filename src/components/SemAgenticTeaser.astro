@@ -82,7 +82,7 @@
       <div>
         <div class="sa-ai-text-title">sem-agentic — Agentic AI System</div>
         <div class="sa-ai-text-sub">
-          Ein agentisches System, das diesen Workflow analysiert und
+          Ein agentisches System, das in diesem Workflow analysiert und
           Optimierungen vorschlägt. Hands-on gebaut.
         </div>
         <div class="sa-ai-badges">
@@ -306,6 +306,28 @@
       rgba(180, 83, 9, 0.15)
     );
     border-radius: 2px;
+    position: relative;
+  }
+  /* 5. Connector als Pfeil nach oben zu "Optimierung & Analyse" --
+     signalisiert, dass das Agentic-AI-System hier eingreift. */
+  .sa-connector:nth-child(5) {
+    background: linear-gradient(
+      180deg,
+      rgba(180, 83, 9, 0.85),
+      rgba(180, 83, 9, 0.3)
+    );
+  }
+  .sa-connector:nth-child(5)::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 9px solid rgba(180, 83, 9, 0.9);
   }
 
   .sa-ai-layer {
