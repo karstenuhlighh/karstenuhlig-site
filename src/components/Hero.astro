@@ -110,17 +110,19 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   }
 
   /* --- DESKTOP --- Grid mit Named Areas --- */
+  /* Portrait jetzt LINKS, Text-Block RECHTS — Bild schaut in den
+     Content rein, nicht aus dem Layout heraus. */
   .hero-grid {
     position: relative;
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1fr 1.5fr;
     grid-template-areas:
-      "eyebrow    portrait"
-      "headline   portrait"
-      "subtitle   portrait"
-      "ueber-mich portrait"
-      "bio        portrait"
-      "teaser     teaser";
+      "portrait eyebrow"
+      "portrait headline"
+      "portrait subtitle"
+      "portrait ueber-mich"
+      "portrait bio"
+      "teaser   teaser";
     column-gap: 4rem;
     row-gap: 0;
     align-items: start;
