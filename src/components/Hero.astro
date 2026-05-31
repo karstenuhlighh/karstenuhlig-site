@@ -17,11 +17,13 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
       <div class="ueber-mich-marker">
         <div class="ueber-mich-eyebrow">Über mich</div>
       </div>
-      <div
-        class="portrait"
-        role="img"
-        aria-label="Karsten Uhlig Portrait"
-      >
+      <div class="portrait">
+        <img
+          src="/portrait.jpg"
+          alt="Portrait Karsten Uhlig"
+          width="800"
+          height="1000"
+        />
       </div>
       <div class="bio">
         <p>
@@ -184,21 +186,20 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     grid-area: portrait;
     align-self: center;
     width: 100%;
-    aspect-ratio: 4 / 5;
-    background-image: url("/portrait.jpg");
-    background-size: cover;
-    background-position: center;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-    position: relative;
   }
-  .portrait::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border: 1px solid rgba(30, 60, 100, 0.18);
-    border-radius: 2px;
-    pointer-events: none;
+  /* Option-C-Embedding: gerundete Ecken, dezenter Schatten,
+     subtiler Highlight-Strich oben (inset), feine Aussen-Ringkante. */
+  .portrait img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.5) inset,
+      0 20px 50px -10px rgba(30, 60, 100, 0.25),
+      0 0 0 1px rgba(30, 60, 100, 0.1);
   }
   .teaser-area {
     grid-area: teaser;
