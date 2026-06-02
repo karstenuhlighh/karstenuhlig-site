@@ -215,6 +215,15 @@ const modelChips: { label: string; opt: boolean }[] = [
     >
       3 · Proof of Concept
     </button>
+    <button
+      class="tab"
+      data-tab="blueprint"
+      role="tab"
+      aria-selected="false"
+      type="button"
+    >
+      4 · Blueprint
+    </button>
   </nav>
 
   <!-- ============================ TAB 1: WORKING & PRODUCT MAP ============================ -->
@@ -784,6 +793,72 @@ const modelChips: { label: string; opt: boolean }[] = [
       Cluster
     </div>
   </section>
+
+  <!-- ============================ TAB 4: BLUEPRINT (PDF.js Viewer) ============================ -->
+  <section data-panel="blueprint" role="tabpanel" hidden>
+    <div class="tab-sub">
+      Augur Architecture Blueprint — gesamtes Dokument als PDF, im Browser
+      gerendert mit PDF.js. Wird beim ersten Tab-Wechsel nachgeladen
+      (~19&nbsp;MB).
+    </div>
+
+    <div class="pdf-viewer">
+      <div class="pdf-toolbar">
+        <div class="pdf-toolbar-group">
+          <button
+            class="pdf-btn"
+            data-pdf-action="prev"
+            type="button"
+            aria-label="Vorherige Seite">←</button
+          >
+          <span class="pdf-pagecount">
+            Seite <span data-pdf-page>—</span> / <span data-pdf-pages>—</span>
+          </span>
+          <button
+            class="pdf-btn"
+            data-pdf-action="next"
+            type="button"
+            aria-label="Nächste Seite">→</button
+          >
+        </div>
+        <div class="pdf-toolbar-group">
+          <button
+            class="pdf-btn"
+            data-pdf-action="zoom-out"
+            type="button"
+            aria-label="Verkleinern">−</button
+          >
+          <span class="pdf-zoom" data-pdf-zoom>Fit</span>
+          <button
+            class="pdf-btn"
+            data-pdf-action="zoom-in"
+            type="button"
+            aria-label="Vergrößern">+</button
+          >
+          <button
+            class="pdf-btn pdf-btn-text"
+            data-pdf-action="zoom-fit"
+            type="button">↔ Fit</button
+          >
+        </div>
+        <div class="pdf-toolbar-group">
+          <a
+            class="pdf-btn pdf-btn-text"
+            href="/pdf/augur-blueprint.pdf"
+            download="AUGUR_Architecture_Blueprint.pdf">
+            ⬇ Download
+          </a>
+        </div>
+      </div>
+
+      <div class="pdf-canvas-wrap" data-pdf-canvas-wrap>
+        <div data-pdf-status class="pdf-status">
+          PDF wird geladen…
+        </div>
+        <canvas data-pdf-canvas class="pdf-canvas"></canvas>
+      </div>
+    </div>
+  </section>
 </SubPageLayout>
 
 <script is:inline>
@@ -815,11 +890,178 @@ const modelChips: { label: string; opt: boolean }[] = [
     if (
       hash === "working-map" ||
       hash === "architektur" ||
-      hash === "proof-of-concept"
+      hash === "proof-of-concept" ||
+      hash === "blueprint"
     ) {
       activate(hash);
     }
   })();
+</script>
+
+<!-- PDF.js viewer (lazy-loaded via dynamic import, only when Blueprint tab is opened) -->
+<script>
+  type Lib = typeof import("pdfjs-dist");
+
+  let pdfLib: Lib | null = null;
+  let pdfDoc: import("pdfjs-dist").PDFDocumentProxy | null = null;
+  let currentPage = 1;
+  let currentScale: number | "fit" = "fit";
+  let renderTask: import("pdfjs-dist").RenderTask | null = null;
+  let initialised = false;
+
+  async function ensurePdfLib(): Promise<Lib> {
+    if (pdfLib) return pdfLib;
+    const [lib, workerUrl] = await Promise.all([
+      import("pdfjs-dist"),
+      import("pdfjs-dist/build/pdf.worker.min.mjs?url"),
+    ]);
+    lib.GlobalWorkerOptions.workerSrc = workerUrl.default;
+    pdfLib = lib;
+    return lib;
+  }
+
+  function updateMeta() {
+    const pageEl = document.querySelector("[data-pdf-page]");
+    const pagesEl = document.querySelector("[data-pdf-pages]");
+    const zoomEl = document.querySelector("[data-pdf-zoom]");
+    if (pageEl) pageEl.textContent = String(currentPage);
+    if (pagesEl) pagesEl.textContent = pdfDoc ? String(pdfDoc.numPages) : "—";
+    if (zoomEl) {
+      zoomEl.textContent =
+        currentScale === "fit"
+          ? "Fit"
+          : Math.round((currentScale as number) * 100) + "%";
+    }
+  }
+
+  async function renderPage(pageNum: number) {
+    if (!pdfDoc) return;
+    if (renderTask) {
+      try {
+        renderTask.cancel();
+      } catch {}
+      renderTask = null;
+    }
+    const canvas = document.querySelector<HTMLCanvasElement>(
+      "[data-pdf-canvas]",
+    );
+    const wrap = document.querySelector<HTMLElement>("[data-pdf-canvas-wrap]");
+    if (!canvas || !wrap) return;
+
+    const page = await pdfDoc.getPage(pageNum);
+    const containerWidth = Math.max(280, wrap.clientWidth - 16);
+    const baseViewport = page.getViewport({ scale: 1 });
+    const fitScale = containerWidth / baseViewport.width;
+    const finalScale =
+      currentScale === "fit" ? fitScale : (currentScale as number);
+    const viewport = page.getViewport({ scale: finalScale });
+    const dpr = window.devicePixelRatio || 1;
+
+    canvas.width = Math.floor(viewport.width * dpr);
+    canvas.height = Math.floor(viewport.height * dpr);
+    canvas.style.width = viewport.width + "px";
+    canvas.style.height = viewport.height + "px";
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    renderTask = page.render({ canvasContext: ctx, viewport });
+    try {
+      await renderTask.promise;
+    } catch (e) {
+      // cancelled renders throw — fine
+    }
+    renderTask = null;
+    updateMeta();
+  }
+
+  async function initViewer() {
+    if (initialised) return;
+    initialised = true;
+    const statusEl = document.querySelector<HTMLElement>("[data-pdf-status]");
+    try {
+      const lib = await ensurePdfLib();
+      if (statusEl) statusEl.textContent = "Dokument wird gelesen…";
+      const task = lib.getDocument({
+        url: "/pdf/augur-blueprint.pdf",
+        cMapUrl: "https://unpkg.com/pdfjs-dist@6.0.227/cmaps/",
+        cMapPacked: true,
+      });
+      pdfDoc = await task.promise;
+      if (statusEl) statusEl.style.display = "none";
+      currentScale = "fit";
+      currentPage = 1;
+      await renderPage(1);
+    } catch (e) {
+      console.error(e);
+      if (statusEl) {
+        statusEl.textContent =
+          "PDF konnte nicht geladen werden: " + (e as Error).message;
+      }
+      initialised = false;
+    }
+  }
+
+  function bindControls() {
+    document.querySelectorAll<HTMLElement>("[data-pdf-action]").forEach(
+      function (btn) {
+        btn.addEventListener("click", async function () {
+          if (!pdfDoc) return;
+          const action = btn.dataset.pdfAction;
+          if (action === "prev" && currentPage > 1) {
+            currentPage--;
+            await renderPage(currentPage);
+          } else if (
+            action === "next" &&
+            pdfDoc &&
+            currentPage < pdfDoc.numPages
+          ) {
+            currentPage++;
+            await renderPage(currentPage);
+          } else if (action === "zoom-in") {
+            const base = currentScale === "fit" ? 1 : (currentScale as number);
+            currentScale = Math.min(3, base + 0.25);
+            await renderPage(currentPage);
+          } else if (action === "zoom-out") {
+            const base = currentScale === "fit" ? 1 : (currentScale as number);
+            currentScale = Math.max(0.25, base - 0.25);
+            await renderPage(currentPage);
+          } else if (action === "zoom-fit") {
+            currentScale = "fit";
+            await renderPage(currentPage);
+          }
+        });
+      },
+    );
+  }
+
+  function maybeInitOnTab() {
+    // listen for tab click on Blueprint
+    const blueprintTab = document.querySelector('[data-tab="blueprint"]');
+    if (blueprintTab) {
+      blueprintTab.addEventListener("click", function () {
+        if (!initialised) initViewer();
+      });
+    }
+    // direct-link via hash
+    if (window.location.hash === "#blueprint") {
+      initViewer();
+    }
+  }
+
+  // Re-render on resize if in fit mode
+  let resizeTimer: number | undefined;
+  window.addEventListener("resize", function () {
+    if (currentScale !== "fit" || !pdfDoc) return;
+    if (resizeTimer) window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(function () {
+      renderPage(currentPage);
+    }, 200);
+  });
+
+  bindControls();
+  maybeInitOnTab();
 </script>
 
 <style>
@@ -1862,6 +2104,106 @@ const modelChips: { label: string; opt: boolean }[] = [
     font-weight: 600;
   }
 
+  /* ============================== TAB 4 — PDF BLUEPRINT VIEWER ============================== */
+  .pdf-viewer {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 12px;
+    padding: 0.85rem;
+    box-shadow: 0 4px 14px rgba(30, 60, 100, 0.06);
+  }
+  .pdf-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+    justify-content: space-between;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+  .pdf-toolbar-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .pdf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 0.55rem;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-ink-2);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+      background 0.15s ease,
+      border-color 0.15s ease,
+      color 0.15s ease;
+  }
+  .pdf-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    border-color: var(--color-border);
+    color: var(--color-ink);
+  }
+  .pdf-btn-text {
+    font-size: 12.5px;
+    padding: 0 0.7rem;
+  }
+  .pdf-pagecount,
+  .pdf-zoom {
+    font-size: 12.5px;
+    color: var(--color-ink-2);
+    min-width: 90px;
+    text-align: center;
+  }
+  .pdf-zoom {
+    min-width: 60px;
+  }
+  .pdf-pagecount span {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+  .pdf-canvas-wrap {
+    position: relative;
+    background: rgba(30, 60, 100, 0.04);
+    border-radius: 8px;
+    padding: 0.85rem;
+    min-height: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: auto;
+    max-height: 80vh;
+  }
+  .pdf-canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    background: white;
+    box-shadow: 0 6px 20px rgba(30, 60, 100, 0.12);
+    border-radius: 2px;
+  }
+  .pdf-status {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 13px;
+    color: var(--color-ink-2);
+    font-style: italic;
+    text-align: center;
+    padding: 0.5rem 1rem;
+  }
+
   /* ============================== Mobile ============================== */
   @media (max-width: 768px) {
     .map-grid {
@@ -1911,6 +2253,18 @@ const modelChips: { label: string; opt: boolean }[] = [
     }
     .arc-h1 {
       font-size: 22px;
+    }
+    /* PDF viewer mobile */
+    .pdf-toolbar {
+      justify-content: center;
+    }
+    .pdf-toolbar-group {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .pdf-canvas-wrap {
+      padding: 0.5rem;
+      max-height: 70vh;
     }
   }
 </style>
