@@ -1,47 +1,705 @@
 ---
 import SubPageLayout from "../../layouts/SubPageLayout.astro";
 import PageHeader from "../../components/PageHeader.astro";
+
+// --- Working Organization data ---
+const claudeChatItems = [
+  "Strategy & Sparring",
+  "VP-Story Material",
+  "Reflection & Memory",
+  "Documents & Visuals",
+];
+const claudeCodeItems = [
+  "Code-Stand prüfen",
+  "Architektur-Skizze",
+  "Services bauen",
+  "ADRs & Tests",
+];
+
+// --- AI Engineering Practices · Reifegrad ---
+const maturityLegend = [
+  { lvl: "0", text: "not present", bg: "#D3D1C7", fg: "#2C2C2A" },
+  { lvl: "1", text: "aware", bg: "#F5C4B3", fg: "#4A1B0C" },
+  { lvl: "2", text: "repeatable", bg: "#FAC775", fg: "#412402" },
+  { lvl: "3", text: "defined", bg: "#C0DD97", fg: "#173404" },
+  { lvl: "4", text: "managed", bg: "#97C459", fg: "#173404" },
+  { lvl: "5", text: "optim.", bg: "#639922", fg: "#FFFFFF" },
+];
+
+type Pillar = {
+  letter: string;
+  title: string;
+  score: string;
+  accent: string;
+  items: { name: string; level: 0 | 1 | 2 | 3 | 4 | 5 }[];
+};
+
+const pillars: Pillar[] = [
+  {
+    letter: "A",
+    title: "engineering discipline",
+    score: "15/20",
+    accent: "#534AB7",
+    items: [
+      { name: "stage-1/2 build", level: 3 },
+      { name: "pre-flight audit", level: 4 },
+      { name: "discrepancy-driven", level: 4 },
+      { name: "hard-fail senior", level: 4 },
+    ],
+  },
+  {
+    letter: "B",
+    title: "knowledge & workspace",
+    score: "16/30",
+    accent: "#378ADD",
+    items: [
+      { name: "cross-chat memory", level: 2 },
+      { name: "conversation recall", level: 2 },
+      { name: "audit + re-audit", level: 3 },
+      { name: "reusable prompts", level: 3 },
+      { name: "shared workspace", level: 4 },
+      { name: "tiered knowledge", level: 3 },
+    ],
+  },
+  {
+    letter: "C",
+    title: "agentic system architecture",
+    score: "2/20",
+    accent: "#BA7517",
+    items: [
+      { name: "skills-system", level: 1 },
+      { name: "goal-setter", level: 1 },
+      { name: "background-routines", level: 0 },
+      { name: "mcp-integration", level: 0 },
+    ],
+  },
+  {
+    letter: "D",
+    title: "quality & observability",
+    score: "5/20",
+    accent: "#1D9E75",
+    items: [
+      { name: "eval-driven ci", level: 2 },
+      { name: "observability+cost", level: 2 },
+      { name: "a/b prompt-testing", level: 0 },
+      { name: "self-maintenance", level: 1 },
+    ],
+  },
+];
+
+const adrTags = [
+  "project.md",
+  "status.md",
+  "adrs/ ·15",
+  "reflections/",
+  "audit.md",
+  "backlog.md",
+];
+
+// --- Product Besonderheiten ---
+const features = [
+  {
+    title: "Zwei-Schichten-Architektur (ADR-015)",
+    body: "Deterministische Action-Schicht (Pre-flight Rules) + optionale LLM-Analyst-Schicht — Schicht 2 unter Beweisvorbehalt, nicht gebaut bis Mehrwert belegt.",
+  },
+  {
+    title: "Two-Track Eval (ADR-013)",
+    body: "F1 vs Domain-Ground-Truth + Rule-Compliance orthogonal — belegt: LLM hält 6% der Constraints von selbst, Deterministik rettet 94%.",
+  },
+  {
+    title: "Cluster-Aggregation gegen Prompt-Kollaps (ADR-014)",
+    body: "626 Keyword-Forced-Recs → 17 Cluster-Forderungen, Prompt 33k→3-4k Tokens — 0 Determinismus-Violations über N Läufe.",
+  },
+  {
+    title: "LLM-Backend pro Step wählbar",
+    body: "Sonnet für Reasoning, Ollama für günstige Calls — über `llm_overrides` konfigurierbar.",
+    code: "llm_overrides",
+  },
+  {
+    title: "Mode-Switch Simulation / Production",
+    body: "Mock-DB für Demo & Dev, DataForSEO live für Produktion — kein Code-Change nötig.",
+  },
+  {
+    title: "Variante-B: n8n-Wrapper → Python-Endpoint (ADR-012)",
+    body: "Single-Source-of-Truth Python-Coord, n8n als HTTP-Proxy — 3× repliziert (cluster-full, strategy, reflect).",
+  },
+  {
+    title: "Hybrid-Keyword-Generierung",
+    body: "Anchor-Cluster als Skelett + parallele LLM-Variation pro Anker — 401 Keywords mit realistischer Long-Tail-Verteilung.",
+  },
+  {
+    title: "Best-Practices als YAML-Bibliothek",
+    body: "Deklarative Rules (z.B. `v2026_05.yaml`), versioniert, custom-Override möglich.",
+    code: "v2026_05.yaml",
+  },
+];
 ---
 
 <SubPageLayout
   title="sem-agentic — Karsten Uhlig"
-  description="Working Product Map, Patterns, Features und Erkenntnisse aus dem Bau eines agentischen Search-Engine-Marketing-Systems."
+  description="Working & Product Map zu sem-agentic: wie ich arbeite, was dabei entsteht und was es differenziert."
 >
   <PageHeader
-    eyebrow="Detail"
+    eyebrow="Feasibility Study"
     headline="sem-agentic"
-    intro="Ein agentisches System für Search-Engine-Marketing aus eigener Hand. Bewusst als Lern- und Bauprojekt positioniert — kein Produkt-Pitch."
+    intro="Working & Product Map — wie ich arbeite, was dabei entsteht und was es differenziert. Stand 01.06.2026."
   />
 
-  <section class="stub-section">
-    <div class="eyebrow">Im Aufbau</div>
-    <p class="stub-text">
-      Working Product Map, 8 Working Patterns, 8 Product Features, Eval-Stand
-      und Erkenntnisse aus dem Bau folgen hier.
-    </p>
+  <!-- TOP: Working Organization + Project (2-Spalten) -->
+  <section class="map">
+    <div class="map-grid">
+      <!-- LINKS: Working Organization -->
+      <div class="panel">
+        <div class="panel-title">working organization</div>
+
+        <div class="role-card">
+          <div class="role-name">Karsten</div>
+          <div class="role-sub">senior · approval · vp-story owner</div>
+        </div>
+
+        <div class="duo-grid">
+          <div class="duo claude-chat">
+            <div class="duo-title">claude chat</div>
+            <div class="chip-stack">
+              {claudeChatItems.map((s) => <div class="chip">{s}</div>)}
+            </div>
+          </div>
+          <div class="duo claude-code">
+            <div class="duo-title">claude code</div>
+            <div class="chip-stack">
+              {claudeCodeItems.map((s) => <div class="chip">{s}</div>)}
+            </div>
+          </div>
+        </div>
+
+        <!-- Maturity / Reifegrad -->
+        <div class="maturity">
+          <div class="maturity-head">
+            <div class="maturity-title">
+              ai engineering practices · reifegrad
+            </div>
+            <div class="maturity-meta">
+              re-audit v3 · stand 31.05.2026 · 38 / 90 · 42 % maturity (von
+              33 %)
+            </div>
+          </div>
+
+          <div class="maturity-legend">
+            {
+              maturityLegend.map((l) => (
+                <span class="legend-item">
+                  <span
+                    class="legend-box"
+                    style={`background:${l.bg}; color:${l.fg};`}
+                  >
+                    {l.lvl}
+                  </span>
+                  {l.text}
+                </span>
+              ))
+            }
+          </div>
+
+          {
+            pillars.map((p) => (
+              <div class="pillar">
+                <div
+                  class="pillar-head"
+                  style={`border-left-color:${p.accent};`}
+                >
+                  <span>
+                    {p.letter} · {p.title}
+                  </span>
+                  <span class="pillar-score" style={`color:${p.accent};`}>
+                    {p.score}
+                  </span>
+                </div>
+                <div class="pillar-items">
+                  {p.items.map((it) => {
+                    const tone = maturityLegend[it.level];
+                    return (
+                      <div class="pillar-item">
+                        <span>{it.name}</span>
+                        <span
+                          class="lvl-pill"
+                          style={`background:${tone.bg}; color:${tone.fg};`}
+                        >
+                          {it.level}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="block">
+          <div class="block-title">shared workspace · 15 ADRs</div>
+          <div class="tag-row">
+            {adrTags.map((t) => <span class="tag mono">{t}</span>)}
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-title">tools &amp; plattformen</div>
+          <div class="block-body">
+            claude.ai · claude code · github · localhost:5678 · browser
+          </div>
+        </div>
+      </div>
+
+      <!-- RECHTS: Project sem-agentic / Augur -->
+      <div class="panel">
+        <div class="panel-title">project · sem-agentic / augur</div>
+
+        <div class="duo claude-chat strategy-coord">
+          <div class="duo-title-lg">Strategy Coordinator</div>
+          <div class="duo-sub">
+            langgraph · self-reflection iter≤2 · pol-c enforcement
+          </div>
+        </div>
+
+        <div class="duo-grid">
+          <div class="duo n8n-cat">
+            <div class="duo-title">n8n workflows · 9</div>
+            <div class="chip-stack">
+              <div class="chip">research · embed · cluster-assign</div>
+              <div class="chip">cluster-judge · perf-data-gen</div>
+              <div class="chip">performance-analyst</div>
+              <div class="chip chip-dashed">
+                cluster-full · strategy-pipeline · reflect (variante-b)
+              </div>
+            </div>
+          </div>
+          <div class="duo python-cat">
+            <div class="duo-title">python services · 10</div>
+            <div class="chip-stack">
+              <div class="chip">performance analyst · copy agent</div>
+              <div class="chip">strategy coordinator · fastapi</div>
+              <div class="chip">critique-rules · action-thresholds</div>
+              <div class="chip chip-dashed">
+                performance-eval · rule-compliance-eval (two-track)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="duo-grid">
+          <div class="duo claude-code">
+            <div class="duo-title">augur ui · 6 tabs</div>
+            <div class="chip-stack">
+              <div class="chip">übersicht · workflows · daten</div>
+              <div class="chip">letzter run · runs · coordinator</div>
+              <div class="chip">kpi-cards · pipeline-viz · charts</div>
+              <div class="chip">aggrid-tables · run-diff · drill-down</div>
+            </div>
+          </div>
+          <div class="duo container-cat">
+            <div class="duo-title">containerization</div>
+            <div class="chip-stack">
+              <div class="chip">docker compose</div>
+              <div class="chip">ollama container</div>
+              <div class="chip">n8n container</div>
+              <div class="chip">postgres + pgvector</div>
+              <div class="chip">volume persistence</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-title">scale &amp; tests</div>
+          <div class="block-body">
+            401 keywords · 16 anchor-cluster · 236 tests · 15 ADRs ·
+            90-Tage-Perf-Daten
+          </div>
+        </div>
+        <div class="block">
+          <div class="block-title">frameworks</div>
+          <div class="block-body">
+            langgraph · langchain · pydantic v2 · scipy · fastapi · streamlit
+            + aggrid
+          </div>
+        </div>
+        <div class="block">
+          <div class="block-title">llms</div>
+          <div class="block-body">
+            anthropic sonnet 4.5 · ollama qwen2.5:7b · ollama nomic-embed
+          </div>
+        </div>
+        <div class="block">
+          <div class="block-title">daten &amp; externe</div>
+          <div class="block-body">
+            postgresql + pgvector · filesystem cache · dataforseo api
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM: Product Besonderheiten -->
+  <section class="features">
+    <div class="features-eyebrow">Product Besonderheiten — was es differenziert</div>
+    <div class="features-grid">
+      {
+        features.map((f) => (
+          <div class="feature">
+            <div class="feature-title">{f.title}</div>
+            <div class="feature-body" set:html={f.body.replace(
+              /`([^`]+)`/g,
+              '<code>$1</code>',
+            )} />
+          </div>
+        ))
+      }
+    </div>
+    <div class="features-source">
+      Quellen: 15 ADRs · Reflections · status.md · Code-Patterns · audit.md ·
+      Maturity-v3
+    </div>
   </section>
 </SubPageLayout>
 
 <style>
-  .stub-section {
-    padding-top: 3rem;
-    border-top: 1px solid var(--color-border);
+  /* ------- Map Container -------- */
+  .map {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
   }
-  .eyebrow {
+  .map-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .panel {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 12px;
+    padding: 1rem;
+  }
+  .panel-title {
+    text-align: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border-soft);
     font-size: 11px;
     color: var(--color-ink-3);
-    letter-spacing: 0.15em;
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
+    letter-spacing: 0.08em;
     font-weight: 500;
   }
-  .stub-text {
-    font-size: 15px;
-    line-height: 1.75;
+  .role-card {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 8px;
+    padding: 0.65rem 0.8rem;
+    margin-bottom: 0.7rem;
+    text-align: center;
+  }
+  .role-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-ink);
+    margin-bottom: 0.15rem;
+  }
+  .role-sub {
+    font-size: 10.5px;
+    color: var(--color-ink-3);
+  }
+
+  /* ------- Duo cards (claude-chat, claude-code, etc.) -------- */
+  .duo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 0.7rem;
+  }
+  .duo {
+    border-radius: 6px;
+    padding: 0.55rem;
+  }
+  .duo-title {
+    font-size: 10.5px;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+    text-align: center;
+  }
+  .duo-title-lg {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 0.15rem;
+    text-align: center;
+  }
+  .duo-sub {
+    font-size: 10.5px;
+    text-align: center;
+    color: var(--color-ink-3);
+  }
+  .chip-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .chip {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    padding: 0.18rem 0.4rem;
+    font-size: 10.5px;
     color: var(--color-body);
-    font-style: italic;
-    opacity: 0.7;
-    margin: 0;
-    max-width: 680px;
+  }
+  .chip-dashed {
+    border: 1px dashed #ba7517;
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  /* category accents */
+  .claude-chat {
+    background: rgba(83, 74, 183, 0.08);
+    border: 1px solid rgba(83, 74, 183, 0.35);
+  }
+  .claude-chat .duo-title,
+  .claude-chat .duo-title-lg {
+    color: #2e2867;
+  }
+  .strategy-coord {
+    margin-bottom: 0.7rem;
+    padding: 0.7rem 0.85rem;
+  }
+  .claude-code {
+    background: rgba(55, 138, 221, 0.08);
+    border: 1px solid rgba(55, 138, 221, 0.4);
+  }
+  .claude-code .duo-title {
+    color: #042c53;
+  }
+  .n8n-cat {
+    background: rgba(218, 137, 100, 0.1);
+    border: 1px solid rgba(218, 137, 100, 0.5);
+  }
+  .n8n-cat .duo-title {
+    color: #4a1b0c;
+  }
+  .python-cat {
+    background: rgba(91, 138, 30, 0.1);
+    border: 1px solid rgba(91, 138, 30, 0.5);
+  }
+  .python-cat .duo-title {
+    color: #173404;
+  }
+  .container-cat {
+    background: rgba(200, 83, 106, 0.1);
+    border: 1px solid rgba(200, 83, 106, 0.45);
+  }
+  .container-cat .duo-title {
+    color: #5c0a1b;
+  }
+
+  /* ------- Maturity / Reifegrad -------- */
+  .maturity {
+    background: rgba(218, 137, 100, 0.08);
+    border: 1px solid rgba(218, 137, 100, 0.4);
+    border-radius: 8px;
+    padding: 0.7rem;
+    margin-bottom: 0.7rem;
+  }
+  .maturity-head {
+    text-align: center;
+    margin-bottom: 0.55rem;
+  }
+  .maturity-title {
+    font-size: 10.5px;
+    font-weight: 500;
+    color: #4a1b0c;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .maturity-meta {
+    font-size: 9.5px;
+    color: var(--color-ink-3);
+    margin-top: 0.1rem;
+  }
+  .maturity-legend {
+    display: flex;
+    gap: 0.35rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.55rem;
+    font-size: 8.5px;
+    color: var(--color-ink-3);
+  }
+  .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+  .legend-box {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    font-size: 7px;
+    text-align: center;
+    line-height: 12px;
+    font-weight: 500;
+  }
+  .pillar {
+    margin-bottom: 0.35rem;
+  }
+  .pillar-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.15rem 0.3rem;
+    border-left: 2px solid;
+    margin-bottom: 0.15rem;
+    font-size: 9.5px;
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+  .pillar-head > span:first-child {
+    padding-left: 0.3rem;
+  }
+  .pillar-score {
+    font-size: 8.5px;
+    font-weight: 500;
+  }
+  .pillar-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.15rem;
+    padding-left: 0.4rem;
+  }
+  .pillar-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.08rem 0.3rem;
+    font-size: 9.5px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 3px;
+    color: var(--color-body);
+  }
+  .lvl-pill {
+    display: inline-block;
+    min-width: 14px;
+    height: 12px;
+    border-radius: 2px;
+    font-size: 8.5px;
+    text-align: center;
+    line-height: 12px;
+    font-weight: 500;
+    padding: 0 0.15rem;
+  }
+
+  /* ------- Block (Tools/Tags rows) -------- */
+  .block {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 6px;
+    padding: 0.55rem 0.65rem;
+    margin-bottom: 0.45rem;
+  }
+  .block:last-child {
+    margin-bottom: 0;
+  }
+  .block-title {
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--color-ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
+  }
+  .block-body {
+    font-size: 10.5px;
+    color: var(--color-body);
+  }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  .tag {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 3px;
+    padding: 0.1rem 0.35rem;
+    font-size: 9.5px;
+    color: var(--color-body);
+  }
+  .mono {
+    font-family: "SF Mono", Consolas, Monaco, monospace;
+  }
+
+  /* ------- Product Besonderheiten -------- */
+  .features {
+    margin-top: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+    margin-bottom: 2rem;
+  }
+  .features-eyebrow {
+    font-size: 12px;
+    color: var(--color-amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+  .feature {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--color-border-soft);
+    border-left: 3px solid #ba7517;
+    border-radius: 6px;
+    padding: 0.65rem 0.85rem;
+  }
+  .feature-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-ink);
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+  }
+  .feature-body {
+    font-size: 12px;
+    color: var(--color-body);
+    line-height: 1.5;
+  }
+  .feature-body code {
+    font-family: "SF Mono", Consolas, Monaco, monospace;
+    font-size: 11px;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 0.05rem 0.25rem;
+    border-radius: 3px;
+  }
+  .features-source {
+    margin-top: 1rem;
+    text-align: center;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--color-border-soft);
+    font-size: 11px;
+    color: var(--color-ink-3);
+  }
+
+  /* ------- Mobile -------- */
+  @media (max-width: 768px) {
+    .map-grid {
+      grid-template-columns: 1fr;
+    }
+    .duo-grid {
+      grid-template-columns: 1fr;
+    }
+    .pillar-items {
+      grid-template-columns: 1fr;
+    }
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

@@ -54,7 +54,7 @@
       <div class="sa-connector"></div>
     </div>
 
-    <div class="sa-ai-layer">
+    <a href="/agentic-ai/sem-agentic" class="sa-ai-layer">
       <div class="sa-ai-icon">
         <svg
           viewBox="0 0 32 32"
@@ -75,7 +75,7 @@
           <line x1="29" y1="13.5" x2="29" y2="18.5"></line>
         </svg>
       </div>
-      <div>
+      <div class="sa-ai-body">
         <div class="sa-ai-text-title">sem-agentic — Agentic AI System</div>
         <div class="sa-ai-text-sub">
           Ein agentisches System, das in diesem Workflow analysiert und
@@ -88,7 +88,8 @@
           <span class="sa-badge">Pause</span>
         </div>
       </div>
-    </div>
+      <div class="sa-ai-arrow" aria-hidden="true">→</div>
+    </a>
   </div>
 </div>
 
@@ -261,6 +262,34 @@
     gap: 1.4rem;
     position: relative;
     overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+  .sa-ai-layer:hover {
+    border-color: rgba(180, 83, 9, 0.6);
+    background: linear-gradient(
+      135deg,
+      rgba(180, 83, 9, 0.14),
+      rgba(180, 83, 9, 0.06)
+    );
+    transform: translateY(-1px);
+  }
+  .sa-ai-body {
+    flex: 1;
+  }
+  .sa-ai-arrow {
+    font-size: 22px;
+    color: #b45309;
+    line-height: 1;
+    margin-left: 0.5rem;
+    transition: transform 0.2s ease;
+  }
+  .sa-ai-layer:hover .sa-ai-arrow {
+    transform: translateX(4px);
   }
   .sa-ai-icon {
     width: 54px;
