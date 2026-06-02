@@ -206,6 +206,15 @@ const modelChips: { label: string; opt: boolean }[] = [
     >
       2 · Architektur
     </button>
+    <button
+      class="tab"
+      data-tab="proof-of-concept"
+      role="tab"
+      aria-selected="false"
+      type="button"
+    >
+      3 · Proof of Concept
+    </button>
   </nav>
 
   <!-- ============================ TAB 1: WORKING & PRODUCT MAP ============================ -->
@@ -430,8 +439,187 @@ const modelChips: { label: string; opt: boolean }[] = [
     </section>
   </section>
 
-  <!-- ============================ TAB 2: ARCHITEKTUR ============================ -->
+  <!-- ============================ TAB 2: ARCHITEKTUR (Multi-Agent) ============================ -->
   <section data-panel="architektur" role="tabpanel" hidden>
+    <div class="arc-top">
+      <div class="arc-header">
+        <div class="arc-eyebrow">
+          <span class="arc-live-dot" aria-hidden="true"></span>Augur — Architektur
+        </div>
+        <h2 class="arc-h1">Multi-Agent-System mit gestufter Validierung</h2>
+        <p class="arc-subtitle">
+          Fünf spezialisierte Agenten produzieren Vorschläge mit Begründung.
+          Jeder Agent durchläuft eine Validierungs-Schicht, die zu seiner
+          Output-Klasse passt. Der Strategy-Coordinator aggregiert mit
+          Self-Critique zu einer auditfähigen Empfehlung.
+        </p>
+      </div>
+      <div class="arc-mode-switch" aria-hidden="true">
+        Mode
+        <span class="arc-mode-toggle">
+          <span class="arc-active">Sim</span>
+          <span>Prod</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div class="arc-input-row">
+      <div class="arc-input-box">
+        Brief <strong>NordicGlow Skincare D2C — DACH-Markteintritt</strong>
+      </div>
+    </div>
+    <div class="arc-down-arrow" aria-hidden="true">↓</div>
+
+    <!-- AGENT GRID -->
+    <div class="arc-agent-grid">
+      <div class="arc-agent-card">
+        <div class="arc-agent-number">1</div>
+        <div class="arc-agent-name">Research-Agent</div>
+        <div class="arc-agent-role">Keyword-Discovery aus Markt-Daten</div>
+        <div class="arc-agent-tags">
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Tool</span>DataForSEO API
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Pattern</span>ReAct mit Tool-Loop
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Check</span>Shadow Log + Human
+          </div>
+        </div>
+      </div>
+
+      <div class="arc-agent-card">
+        <div class="arc-agent-number">2</div>
+        <div class="arc-agent-name">Cluster-Agent</div>
+        <div class="arc-agent-role">Semantisches Keyword-Clustering</div>
+        <div class="arc-agent-tags">
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Tool</span>Embedding + pgvector
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Pattern</span>Vector-Similarity
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Check</span>LLM-as-a-Judge
+          </div>
+        </div>
+      </div>
+
+      <div class="arc-agent-card">
+        <div class="arc-agent-number">3</div>
+        <div class="arc-agent-name">Performance-Analyst</div>
+        <div class="arc-agent-role">Daten-Analyse, Hypothesen-Tests</div>
+        <div class="arc-agent-tags">
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Tool</span>SQL + Statistik-Libs
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Pattern</span>Hypothesis-Testing
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Check</span>Historisches Backtest
+          </div>
+        </div>
+      </div>
+
+      <div class="arc-agent-card">
+        <div class="arc-agent-number">4</div>
+        <div class="arc-agent-name">Copy-Agent</div>
+        <div class="arc-agent-role">Ad-Copy mit Brand-Voice</div>
+        <div class="arc-agent-tags">
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Tool</span>LLM + Brand-Prompt
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Pattern</span>Constrained Generation
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Check</span>Judge + Human-Review
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arc-down-arrow" aria-hidden="true">↓</div>
+
+    <!-- COORDINATOR -->
+    <div class="arc-coordinator-row">
+      <div class="arc-coordinator">
+        <div class="arc-coord-header">
+          <div class="arc-coord-icon">5</div>
+          <div class="arc-coord-name">Strategy-Coordinator</div>
+        </div>
+        <div class="arc-coord-role">
+          Aggregiert die vier Agent-Outputs zu einer kohärenten
+          Strategie-Empfehlung. Führt Self-Critique-Loop durch, identifiziert
+          Widersprüche, fordert Nachbesserung an, dokumentiert Confidence und
+          offene Risiken.
+        </div>
+        <div class="arc-coord-tags">
+          <span class="arc-coord-pill">Self-Reflection-Pattern</span>
+          <span class="arc-coord-pill">Python + LangGraph</span>
+          <span class="arc-coord-pill">Confidence-Scoring</span>
+          <span class="arc-coord-pill">Audit-Trail</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="arc-output-row">
+      <div class="arc-output-box">
+        Proposal
+        <small>
+          Cluster + Budget + Copy + Risiken — strukturiert &amp; auditfähig
+        </small>
+      </div>
+    </div>
+
+    <div class="arc-proposal-notice">
+      <strong>Architektur-Prinzip:</strong> Proposal Generation, nicht Action
+      Execution. Execution ist eine separate Schicht mit Stufen-Rollout
+      (Shadow → Sandbox → Limited Live → Autonomous).
+    </div>
+
+    <!-- DATA LAYER -->
+    <div class="arc-data-layer">
+      <div class="arc-data-header">Daten-Fundament</div>
+      <div class="arc-data-items">
+        <div class="arc-data-item">
+          <span class="arc-data-dot" aria-hidden="true"></span>
+          PostgreSQL + pgvector
+        </div>
+        <div class="arc-data-item">
+          <span class="arc-data-dot" aria-hidden="true"></span>
+          DataForSEO Live-Daten
+        </div>
+        <div class="arc-data-item">
+          <span class="arc-data-dot" aria-hidden="true"></span>
+          Synthetic Performance-Daten (90 Tage)
+        </div>
+        <div class="arc-data-item">
+          <span class="arc-data-dot" aria-hidden="true"></span>
+          n8n Workflow-Orchestrierung
+        </div>
+      </div>
+    </div>
+
+    <div class="arc-legend">
+      <div class="arc-legend-item">
+        <span class="arc-legend-label">Tool</span> Was der Agent aufruft
+      </div>
+      <div class="arc-legend-item">
+        <span class="arc-legend-label">Pattern</span> Reasoning-Strategie
+      </div>
+      <div class="arc-legend-item">
+        <span class="arc-legend-label">Check</span> Validierungs-Methode
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ TAB 3: PROOF OF CONCEPT (Augur-Beweis) ============================ -->
+  <section data-panel="proof-of-concept" role="tabpanel" hidden>
     <div class="aug-head">
       <div class="aug-kicker">sem-agentic · architektur-beweis</div>
       <h2 class="aug-h1">Augur</h2>
@@ -624,7 +812,11 @@ const modelChips: { label: string; opt: boolean }[] = [
     });
 
     const hash = (window.location.hash || "").slice(1);
-    if (hash === "architektur" || hash === "working-map") {
+    if (
+      hash === "working-map" ||
+      hash === "architektur" ||
+      hash === "proof-of-concept"
+    ) {
       activate(hash);
     }
   })();
@@ -1319,6 +1511,357 @@ const modelChips: { label: string; opt: boolean }[] = [
     }
   }
 
+  /* ============================== TAB 2 — MULTI-AGENT ARCHITEKTUR ============================== */
+  .arc-top {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  .arc-header {
+    text-align: center;
+  }
+  .arc-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 11px;
+    color: var(--color-amber);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+  }
+  .arc-live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-amber);
+    box-shadow: 0 0 0 0 rgba(180, 83, 9, 0.6);
+    animation: arc-pulse 2s infinite;
+  }
+  @keyframes arc-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(180, 83, 9, 0.6);
+    }
+    70% {
+      box-shadow: 0 0 0 8px rgba(180, 83, 9, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(180, 83, 9, 0);
+    }
+  }
+  .arc-h1 {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.4rem;
+    color: var(--color-ink);
+  }
+  .arc-subtitle {
+    font-size: 14px;
+    color: var(--color-ink-2);
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+  .arc-mode-switch {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 11px;
+    color: var(--color-ink-2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .arc-mode-toggle {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 20px;
+    padding: 3px;
+    font-size: 10px;
+  }
+  .arc-mode-toggle span {
+    padding: 3px 9px;
+    border-radius: 14px;
+    color: var(--color-ink-3);
+  }
+  .arc-mode-toggle .arc-active {
+    background: var(--color-amber);
+    color: white;
+  }
+
+  /* INPUT */
+  .arc-input-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.1rem;
+  }
+  .arc-input-box {
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 10px;
+    padding: 0.65rem 1.1rem;
+    font-size: 13px;
+    color: var(--color-body);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .arc-input-box::before {
+    content: "▶";
+    color: var(--color-amber);
+    font-size: 10px;
+  }
+  .arc-input-box strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+  .arc-down-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 24px;
+    color: rgba(30, 60, 100, 0.3);
+    font-size: 18px;
+    margin-bottom: 1rem;
+  }
+
+  /* AGENT GRID */
+  .arc-agent-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.85rem;
+    margin-bottom: 1.3rem;
+  }
+  .arc-agent-card {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 12px;
+    padding: 0.95rem 0.85rem;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(30, 60, 100, 0.06);
+  }
+  .arc-agent-number {
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #1e3a5f;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .arc-agent-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin: 0.15rem 0 0.3rem;
+  }
+  .arc-agent-role {
+    font-size: 11px;
+    color: var(--color-ink-3);
+    margin-bottom: 0.7rem;
+    line-height: 1.35;
+  }
+  .arc-agent-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid rgba(30, 60, 100, 0.1);
+  }
+  .arc-agent-tag {
+    font-size: 10.5px;
+    color: var(--color-body);
+    line-height: 1.35;
+    display: flex;
+    gap: 0.4rem;
+  }
+  .arc-tag-label {
+    font-size: 9px;
+    color: var(--color-amber);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    flex-shrink: 0;
+    padding-top: 1px;
+    min-width: 38px;
+  }
+
+  /* COORDINATOR */
+  .arc-coordinator-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.3rem;
+  }
+  .arc-coordinator {
+    background: linear-gradient(
+      145deg,
+      rgba(180, 83, 9, 0.1),
+      rgba(180, 83, 9, 0.04)
+    );
+    border: 1.5px solid rgba(180, 83, 9, 0.32);
+    border-radius: 14px;
+    padding: 1.05rem 1.4rem;
+    width: 100%;
+    max-width: 580px;
+    box-shadow: 0 6px 22px -4px rgba(180, 83, 9, 0.12);
+  }
+  .arc-coord-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.4rem;
+  }
+  .arc-coord-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--color-amber);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .arc-coord-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .arc-coord-role {
+    font-size: 12px;
+    color: var(--color-ink-2);
+    margin-bottom: 0.8rem;
+    line-height: 1.45;
+  }
+  .arc-coord-tags {
+    display: flex;
+    gap: 0.5rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid rgba(180, 83, 9, 0.18);
+    flex-wrap: wrap;
+  }
+  .arc-coord-pill {
+    font-size: 10.5px;
+    color: var(--color-body);
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(180, 83, 9, 0.2);
+    padding: 0.18rem 0.55rem;
+    border-radius: 12px;
+  }
+
+  /* OUTPUT */
+  .arc-output-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .arc-output-box {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1.5px solid var(--color-border);
+    border-radius: 10px;
+    padding: 0.8rem 1.25rem;
+    font-size: 13px;
+    color: var(--color-ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-weight: 500;
+  }
+  .arc-output-box::before {
+    content: "◆";
+    color: var(--color-amber);
+    font-size: 10px;
+  }
+  .arc-output-box small {
+    color: var(--color-ink-3);
+    font-size: 11px;
+    font-weight: 400;
+    margin-left: 0.4rem;
+  }
+  .arc-proposal-notice {
+    text-align: center;
+    font-size: 11.5px;
+    color: var(--color-ink-3);
+    margin-bottom: 1.75rem;
+    font-style: italic;
+  }
+  .arc-proposal-notice strong {
+    color: var(--color-body);
+    font-style: normal;
+  }
+
+  /* DATA LAYER */
+  .arc-data-layer {
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px dashed var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+  }
+  .arc-data-header {
+    font-size: 10px;
+    color: var(--color-ink-3);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.65rem;
+  }
+  .arc-data-items {
+    display: flex;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .arc-data-item {
+    font-size: 12.5px;
+    color: var(--color-body);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .arc-data-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #1e3a5f;
+  }
+
+  /* LEGEND */
+  .arc-legend {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 11px;
+    color: var(--color-ink-3);
+  }
+  .arc-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .arc-legend-label {
+    font-size: 9px;
+    color: var(--color-amber);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
   /* ============================== Mobile ============================== */
   @media (max-width: 768px) {
     .map-grid {
@@ -1350,6 +1893,24 @@ const modelChips: { label: string; opt: boolean }[] = [
     }
     .aug-h1 {
       font-size: 26px;
+    }
+    /* Multi-Agent Architektur Mobile */
+    .arc-mode-switch {
+      position: static;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .arc-agent-grid {
+      grid-template-columns: 1fr;
+      gap: 0.7rem;
+    }
+    .arc-data-items {
+      gap: 0.85rem;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .arc-h1 {
+      font-size: 22px;
     }
   }
 </style>
