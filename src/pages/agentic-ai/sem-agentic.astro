@@ -233,6 +233,15 @@ const modelChips: { label: string; opt: boolean }[] = [
     >
       5 · Blueprint
     </button>
+    <button
+      class="tab"
+      data-tab="erkenntnisse"
+      role="tab"
+      aria-selected="false"
+      type="button"
+    >
+      6 · Erkenntnisse
+    </button>
   </nav>
 
   <!-- ============================ TAB 1: REFLEXIONEN ============================ -->
@@ -914,7 +923,11 @@ const modelChips: { label: string; opt: boolean }[] = [
       (~19&nbsp;MB).
     </div>
 
-    <div class="pdf-viewer">
+    <div
+      class="pdf-viewer"
+      data-pdf-id="blueprint"
+      data-pdf-src="/pdf/augur-blueprint.pdf"
+    >
       <div class="pdf-toolbar">
         <div class="pdf-toolbar-group">
           <button
@@ -971,6 +984,75 @@ const modelChips: { label: string; opt: boolean }[] = [
       </div>
     </div>
   </section>
+
+  <!-- ============================ TAB 6: ERKENNTNISSE (PDF.js Viewer) ============================ -->
+  <section data-panel="erkenntnisse" role="tabpanel" hidden>
+    <div class="tab-sub">
+      The Agentic Blueprint — Erkenntnisse aus dem Bau, im Browser gerendert
+      mit PDF.js. Wird beim ersten Tab-Wechsel nachgeladen (~19&nbsp;MB).
+    </div>
+
+    <div
+      class="pdf-viewer"
+      data-pdf-id="erkenntnisse"
+      data-pdf-src="/pdf/the-agentic-blueprint.pdf"
+    >
+      <div class="pdf-toolbar">
+        <div class="pdf-toolbar-group">
+          <button
+            class="pdf-btn"
+            data-pdf-action="prev"
+            type="button"
+            aria-label="Vorherige Seite">←</button
+          >
+          <span class="pdf-pagecount">
+            Seite <span data-pdf-page>—</span> / <span data-pdf-pages>—</span>
+          </span>
+          <button
+            class="pdf-btn"
+            data-pdf-action="next"
+            type="button"
+            aria-label="Nächste Seite">→</button
+          >
+        </div>
+        <div class="pdf-toolbar-group">
+          <button
+            class="pdf-btn"
+            data-pdf-action="zoom-out"
+            type="button"
+            aria-label="Verkleinern">−</button
+          >
+          <span class="pdf-zoom" data-pdf-zoom>Fit</span>
+          <button
+            class="pdf-btn"
+            data-pdf-action="zoom-in"
+            type="button"
+            aria-label="Vergrößern">+</button
+          >
+          <button
+            class="pdf-btn pdf-btn-text"
+            data-pdf-action="zoom-fit"
+            type="button">↔ Fit</button
+          >
+        </div>
+        <div class="pdf-toolbar-group">
+          <a
+            class="pdf-btn pdf-btn-text"
+            href="/pdf/the-agentic-blueprint.pdf"
+            download="The_Agentic_Blueprint.pdf">
+            ⬇ Download
+          </a>
+        </div>
+      </div>
+
+      <div class="pdf-canvas-wrap" data-pdf-canvas-wrap>
+        <div data-pdf-status class="pdf-status">
+          PDF wird geladen…
+        </div>
+        <canvas data-pdf-canvas class="pdf-canvas"></canvas>
+      </div>
+    </div>
+  </section>
 </SubPageLayout>
 
 <script is:inline>
@@ -1004,23 +1086,39 @@ const modelChips: { label: string; opt: boolean }[] = [
       hash === "working-map" ||
       hash === "architektur" ||
       hash === "proof-of-concept" ||
-      hash === "blueprint"
+      hash === "blueprint" ||
+      hash === "erkenntnisse"
     ) {
       activate(hash);
     }
   })();
 </script>
 
-<!-- PDF.js viewer (lazy-loaded via dynamic import, only when Blueprint tab is opened) -->
+<!-- PDF.js viewer — Multi-Instance support, lazy-loaded via dynamic import.
+     Jeder [data-pdf-id="..."] Container ist eine eigenständige Viewer-Instanz
+     mit eigenem State (currentPage, currentScale, doc, renderTask).            -->
 <script>
   type Lib = typeof import("pdfjs-dist");
 
+  interface ViewerState {
+    id: string;
+    pdfUrl: string;
+    container: HTMLElement;
+    doc: import("pdfjs-dist").PDFDocumentProxy | null;
+    currentPage: number;
+    currentScale: number | "fit";
+    renderTask: import("pdfjs-dist").RenderTask | null;
+    initialised: boolean;
+    canvas: HTMLCanvasElement;
+    wrap: HTMLElement;
+    pageEl: Element | null;
+    pagesEl: Element | null;
+    zoomEl: Element | null;
+    statusEl: HTMLElement | null;
+  }
+
   let pdfLib: Lib | null = null;
-  let pdfDoc: import("pdfjs-dist").PDFDocumentProxy | null = null;
-  let currentPage = 1;
-  let currentScale: number | "fit" = "fit";
-  let renderTask: import("pdfjs-dist").RenderTask | null = null;
-  let initialised = false;
+  const viewers = new Map<string, ViewerState>();
 
   async function ensurePdfLib(): Promise<Lib> {
     if (pdfLib) return pdfLib;
@@ -1033,86 +1131,103 @@ const modelChips: { label: string; opt: boolean }[] = [
     return lib;
   }
 
-  function updateMeta() {
-    const pageEl = document.querySelector("[data-pdf-page]");
-    const pagesEl = document.querySelector("[data-pdf-pages]");
-    const zoomEl = document.querySelector("[data-pdf-zoom]");
-    if (pageEl) pageEl.textContent = String(currentPage);
-    if (pagesEl) pagesEl.textContent = pdfDoc ? String(pdfDoc.numPages) : "—";
-    if (zoomEl) {
-      zoomEl.textContent =
-        currentScale === "fit"
+  function getViewer(container: HTMLElement): ViewerState | null {
+    const id = container.dataset.pdfId;
+    if (!id) return null;
+    const cached = viewers.get(id);
+    if (cached) return cached;
+    const canvas = container.querySelector<HTMLCanvasElement>(
+      "[data-pdf-canvas]",
+    );
+    const wrap = container.querySelector<HTMLElement>("[data-pdf-canvas-wrap]");
+    if (!canvas || !wrap) return null;
+    const state: ViewerState = {
+      id,
+      pdfUrl: container.dataset.pdfSrc || "",
+      container,
+      doc: null,
+      currentPage: 1,
+      currentScale: "fit",
+      renderTask: null,
+      initialised: false,
+      canvas,
+      wrap,
+      pageEl: container.querySelector("[data-pdf-page]"),
+      pagesEl: container.querySelector("[data-pdf-pages]"),
+      zoomEl: container.querySelector("[data-pdf-zoom]"),
+      statusEl: container.querySelector<HTMLElement>("[data-pdf-status]"),
+    };
+    viewers.set(id, state);
+    return state;
+  }
+
+  function updateMeta(v: ViewerState) {
+    if (v.pageEl) v.pageEl.textContent = String(v.currentPage);
+    if (v.pagesEl) v.pagesEl.textContent = v.doc ? String(v.doc.numPages) : "—";
+    if (v.zoomEl) {
+      v.zoomEl.textContent =
+        v.currentScale === "fit"
           ? "Fit"
-          : Math.round((currentScale as number) * 100) + "%";
+          : Math.round((v.currentScale as number) * 100) + "%";
     }
   }
 
-  async function renderPage(pageNum: number) {
-    if (!pdfDoc) return;
-    if (renderTask) {
+  async function renderPage(v: ViewerState, pageNum: number) {
+    if (!v.doc) return;
+    if (v.renderTask) {
       try {
-        renderTask.cancel();
+        v.renderTask.cancel();
       } catch {}
-      renderTask = null;
+      v.renderTask = null;
     }
-    const canvas = document.querySelector<HTMLCanvasElement>(
-      "[data-pdf-canvas]",
-    );
-    const wrap = document.querySelector<HTMLElement>("[data-pdf-canvas-wrap]");
-    if (!canvas || !wrap) return;
-
-    const page = await pdfDoc.getPage(pageNum);
-    const containerWidth = Math.max(280, wrap.clientWidth - 16);
+    const page = await v.doc.getPage(pageNum);
+    const containerWidth = Math.max(280, v.wrap.clientWidth - 16);
     const baseViewport = page.getViewport({ scale: 1 });
     const fitScale = containerWidth / baseViewport.width;
     const finalScale =
-      currentScale === "fit" ? fitScale : (currentScale as number);
+      v.currentScale === "fit" ? fitScale : (v.currentScale as number);
     const viewport = page.getViewport({ scale: finalScale });
     const dpr = window.devicePixelRatio || 1;
-
-    canvas.width = Math.floor(viewport.width * dpr);
-    canvas.height = Math.floor(viewport.height * dpr);
-    canvas.style.width = viewport.width + "px";
-    canvas.style.height = viewport.height + "px";
-
-    const ctx = canvas.getContext("2d");
+    v.canvas.width = Math.floor(viewport.width * dpr);
+    v.canvas.height = Math.floor(viewport.height * dpr);
+    v.canvas.style.width = viewport.width + "px";
+    v.canvas.style.height = viewport.height + "px";
+    const ctx = v.canvas.getContext("2d");
     if (!ctx) return;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    renderTask = page.render({ canvasContext: ctx, viewport });
+    v.renderTask = page.render({ canvasContext: ctx, viewport });
     try {
-      await renderTask.promise;
-    } catch (e) {
-      // cancelled renders throw — fine
+      await v.renderTask.promise;
+    } catch {
+      // cancelled — fine
     }
-    renderTask = null;
-    updateMeta();
+    v.renderTask = null;
+    updateMeta(v);
   }
 
-  async function initViewer() {
-    if (initialised) return;
-    initialised = true;
-    const statusEl = document.querySelector<HTMLElement>("[data-pdf-status]");
+  async function initViewer(v: ViewerState) {
+    if (v.initialised) return;
+    v.initialised = true;
     try {
       const lib = await ensurePdfLib();
-      if (statusEl) statusEl.textContent = "Dokument wird gelesen…";
+      if (v.statusEl) v.statusEl.textContent = "Dokument wird gelesen…";
       const task = lib.getDocument({
-        url: "/pdf/augur-blueprint.pdf",
+        url: v.pdfUrl,
         cMapUrl: "https://unpkg.com/pdfjs-dist@6.0.227/cmaps/",
         cMapPacked: true,
       });
-      pdfDoc = await task.promise;
-      if (statusEl) statusEl.style.display = "none";
-      currentScale = "fit";
-      currentPage = 1;
-      await renderPage(1);
+      v.doc = await task.promise;
+      if (v.statusEl) v.statusEl.style.display = "none";
+      v.currentScale = "fit";
+      v.currentPage = 1;
+      await renderPage(v, 1);
     } catch (e) {
       console.error(e);
-      if (statusEl) {
-        statusEl.textContent =
+      if (v.statusEl) {
+        v.statusEl.textContent =
           "PDF konnte nicht geladen werden: " + (e as Error).message;
       }
-      initialised = false;
+      v.initialised = false;
     }
   }
 
@@ -1120,29 +1235,34 @@ const modelChips: { label: string; opt: boolean }[] = [
     document.querySelectorAll<HTMLElement>("[data-pdf-action]").forEach(
       function (btn) {
         btn.addEventListener("click", async function () {
-          if (!pdfDoc) return;
+          const container = btn.closest<HTMLElement>("[data-pdf-id]");
+          if (!container) return;
+          const v = getViewer(container);
+          if (!v || !v.doc) return;
           const action = btn.dataset.pdfAction;
-          if (action === "prev" && currentPage > 1) {
-            currentPage--;
-            await renderPage(currentPage);
+          if (action === "prev" && v.currentPage > 1) {
+            v.currentPage--;
+            await renderPage(v, v.currentPage);
           } else if (
             action === "next" &&
-            pdfDoc &&
-            currentPage < pdfDoc.numPages
+            v.doc &&
+            v.currentPage < v.doc.numPages
           ) {
-            currentPage++;
-            await renderPage(currentPage);
+            v.currentPage++;
+            await renderPage(v, v.currentPage);
           } else if (action === "zoom-in") {
-            const base = currentScale === "fit" ? 1 : (currentScale as number);
-            currentScale = Math.min(3, base + 0.25);
-            await renderPage(currentPage);
+            const base =
+              v.currentScale === "fit" ? 1 : (v.currentScale as number);
+            v.currentScale = Math.min(3, base + 0.25);
+            await renderPage(v, v.currentPage);
           } else if (action === "zoom-out") {
-            const base = currentScale === "fit" ? 1 : (currentScale as number);
-            currentScale = Math.max(0.25, base - 0.25);
-            await renderPage(currentPage);
+            const base =
+              v.currentScale === "fit" ? 1 : (v.currentScale as number);
+            v.currentScale = Math.max(0.25, base - 0.25);
+            await renderPage(v, v.currentPage);
           } else if (action === "zoom-fit") {
-            currentScale = "fit";
-            await renderPage(currentPage);
+            v.currentScale = "fit";
+            await renderPage(v, v.currentPage);
           }
         });
       },
@@ -1150,26 +1270,39 @@ const modelChips: { label: string; opt: boolean }[] = [
   }
 
   function maybeInitOnTab() {
-    // listen for tab click on Blueprint
-    const blueprintTab = document.querySelector('[data-tab="blueprint"]');
-    if (blueprintTab) {
-      blueprintTab.addEventListener("click", function () {
-        if (!initialised) initViewer();
-      });
-    }
-    // direct-link via hash
-    if (window.location.hash === "#blueprint") {
-      initViewer();
-    }
+    document.querySelectorAll<HTMLElement>("[data-pdf-id]").forEach(
+      function (container) {
+        const panel = container.closest<HTMLElement>("[data-panel]");
+        if (!panel) return;
+        const panelName = panel.getAttribute("data-panel");
+        if (!panelName) return;
+        const tab = document.querySelector<HTMLElement>(
+          '[data-tab="' + panelName + '"]',
+        );
+        if (tab) {
+          tab.addEventListener("click", function () {
+            const v = getViewer(container);
+            if (v && !v.initialised) initViewer(v);
+          });
+        }
+        if (window.location.hash === "#" + panelName) {
+          const v = getViewer(container);
+          if (v) initViewer(v);
+        }
+      },
+    );
   }
 
-  // Re-render on resize if in fit mode
+  // Re-render alle Viewer in fit mode bei Resize
   let resizeTimer: number | undefined;
   window.addEventListener("resize", function () {
-    if (currentScale !== "fit" || !pdfDoc) return;
     if (resizeTimer) window.clearTimeout(resizeTimer);
     resizeTimer = window.setTimeout(function () {
-      renderPage(currentPage);
+      viewers.forEach(function (v) {
+        if (v.currentScale === "fit" && v.doc) {
+          renderPage(v, v.currentPage);
+        }
+      });
     }, 200);
   });
 
