@@ -1,6 +1,7 @@
 ---
 import SubPageLayout from "../../layouts/SubPageLayout.astro";
 import PageHeader from "../../components/PageHeader.astro";
+import AugurWorkflowSchaubild from "../../components/AugurWorkflowSchaubild.astro";
 
 // ============================================================
 // TAB 1 — WORKING & PRODUCT MAP DATA
@@ -185,6 +186,9 @@ const modelChips: { label: string; opt: boolean }[] = [
     headline="sem-agentic"
     intro="Agentic AI System für SEM-Performance. Working Map und Architektur."
   />
+
+  <!-- Workflow-Schaubild als visueller Einstieg, oberhalb der Tabs -->
+  <AugurWorkflowSchaubild />
 
   <!-- ============================ TABS ============================ -->
   <nav class="tabs" role="tablist" aria-label="sem-agentic Detail-Tabs">
