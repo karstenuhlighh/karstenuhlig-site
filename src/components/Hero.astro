@@ -204,6 +204,11 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     display: block;
     width: 100%;
     height: auto;
+    /* Sehr dezentes drop-shadow als Outline-Smoothing: 0 blur, 1px Y,
+       geringes Alpha -- definiert die Silhouette gegen den hellen
+       Karten-BG, damit die Freistellungs-Kante nicht als harter
+       Pixel-Cut wirkt. Kein Tiefen-Schatten (Brief: "Schatten KEINER"). */
+    filter: drop-shadow(0 1px 0 rgba(30, 60, 100, 0.18));
   }
   .teaser-area {
     margin-top: 4rem;
