@@ -19,7 +19,7 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
       </div>
       <div class="portrait">
         <img
-          src="/portrait.jpg"
+          src="/portrait-freigestellt.jpg"
           alt="Portrait Karsten Uhlig"
           width="800"
           height="1000"
@@ -187,19 +187,13 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     align-self: center;
     width: 100%;
   }
-  /* Option-C-Embedding: gerundete Ecken, dezenter Schatten,
-     subtiler Highlight-Strich oben (inset), feine Aussen-Ringkante. */
+  /* Freigestelltes Bild: kein Embedding -- Bild schwebt frei auf dem
+     Sky-Gradient. Border-Radius/Shadow/Ring waeren um die JPG-Box,
+     nicht um die Person, daher abgeschaltet. */
   .portrait img {
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.5) inset,
-      0 20px 50px -10px rgba(30, 60, 100, 0.25),
-      0 0 0 1px rgba(30, 60, 100, 0.1);
   }
   .teaser-area {
     grid-area: teaser;
