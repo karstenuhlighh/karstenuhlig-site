@@ -182,24 +182,20 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .bio p + p {
     margin-top: 1rem;
   }
-  /* Foto-Brief v5: Ausrichtung
-     - Karte stretched ueber die volle Hoehe der Text-Spalte
-       (Oberkante = Eyebrow-Top, Unterkante = Bio-Bottom)
-     - img mit object-fit:cover, object-position auf Gesicht
-       (kein Verzerren, sauberer Beschnitt)
-     - v4-Look erhalten: transparenter BG, helle Hairline, 14px Radius,
-       sanfter Outer-Shadow, Feather-Approximation am img */
+  /* Foto-Brief v6: Karten-Rand (Option A)
+     - Border entfernt (Weiss knallte zu hell auf Hellblau)
+     - Karte wird nur durch sanften Schatten definiert
+     - Runde Ecken (14px) und transparenter BG (= Site-Gradient
+       laeuft durch) bleiben */
   .portrait {
     grid-area: portrait;
     align-self: stretch;
     width: 100%;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: none;
     border-radius: 14px;
     overflow: hidden;
-    box-shadow:
-      0 2px 4px -1px rgba(30, 60, 100, 0.06),
-      0 12px 24px -8px rgba(30, 60, 100, 0.14);
+    box-shadow: 0 8px 28px rgba(30, 50, 70, 0.12);
   }
   .portrait img {
     display: block;
