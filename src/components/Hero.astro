@@ -182,22 +182,29 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .bio p + p {
     margin-top: 1rem;
   }
-  /* Hybrid: rechteckiger Rahmen auf dem Container + Silhouette-Drop-
-     Shadows auf dem img. Kein overflow:hidden, damit der weiche
-     Silhouette-Schatten den Border-Rand uebersteigen darf. */
+  /* Hybrid mit 3D-Rahmen: kraeftiger Border + Bevel-Effekt (Inset-
+     Highlights/Shadows) + Floating-Outer-Shadow. Plus die bestehenden
+     Silhouette-Drop-Shadows auf dem img bleiben erhalten. */
   .portrait {
     grid-area: portrait;
     align-self: center;
     width: 100%;
-    border: 1px solid rgba(30, 60, 100, 0.15);
-    border-radius: 8px;
+    border: 2px solid rgba(30, 60, 100, 0.28);
+    border-radius: 12px;
+    box-shadow:
+      /* Inset-Highlight oben: simuliert Lichteinfall von oben */
+      inset 0 2px 0 rgba(255, 255, 255, 0.55),
+      /* Inset-Schatten unten: gibt dem Rahmen Tiefe */
+      inset 0 -2px 0 rgba(30, 60, 100, 0.12),
+      /* Outer-Schatten: Rahmen schwebt ueber dem Gradient */
+      0 4px 8px -2px rgba(30, 60, 100, 0.15),
+      0 24px 48px -10px rgba(30, 60, 100, 0.30);
   }
   .portrait img {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 7px; /* 1px kleiner als Container, damit Ecken
-                          nicht ueber den Border hinausstehen */
+    border-radius: 10px; /* 2px kleiner als Container (=Border-Breite) */
     filter:
       drop-shadow(0 0 1px rgba(30, 60, 100, 0.35))
       drop-shadow(0 12px 24px rgba(30, 60, 100, 0.22));
