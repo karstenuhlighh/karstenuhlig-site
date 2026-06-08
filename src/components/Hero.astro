@@ -195,6 +195,9 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     display: block;
     width: 100%;
     height: auto;
+    /* Drop-Shadow folgt der Silhouette (nicht der Box) -- gibt dem
+       freigestellten Bild leichte Tiefe, ohne sichtbaren Rahmen. */
+    filter: drop-shadow(0 12px 24px rgba(30, 60, 100, 0.22));
   }
   .teaser-area {
     grid-area: teaser;
