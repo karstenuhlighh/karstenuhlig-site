@@ -183,19 +183,18 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     margin-top: 1rem;
   }
   /* Soft-Card-Embedding fuer das freigestellte PNG:
-     getoenter Hintergrund (sanftes Lila-Weiss) fuellt die transparenten
-     Bereiche, grosse weiche Rundung + grosser Drop-Shadow geben den
-     "floating card"-Look aus dem Referenz-Screenshot. */
+     neutraler Off-White-Hintergrund (kein Farbton) fuellt die
+     transparenten Bereiche, weiche Rundung + grosser Drop-Shadow. */
   .portrait {
     grid-area: portrait;
     align-self: center;
     width: 100%;
-    background: rgba(245, 240, 248, 0.82);
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 28px;
     box-shadow:
       0 1px 0 rgba(255, 255, 255, 0.6) inset,
       0 28px 56px -14px rgba(30, 60, 100, 0.22),
-      0 0 0 1px rgba(30, 60, 100, 0.05);
+      0 0 0 1px rgba(30, 60, 100, 0.06);
     overflow: hidden;
   }
   .portrait img {
