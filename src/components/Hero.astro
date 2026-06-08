@@ -42,9 +42,9 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
           digitalem Business und Marketing mitzugestalten.
         </p>
       </div>
-      <div class="teaser-area">
-        <SemAgenticTeaser />
-      </div>
+    </div>
+    <div class="teaser-area">
+      <SemAgenticTeaser />
     </div>
     <slot />
   </div>
@@ -75,7 +75,7 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 3rem 4rem 5rem;
+    padding: 3rem 4rem 0; /* pb: 0 -- Portrait sitzt am Section-Bottom */
   }
   .diag-line-1 {
     position: absolute;
@@ -112,8 +112,9 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   }
 
   /* --- DESKTOP --- Grid mit Named Areas --- */
-  /* Portrait jetzt LINKS, Text-Block RECHTS — Bild schaut in den
-     Content rein, nicht aus dem Layout heraus. */
+  /* Portrait linke Spalte, Text-Block rechte Spalte.
+     teaser ist nicht mehr im Grid (haengt darunter, full-width), damit
+     das Portrait am unteren Hero-Sektionsrand angeschnitten sitzen kann. */
   .hero-grid {
     position: relative;
     display: grid;
@@ -123,12 +124,11 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
       "portrait headline"
       "portrait subtitle"
       "portrait ueber-mich"
-      "portrait bio"
-      "teaser   teaser";
+      "portrait bio";
     column-gap: 4rem;
     row-gap: 0;
     align-items: start;
-    margin-bottom: 5rem;
+    margin-bottom: 0;
   }
   .ueber-mich-marker {
     grid-area: ueber-mich;
@@ -182,65 +182,58 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .bio p + p {
     margin-top: 1rem;
   }
-  /* Hybrid mit 3D-Rahmen: kraeftiger Border + Bevel-Effekt (Inset-
-     Highlights/Shadows) + Floating-Outer-Shadow. Plus die bestehenden
-     Silhouette-Drop-Shadows auf dem img bleiben erhalten. */
+  /* Foto-Brief v1.2: kein Rahmen, kein Container, kein Schatten.
+     Bottom-anchored im Grid -- Figur sitzt am Sektions-Bottom an,
+     scheint dort angeschnitten zu sein. */
   .portrait {
     grid-area: portrait;
-    align-self: center;
+    align-self: end;
     width: 100%;
-    border: 1px solid rgba(30, 60, 100, 0.18);
-    border-radius: 10px;
-    box-shadow:
-      /* Inset-Highlight oben: simuliert Lichteinfall von oben */
-      inset 0 1px 0 rgba(255, 255, 255, 0.4),
-      /* Inset-Schatten unten: dezente Tiefe */
-      inset 0 -1px 0 rgba(30, 60, 100, 0.06),
-      /* Outer-Schatten: leichter Floating-Effekt */
-      0 2px 4px -1px rgba(30, 60, 100, 0.08),
-      0 16px 32px -8px rgba(30, 60, 100, 0.18);
+    /* display:block, kein extra padding/margin */
   }
   .portrait img {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 9px; /* 1px kleiner als Container (=Border-Breite) */
-    filter:
-      drop-shadow(0 0 1px rgba(30, 60, 100, 0.35))
-      drop-shadow(0 12px 24px rgba(30, 60, 100, 0.22));
+    /* CSS-Filter ist eine Approximation des im Brief beschriebenen
+       Duotones -- selektive Hautton-Erhaltung ist in CSS NICHT
+       moeglich. Sobald ein offline-erstelltes Duotone-PNG vorliegt,
+       diese Filter-Zeile entfernen. */
+    filter: contrast(1.04) saturate(0.88);
   }
   .teaser-area {
-    grid-area: teaser;
     margin-top: 4rem;
+    padding-bottom: 5rem;
   }
 
-  /* --- MOBILE --- flach gestapelt mit CSS-Order --- */
+  /* --- MOBILE --- Foto ganz oben (ueber der Headline), gestapelt --- */
   @media (max-width: 768px) {
     .hero-inner {
-      padding: 2rem 1.5rem 3rem;
+      padding: 2rem 1.5rem 0;
     }
     .hero-grid {
       display: flex;
       flex-direction: column;
       gap: 0;
-      margin-bottom: 3rem;
+      margin-bottom: 0;
+    }
+    .portrait {
+      order: 1;
+      max-width: 320px;
+      margin: 0 auto 1.5rem;
     }
     .eyebrow {
-      order: 1;
+      order: 2;
       margin-bottom: 0.75rem;
     }
     .headline {
-      order: 2;
+      order: 3;
       font-size: 32px;
       margin-bottom: 1rem;
     }
     .subtitle {
-      order: 3;
-      margin-bottom: 0;
-    }
-    .teaser-area {
       order: 4;
-      margin-top: 2rem;
+      margin-bottom: 0;
     }
     .ueber-mich-marker {
       order: 5;
@@ -249,14 +242,13 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
       margin-bottom: 0;
       border-top: 1px solid var(--color-border);
     }
-    .portrait {
-      order: 6;
-      max-width: 220px;
-      margin: 1.5rem auto 0;
-    }
     .bio {
-      order: 7;
+      order: 6;
       margin-top: 2rem;
+    }
+    .teaser-area {
+      margin-top: 2rem;
+      padding-bottom: 3rem;
     }
   }
 </style>
