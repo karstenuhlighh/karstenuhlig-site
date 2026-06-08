@@ -9,22 +9,39 @@ import PageHeader from "../components/PageHeader.astro";
 >
   <PageHeader eyebrow="Über mich" headline="Über mich" />
 
-  <section class="stub-section">
-    <p class="stub-text">Inhalt folgt.</p>
+  <section class="about-prose">
+    <p>Die meisten Unternehmen wissen längst, was sie tun sollten. Woran es hakt, ist die
+      Umsetzung. Diese Beobachtung hat meine Arbeit von früh an bestimmt.</p>
+
+    <p>Dass Daten und mobile Nutzung den Handel verändern, war in der Branche schnell
+      verstanden. Daraus etwas Messbares zu machen, war die eigentliche Aufgabe. Genau daran
+      habe ich über zwei Jahrzehnte gearbeitet: bei bonprix eine Datenplattform und eine
+      internationale Marketing-Organisation in mehr als 20 Märkten aufgebaut, die
+      E-Commerce-Plattform zu einer Digital Experience Platform modernisiert und zuletzt als
+      Vice President ein E-Commerce-Geschäft von 1,6 Mrd. € verantwortet.</p>
+
+    <p>Heute arbeite ich mit Agentic AI am selben Punkt. Die Technologie ist neu, das Muster
+      kenne ich. Zuerst wird geklärt, wer auf welchen Daten für welches Ergebnis geradesteht,
+      dann kommt das Modell. Wer die Reihenfolge umdreht, vergrößert die Lücke meist, statt sie
+      zu schließen. Diese Frage prüfe ich gerade auch praktisch, in einem selbst gebauten
+      Agentic-AI-Piloten, an dem ich meine Annahmen ehrlich gegen die Ergebnisse messe. Mich
+      interessiert an einer Aufgabe genau der Übergang vom „wir sollten" zum „es liefert".</p>
   </section>
 </SubPageLayout>
 
 <style>
-  .stub-section {
+  .about-prose {
     padding-top: 3rem;
     border-top: 1px solid var(--color-border);
+    max-width: 42rem;
   }
-  .stub-text {
-    font-size: 15px;
+  .about-prose p {
+    font-size: 17px;
     line-height: 1.75;
     color: var(--color-body);
-    font-style: italic;
-    opacity: 0.7;
-    margin: 0;
+    margin: 0 0 1.5rem;
+  }
+  .about-prose p:last-child {
+    margin-bottom: 0;
   }
 </style>
