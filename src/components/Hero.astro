@@ -195,9 +195,13 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     display: block;
     width: 100%;
     height: auto;
-    /* Drop-Shadow folgt der Silhouette (nicht der Box) -- gibt dem
-       freigestellten Bild leichte Tiefe, ohne sichtbaren Rahmen. */
-    filter: drop-shadow(0 12px 24px rgba(30, 60, 100, 0.22));
+    /* Doppelter Drop-Shadow folgt der Silhouette (nicht der Box):
+       1) feiner Outline (0 blur) zeichnet die Kontur subtil nach,
+       2) weicher Tiefen-Schatten gibt dem freigestellten Bild
+       Volumen ohne Card-Rahmen. */
+    filter:
+      drop-shadow(0 0 1px rgba(30, 60, 100, 0.35))
+      drop-shadow(0 12px 24px rgba(30, 60, 100, 0.22));
   }
   .teaser-area {
     grid-area: teaser;
