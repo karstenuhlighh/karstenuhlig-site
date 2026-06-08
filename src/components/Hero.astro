@@ -182,20 +182,14 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .bio p + p {
     margin-top: 1rem;
   }
-  /* Soft-Card-Embedding fuer das freigestellte PNG:
-     neutraler Off-White-Hintergrund (kein Farbton) fuellt die
-     transparenten Bereiche, weiche Rundung + grosser Drop-Shadow. */
+  /* Maximal eingebettet: keine Card, kein Hintergrund, kein Border,
+     kein Box-Shadow. Das freigestellte PNG schwebt direkt auf dem
+     Sky-Gradient -- die transparenten Bereiche lassen den Verlauf
+     nahtlos durchscheinen. */
   .portrait {
     grid-area: portrait;
     align-self: center;
     width: 100%;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 28px;
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.6) inset,
-      0 28px 56px -14px rgba(30, 60, 100, 0.22),
-      0 0 0 1px rgba(30, 60, 100, 0.06);
-    overflow: hidden;
   }
   .portrait img {
     display: block;
