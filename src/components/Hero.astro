@@ -182,23 +182,22 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .bio p + p {
     margin-top: 1rem;
   }
-  /* Maximal eingebettet: keine Card, kein Hintergrund, kein Border,
-     kein Box-Shadow. Das freigestellte PNG schwebt direkt auf dem
-     Sky-Gradient -- die transparenten Bereiche lassen den Verlauf
-     nahtlos durchscheinen. */
+  /* Hybrid: rechteckiger Rahmen auf dem Container + Silhouette-Drop-
+     Shadows auf dem img. Kein overflow:hidden, damit der weiche
+     Silhouette-Schatten den Border-Rand uebersteigen darf. */
   .portrait {
     grid-area: portrait;
     align-self: center;
     width: 100%;
+    border: 1px solid rgba(30, 60, 100, 0.15);
+    border-radius: 8px;
   }
   .portrait img {
     display: block;
     width: 100%;
     height: auto;
-    /* Doppelter Drop-Shadow folgt der Silhouette (nicht der Box):
-       1) feiner Outline (0 blur) zeichnet die Kontur subtil nach,
-       2) weicher Tiefen-Schatten gibt dem freigestellten Bild
-       Volumen ohne Card-Rahmen. */
+    border-radius: 7px; /* 1px kleiner als Container, damit Ecken
+                          nicht ueber den Border hinausstehen */
     filter:
       drop-shadow(0 0 1px rgba(30, 60, 100, 0.35))
       drop-shadow(0 12px 24px rgba(30, 60, 100, 0.22));
