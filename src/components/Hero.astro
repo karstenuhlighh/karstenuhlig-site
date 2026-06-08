@@ -182,22 +182,21 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .bio p + p {
     margin-top: 1rem;
   }
-  /* Foto-Brief v4: Ausgangs-Look "locken"
-     - Karten-BG transparent -- Site-Gradient laeuft durch, Karte ist
-       nur dezenter Rahmen, kein Foto-Box-Bruch
-     - Helle Hairline-Border (whitish, kaum sichtbar gegen Hellblau)
-     - 14px border-radius (Mittel zwischen App-Rundung und hart)
-     - Schatten weicher: Inset-Layer raus, nur sanfter Outer-Shadow
-     - img: doppelter drop-shadow mit minimalem blur als Feather-
-       Approximation der freistellungs-Kante (echtes Feather ist
-       Bildbearbeitung am PNG, in CSS nur naeherbar) */
+  /* Foto-Brief v5: Ausrichtung
+     - Karte stretched ueber die volle Hoehe der Text-Spalte
+       (Oberkante = Eyebrow-Top, Unterkante = Bio-Bottom)
+     - img mit object-fit:cover, object-position auf Gesicht
+       (kein Verzerren, sauberer Beschnitt)
+     - v4-Look erhalten: transparenter BG, helle Hairline, 14px Radius,
+       sanfter Outer-Shadow, Feather-Approximation am img */
   .portrait {
     grid-area: portrait;
-    align-self: center;
+    align-self: stretch;
     width: 100%;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 14px;
+    overflow: hidden;
     box-shadow:
       0 2px 4px -1px rgba(30, 60, 100, 0.06),
       0 12px 24px -8px rgba(30, 60, 100, 0.14);
@@ -205,11 +204,9 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .portrait img {
     display: block;
     width: 100%;
-    height: auto;
-    border-radius: 13px;
-    /* Feather-Approximation: zwei drop-shadows mit minimalem Blur
-       weichen die freistellungs-Kante optisch ab, ohne sichtbare
-       Outline zu erzeugen */
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%; /* Gesicht/Oberkoerper anchor */
     filter:
       drop-shadow(0 0 1px rgba(30, 60, 100, 0.20))
       drop-shadow(0 0 1px rgba(30, 60, 100, 0.12));
@@ -234,7 +231,12 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
       order: 1;
       max-width: 320px;
       width: 100%;
+      height: auto; /* override desktop-stretch fuer Mobile */
       margin: 0 auto 1.5rem;
+    }
+    .portrait img {
+      height: auto;
+      object-fit: initial; /* reset cover fuer Mobile -- natural Hoehe */
     }
     .eyebrow {
       order: 2;
