@@ -182,17 +182,17 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .bio p + p {
     margin-top: 1rem;
   }
-  /* Foto-Brief v6: Karten-Rand (Option A)
-     - Border entfernt (Weiss knallte zu hell auf Hellblau)
-     - Karte wird nur durch sanften Schatten definiert
-     - Runde Ecken (14px) und transparenter BG (= Site-Gradient
-       laeuft durch) bleiben */
+  /* Foto-Brief v6: Karten-Rand (Option B)
+     - Hairline 1px in Blau-Grau (#90A6BB) mit 40% Opazitaet -- leicht
+       dunkler als der Site-Hellblau, KEIN Weiss
+     - Sanfter Box-Shadow aus Option A bleibt fuer zusaetzliche Tiefe
+     - Runde Ecken + transparenter BG unveraendert */
   .portrait {
     grid-area: portrait;
     align-self: stretch;
     width: 100%;
     background: transparent;
-    border: none;
+    border: 1px solid rgba(144, 166, 187, 0.4);
     border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 8px 28px rgba(30, 50, 70, 0.12);
