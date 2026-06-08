@@ -182,30 +182,37 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .bio p + p {
     margin-top: 1rem;
   }
-  /* Zurueck auf commit 5c724c5 ("3D-Effekt schwaecher"):
-     1px Border, 10px Radius, 4-Layer Box-Shadow (Inset-Highlights
-     oben/unten + 2-stufiger Outer-Shadow), img mit eigenem radius
-     und 2-stufigem drop-shadow-Filter (Silhouette-Outline + Tiefe). */
+  /* Foto-Brief v4: Ausgangs-Look "locken"
+     - Karten-BG transparent -- Site-Gradient laeuft durch, Karte ist
+       nur dezenter Rahmen, kein Foto-Box-Bruch
+     - Helle Hairline-Border (whitish, kaum sichtbar gegen Hellblau)
+     - 14px border-radius (Mittel zwischen App-Rundung und hart)
+     - Schatten weicher: Inset-Layer raus, nur sanfter Outer-Shadow
+     - img: doppelter drop-shadow mit minimalem blur als Feather-
+       Approximation der freistellungs-Kante (echtes Feather ist
+       Bildbearbeitung am PNG, in CSS nur naeherbar) */
   .portrait {
     grid-area: portrait;
     align-self: center;
     width: 100%;
-    border: 1px solid rgba(30, 60, 100, 0.18);
-    border-radius: 10px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 14px;
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.4),
-      inset 0 -1px 0 rgba(30, 60, 100, 0.06),
-      0 2px 4px -1px rgba(30, 60, 100, 0.08),
-      0 16px 32px -8px rgba(30, 60, 100, 0.18);
+      0 2px 4px -1px rgba(30, 60, 100, 0.06),
+      0 12px 24px -8px rgba(30, 60, 100, 0.14);
   }
   .portrait img {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 9px;
+    border-radius: 13px;
+    /* Feather-Approximation: zwei drop-shadows mit minimalem Blur
+       weichen die freistellungs-Kante optisch ab, ohne sichtbare
+       Outline zu erzeugen */
     filter:
-      drop-shadow(0 0 1px rgba(30, 60, 100, 0.35))
-      drop-shadow(0 12px 24px rgba(30, 60, 100, 0.22));
+      drop-shadow(0 0 1px rgba(30, 60, 100, 0.20))
+      drop-shadow(0 0 1px rgba(30, 60, 100, 0.12));
   }
   .teaser-area {
     margin-top: 4rem;
