@@ -18,7 +18,6 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
         <div class="ueber-mich-eyebrow">Über mich</div>
       </div>
       <div class="portrait">
-        <div class="portrait-backdrop" aria-hidden="true"></div>
         <img
           src="/portrait-freigestellt.png"
           alt="Portrait Karsten Uhlig"
@@ -76,7 +75,7 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 3rem 4rem 0; /* pb: 0 -- Portrait sitzt am Section-Bottom */
+    padding: 3rem 4rem 3rem;
   }
   .diag-line-1 {
     position: absolute;
@@ -183,35 +182,28 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .bio p + p {
     margin-top: 1rem;
   }
-  /* Foto-Brief v2 (Komposition 1+2):
-     - Figur bottom-anchored, deutlich groesser als v1, leicht
-       nach links versetzt (Mittelpunkt ~40% der Spalte)
-     - Slate-Backdrop hinter Figur: blutet links + unten ueber
-       Sektionskante aus (overflow:hidden auf .hero clippt sauber),
-       obere Kante gerade auf Schulter-/Brusthoehe -> Kopf ragt
-       ueber Backdrop ins Hellblau (Tiefen-Effekt) */
+  /* Foto-Brief v3 (verfeinerte Karte):
+     - Kleiner Radius 8px (KEINE App-Rundung)
+     - Hairline 1px Border in dezentem Hellblau (#C2D2E6)
+     - KEIN Schatten (das war der "Baukasten"-Faktor)
+     - Heller Karten-BG, eine Spur abgesetzt vom Site-Hellblau --
+       damit die Karte als eigene Flaeche lesbar ist, ohne den
+       Site-Verlauf zu zerschneiden
+     - Figur fuellt die Karte komplett (overflow:hidden), sitzt
+       damit automatisch am Karten-Bottom an */
   .portrait {
     grid-area: portrait;
-    align-self: end;
-    position: relative;
+    align-self: start;
     width: 100%;
-  }
-  .portrait-backdrop {
-    position: absolute;
-    left: -100vw; /* bleed bis ans Viewport-Ende links */
-    right: -5%; /* endet knapp hinter Figurbreite */
-    top: 42%; /* obere Kante auf Schulter-/Brusthoehe */
-    bottom: -3rem; /* bleed unten ueber Sektionskante */
-    background: #2f4256;
-    z-index: 1;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid #c2d2e6;
+    border-radius: 8px;
+    overflow: hidden;
   }
   .portrait img {
-    position: relative;
-    z-index: 2; /* Figur ueber Backdrop */
     display: block;
-    width: 120%;
+    width: 100%;
     height: auto;
-    margin-left: -15%; /* Figur etwas nach links versetzt */
   }
   .teaser-area {
     margin-top: 4rem;
@@ -231,23 +223,9 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     }
     .portrait {
       order: 1;
-      max-width: 100%;
-      width: 100%;
-      margin: 0 0 1.5rem;
-      position: relative;
-    }
-    .portrait-backdrop {
-      /* Vollbreites Band hinter der Figur (bleed bis Section-Rand) */
-      left: -1.5rem;
-      right: -1.5rem;
-      top: 38%;
-      bottom: -2rem;
-    }
-    .portrait img {
-      width: 75%;
       max-width: 320px;
-      margin-left: auto;
-      margin-right: auto;
+      width: 100%;
+      margin: 0 auto 1.5rem;
     }
     .eyebrow {
       order: 2;
