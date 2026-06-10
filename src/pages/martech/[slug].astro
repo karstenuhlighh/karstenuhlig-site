@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from "astro:content";
+import SubPageLayout from "../../layouts/SubPageLayout.astro";
+import NoteArticle from "../../components/NoteArticle.astro";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("martech", ({ data }) => !data.draft);
+  return notes.map((note) => ({
+    params: { slug: note.id },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+---
+
+<SubPageLayout
+  title={`${note.data.title} — Karsten Uhlig`}
+  description={note.data.excerpt}
+>
+  <NoteArticle
+    title={note.data.title}
+    excerpt={note.data.excerpt}
+    date={note.data.date}
+    eyebrow="MarTech"
+    backHref="/martech"
+    backLabel="MarTech"
+  >
+    <Content />
+  </NoteArticle>
+</SubPageLayout>
