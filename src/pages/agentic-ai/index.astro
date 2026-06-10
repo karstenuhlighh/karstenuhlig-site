@@ -10,12 +10,12 @@ notes.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 <SubPageLayout
   title="Agentic AI — Karsten Uhlig"
-  description="Markt-These zur Implementierungs-Welle und sem-agentic — ein agentisches System für Search-Engine-Marketing."
+  description="Markt-These zur Implementierungs-Welle und sem-agentic, ein agentisches System für Search-Engine-Marketing."
 >
   <PageHeader
     eyebrow="Bereich"
     headline="Agentic AI"
-    intro="Markt-These zur Implementierungs-Welle und sem-agentic — ein agentisches System für Search-Engine-Marketing aus eigener Hand."
+    intro="Markt-These zur Implementierungs-Welle und sem-agentic, ein agentisches System für Search-Engine-Marketing aus eigener Hand."
   />
 
   <section class="featured">
@@ -23,14 +23,14 @@ notes.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
     <a href="/agentic-ai/sem-agentic" class="featured-card">
       <div class="featured-title">sem-agentic</div>
       <div class="featured-desc">
-        Working Product Map, Patterns und Erkenntnisse aus dem Bau. Bewusst als
-        Lern- und Bauprojekt positioniert.
+        Working Product Map, Patterns und Erkenntnisse aus dem Bau. Ein selbst
+        gebauter Agentic-AI-Pilot, offen dokumentiert.
       </div>
       <div class="featured-meta">Detail-Seite →</div>
     </a>
   </section>
 
-  <NotesList notes={notes} basePath="/agentic-ai" />
+  {notes.length > 0 && <NotesList notes={notes} basePath="/agentic-ai" />}
 </SubPageLayout>
 
 <style>

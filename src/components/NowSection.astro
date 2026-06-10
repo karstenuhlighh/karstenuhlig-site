@@ -2,7 +2,7 @@
 // Inhalt der Now-Section pflegt Karsten monatlich.
 // Marketing-affine Tonalität; keine technischen Detailbegriffe
 // (LangGraph, Recall, BOOST, LLM-as-Judge) auf der Hauptseite.
-const period = "Mai 2026";
+const period = "Juni 2026";
 ---
 
 <section class="now-section">
@@ -10,7 +10,18 @@ const period = "Mai 2026";
   <div class="now-grid">
     <div class="now-card">
       <div class="now-card-label">Im Bau</div>
-      <p class="now-card-body">AgenticAI Feasibility Study im Digital Marketing</p>
+      <p class="now-card-body">
+        Eine Feasibility Study für Agentic AI im Performance Marketing. Selbst
+        gebaut, um die Annahmen ehrlich gegen die Ergebnisse zu messen.
+      </p>
+    </div>
+    <div class="now-card">
+      <div class="now-card-label">Gerade dran</div>
+      <p class="now-card-body">
+        Ich schreibe meine Sicht auf MarTech, E-Commerce und Agentic AI hier
+        laufend auf. Zuletzt: warum zuerst das Operating Model kommt und dann
+        das Modell.
+      </p>
     </div>
   </div>
 </section>
@@ -31,8 +42,10 @@ const period = "Mai 2026";
     font-weight: 500;
   }
   .now-grid {
-    display: block;
-    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 560px;
   }
   .now-card {
     background: rgba(255, 255, 255, 0.55);
