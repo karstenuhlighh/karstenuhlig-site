@@ -11,8 +11,8 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     <div class="hero-grid">
       <div class="eyebrow">Senior Digital Executive</div>
       <h1 class="headline">
-        Growing digital commerce.<br />Closing the gap between strategy and
-        results.
+        Growing digital&nbsp;commerce.<br />Closing the gap between strategy
+        and results.
       </h1>
       <p class="subtitle">
         E-Commerce &amp; Marketing Outcomes through MarTech, Data &amp; AI.
@@ -158,12 +158,13 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   }
   .headline {
     grid-area: headline;
-    font-size: 56px;
+    font-size: 44px;
     font-weight: 500;
-    line-height: 1.02;
-    letter-spacing: -0.035em;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
     margin-bottom: 1.5rem;
     color: var(--color-ink);
+    text-wrap: balance;
   }
   .subtitle {
     grid-area: subtitle;
@@ -192,7 +193,7 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
      - Runde Ecken + transparenter BG unveraendert */
   .portrait {
     grid-area: portrait;
-    align-self: stretch;
+    align-self: start;
     width: 100%;
     background: transparent;
     border: 1px solid rgba(144, 166, 187, 0.4);
@@ -203,9 +204,8 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .portrait img {
     display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 25%; /* Gesicht/Oberkoerper anchor */
+    height: auto;
+    object-fit: contain;
     filter:
       drop-shadow(0 0 1px rgba(30, 60, 100, 0.20))
       drop-shadow(0 0 1px rgba(30, 60, 100, 0.12));
