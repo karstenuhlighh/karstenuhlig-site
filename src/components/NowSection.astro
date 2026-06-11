@@ -53,10 +53,11 @@
     margin: 0 0 1.75rem;
   }
   .now-grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    max-width: 560px;
+    align-items: stretch;
+    max-width: 900px;
   }
   .now-card {
     background: rgba(255, 255, 255, 0.55);
@@ -77,5 +78,12 @@
     line-height: 1.75;
     color: var(--color-body);
     margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .now-grid {
+      grid-template-columns: 1fr;
+      max-width: 560px;
+    }
   }
 </style>
