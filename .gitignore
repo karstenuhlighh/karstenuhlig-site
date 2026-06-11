@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# design-handoff / reference bundles (nicht Teil der Site)
+design_handoff_homepage/
+portrait_card_export/
+Website Karsten*/
+Website Karsten*.zip
