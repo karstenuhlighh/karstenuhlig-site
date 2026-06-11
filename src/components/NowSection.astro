@@ -2,25 +2,30 @@
 // Inhalt der Now-Section pflegt Karsten monatlich.
 // Marketing-affine Tonalität; keine technischen Detailbegriffe
 // (LangGraph, Recall, BOOST, LLM-as-Judge) auf der Hauptseite.
-const period = "Juni 2026";
 ---
 
 <section class="now-section">
-  <div class="eyebrow">Was mich gerade beschäftigt ({period})</div>
+  <div class="eyebrow">Thesen und Praxistests</div>
+  <p class="now-intro">
+    Was ich über Umsetzung behaupte, kalibriere ich zuerst an echten
+    Ergebnissen.
+  </p>
   <div class="now-grid">
     <div class="now-card">
-      <div class="now-card-label">Im Bau</div>
+      <div class="now-card-label">Praxistest</div>
       <p class="now-card-body">
-        Eine Feasibility Study für Agentic AI im Performance Marketing. Selbst
-        gebaut, um die Annahmen ehrlich gegen die Ergebnisse zu messen.
+        Eine Feasibility Study für Agentic AI im Performance Marketing. Die
+        Frage dahinter: Hält die Technologie, was die Demos versprechen, sobald
+        sie auf echte Kampagnen-Operationen trifft? Das lässt sich nur am
+        laufenden System beantworten, nicht am Whitepaper.
       </p>
     </div>
     <div class="now-card">
-      <div class="now-card-label">Gerade dran</div>
+      <div class="now-card-label">Thesen</div>
       <p class="now-card-body">
-        Ich schreibe meine Sicht auf MarTech, E-Commerce und Agentic AI hier
-        laufend auf. Zuletzt: warum zuerst das Operating Model kommt und dann
-        das Modell.
+        Einordnungen zu MarTech, E-Commerce und Agentic AI, geschärft am Track
+        Record und an der laufenden Feasibility Study. Zuletzt: warum zuerst das
+        Operating Model kommt, dann das Modell.
       </p>
     </div>
   </div>
@@ -40,6 +45,12 @@ const period = "Juni 2026";
     text-transform: uppercase;
     margin-bottom: 1.5rem;
     font-weight: 500;
+  }
+  .now-intro {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-ink-2, var(--color-body));
+    margin: 0 0 1.75rem;
   }
   .now-grid {
     display: flex;
