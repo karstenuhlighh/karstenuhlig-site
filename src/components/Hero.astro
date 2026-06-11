@@ -281,12 +281,9 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
       order: 1;
       max-width: 320px;
       width: 100%;
-      height: auto; /* override desktop-stretch fuer Mobile */
       margin: 0 auto 1.5rem;
-    }
-    .portrait img {
-      height: auto;
-      object-fit: initial; /* reset cover fuer Mobile -- natural Hoehe */
+      /* Hoehe kommt nur aus aspect-ratio (428/596); Bild fuellt per cover.
+         Keine feste height/min-height -> keine Luecke unten. */
     }
     .eyebrow {
       order: 2;

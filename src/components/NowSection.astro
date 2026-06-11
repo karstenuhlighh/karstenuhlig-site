@@ -11,7 +11,9 @@
     Ergebnissen.
   </p>
   <div class="now-grid">
-    <div class="now-card">
+    <a href="/agentic-ai/sem-agentic" class="now-card">
+      <span class="hair hair-1" aria-hidden="true"></span>
+      <span class="hair hair-2" aria-hidden="true"></span>
       <div class="now-card-label">Praxistest</div>
       <p class="now-card-body">
         Eine Feasibility Study für Agentic AI im Performance Marketing. Die
@@ -19,15 +21,17 @@
         sie auf echte Kampagnen-Operationen trifft? Das lässt sich nur am
         laufenden System beantworten, nicht am Whitepaper.
       </p>
-    </div>
-    <div class="now-card">
+    </a>
+    <a href="/martech/operating-model-schlaegt-stack" class="now-card">
+      <span class="hair hair-1" aria-hidden="true"></span>
+      <span class="hair hair-2" aria-hidden="true"></span>
       <div class="now-card-label">Thesen</div>
       <p class="now-card-body">
         Einordnungen zu MarTech, E-Commerce und Agentic AI, geschärft am Track
         Record und an der laufenden Feasibility Study. Zuletzt: warum zuerst das
         Operating Model kommt, dann das Modell.
       </p>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -60,10 +64,62 @@
     max-width: 900px;
   }
   .now-card {
-    background: rgba(255, 255, 255, 0.55);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    background: linear-gradient(
+      180deg,
+      rgba(164, 192, 217, 0.55) 0%,
+      rgba(214, 228, 239, 0.42) 45%,
+      rgba(246, 249, 252, 0.55) 100%
+    );
     border: 1px solid var(--color-border-soft);
     border-radius: 3px;
     padding: 2rem 1.75rem;
+    transition:
+      border-color 0.2s ease,
+      transform 0.2s ease;
+  }
+  .now-card:hover {
+    border-color: rgba(180, 83, 9, 0.45);
+    transform: translateY(-2px);
+  }
+  /* HairCard: zwei sehr helle 18deg-Hairlines hinter dem Text */
+  .now-card .hair {
+    position: absolute;
+    width: 1px;
+    transform: rotate(18deg);
+    transform-origin: top center;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .now-card .hair-1 {
+    top: -30px;
+    right: 46px;
+    height: 230px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(30, 60, 100, 0.09) 32%,
+      rgba(30, 60, 100, 0.02) 75%,
+      transparent 100%
+    );
+  }
+  .now-card .hair-2 {
+    top: 8px;
+    right: 90px;
+    height: 170px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(30, 60, 100, 0.05) 35%,
+      rgba(30, 60, 100, 0.015) 75%,
+      transparent 100%
+    );
   }
   .now-card-label {
     font-size: 11px;

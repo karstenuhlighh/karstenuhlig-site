@@ -24,6 +24,8 @@ const pillars = [
     {
       pillars.map(({ href, title, desc }) => (
         <a href={href} class="pillar">
+          <span class="hair hair-1" aria-hidden="true" />
+          <span class="hair hair-2" aria-hidden="true" />
           <div class="pillar-title">{title}</div>
           <div class="pillar-desc">{desc}</div>
           <div class="pillar-meta">Übersicht →</div>
@@ -52,21 +54,60 @@ const pillars = [
     gap: 1.5rem;
   }
   .pillar {
-    background: rgba(255, 255, 255, 0.55);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: linear-gradient(
+      180deg,
+      rgba(164, 192, 217, 0.55) 0%,
+      rgba(214, 228, 239, 0.42) 45%,
+      rgba(246, 249, 252, 0.55) 100%
+    );
     border: 1px solid var(--color-border-soft);
     border-radius: 3px;
     padding: 2rem 1.75rem;
     cursor: pointer;
     transition:
       border-color 0.2s ease,
-      background 0.2s ease,
       transform 0.2s ease;
     text-decoration: none;
     display: block;
   }
+  /* HairCard: zwei sehr helle 18deg-Hairlines hinter dem Text */
+  .pillar .hair {
+    position: absolute;
+    width: 1px;
+    transform: rotate(18deg);
+    transform-origin: top center;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .pillar .hair-1 {
+    top: -30px;
+    right: 46px;
+    height: 230px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(30, 60, 100, 0.09) 32%,
+      rgba(30, 60, 100, 0.02) 75%,
+      transparent 100%
+    );
+  }
+  .pillar .hair-2 {
+    top: 8px;
+    right: 90px;
+    height: 170px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(30, 60, 100, 0.05) 35%,
+      rgba(30, 60, 100, 0.015) 75%,
+      transparent 100%
+    );
+  }
   .pillar:hover {
     border-color: rgba(180, 83, 9, 0.45);
-    background: rgba(255, 255, 255, 0.75);
     transform: translateY(-2px);
   }
   .pillar-title {
