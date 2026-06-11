@@ -11,8 +11,8 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     <div class="hero-grid">
       <div class="eyebrow">Senior Digital Executive</div>
       <h1 class="headline">
-        Growing digital&nbsp;commerce.<br />Closing the gap between strategy
-        and results.
+        <span class="headline-line1">Growing digital commerce.</span><br
+        />Closing the gap between strategy and results.
       </h1>
       <p class="subtitle">
         E-Commerce &amp; Marketing Outcomes through MarTech,
@@ -22,11 +22,13 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
         <div class="ueber-mich-eyebrow">Über mich</div>
       </div>
       <div class="portrait">
+        <div class="portrait-line-1" aria-hidden="true"></div>
+        <div class="portrait-line-2" aria-hidden="true"></div>
         <img
           src="/portrait-freigestellt.png"
           alt="Portrait Karsten Uhlig"
-          width="800"
-          height="1000"
+          width="1000"
+          height="1250"
         />
       </div>
       <div class="bio">
@@ -122,7 +124,7 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .hero-grid {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr 1.3fr;
+    grid-template-columns: 1fr 1.4fr;
     grid-template-areas:
       "portrait eyebrow"
       "portrait headline"
@@ -131,7 +133,7 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
       "portrait bio";
     column-gap: 4rem;
     row-gap: 0;
-    align-items: stretch;
+    align-items: start;
     margin-bottom: 0;
   }
   .ueber-mich-marker {
@@ -159,13 +161,20 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   }
   .headline {
     grid-area: headline;
-    font-size: 40px;
+    font-size: 46px;
     font-weight: 500;
     line-height: 1.1;
     letter-spacing: -0.03em;
     margin-bottom: 1.5rem;
     color: var(--color-ink);
     text-wrap: balance;
+  }
+  /* Erste Headline-Zeile nur dort umbruchfrei halten, wo die Spalte breit
+     genug ist -- auf schmalen Viewports darf sie weiter umbrechen. */
+  @media (min-width: 1024px) {
+    .headline-line1 {
+      white-space: nowrap;
+    }
   }
   .subtitle {
     grid-area: subtitle;
@@ -194,23 +203,63 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
      - Runde Ecken + transparenter BG unveraendert */
   .portrait {
     grid-area: portrait;
-    align-self: stretch;
+    align-self: start;
     width: 100%;
-    background: transparent;
+    aspect-ratio: 428 / 596; /* natives Verhaeltnis der Bilddatei 856x1192 */
+    position: relative;
+    background: linear-gradient(
+      180deg,
+      #a4c0d9 0%,
+      #c0d3e4 42%,
+      #e2ebf3 78%,
+      #f3f7fb 100%
+    );
     border: 1px solid rgba(144, 166, 187, 0.4);
     border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 8px 28px rgba(30, 50, 70, 0.12);
   }
+  /* Zwei 18deg-Haarlinien innen (oben rechts), als "Himmel" ueber dem Kopf
+     sichtbar -- echoen die Hero-Banner-Linien. */
+  .portrait-line-1,
+  .portrait-line-2 {
+    position: absolute;
+    width: 1px;
+    transform: rotate(18deg);
+    transform-origin: top center;
+    pointer-events: none;
+  }
+  .portrait-line-1 {
+    top: -40px;
+    right: 64px;
+    height: 330px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(30, 60, 100, 0.14) 32%,
+      rgba(30, 60, 100, 0.04) 75%,
+      transparent 100%
+    );
+  }
+  .portrait-line-2 {
+    top: 6px;
+    right: 122px;
+    height: 240px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(30, 60, 100, 0.08) 35%,
+      rgba(30, 60, 100, 0.02) 75%,
+      transparent 100%
+    );
+  }
   .portrait img {
+    position: relative;
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 20%;
-    filter:
-      drop-shadow(0 0 1px rgba(30, 60, 100, 0.20))
-      drop-shadow(0 0 1px rgba(30, 60, 100, 0.12));
+    object-position: center bottom;
   }
   .teaser-area {
     margin-top: 4rem;
