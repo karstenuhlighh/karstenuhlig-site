@@ -194,12 +194,21 @@ const modelChips: { label: string; opt: boolean }[] = [
   <nav class="tabs" role="tablist" aria-label="sem-agentic Detail-Tabs">
     <button
       class="tab tab-active"
-      data-tab="reflexionen"
+      data-tab="dashboard"
       role="tab"
       aria-selected="true"
       type="button"
     >
-      1 · Reflexionen
+      1 · Dashboard
+    </button>
+    <button
+      class="tab"
+      data-tab="reflexionen"
+      role="tab"
+      aria-selected="false"
+      type="button"
+    >
+      2 · Reflexionen
     </button>
     <button
       class="tab"
@@ -208,7 +217,7 @@ const modelChips: { label: string; opt: boolean }[] = [
       aria-selected="false"
       type="button"
     >
-      2 · Working Map
+      3 · Working Map
     </button>
     <button
       class="tab"
@@ -217,7 +226,7 @@ const modelChips: { label: string; opt: boolean }[] = [
       aria-selected="false"
       type="button"
     >
-      3 · Architektur
+      4 · Architektur
     </button>
     <button
       class="tab"
@@ -226,7 +235,7 @@ const modelChips: { label: string; opt: boolean }[] = [
       aria-selected="false"
       type="button"
     >
-      4 · Proof of Concept
+      5 · Proof of Concept
     </button>
     <button
       class="tab"
@@ -235,7 +244,7 @@ const modelChips: { label: string; opt: boolean }[] = [
       aria-selected="false"
       type="button"
     >
-      5 · Blueprint
+      6 · Blueprint
     </button>
     <button
       class="tab"
@@ -244,12 +253,31 @@ const modelChips: { label: string; opt: boolean }[] = [
       aria-selected="false"
       type="button"
     >
-      6 · Erkenntnisse
+      7 · Erkenntnisse
     </button>
   </nav>
 
-  <!-- ============================ TAB 1: REFLEXIONEN ============================ -->
-  <section data-panel="reflexionen" role="tabpanel">
+  <!-- ============================ TAB 1: DASHBOARD ============================ -->
+  <section data-panel="dashboard" role="tabpanel">
+    <div class="tab-sub">
+      Augur Operator-Dashboard — die Streamlit-Oberfläche eines vollständigen
+      Coordinator-Runs: KPI-Cards, Pipeline-Status, Recall-Verlauf, Critique-Ergebnisse
+      und die priorisierten Cluster-Actions.
+    </div>
+
+    <figure class="dash-figure">
+      <img
+        src="/images/augur-dashboard.png"
+        alt="Augur Operator-Dashboard mit KPI-Cards, Pipeline-Status, Recall-Verlauf, Critique-Ergebnissen und priorisierten Cluster-Actions"
+        loading="lazy"
+        decoding="async"
+        width="650"
+      />
+    </figure>
+  </section>
+
+  <!-- ============================ TAB 2: REFLEXIONEN ============================ -->
+  <section data-panel="reflexionen" role="tabpanel" hidden>
     <div class="refl-head">
       <div class="refl-eyebrow">Im Bau gelernt</div>
       <h2 class="refl-h2">Sieben Patterns aus 13 Tagen Augur.</h2>
@@ -1086,6 +1114,7 @@ const modelChips: { label: string; opt: boolean }[] = [
 
     const hash = (window.location.hash || "").slice(1);
     if (
+      hash === "dashboard" ||
       hash === "reflexionen" ||
       hash === "working-map" ||
       hash === "architektur" ||
@@ -1350,6 +1379,22 @@ const modelChips: { label: string; opt: boolean }[] = [
     color: var(--color-ink-3);
     margin-bottom: 1.25rem;
     font-style: italic;
+  }
+
+  /* ============================== TAB 1 — DASHBOARD ============================== */
+  .dash-figure {
+    margin: 0 0 2rem;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 12px;
+    padding: 0.75rem;
+  }
+  .dash-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--color-border-soft);
   }
 
   /* ============================== TAB 1 — MAP ============================== */
