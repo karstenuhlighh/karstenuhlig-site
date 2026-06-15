@@ -179,16 +179,23 @@ const modelChips: { label: string; opt: boolean }[] = [
 
 <SubPageLayout
   title="sem-agentic — Karsten Uhlig"
-  description="Agentic AI System für SEM-Performance: Working Map und Architektur."
+  description="Bei Agentic AI war Wissen nie der Engpass, sondern die Umsetzung. Ein selbst gebautes agentisches System als Hands-on-Beleg."
 >
   <PageHeader
-    eyebrow="Feasibility Study"
+    eyebrow="Agentic AI · Hands-on"
     headline="sem-agentic"
-    intro="Agentic AI System für SEM-Performance. Working Map und Architektur."
+    intro=""
   />
 
-  <!-- Workflow-Schaubild als visueller Einstieg, oberhalb der Tabs -->
-  <AugurWorkflowSchaubild />
+  <!-- Hero: Text links, Workflow-Schaubild rechts, höhenbündig -->
+  <div class="augur-hero">
+    <div class="augur-hero-text">
+      <p>Bei Agentic AI war Wissen nie der Engpass. Jede Organisation weiß seit Jahren, dass sie KI braucht. Knapp bleibt nicht das Fachwissen, sondern die Fähigkeit, von der Einsicht zur messbaren Wirkung zu kommen und eine Organisation durch genau diesen Schritt zu führen. Diese Lücke habe ich schon einmal geschlossen, mehrfach, in einer Operation mit 1,6 Mrd. Euro Umsatz. Bei Agentic AI ist es dasselbe Muster, nur ein neues Thema. Darum habe ich selbst ein agentisches System entwickelt, statt darüber zu reden: um den Abstand zwischen Demo und Betrieb von innen zu kennen, nicht aus einem Report.</p>
+    </div>
+    <div class="augur-hero-figure">
+      <AugurWorkflowSchaubild />
+    </div>
+  </div>
 
   <!-- ============================ TABS ============================ -->
   <nav class="tabs" role="tablist" aria-label="sem-agentic Detail-Tabs">
@@ -422,6 +429,8 @@ const modelChips: { label: string; opt: boolean }[] = [
                 33 %)
               </div>
             </div>
+
+            <p class="maturity-note">Die niedrigen Felder sind kein Versäumnis, sondern eine Entscheidung: gebaut wurde, was den Punkt beweist, nicht was die Tabelle füllt. Ein ehrlicher Stand sagt mehr als ein geschönter.</p>
 
             <div class="maturity-legend">
               {
@@ -1085,6 +1094,10 @@ const modelChips: { label: string; opt: boolean }[] = [
       </div>
     </div>
   </section>
+
+  <div class="augur-tieback">
+    <p>Das eigentliche Thema ist nicht der Code. Es ist, was der Bau über das Führen einer Organisation durch Agentic AI lehrt: dass der Engpass nicht im Modell sitzt, sondern in den hundert Entscheidungen, die das System an Menschen zurückgibt. Wer für das Ergebnis geradesteht, entscheidet diese Phase. Das System baut. Es ownt nicht.</p>
+  </div>
 </SubPageLayout>
 
 <script is:inline>
@@ -1344,6 +1357,17 @@ const modelChips: { label: string; opt: boolean }[] = [
 </script>
 
 <style>
+  /* Augur-Umbau (2026-06): Hero (Text links + Schaubild rechts, höhenbündig), Tie-back, Scorecard-Note */
+  .augur-hero { display: flex; gap: 2.5rem; align-items: stretch; max-width: 1040px; margin: 1.75rem auto 1rem; }
+  .augur-hero-text { flex: 1 1 58%; }
+  .augur-hero-text p { font-size: 1.05rem; line-height: 1.7; color: #2A3D55; margin: 0; }
+  .augur-hero-figure { flex: 1 1 42%; display: flex; align-items: flex-end; justify-content: center; }
+  .augur-hero-figure .awf-wrap { zoom: 0.35; }
+  @supports not (zoom: 1) { .augur-hero-figure .awf-wrap { transform: scale(0.35); transform-origin: bottom center; } }
+  @media (max-width: 760px) { .augur-hero { flex-direction: column; } .augur-hero-figure { align-items: center; } }
+  .maturity-note { font-size: 0.85rem; color: #5B6B82; font-style: italic; margin: 0.6rem 0 0.2rem; max-width: 660px; }
+  .augur-tieback { max-width: 720px; margin: 2.5rem auto 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(30, 60, 100, .15); }
+  .augur-tieback p { font-size: 1.05rem; line-height: 1.7; color: #2A3D55; }
   /* ============================== TABS ============================== */
   .tabs {
     display: flex;
