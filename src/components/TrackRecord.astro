@@ -1,51 +1,19 @@
 ---
-const skills = [
-  {
-    title: "E-Commerce & Digital Marketing",
-    body: "Skalierung von E-Commerce-Geschäftsmodellen, Performance Marketing, Customer Acquisition, CRM, Search, Personalisierung und MarTech-Architekturen.",
-  },
-  {
-    title: "Digital Product & Plattform",
-    body: "Webshops und mobile Apps, von Produktstrategie und User Experience bis zur technischen Architektur und Conversion-Optimierung. Umsetzung digitaler Trends wie Social Commerce, Hyperpersonalisierung, Omnichannel Retail und native Apps.",
-  },
-  {
-    title: "Data & AI Implementation",
-    body: "Datenplattform-Aufbau und KI-gestützte Use Cases in Marketing und Commerce mit klarem Business Owner.",
-  },
-];
-
-const results = [
-  "Skalierung von bonprix zu einer Top 5 Online Fashion Brand in Europa.",
-  "Verbesserung des Marketing-ROI und Realisierung von Effizienzgewinnen im zweistelligen Millionenbereich.",
-  "10x Steigerung von Entwicklungs- und Innovationsgeschwindigkeit (DORA).",
-  "Signifikante Steigerung der Kundenzufriedenheit (NPS & Benchmarks).",
-];
+// Kurzfassung auf der Startseite. Der vollständige, zahlen-forward Track Record
+// (Schwerpunkte + Ergebnisse) wohnt auf /track-record — diese Sektion teasert
+// und verlinkt dorthin (loest die Namens-/Inhalts-Dopplung).
 ---
 
 <section class="track-record">
   <div class="eyebrow">Track Record</div>
   <h2 class="track-headline">bonprix (Otto Group), 2000–Juni 2025</h2>
   <p class="track-intro">
-    Leadership-Rollen in den Bereichen E-Commerce, Digital Marketing, KI/ML,
-    Digital Product & Technology. Zuletzt 120 Mitarbeitende in 25 Teams
-    geführt und €30 Mio. Budget verantwortet.
+    Leadership-Rollen in E-Commerce, Digital Marketing, KI/ML, Digital Product &
+    Technology. Zuletzt 120 Mitarbeitende in 25 Teams geführt und €30 Mio. Budget
+    verantwortet. Skalierung von bonprix zu einer Top 5 Online Fashion Brand in
+    Europa.
   </p>
-
-  <h3 class="track-subheading">Skills</h3>
-  <ul class="track-skills">
-    {
-      skills.map(({ title, body }) => (
-        <li>
-          <strong>{title}:</strong> {body}
-        </li>
-      ))
-    }
-  </ul>
-
-  <h3 class="track-subheading">Ergebnisse & Impact</h3>
-  <ul class="track-bullets">
-    {results.map((r) => <li>{r}</li>)}
-  </ul>
+  <a class="track-link" href="/track-record">Vollständiger Track Record &rarr;</a>
 </section>
 
 <style>
@@ -76,49 +44,16 @@ const results = [
     line-height: 1.75;
     color: var(--color-body);
     max-width: 720px;
-    margin: 0 0 2.5rem;
+    margin: 0 0 1.75rem;
   }
-  .track-subheading {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--color-ink);
-    letter-spacing: -0.01em;
-    margin: 2.5rem 0 1rem;
-  }
-  .track-subheading:first-of-type {
-    margin-top: 0;
-  }
-  .track-skills,
-  .track-bullets {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-width: 760px;
-  }
-  .track-skills li,
-  .track-bullets li {
+  .track-link {
     font-size: 15px;
-    line-height: 1.75;
-    color: var(--color-body);
-    padding-left: 1.5rem;
-    position: relative;
-  }
-  .track-skills li + li,
-  .track-bullets li + li {
-    margin-top: 0.65rem;
-  }
-  .track-skills li::before,
-  .track-bullets li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0.85em;
-    width: 10px;
-    height: 1px;
-    background: var(--color-amber);
-  }
-  .track-skills strong {
-    color: var(--color-ink);
     font-weight: 500;
+    color: var(--color-amber);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+  .track-link:hover {
+    opacity: 0.7;
   }
 </style>

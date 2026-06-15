@@ -1,6 +1,28 @@
 ---
 import SubPageLayout from "../layouts/SubPageLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
+
+const schwerpunkte = [
+  {
+    title: "E-Commerce & Digital Marketing",
+    body: "Skalierung von E-Commerce-Geschäftsmodellen, Performance Marketing, Customer Acquisition, CRM, Search, Personalisierung und MarTech-Architekturen.",
+  },
+  {
+    title: "Digital Product & Plattform",
+    body: "Webshops und mobile Apps, von Produktstrategie und User Experience bis zur technischen Architektur und Conversion-Optimierung.",
+  },
+  {
+    title: "Data & AI Implementation",
+    body: "Datenplattform-Aufbau und KI-gestützte Use Cases in Marketing und Commerce mit klarem Business Owner.",
+  },
+];
+
+const ergebnisse = [
+  "Skalierung von bonprix zu einer Top 5 Online Fashion Brand in Europa.",
+  "Verbesserung des Marketing-ROI und Effizienzgewinne im zweistelligen Millionenbereich.",
+  "10x Steigerung von Entwicklungs- und Innovationsgeschwindigkeit (DORA).",
+  "Signifikante Steigerung der Kundenzufriedenheit (NPS & Benchmarks).",
+];
 ---
 
 <SubPageLayout
@@ -41,6 +63,31 @@ import PageHeader from "../components/PageHeader.astro";
       Organisation so verändern, dass aus Strategie messbare Wirkung wird.
     </p>
   </section>
+
+  <section class="tr-facts">
+    <h2 class="tr-facts-headline">bonprix (Otto Group), 2000–Juni 2025</h2>
+    <p class="tr-facts-intro">
+      Leadership-Rollen in E-Commerce, Digital Marketing, KI/ML, Digital Product
+      & Technology. Zuletzt 120 Mitarbeitende in 25 Teams geführt und €30 Mio.
+      Budget verantwortet.
+    </p>
+
+    <h3 class="tr-subheading">Schwerpunkte</h3>
+    <ul class="tr-list">
+      {
+        schwerpunkte.map(({ title, body }) => (
+          <li>
+            <strong>{title}:</strong> {body}
+          </li>
+        ))
+      }
+    </ul>
+
+    <h3 class="tr-subheading">Ergebnisse & Impact</h3>
+    <ul class="tr-list">
+      {ergebnisse.map((r) => <li>{r}</li>)}
+    </ul>
+  </section>
 </SubPageLayout>
 
 <style>
@@ -55,5 +102,62 @@ import PageHeader from "../components/PageHeader.astro";
   }
   .tr-body p:last-child {
     margin-bottom: 0;
+  }
+
+  .tr-facts {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .tr-facts-headline {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+  .tr-facts-intro {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--color-body);
+    max-width: 720px;
+    margin: 0 0 2.5rem;
+  }
+  .tr-subheading {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: -0.01em;
+    margin: 2.5rem 0 1rem;
+  }
+  .tr-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 760px;
+  }
+  .tr-list li {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--color-body);
+    padding-left: 1.5rem;
+    position: relative;
+  }
+  .tr-list li + li {
+    margin-top: 0.65rem;
+  }
+  .tr-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.85em;
+    width: 10px;
+    height: 1px;
+    background: var(--color-amber);
+  }
+  .tr-list strong {
+    color: var(--color-ink);
+    font-weight: 500;
   }
 </style>
