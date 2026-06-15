@@ -172,3 +172,17 @@
 ---
 
 *Erstellt als Referenz-Dokument aus dem Bau-Verlauf. Stand Juni 2026.*
+---
+
+## 11. Umsetzung 2026-06-15 — Track-Record-Proof-Seite, Share-Karte, SEO
+
+- **/track-record** als eigene, zahlen-forward Proof-Seite (Sutherlands „5-Minuten-Googling-Moment"):
+  B-Text-Narrativ + strukturierte Zahlen (bonprix-Block, Schwerpunkte, Ergebnisse). Erledigt den
+  offenen Schritt #4 (Track Record zu Pattern-Story). IA „Option A": /ueber-mich bleibt Narrativ,
+  Startseiten-Sektion teasert + verlinkt → keine Dopplung/Namens-Kollision.
+- **OG-Share-Karte** (1200×627, Porträt links/Text rechts, House-Style) als site-weites `og:image`,
+  als optimiertes JPG (~54 KB statt 3 MB PNG).
+- **SEO/Entity:** Meta-Title + Meta-Description + Schema.org Person jobTitle auf Such-Titel
+  (CDO / VP E-Commerce & Growth / VP Product & Technology) statt „Senior Digital Executive".
+  Hintergrund-Entscheidung: AIS-OS `decisions/log.md` (2026-06-15).
+- **Featured:** /track-record als Featured-Item Position 1 (manuell gesetzt).
