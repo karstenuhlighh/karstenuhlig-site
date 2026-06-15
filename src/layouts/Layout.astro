@@ -9,7 +9,7 @@ interface Props {
 }
 
 const {
-  title = "Karsten Uhlig — Senior Digital Executive",
+  title = "Karsten Uhlig — CDO & VP E-Commerce | Digital Commerce, MarTech, Agentic AI",
   description = "Senior Digital Executive. Commerce & Marketing Outcomes through MarTech, Data & AI. 25+ Jahre bonprix, jetzt Agentic AI hands-on.",
   ogImage = "/portrait.jpg",
 } = Astro.props;
@@ -24,7 +24,11 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Karsten Uhlig",
-  jobTitle: "Senior Digital Executive",
+  jobTitle: [
+    "Chief Digital Officer (CDO)",
+    "VP E-Commerce & Growth",
+    "VP Product & Technology",
+  ],
   url: siteHome,
   image: absoluteOgImage,
   sameAs: ["https://www.linkedin.com/in/karsten-uhlig/"],
