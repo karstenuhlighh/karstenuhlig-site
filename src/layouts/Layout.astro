@@ -16,6 +16,30 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const absoluteOgImage = new URL(ogImage, Astro.site).href;
+const siteHome = new URL("/", Astro.site).href;
+
+// Entity-SEO: Schema.org Person — die Sprache, die KI-Recherche-Tools (ChatGPT,
+// Perplexity) und Recruiter-Sourcing lesen. Eine Person-Entity site-weit.
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Karsten Uhlig",
+  jobTitle: "Senior Digital Executive",
+  url: siteHome,
+  image: absoluteOgImage,
+  sameAs: ["https://www.linkedin.com/in/karsten-uhlig/"],
+  alumniOf: { "@type": "Organization", name: "bonprix (Otto Group)" },
+  knowsAbout: [
+    "Digital Commerce",
+    "E-Commerce",
+    "Marketing Technology",
+    "Data",
+    "Agentic AI",
+    "Digital Transformation",
+    "Performance Marketing",
+  ],
+  description: description,
+};
 ---
 
 <!doctype html>
@@ -41,6 +65,9 @@ const absoluteOgImage = new URL(ogImage, Astro.site).href;
     <meta name="twitter:card" content="summary_large_image" />
 
     <title>{title}</title>
+
+    <!-- Entity-SEO: Schema.org Person (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
   </head>
   <body>
     <slot />
