@@ -1,0 +1,296 @@
+---
+// signal-steering Übersicht: synthetische Daten → 3 Methoden (sie widersprechen
+// sich) → ein belastbares Signal → Budget-Steuerung.
+// Grün = selbst entwickelt · Grau = Marktlösungen & Rohdaten.
+---
+
+<div class="mts-wrap">
+  <div class="mts">
+    <!-- TOP: Daten → Budget-Steuerung (Lernschleife) -->
+    <div class="mts-top">
+      <div class="mts-box built">
+        <div class="mts-box-t">Daten (synthetisch)</div>
+        <div class="mts-box-s">PMax + Meta · BigQuery</div>
+      </div>
+      <div class="mts-conn" aria-hidden="true">→</div>
+      <div class="mts-box built">
+        <div class="mts-box-t">Budget-Steuerung</div>
+        <div class="mts-box-s">lenkt den nächsten Euro</div>
+      </div>
+    </div>
+
+    <!-- TRIANGULATION -->
+    <div class="mts-panel">
+      <div class="mts-panel-h">Drei Methoden messen dieselben Daten</div>
+      <div class="mts-lenses">
+        <div class="mts-lens built">
+          <div class="ml-t">Plattform (Last-Click)</div>
+          <div class="ml-s">schnell, überschätzt</div>
+        </div>
+        <div class="mts-lens built">
+          <div class="ml-t">Geo-Experiment</div>
+          <div class="ml-s">echter Lift, belastbar</div>
+        </div>
+        <div class="mts-lens built">
+          <div class="ml-t">Mix-Modell (MMM)</div>
+          <div class="ml-s">Langzeit-Wirkung</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ERGEBNIS der drei Methoden (kein gebautes Element) -->
+    <div class="mts-down" aria-hidden="true">↓</div>
+    <div class="mts-result">
+      <span class="mts-result-tag">Ergebnis</span>
+      <span class="mts-result-text">
+        Sie widersprechen sich. Das belastbare Signal kommt aus Geo-Experiment +
+        Modell.
+      </span>
+    </div>
+
+    <!-- MARKT -->
+    <div class="mts-market">
+      <div class="mts-market-h">Marktlösungen decken je nur eine Methode</div>
+      <div class="mts-market-grid">
+        <div class="mts-mcard">
+          <div class="mm-t">Plattform &amp; Bidding</div>
+          <div class="mm-s">Smart Bidding · PMax<br />Meta · Skai · Marin</div>
+        </div>
+        <div class="mts-mcard">
+          <div class="mm-t">Geo-Experimente</div>
+          <div class="mm-s">GeoLift · Measured<br />Haus · INCRMNTAL</div>
+        </div>
+        <div class="mts-mcard">
+          <div class="mm-t">MMM-Tools</div>
+          <div class="mm-s">Meridian · Robyn<br />Recast · Mutinex</div>
+        </div>
+      </div>
+      <div class="mts-blended">
+        Blended-SaaS (Northbeam, Triple Whale) mischt zwei Methoden, ist aber
+        selbst Blackbox: kein Zugriff auf das eigene Steering.
+      </div>
+    </div>
+
+    <div class="mts-legend">
+      <span class="lg-swatch lg-built" aria-hidden="true"></span> Grün = selbst
+      entwickelt
+      <span class="lg-sep" aria-hidden="true"></span>
+      <span class="lg-swatch lg-grey" aria-hidden="true"></span> Grau =
+      Marktlösungen &amp; Rohdaten
+    </div>
+  </div>
+</div>
+
+<style>
+  .mts-wrap {
+    max-width: 760px;
+    margin: 0;
+  }
+  .mts {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.4)
+    );
+    border: 1px solid var(--color-border-soft);
+    border-radius: 14px;
+    padding: 1.4rem 1.5rem;
+  }
+
+  /* one build colour: green */
+  .built {
+    background: rgba(46, 139, 87, 0.16);
+    border: 1px solid rgba(46, 139, 87, 0.55);
+  }
+  .built .mts-box-t,
+  .built .ml-t {
+    color: #1d6b3f;
+  }
+
+  /* ---- TOP flow ---- */
+  .mts-top {
+    display: flex;
+    align-items: stretch;
+    gap: 0.75rem;
+    margin-bottom: 1.1rem;
+  }
+  .mts-box {
+    flex: 1;
+    border-radius: 10px;
+    padding: 0.7rem 0.95rem;
+    position: relative;
+  }
+  .mts-box-t {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .mts-box-s {
+    font-size: 11.5px;
+    color: var(--color-ink-3);
+    margin-top: 2px;
+  }
+  .mts-conn {
+    align-self: center;
+    color: var(--color-ink-3);
+    font-size: 18px;
+    flex: 0 0 auto;
+  }
+  /* ---- Triangulation panel ---- */
+  .mts-panel {
+    border: 1px dashed var(--color-border);
+    border-radius: 11px;
+    padding: 0.85rem 0.95rem 1rem;
+    margin-bottom: 1.1rem;
+  }
+  .mts-panel-h {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-ink-2);
+    margin-bottom: 0.7rem;
+  }
+  .mts-lenses {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    margin-bottom: 0.7rem;
+  }
+  .mts-lens {
+    border-radius: 8px;
+    padding: 0.6rem 0.7rem;
+    text-align: center;
+  }
+  .ml-t {
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+  .ml-s {
+    font-size: 11px;
+    margin-top: 2px;
+    color: var(--color-ink-3);
+  }
+  /* ---- Ergebnis (kein gebautes Element: eigener Stil) ---- */
+  .mts-down {
+    text-align: center;
+    color: var(--color-ink-3);
+    font-size: 16px;
+    line-height: 1;
+    margin: 0.55rem 0;
+  }
+  .mts-result {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: rgba(180, 83, 9, 0.08);
+    border: 1px solid rgba(180, 83, 9, 0.4);
+    border-radius: 9px;
+    padding: 0.7rem 0.9rem;
+    margin-bottom: 1.1rem;
+  }
+  .mts-result-tag {
+    flex: 0 0 auto;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--color-amber);
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  .mts-result-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #8a3f07;
+    line-height: 1.45;
+  }
+
+  /* ---- Markt (grau) ---- */
+  .mts-market-h {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-ink-3);
+    margin-bottom: 0.6rem;
+  }
+  .mts-market-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    margin-bottom: 0.65rem;
+  }
+  .mts-mcard {
+    background: rgba(84, 99, 122, 0.06);
+    border: 1px solid rgba(84, 99, 122, 0.22);
+    border-radius: 8px;
+    padding: 0.55rem 0.7rem;
+  }
+  .mm-t {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--color-ink-2);
+  }
+  .mm-s {
+    font-size: 11px;
+    color: var(--color-ink-3);
+    margin-top: 3px;
+    line-height: 1.45;
+  }
+  .mts-blended {
+    background: rgba(84, 99, 122, 0.05);
+    border: 1px dashed rgba(84, 99, 122, 0.32);
+    border-radius: 8px;
+    padding: 0.55rem 0.8rem;
+    font-size: 11.5px;
+    color: var(--color-ink-3);
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  /* ---- Legend ---- */
+  .mts-legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+    font-size: 11px;
+    color: var(--color-ink-3);
+  }
+  .lg-swatch {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border-radius: 3px;
+    vertical-align: -1px;
+  }
+  .lg-built {
+    background: rgba(46, 139, 87, 0.5);
+    border: 1px solid rgba(46, 139, 87, 0.6);
+  }
+  .lg-grey {
+    background: rgba(84, 99, 122, 0.3);
+    border: 1px solid rgba(84, 99, 122, 0.4);
+  }
+  .lg-sep {
+    width: 1px;
+    height: 11px;
+    background: var(--color-border);
+    margin: 0 0.3rem;
+  }
+
+  @media (max-width: 560px) {
+    .mts-top {
+      flex-direction: column;
+    }
+    .mts-conn {
+      transform: rotate(90deg);
+    }
+    .mts-lenses,
+    .mts-market-grid {
+      grid-template-columns: 1fr;
+    }
+    .mts-loop {
+      right: 8px;
+    }
+  }
+</style>

@@ -1,0 +1,537 @@
+---
+import SubPageLayout from "../../layouts/SubPageLayout.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import MeasurementTriangulationSchaubild from "../../components/MeasurementTriangulationSchaubild.astro";
+
+// PMax — iROAS je Messmethode. Wahrheit (2,50) ist die Referenzlinie, kein Balken.
+const SCALE = 5.5;
+const TRUTH = 2.5;
+const bars = [
+  {
+    label: "Last-Click",
+    sub: "+101 %",
+    value: 5.02,
+    tone: "warn",
+    tip: "Die Zahl der Werbeplattform. Sie schreibt den Umsatz dem letzten Klick davor zu, auch den, der ohnehin gekommen waere.",
+  },
+  {
+    label: "Geo-Experiment",
+    sub: "echter Lift",
+    value: 2.35,
+    tone: "ok",
+    tip: "Werbung wird in Testregionen an-, in vergleichbaren Regionen ausgeschaltet. Die Differenz ist der echte Zusatz-Umsatz.",
+  },
+  {
+    label: "MMM",
+    sub: "R̂ ≈ 1.01 ✓",
+    value: 2.33,
+    tone: "ok",
+    tip: "Marketing-Mix-Modell: rechnet aus dem langen Verlauf von Spend und Umsatz zurueck, welcher Kanal wie viel beigetragen hat. Hier am Geo-Test kalibriert.",
+  },
+];
+---
+
+<SubPageLayout
+  title="signal-steering — Karsten Uhlig"
+  description="Drei etablierte Methoden messen denselben Werbekanal und kommen zu drei Antworten. Ein Prototyp, der mit bekannter Wahrheit prüfbar macht, welcher man trauen kann."
+>
+  <PageHeader eyebrow="Agentic AI · Measurement & Steering" headline="Projekt „signal-steering”" />
+
+  <!-- PROJEKTZIEL + SCOPE (statt Prosa) -->
+  <div class="meta-block">
+    <div class="meta-row">
+      <span class="meta-label">Projektziel</span>
+      <span class="meta-text">
+        Einsatzmöglichkeiten von Agentic AI im Bereich Measurement &amp; Steering
+        zu evaluieren. Als Testfall diente die Entwicklung eines triangulierten
+        Mess- und Steuerungssystems. Das Ziel war in erster Linie die Bewertung, wo
+        und wie agentische KI in diesem Feld nutzbar ist.
+      </span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Scope</span>
+      <span class="meta-text">
+        Ein Denk- und Engineering-Prototyp. Synthetische Daten mit festgelegtem
+        Effekt, kein Live-Spend, keine echten oder fremden Werbedaten.
+      </span>
+    </div>
+  </div>
+
+  <!-- ÜBERSICHT ZUM START -->
+  <section class="overview">
+    <MeasurementTriangulationSchaubild />
+    <p class="overview-cap">
+      Das ganze System in einem Bild. Darunter Schritt für Schritt, woran es
+      hängt.
+    </p>
+  </section>
+
+  <!-- 1 · DAS PROBLEM -->
+  <section class="sec">
+    <div class="sec-eyebrow">Das Problem</div>
+    <h2 class="sec-h2">Die gängigste Zahl lügt</h2>
+    <p class="sec-lead">
+      Jede Budget-Entscheidung hängt an einer Zahl: Was hat dieser Kanal wirklich
+      zusätzlich gebracht? Die Standard-Antwort der Plattform ist <span
+        class="term"
+        tabindex="0"
+        data-tip="Die Zahl der Werbeplattform. Sie schreibt den Umsatz dem letzten Klick davor zu, auch den, der ohnehin gekommen waere."
+        >Last-Click</span
+      >. Für PMax meldet sie einen <span
+        class="term"
+        tabindex="0"
+        data-tip="Inkrementeller Return on Ad Spend: Euro Umsatz je Euro Spend, der wirklich zusaetzlich entstanden ist."
+        >iROAS</span
+      > von <strong>5,02</strong>. Real sind es <strong>2,50</strong>. Die
+      Plattform schreibt sich Umsatz gut, der auch ohne sie gekommen wäre. Wer
+      dieser Zahl folgt, setzt doppelt auf einen Kanal, der die Hälfte wert ist.
+    </p>
+  </section>
+
+  <!-- 2 · DER BEWEIS (Balken) -->
+  <section class="chart-block">
+    <div class="chart-title">PMax · derselbe Kanal, drei Messungen</div>
+    <div class="chart-sub">
+      Die gestrichelte Linie ist die festgelegte Wahrheit. Last-Click ragt weit
+      darüber, die experimentell geerdeten Methoden treffen sie.
+    </div>
+
+    <div
+      class="bars"
+      role="img"
+      aria-label="PMax iROAS: Wahrheit 2,50. Last-Click 5,02, Geo-Experiment 2,35, MMM 2,33."
+    >
+      <div class="truth-line" style={`bottom:${(TRUTH / SCALE) * 100}%;`}>
+        <span class="truth-tag">Wahrheit 2,50</span>
+      </div>
+      {
+        bars.map((b) => (
+          <div class="bar-col">
+            <div class="bar-val">{b.value.toFixed(2).replace(".", ",")}</div>
+            <div
+              class={`bar bar-${b.tone}`}
+              style={`height:${(b.value / SCALE) * 100}%;`}
+            />
+            <div class="bar-label">
+              <span class="term" tabindex="0" data-tip={b.tip}>
+                {b.label}
+              </span>
+              <span class="bar-sub">{b.sub}</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- 3 · DER CLOU -->
+  <section class="sec">
+    <div class="sec-eyebrow">Der eigentliche Punkt</div>
+    <h2 class="sec-h2">Wie kann 2,50 „die Wahrheit" sein?</h2>
+    <p class="sec-body">
+      In der Realität kennt niemand den echten Wert. Was ein Kanal zusätzlich
+      gebracht hat, ist ein Was-wäre-wenn, das nie stattgefunden hat. Man misst
+      also immer im Dunkeln. Deshalb erzeugt der Prototyp eine Welt, in der die
+      Wahrheit feststeht: synthetische Daten mit einem bewusst festgelegten Effekt.
+      So wird Messung zum ersten Mal prüfbar.
+    </p>
+    <p class="sec-kicker">
+      Das ist nicht zirkulär. Die Methoden bekommen die Antwort nicht gesagt, sie
+      müssen sie blind aus den Daten zurückrechnen. Festgelegt ist die Welt, nicht
+      das Ergebnis. Wie im Flugsimulator: Die Physik steht fest, der Pilot muss
+      trotzdem fliegen. Wer hier die 2,50 verfehlt, verfehlt sie in der Realität
+      erst recht, nur ohne es je zu merken.
+    </p>
+  </section>
+
+  <!-- 4 · REIFE / URTEIL -->
+  <section class="sec">
+    <div class="sec-eyebrow">Reife statt geschöntem Pass</div>
+    <h2 class="sec-h2">Ein gutes System weiß, wann es nichts weiß</h2>
+    <p class="sec-body">
+      Für Meta gab es kein Experiment zum Kalibrieren. Das Modell rät dann 10,05,
+      offensichtlich daneben. Statt das zu kaschieren, meldet es den blinden Fleck
+      selbst, über seine eigene Konvergenz-Diagnose (<span
+        class="term"
+        tabindex="0"
+        data-tip="Konvergenz-Diagnose des Modells. Nahe 1,0 = verlaesslich geschaetzt. Deutlich darueber = der Wert liess sich nicht sauber bestimmen."
+        >R-hat</span
+      > ✗). Die Steueraussage daraus ist konkret: Der nächste Geo-Test gehört auf
+      Meta.
+    </p>
+  </section>
+
+  <!-- FUSSZEILE: Stack + Logos -->
+  <section class="footer-block">
+    <div class="stack-row">
+      <div class="stack-group">
+        <div class="stack-cap">Modellierte Kanäle</div>
+        <div class="logo-strip">
+          <div class="logo-tile">
+            <img src="/logos/pmax.png" alt="Google Performance Max" />
+          </div>
+          <div class="logo-tile">
+            <img src="/logos/meta.png" alt="Meta" />
+          </div>
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="stack-cap">Warehouse</div>
+        <div class="logo-strip">
+          <div class="logo-tile">
+            <img src="/logos/bigquery.png" alt="Google BigQuery" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="stack-tech">
+      Python · PyMC-Marketing + nutpie · Geo-Incrementality (DiD / GeoLift-Methodik)
+      · BigQuery Sandbox · Streamlit-Surface <em>(in Arbeit)</em>
+    </div>
+  </section>
+
+  <div class="tieback">
+    <p>
+      Das Thema ist nicht das Modell. Es ist die Entscheidung dahinter: Welcher
+      Zahl traut man, wenn drei Methoden sich widersprechen, und wohin steuert man
+      das nächste Budget. Der Prototyp macht diese Entscheidung sichtbar und
+      prüfbar, bevor echtes Geld daran hängt.
+    </p>
+  </div>
+</SubPageLayout>
+
+<!-- Robuster JS-Tooltip (CSS-Pseudo wurde geclippt) -->
+<script is:inline>
+  (function () {
+    var tip = document.createElement("div");
+    tip.className = "js-tooltip";
+    tip.setAttribute("role", "tooltip");
+    document.body.appendChild(tip);
+
+    function show(el) {
+      var txt = el.getAttribute("data-tip");
+      if (!txt) return;
+      tip.textContent = txt;
+      tip.classList.add("visible");
+      var r = el.getBoundingClientRect();
+      var tr = tip.getBoundingClientRect();
+      var left = r.left + r.width / 2 - tr.width / 2;
+      left = Math.max(8, Math.min(left, window.innerWidth - tr.width - 8));
+      var top = r.top - tr.height - 10;
+      if (top < 8) top = r.bottom + 10;
+      tip.style.left = left + "px";
+      tip.style.top = top + "px";
+    }
+    function hide() {
+      tip.classList.remove("visible");
+    }
+
+    document.querySelectorAll("[data-tip]").forEach(function (el) {
+      el.addEventListener("mouseenter", function () {
+        show(el);
+      });
+      el.addEventListener("mouseleave", hide);
+      el.addEventListener("focus", function () {
+        show(el);
+      });
+      el.addEventListener("blur", hide);
+    });
+    window.addEventListener("scroll", hide, true);
+  })();
+</script>
+
+<style is:global>
+  .js-tooltip {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    max-width: 260px;
+    background: #0f1729;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 0.55rem 0.7rem;
+    border-radius: 7px;
+    box-shadow: 0 6px 20px rgba(15, 23, 41, 0.28);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.12s ease;
+  }
+  .js-tooltip.visible {
+    opacity: 1;
+  }
+</style>
+
+<style>
+  /* ---------- Projektziel / Scope ---------- */
+  .meta-block {
+    max-width: 760px;
+    margin: -2rem 0 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .meta-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 1rem;
+    align-items: baseline;
+  }
+  .meta-label {
+    font-size: 11px;
+    color: var(--color-amber);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding-top: 2px;
+  }
+  .meta-text {
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: var(--color-ink);
+  }
+
+  /* ---------- Übersicht ---------- */
+  .overview {
+    margin: 0 0 3rem;
+  }
+  .overview-cap {
+    max-width: 760px;
+    margin: 1rem 0 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-ink-3);
+    text-align: left;
+    font-style: italic;
+  }
+
+  /* ---------- Generische Sektion ---------- */
+  .sec {
+    max-width: 720px;
+    margin: 0 0 2.75rem;
+  }
+  .sec-eyebrow {
+    font-size: 12px;
+    color: var(--color-amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.7rem;
+  }
+  .sec-h2 {
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    margin: 0 0 1rem;
+  }
+  .sec-lead {
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: var(--color-ink);
+    margin: 0;
+  }
+  .sec-body {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-body);
+    margin: 0 0 1rem;
+  }
+  .sec-lead strong,
+  .sec-body strong {
+    font-weight: 600;
+  }
+  .sec-kicker {
+    background: rgba(180, 83, 9, 0.06);
+    border-left: 3px solid var(--color-amber);
+    border-radius: 0 6px 6px 0;
+    padding: 0.95rem 1.15rem;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  /* ---------- Jargon-Term (Unterstreichung; Tooltip via JS) ---------- */
+  .term {
+    border-bottom: 1px dotted var(--color-ink-3);
+    cursor: help;
+    outline: none;
+  }
+  .term:focus {
+    border-bottom-color: var(--color-amber);
+  }
+
+  /* ---------- Balken ---------- */
+  .chart-block {
+    max-width: 640px;
+    margin: 0 0 3rem;
+  }
+  .chart-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: 0.3rem;
+  }
+  .chart-sub {
+    font-size: 13px;
+    color: var(--color-ink-3);
+    line-height: 1.55;
+    margin-bottom: 1.75rem;
+  }
+  .bars {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: end;
+    height: 240px;
+    padding: 0 1rem;
+    border-bottom: 2px solid var(--color-border);
+  }
+  .truth-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 1px dashed rgba(15, 23, 41, 0.5);
+    pointer-events: none;
+  }
+  .truth-tag {
+    position: absolute;
+    right: 0;
+    top: -9px;
+    background: var(--color-ink);
+    color: #fff;
+    font-size: 9.5px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 999px;
+  }
+  .bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+  }
+  .bar-val {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: 0.3rem;
+  }
+  .bar {
+    width: 100%;
+    max-width: 96px;
+    border-radius: 5px 5px 0 0;
+  }
+  .bar-warn {
+    background: linear-gradient(180deg, #d98a3d, #c5742a);
+  }
+  .bar-ok {
+    background: linear-gradient(180deg, #38a06a, #2e8b57);
+  }
+  .bar-label {
+    margin-top: 0.55rem;
+    font-size: 11.5px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-ink-2);
+    line-height: 1.3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .bar-sub {
+    font-size: 10px;
+    color: var(--color-ink-3);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  /* ---------- Fußzeile / Logos ---------- */
+  .footer-block {
+    max-width: 760px;
+    margin: 3rem 0 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .stack-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    align-items: flex-end;
+    margin-bottom: 1.25rem;
+  }
+  .stack-cap {
+    font-size: 11px;
+    color: var(--color-ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+  }
+  .logo-strip {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .logo-tile {
+    width: 116px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 8px;
+    padding: 0 0.85rem;
+  }
+  .logo-tile img {
+    max-height: 26px;
+    max-width: 90px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  .stack-tech {
+    font-size: 13px;
+    color: var(--color-ink-3);
+    line-height: 1.6;
+  }
+  .stack-tech em {
+    font-style: italic;
+    opacity: 0.85;
+  }
+
+  /* ---------- Tie-back ---------- */
+  .tieback {
+    max-width: 720px;
+    margin: 2.5rem 0 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .tieback p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .meta-row {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+    .sec-h2 {
+      font-size: 22px;
+    }
+    .bars {
+      height: 200px;
+      gap: 0.75rem;
+      padding: 0 0.25rem;
+    }
+  }
+</style>
