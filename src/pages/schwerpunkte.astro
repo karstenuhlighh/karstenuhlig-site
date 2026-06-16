@@ -1,0 +1,94 @@
+---
+import SubPageLayout from "../layouts/SubPageLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+
+const bereiche = [
+  {
+    title: "E-Commerce & Marketing",
+    href: "/e-commerce-marketing",
+    intro:
+      "Wo das Geschäftsergebnis entsteht. Wachstum, Conversion, Kanäle und internationale Märkte, aus 25 Jahren als Operator in einer internationalen E-Commerce-Operation.",
+  },
+  {
+    title: "MarTech",
+    href: "/martech",
+    intro:
+      "Die Schicht unter dem Geschäftsergebnis, die es trägt. Datenarchitektur, Operating Model und Anwendungen, die produktiv laufen.",
+  },
+  {
+    title: "Agentic AI",
+    href: "/agentic-ai",
+    intro:
+      "Die Implementierungs-Welle, hands-on. Markt-These plus sem-agentic, ein selbst gebautes agentisches System für Search-Engine-Marketing.",
+  },
+];
+---
+
+<SubPageLayout
+  title="Schwerpunkte — Karsten Uhlig"
+  description="Drei Felder, ein roter Faden: aus Strategie messbare Wirkung machen. E-Commerce & Marketing, MarTech und Agentic AI."
+>
+  <PageHeader
+    eyebrow="Übersicht"
+    headline="Schwerpunkte"
+    intro="Drei Felder, ein roter Faden: aus Strategie messbare Wirkung machen. Wo ich arbeite, und worüber ich schreibe."
+  />
+
+  <section class="sp-grid">
+    {
+      bereiche.map((b) => (
+        <a href={b.href} class="sp-card">
+          <div class="sp-title">{b.title}</div>
+          <p class="sp-intro">{b.intro}</p>
+          <div class="sp-meta">Ansehen &rarr;</div>
+        </a>
+      ))
+    }
+  </section>
+</SubPageLayout>
+
+<style>
+  .sp-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 760px;
+  }
+  .sp-card {
+    display: block;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 3px;
+    padding: 1.75rem;
+    text-decoration: none;
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+  .sp-card:hover {
+    border-color: rgba(180, 83, 9, 0.45);
+    background: rgba(255, 255, 255, 0.75);
+    transform: translateY(-2px);
+  }
+  .sp-title {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: -0.015em;
+    margin-bottom: 0.6rem;
+  }
+  .sp-intro {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--color-ink-2);
+    margin: 0 0 1.1rem;
+  }
+  .sp-meta {
+    font-size: 11px;
+    color: var(--color-amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+</style>
