@@ -3,14 +3,38 @@
 
 <div class="sa-wrap">
   <div class="sa-eyebrow">
-    <span class="sa-pulse-dot" aria-hidden="true"></span> Feasibility Study
+    <span class="sa-pulse-dot" aria-hidden="true"></span> Hands-on · Agentic AI
   </div>
-  <h2 class="sa-hook-title">
-    <a href="/agentic-ai/sem-agentic" class="sa-hook-link">
-      sem-agentic · Agentic AI im Google SEM
-      <span class="sa-hook-arrow" aria-hidden="true">→</span>
+  <p class="sa-sub">
+    Selbst entwickelte Prototypen auf synthetischen Daten. Belege für die
+    Bausteine, nicht für Scale.
+  </p>
+
+  <div class="sa-grid">
+    <a href="/agentic-ai/sem-agentic" class="sa-card">
+      <div class="sa-card-label">Agentische Systeme</div>
+      <div class="sa-card-name">
+        sem-agentic <span class="sa-card-arrow" aria-hidden="true">→</span>
+      </div>
+      <p class="sa-card-line">
+        Multi-Agent-System für Google SEM, Architektur-Disziplin statt
+        „Prompt-and-hope".
+      </p>
+      <div class="sa-card-tag">Prototyp · laufender Pilot</div>
     </a>
-  </h2>
+
+    <a href="/agentic-ai/signal-steering" class="sa-card">
+      <div class="sa-card-label">Measurement &amp; Steering</div>
+      <div class="sa-card-name">
+        signal-steering <span class="sa-card-arrow" aria-hidden="true">→</span>
+      </div>
+      <p class="sa-card-line">
+        Triangulierte Messung &amp; Steuerung: welcher Zahl man trauen kann, wenn
+        Methoden sich widersprechen.
+      </p>
+      <div class="sa-card-tag">Prototyp · synthetische Daten</div>
+    </a>
+  </div>
 </div>
 
 <style>
@@ -25,7 +49,7 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     font-weight: 600;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -36,41 +60,88 @@
     border-radius: 50%;
     background: #b45309;
   }
-  .sa-hook-title {
-    font-size: 30px;
+  .sa-sub {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #3a4f6c;
+    margin: 0 0 1.5rem;
+    max-width: 62ch;
+  }
+
+  /* Zwei gleich große Karten (Site-Card-Pattern) */
+  .sa-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .sa-card {
+    display: flex;
+    flex-direction: column;
+    /* opaker + Schatten: der Body-Gradient ist fixed, sonst verschwinden die
+       Karten im weissen Viewport-Bereich */
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(30, 60, 100, 0.16);
+    border-radius: 3px;
+    box-shadow: 0 2px 14px rgba(30, 60, 100, 0.07);
+    padding: 1.5rem 1.5rem;
+    text-decoration: none;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+  .sa-card:hover {
+    border-color: rgba(180, 83, 9, 0.45);
+    box-shadow: 0 6px 22px rgba(30, 60, 100, 0.12);
+    transform: translateY(-2px);
+  }
+  .sa-card-label {
+    font-size: 11px;
+    color: #5b6b82;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+  .sa-card-name {
+    font-size: 22px;
     font-weight: 600;
     color: #0f1729;
-    letter-spacing: -0.025em;
-    line-height: 1.12;
-    margin: 0;
-  }
-  .sa-hook-link {
-    color: inherit;
-    text-decoration: none;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
     display: inline-flex;
     align-items: baseline;
-    gap: 0.55rem;
-    transition: color 0.2s ease;
+    gap: 0.5rem;
+    margin-bottom: 0.55rem;
   }
-  .sa-hook-link:hover {
+  .sa-card-arrow {
     color: #b45309;
-  }
-  .sa-hook-arrow {
-    color: #b45309;
-    font-size: 24px;
+    font-size: 18px;
     transition: transform 0.2s ease;
     display: inline-block;
   }
-  .sa-hook-link:hover .sa-hook-arrow {
+  .sa-card:hover .sa-card-arrow {
     transform: translateX(4px);
+  }
+  .sa-card-line {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #2a3d55;
+    margin: 0 0 1.1rem;
+    flex: 1 1 auto;
+  }
+  .sa-card-tag {
+    font-size: 11px;
+    color: #5b6b82;
+    letter-spacing: 0.04em;
+    margin-top: auto;
+    padding-top: 0.7rem;
+    border-top: 1px solid rgba(30, 60, 100, 0.1);
   }
 
   @media (max-width: 640px) {
-    .sa-hook-title {
-      font-size: 24px;
-    }
-    .sa-hook-arrow {
-      font-size: 20px;
+    .sa-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
