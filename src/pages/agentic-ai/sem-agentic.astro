@@ -1,7 +1,47 @@
 ---
 import SubPageLayout from "../../layouts/SubPageLayout.astro";
-import PageHeader from "../../components/PageHeader.astro";
 import AugurWorkflowSchaubild from "../../components/AugurWorkflowSchaubild.astro";
+import ScopeSteckbrief from "../../components/ScopeSteckbrief.astro";
+
+// ============================================================
+// SCOPE-STECKBRIEF — Inhalte (nur hier, Komponente bleibt generisch)
+// ============================================================
+const scopeFelder = [
+  {
+    label: "Zielsetzung",
+    essence:
+      `Architektur-Disziplin statt „Prompt-and-hope“. Und den Abstand zwischen Demo und Betrieb von innen verstehen.`,
+    detail:
+      "Zu evaluieren, wie weit sich ein agentisches System mit echter Architektur-Disziplin bauen lässt. Anwendungsfall: Automation von Google SEM, von Keyword-Recherche bis Optimierung. Ein produktionsreifes System war nicht das Ziel.",
+  },
+  {
+    label: "Vorgehen",
+    essence:
+      "Fünf validierte Agenten, ein Coordinator mit Self-Critique, gestufter Rollout.",
+    detail:
+      "Jeder Agent erzeugt begründete Vorschläge und durchläuft eine zu seiner Output-Klasse passende Validierungs-Schicht (Shadow-Log + Human-Review, LLM-as-a-Judge, Hypothesen-Tests); ein Strategy-Coordinator aggregiert mit Self-Critique zu einer auditfähigen Empfehlung. Deterministische Logik, wo die Regeln klar sind; ein LLM nur, wo es Mehrwert bringt. Ausführung als eigene Schicht mit gestuftem Rollout: Shadow → Sandbox → Limited Live → Autonomous.",
+  },
+  {
+    label: "Rolle der agentischen KI",
+    essence:
+      "Der Engpass liegt nicht im Prompting, sondern in der Architektur darum herum.",
+    detail:
+      "Beobachtung aus diesem Fall: Validierung je Output-Klasse, Koordination mehrerer Agenten, gestufter Rollout und nachvollziehbare Evaluation. Erst diese Disziplin trennt eine Demo von etwas Betreibbarem. Welche Vorschläge übernommen werden und ab welcher Rollout-Stufe ein Agent autonom handeln darf, bleibt eine bewusst gesetzte, menschliche Entscheidung.",
+  },
+];
+const scopeGeltung = {
+  belegt: [
+    "Agentisches SEM-System mit durchgängiger Architektur-Disziplin als laufender Pilot",
+    "Validierung je Agent, koordinierte Aggregation",
+    "Dokumentierte Evaluation (ADRs, Eval-Framework, Audit)",
+  ],
+  nichtBelegt: [
+    "Autonomer Live-Betrieb",
+    "Wirkung im Maßstab",
+    "Performance-Grundlage teils synthetisch",
+    "Ausführung in frühen Rollout-Stufen, unter menschlicher Kontrolle",
+  ],
+};
 
 // ============================================================
 // TAB 1 — WORKING & PRODUCT MAP DATA
@@ -101,31 +141,31 @@ const adrTags = [
 const features = [
   {
     title: "Zwei-Schichten-Architektur (ADR-015)",
-    body: "Deterministische Action-Schicht (Pre-flight Rules) + optionale LLM-Analyst-Schicht — Schicht 2 unter Beweisvorbehalt, nicht gebaut bis Mehrwert belegt.",
+    body: "Deterministische Action-Schicht (Pre-flight Rules) + optionale LLM-Analyst-Schicht. Schicht 2 unter Beweisvorbehalt, nicht gebaut bis Mehrwert belegt.",
   },
   {
     title: "Two-Track Eval (ADR-013)",
-    body: "F1 vs Domain-Ground-Truth + Rule-Compliance orthogonal — belegt: LLM hält 6% der Constraints von selbst, Deterministik rettet 94%.",
+    body: "F1 vs Domain-Ground-Truth + Rule-Compliance orthogonal. Belegt: LLM hält 6% der Constraints von selbst, Deterministik rettet 94%.",
   },
   {
     title: "Cluster-Aggregation gegen Prompt-Kollaps (ADR-014)",
-    body: "626 Keyword-Forced-Recs → 17 Cluster-Forderungen, Prompt 33k→3-4k Tokens — 0 Determinismus-Violations über N Läufe.",
+    body: "626 Keyword-Forced-Recs → 17 Cluster-Forderungen, Prompt 33k→3-4k Tokens. 0 Determinismus-Violations über N Läufe.",
   },
   {
     title: "LLM-Backend pro Step wählbar",
-    body: "Sonnet für Reasoning, Ollama für günstige Calls — über `llm_overrides` konfigurierbar.",
+    body: "Sonnet für Reasoning, Ollama für günstige Calls, über `llm_overrides` konfigurierbar.",
   },
   {
     title: "Mode-Switch Simulation / Production",
-    body: "Mock-DB für Demo & Dev, DataForSEO live für Produktion — kein Code-Change nötig.",
+    body: "Mock-DB für Demo & Dev, DataForSEO live für Produktion, kein Code-Change nötig.",
   },
   {
     title: "Variante-B: n8n-Wrapper → Python-Endpoint (ADR-012)",
-    body: "Single-Source-of-Truth Python-Coord, n8n als HTTP-Proxy — 3× repliziert (cluster-full, strategy, reflect).",
+    body: "Single-Source-of-Truth Python-Coord, n8n als HTTP-Proxy, 3× repliziert (cluster-full, strategy, reflect).",
   },
   {
     title: "Hybrid-Keyword-Generierung",
-    body: "Anchor-Cluster als Skelett + parallele LLM-Variation pro Anker — 401 Keywords mit realistischer Long-Tail-Verteilung.",
+    body: "Anchor-Cluster als Skelett + parallele LLM-Variation pro Anker, 401 Keywords mit realistischer Long-Tail-Verteilung.",
   },
   {
     title: "Best-Practices als YAML-Bibliothek",
@@ -158,7 +198,7 @@ const archTraits = [
   },
   {
     title: "Faktencheck als Korrektheits-Anker",
-    desc: "Ein Evidence-Validator prüft jede LLM-Zahl gegen die DB. Er deckte auf, wo das Modell Kausalität halluzinierte — und setzte den Reasoning-Proof auf ein ehrliches FAIL statt einen geschönten Pass.",
+    desc: "Ein Evidence-Validator prüft jede LLM-Zahl gegen die DB. Er deckte auf, wo das Modell Kausalität halluzinierte, und setzte den Reasoning-Proof auf ein ehrliches FAIL statt einen geschönten Pass.",
   },
 ];
 const stackChips = [
@@ -178,24 +218,20 @@ const modelChips: { label: string; opt: boolean }[] = [
 ---
 
 <SubPageLayout
-  title="sem-agentic — Karsten Uhlig"
+  title="sem-agentic · Karsten Uhlig"
   description="Bei Agentic AI war Wissen nie der Engpass, sondern die Umsetzung. Ein selbst entwickeltes agentisches System als Hands-on-Beleg."
 >
-  <PageHeader
-    eyebrow="Agentic AI · Hands-on"
-    headline="sem-agentic"
-    intro=""
-  />
-
-  <!-- Hero: Text links, Workflow-Schaubild rechts, höhenbündig -->
-  <div class="augur-hero">
-    <div class="augur-hero-text">
-      <p>Bei Agentic AI war Wissen nie der Engpass. Jede Organisation weiß seit Jahren, dass sie KI braucht. Knapp bleibt nicht das Fachwissen, sondern die Fähigkeit, von der Einsicht zur messbaren Wirkung zu kommen und eine Organisation durch genau diesen Schritt zu führen. Diese Lücke habe ich schon einmal geschlossen, mehrfach, in einer Operation mit 1,6 Mrd. Euro Umsatz. Bei Agentic AI ist es dasselbe Muster, nur ein neues Thema. Darum habe ich selbst ein agentisches System entwickelt, statt darüber zu reden: um den Abstand zwischen Demo und Betrieb von innen zu kennen, nicht aus einem Report.</p>
-    </div>
-    <div class="augur-hero-figure">
-      <AugurWorkflowSchaubild />
-    </div>
-  </div>
+  <!-- ============================ SCOPE-STECKBRIEF (Workflow rechts oben im Header) ============================ -->
+  <ScopeSteckbrief
+    eyebrow="Agentic AI · Marketing"
+    title="sem-agentic"
+    titleAs="h1"
+    thesis="Wie weit lässt sich ein agentisches System mit echter Architektur-Disziplin bauen, am Anwendungsfall Google SEM."
+    felder={scopeFelder}
+    geltungsbereich={scopeGeltung}
+  >
+    <AugurWorkflowSchaubild slot="visual" />
+  </ScopeSteckbrief>
 
   <!-- ============================ TABS ============================ -->
   <nav class="tabs" role="tablist" aria-label="sem-agentic Detail-Tabs">
@@ -267,7 +303,7 @@ const modelChips: { label: string; opt: boolean }[] = [
   <!-- ============================ TAB 1: DASHBOARD ============================ -->
   <section data-panel="dashboard" role="tabpanel">
     <div class="tab-sub">
-      Augur Operator-Dashboard — die Streamlit-Oberfläche eines vollständigen
+      Augur Operator-Dashboard, die Streamlit-Oberfläche eines vollständigen
       Coordinator-Runs: KPI-Cards, Pipeline-Status, Recall-Verlauf, Critique-Ergebnisse
       und die priorisierten Cluster-Actions.
     </div>
@@ -325,7 +361,7 @@ const modelChips: { label: string; opt: boolean }[] = [
           Sprachliche Skizze ≠<br />operative Realität
         </h3>
         <p class="refl-body">
-          Was im Plan klar klingt, ist im Team noch nicht definiert —
+          Was im Plan klar klingt, ist im Team noch nicht definiert.
           Konkretion erzwingen, bevor Mehrarbeit beginnt.
         </p>
       </article>
@@ -336,8 +372,8 @@ const modelChips: { label: string; opt: boolean }[] = [
           Eval-Disziplin gegen<br />das eigene Wunschergebnis
         </h3>
         <p class="refl-body">
-          Ohne harte Messgrößen entscheidet die letzte Output-Inspektion —
-          und die ist immer durch das eigene Wunschergebnis gefärbt.
+          Ohne harte Messgrößen entscheidet die letzte Output-Inspektion.
+          Und die ist immer durch das eigene Wunschergebnis gefärbt.
         </p>
       </article>
 
@@ -389,7 +425,7 @@ const modelChips: { label: string; opt: boolean }[] = [
   <!-- ============================ TAB 2: WORKING & PRODUCT MAP ============================ -->
   <section data-panel="working-map" role="tabpanel" hidden>
     <div class="tab-sub">
-      Working &amp; Product Map — wie ich arbeite, was dabei entsteht und was
+      Working &amp; Product Map, wie ich arbeite, was dabei entsteht und was
       es differenziert. Stand 01.06.2026.
     </div>
 
@@ -588,7 +624,7 @@ const modelChips: { label: string; opt: boolean }[] = [
 
     <section class="features">
       <div class="features-eyebrow">
-        Product Besonderheiten — was es differenziert
+        Product Besonderheiten: was es differenziert
       </div>
       <div class="features-grid">
         {
@@ -615,7 +651,7 @@ const modelChips: { label: string; opt: boolean }[] = [
     <div class="arc-top">
       <div class="arc-header">
         <div class="arc-eyebrow">
-          <span class="arc-live-dot" aria-hidden="true"></span>Augur — Architektur
+          <span class="arc-live-dot" aria-hidden="true"></span>Augur · Architektur
         </div>
         <h2 class="arc-h1">Multi-Agent-System mit gestufter Validierung</h2>
         <p class="arc-subtitle">
@@ -637,7 +673,7 @@ const modelChips: { label: string; opt: boolean }[] = [
     <!-- INPUT -->
     <div class="arc-input-row">
       <div class="arc-input-box">
-        Brief <strong>NordicGlow Skincare D2C — DACH-Markteintritt</strong>
+        Brief <strong>NordicGlow Skincare D2C, DACH-Markteintritt</strong>
       </div>
     </div>
     <div class="arc-down-arrow" aria-hidden="true">↓</div>
@@ -742,7 +778,7 @@ const modelChips: { label: string; opt: boolean }[] = [
       <div class="arc-output-box">
         Proposal
         <small>
-          Cluster + Budget + Copy + Risiken — strukturiert &amp; auditfähig
+          Cluster + Budget + Copy + Risiken, strukturiert &amp; auditfähig
         </small>
       </div>
     </div>
@@ -796,7 +832,7 @@ const modelChips: { label: string; opt: boolean }[] = [
       <h2 class="aug-h1">Augur</h2>
       <div class="aug-sub">
         Ein Multi-Agent-System für SEM-Performance. Deterministisch, wo die
-        Regeln klar sind — LLM nur, wo es Mehrwert bringt.
+        Regeln klar sind. LLM nur, wo es Mehrwert bringt.
       </div>
     </div>
 
@@ -867,7 +903,7 @@ const modelChips: { label: string; opt: boolean }[] = [
         <div class="aug-core-head">
           <div class="aug-ct">Das Herzstück: die Empfehlungs-Erzeugung</div>
           <div class="aug-cs">
-            Hier verläuft die Architektur-Grenze — nicht zwischen Komponenten,
+            Hier verläuft die Architektur-Grenze, nicht zwischen Komponenten,
             sondern innerhalb der Entscheidung.
           </div>
         </div>
@@ -898,7 +934,7 @@ const modelChips: { label: string; opt: boolean }[] = [
             <div class="aug-l-h">Priorisierung &amp; Cross-Cluster-Narrative</div>
             <div class="aug-l-b">
               Soll Urteilsvermögen beitragen, wo keine Regel greift. Heute nur
-              Rationale-Beitrag — eigenständiges Reasoning steht unter
+              Rationale-Beitrag, eigenständiges Reasoning steht unter
               Beweisvorbehalt.
             </div>
             <span class="aug-l-status">Richtung entschieden · nicht gebaut</span>
@@ -912,7 +948,7 @@ const modelChips: { label: string; opt: boolean }[] = [
       <div class="aug-io">
         <div class="aug-io-t">Priorisierte Cluster-Actions</div>
         <div class="aug-io-s">
-          Scale · Maintain · Investigate · Pause — mit Rationale, Confidence,
+          Scale · Maintain · Investigate · Pause, mit Rationale, Confidence,
           Impact &amp; voller Lineage
         </div>
       </div>
@@ -959,7 +995,7 @@ const modelChips: { label: string; opt: boolean }[] = [
   <!-- ============================ TAB 4: BLUEPRINT (PDF.js Viewer) ============================ -->
   <section data-panel="blueprint" role="tabpanel" hidden>
     <div class="tab-sub">
-      Augur Architecture Blueprint — gesamtes Dokument als PDF, im Browser
+      Augur Architecture Blueprint, gesamtes Dokument als PDF, im Browser
       gerendert mit PDF.js. Wird beim ersten Tab-Wechsel nachgeladen
       (~19&nbsp;MB).
     </div>
@@ -1029,7 +1065,7 @@ const modelChips: { label: string; opt: boolean }[] = [
   <!-- ============================ TAB 6: ERKENNTNISSE (PDF.js Viewer) ============================ -->
   <section data-panel="erkenntnisse" role="tabpanel" hidden>
     <div class="tab-sub">
-      The Agentic Blueprint — Erkenntnisse aus dem Engineering, im Browser gerendert
+      The Agentic Blueprint, Erkenntnisse aus dem Engineering, im Browser gerendert
       mit PDF.js. Wird beim ersten Tab-Wechsel nachgeladen (~19&nbsp;MB).
     </div>
 
@@ -1358,13 +1394,6 @@ const modelChips: { label: string; opt: boolean }[] = [
 
 <style>
   /* Augur-Umbau (2026-06): Hero (Text links + Schaubild rechts, höhenbündig), Tie-back, Scorecard-Note */
-  .augur-hero { display: flex; gap: 2.5rem; align-items: stretch; max-width: 1040px; margin: 1.75rem auto 1rem; }
-  .augur-hero-text { flex: 1 1 58%; }
-  .augur-hero-text p { font-size: 1.05rem; line-height: 1.7; color: #2A3D55; margin: 0; }
-  .augur-hero-figure { flex: 1 1 42%; display: flex; align-items: flex-end; justify-content: center; }
-  .augur-hero-figure .awf-wrap { zoom: 0.35; }
-  @supports not (zoom: 1) { .augur-hero-figure .awf-wrap { transform: scale(0.35); transform-origin: bottom center; } }
-  @media (max-width: 760px) { .augur-hero { flex-direction: column; } .augur-hero-figure { align-items: center; } }
   .maturity-note { font-size: 0.85rem; color: #5B6B82; font-style: italic; margin: 0.6rem 0 0.2rem; max-width: 660px; }
   .augur-tieback { max-width: 720px; margin: 2.5rem auto 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(30, 60, 100, .15); }
   .augur-tieback p { font-size: 1.05rem; line-height: 1.7; color: #2A3D55; }

@@ -31,7 +31,7 @@
         <div class="awf-step-label">3. Anzeigen-<br />texte</div>
       </div>
       <div class="awf-step">
-        <div class="awf-step-label">4.<br />Gebots-<br />strategie</div>
+        <div class="awf-step-label">4. Gebots-<br />strategie</div>
       </div>
       <div class="awf-step">
         <div class="awf-step-label">5. Optimierung<br />&amp; Analyse</div>
@@ -68,10 +68,9 @@
         </svg>
       </div>
       <div class="awf-ai-body">
-        <div class="awf-ai-text-title">sem-agentic · Agentic AI System</div>
         <div class="awf-ai-text-sub">
           Ein agentisches System, das in diesem Workflow analysiert und
-          Optimierungen vorschlägt. Hands-on entwickelt.
+          Optimierungen vorschlägt.
         </div>
         <div class="awf-ai-badges">
           <span class="awf-badge">Scale</span>
@@ -89,33 +88,16 @@
     max-width: 900px;
     width: 100%;
     margin: 0 auto;
+    container-type: inline-size;
   }
   .awf-schaubild {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.6),
-      rgba(255, 255, 255, 0.35)
-    );
+    /* Eigene Box, aber in der Geltungsbereich-Farbe (Inset-Variable vom
+       Steckbrief vererbt; Fallback fuers Standalone). */
+    background: var(--scope-inset, #edf1f6);
     border: 1px solid rgba(30, 60, 100, 0.14);
     border-radius: 14px;
     padding: 1.1rem 1.4rem;
     position: relative;
-    overflow: hidden;
-  }
-  .awf-schaubild::before {
-    content: "";
-    position: absolute;
-    top: -40%;
-    right: -10%;
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(180, 83, 9, 0.07),
-      transparent 70%
-    );
-    pointer-events: none;
   }
   .awf-flow-label {
     font-size: 11px;
@@ -265,8 +247,9 @@
     border: 1px solid rgba(180, 83, 9, 0.25);
   }
 
-  /* ---------- MOBILE (vertikal gestapelt) ---------- */
-  @media (max-width: 640px) {
+  /* ---------- SCHMAL (vertikal gestapelt) — reagiert auf die Render-Breite
+     der Box (Container-Query), nicht auf den Viewport ---------- */
+  @container (max-width: 560px) {
     .awf-schaubild {
       padding: 1.75rem 1.25rem 1.5rem;
       border-radius: 12px;

@@ -1,0 +1,273 @@
+---
+// Generischer Scope-Steckbrief — inhaltsfrei, alles über Props.
+// Genutzt auf mehreren Projektseiten (sem-agentic, signal-steering …).
+interface Feld {
+  label: string;
+  essence: string;
+  detail: string;
+}
+interface Props {
+  eyebrow: string;
+  title: string;
+  thesis: string;
+  felder: Feld[]; // genau drei
+  geltungsbereich: {
+    belegt: string[];
+    nichtBelegt: string[];
+  };
+  titleAs?: "h1" | "h2"; // Heading-Level des Titels (Default h2)
+}
+
+const {
+  eyebrow,
+  title,
+  thesis,
+  felder,
+  geltungsbereich,
+  titleAs = "h2",
+} = Astro.props;
+const TitleTag = titleAs;
+const { belegt, nichtBelegt } = geltungsbereich;
+const hasVisual = Astro.slots.has("visual");
+---
+
+<section class="scope" aria-label="Scope-Steckbrief">
+  <p class="sr-only">
+    Scope-Steckbrief {title}. {thesis} Belegt: {belegt.join("; ")}. Ausgeklammert:
+    {nichtBelegt.join("; ")}.
+  </p>
+
+  <header class:list={["scope-head", { "has-visual": hasVisual }]}>
+    <div class="scope-head-text">
+      <div class="scope-eyebrow">{eyebrow}</div>
+      <TitleTag class="scope-title">{title}</TitleTag>
+      <p class="scope-thesis">{thesis}</p>
+    </div>
+    {
+      hasVisual && (
+        <div class="scope-head-visual">
+          <slot name="visual" />
+        </div>
+      )
+    }
+  </header>
+
+  <dl class="scope-spec">
+    {
+      felder.map((f) => (
+        <div class="spec-row">
+          <dt class="spec-label">{f.label}</dt>
+          <dd class="spec-value">
+            <p class="spec-essence">{f.essence}</p>
+            <p class="spec-detail">{f.detail}</p>
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <div class="scope-geltung">
+    <div class="geltung-col">
+      <h3 class="geltung-head">Belegt</h3>
+      <ul class="geltung-list">
+        {
+          belegt.map((x) => (
+            <li>
+              <span class="mark check" aria-hidden="true">✓</span>
+              <span>{x}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="geltung-col">
+      <h3 class="geltung-head">Nicht belegt · ausgeklammert</h3>
+      <ul class="geltung-list">
+        {
+          nichtBelegt.map((x) => (
+            <li>
+              <span class="mark neutral" aria-hidden="true">–</span>
+              <span>{x}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .scope {
+    /* Eine einzige Inset-Fläche für beide Insets (Visual oben + Geltungsbereich unten).
+       OPAK (kein Alpha): sonst scheint der vertikale Seiten-Gradient positionsabhängig
+       durch und Band (oben) wirkt bläulicher als Geltungsbereich (unten). */
+    --scope-inset: #edf1f6;
+    max-width: 1040px;
+    margin: 1.75rem auto 2rem;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+  }
+
+  /* ---- Header ---- */
+  .scope-head.has-visual {
+    display: grid;
+    grid-template-columns: 2fr 3fr; /* Text ~40% · Visual ~60% */
+    gap: 2rem;
+    align-items: start;
+  }
+  .scope-head-visual {
+    min-width: 0; /* erlaubt dem Visual, in der Spalte zu schrumpfen statt zu sprengen */
+  }
+  .scope-eyebrow {
+    font-size: 12px;
+    color: var(--color-amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .scope-title {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    margin: 0 0 0.6rem;
+  }
+  .scope-thesis {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--color-ink-2);
+    margin: 0;
+    max-width: 70ch;
+  }
+
+  /* ---- Spec-Rows ---- */
+  .scope-spec {
+    margin: 1.5rem 0;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 1.25rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+  .spec-row:first-child {
+    padding-top: 0;
+  }
+  .spec-row:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .spec-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-ink-3);
+    padding-top: 1px;
+  }
+  .spec-value {
+    margin: 0;
+  }
+  .spec-essence {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--color-ink);
+    margin: 0 0 0.4rem;
+  }
+  .spec-detail {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--color-body);
+    margin: 0;
+  }
+
+  /* ---- Geltungsbereich (abgesetzte Fläche) ---- */
+  .scope-geltung {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--scope-inset);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 8px;
+    padding: 1.1rem 1.3rem;
+  }
+  .geltung-col:first-child {
+    padding-right: 1.5rem;
+  }
+  .geltung-col:last-child {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--color-border-soft);
+  }
+  .geltung-head {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-3);
+    margin: 0 0 0.7rem;
+  }
+  .geltung-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .geltung-list li {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--color-body);
+    margin-bottom: 0.5rem;
+  }
+  .geltung-list li:last-child {
+    margin-bottom: 0;
+  }
+  .mark {
+    flex: 0 0 auto;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .mark.check {
+    color: #1d9e75;
+  }
+  .mark.neutral {
+    color: var(--color-ink-3);
+  }
+
+  /* ---- Mobile ---- */
+  @media (max-width: 720px) {
+    .scope-head.has-visual {
+      grid-template-columns: 1fr; /* einspaltig: Text oben, Visual darunter */
+    }
+  }
+  @media (max-width: 600px) {
+    .scope {
+      padding: 1.5rem 1.25rem;
+    }
+    .spec-row {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+    .spec-label {
+      padding-top: 0;
+    }
+    .scope-geltung {
+      grid-template-columns: 1fr;
+    }
+    .geltung-col:first-child {
+      padding-right: 0;
+    }
+    .geltung-col:last-child {
+      padding-left: 0;
+      border-left: none;
+      border-top: 1px solid var(--color-border-soft);
+      padding-top: 1.1rem;
+      margin-top: 1.1rem;
+    }
+  }
+</style>
