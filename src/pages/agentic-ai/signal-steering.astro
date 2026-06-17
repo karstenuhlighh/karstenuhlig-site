@@ -1,6 +1,6 @@
 ---
 import SubPageLayout from "../../layouts/SubPageLayout.astro";
-import PageHeader from "../../components/PageHeader.astro";
+import ScopeSteckbrief from "../../components/ScopeSteckbrief.astro";
 import MeasurementTriangulationSchaubild from "../../components/MeasurementTriangulationSchaubild.astro";
 
 // PMax — iROAS je Messmethode. Wahrheit (2,50) ist die Referenzlinie, kein Balken.
@@ -29,33 +29,58 @@ const bars = [
     tip: "Marketing-Mix-Modell: rechnet aus dem langen Verlauf von Spend und Umsatz zurueck, welcher Kanal wie viel beigetragen hat. Hier am Geo-Test kalibriert.",
   },
 ];
+
+// Scope-Steckbrief — Inhalte (am Kanon ausgerichtet: keine Em-Dashes, kein „Bau")
+const scopeFelder = [
+  {
+    label: "Zielsetzung",
+    essence:
+      "Einsatzmöglichkeiten von Agentic AI im Measurement & Steering evaluieren, kein produktionsreifes System.",
+    detail:
+      "Als Testfall diente die Entwicklung eines triangulierten Mess- und Steuerungssystems. Ziel war die Bewertung, wo und wie agentische KI in diesem Feld nutzbar ist, nicht ein fertiges Produkt.",
+  },
+  {
+    label: "Vorgehen",
+    essence:
+      "Triangulation der Messung auf synthetischen Daten mit bekannter, festgelegter Wahrheit.",
+    detail:
+      "Ein repräsentatives Measurement-&-Steering-Problem wurde rekonstruiert: Plattform-Attribution, Geo-Incrementality und MMM auf denselben Daten, Steuerung auf den inkrementellen Wertbeitrag statt auf die Plattform-Zahl, plus Erkennen fehlerhafter Signale. Der synthetische Datensatz ist methodisch notwendig, nur bei bekanntem wahrem Wert lässt sich prüfen, ob die Methoden ihn treffen. Keine echten, fremden oder Live-Spend-Daten. Durchgängig mit agentischer KI entwickelt, um deren Beitrag beobachtbar zu machen.",
+  },
+  {
+    label: "Rolle der agentischen KI",
+    essence:
+      "Senkt für die Prototyp-Phase die Schwelle, ein solches System selbst zu instanziieren.",
+    detail:
+      "Beobachtung aus diesem Fall: Datengenerierung, MMM (PyMC-Marketing), Geo-Incrementality (DID/GeoLift), Allokationslogik und Oberfläche entstanden in Wochen, ohne Entwicklungs-Team, ein fachliches statt eines Engineering-Profils konnte diesen Schritt gehen. Die methodische Entscheidung, welche Methoden trianguliert werden und wie das Signal zu lesen ist, blieb beim Menschen.",
+  },
+];
+const scopeGeltung = {
+  belegt: [
+    "Trianguliertes Mess- und Steuerungssystem als Prototyp entwickelt",
+    "Gegen eine bekannte Wahrheit prüfbar (Methoden treffen den Wert)",
+    "Einsatzfelder: Methoden-Assemblierung, Hypothesentests, Anomalie-Erkennung",
+  ],
+  nichtBelegt: [
+    "Produktionsreife",
+    "Funktion auf realen Daten im Maßstab",
+    "Validierung auf echtem Spend (bewusst ausgeklammert)",
+  ],
+};
 ---
 
 <SubPageLayout
   title="signal-steering — Karsten Uhlig"
   description="Drei etablierte Methoden messen denselben Werbekanal und kommen zu drei Antworten. Ein Prototyp, der mit bekannter Wahrheit prüfbar macht, welcher man trauen kann."
 >
-  <PageHeader eyebrow="Agentic AI · Measurement & Steering" headline="Projekt „signal-steering”" />
-
-  <!-- PROJEKTZIEL + SCOPE (statt Prosa) -->
-  <div class="meta-block">
-    <div class="meta-row">
-      <span class="meta-label">Projektziel</span>
-      <span class="meta-text">
-        Einsatzmöglichkeiten von Agentic AI im Bereich Measurement &amp; Steering
-        zu evaluieren. Als Testfall diente die Entwicklung eines triangulierten
-        Mess- und Steuerungssystems. Das Ziel war in erster Linie die Bewertung, wo
-        und wie agentische KI in diesem Feld nutzbar ist.
-      </span>
-    </div>
-    <div class="meta-row">
-      <span class="meta-label">Scope</span>
-      <span class="meta-text">
-        Ein Denk- und Engineering-Prototyp. Synthetische Daten mit festgelegtem
-        Effekt, kein Live-Spend, keine echten oder fremden Werbedaten.
-      </span>
-    </div>
-  </div>
+  <!-- SCOPE-STECKBRIEF (Header; Projektziel + Scope gehen hier auf) -->
+  <ScopeSteckbrief
+    eyebrow="Agentic AI · Measurement & Steering"
+    title="signal-steering"
+    titleAs="h1"
+    thesis="Wie weit trägt Agentic AI im Measurement & Steering, geprüft an der Entwicklung eines triangulierten Mess- und Steuerungssystems."
+    felder={scopeFelder}
+    geltungsbereich={scopeGeltung}
+  />
 
   <!-- ÜBERSICHT ZUM START -->
   <section class="overview">
@@ -264,34 +289,6 @@ const bars = [
 </style>
 
 <style>
-  /* ---------- Projektziel / Scope ---------- */
-  .meta-block {
-    max-width: 760px;
-    margin: -2rem 0 3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-  }
-  .meta-row {
-    display: grid;
-    grid-template-columns: 110px 1fr;
-    gap: 1rem;
-    align-items: baseline;
-  }
-  .meta-label {
-    font-size: 11px;
-    color: var(--color-amber);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 600;
-    padding-top: 2px;
-  }
-  .meta-text {
-    font-size: 1.02rem;
-    line-height: 1.6;
-    color: var(--color-ink);
-  }
-
   /* ---------- Übersicht ---------- */
   .overview {
     margin: 0 0 3rem;
@@ -521,10 +518,6 @@ const bars = [
   }
 
   @media (max-width: 600px) {
-    .meta-row {
-      grid-template-columns: 1fr;
-      gap: 0.25rem;
-    }
     .sec-h2 {
       font-size: 22px;
     }
