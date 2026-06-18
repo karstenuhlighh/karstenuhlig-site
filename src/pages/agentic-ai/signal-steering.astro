@@ -188,30 +188,10 @@ const scopeGeltung = {
 
   <!-- FUSSZEILE: Stack + Logos -->
   <section class="footer-block">
-    <div class="stack-row">
-      <div class="stack-group">
-        <div class="stack-cap">Modellierte Kanäle</div>
-        <div class="logo-strip">
-          <div class="logo-tile">
-            <img src="/logos/pmax.png" alt="Google Performance Max" />
-          </div>
-          <div class="logo-tile">
-            <img src="/logos/meta.png" alt="Meta" />
-          </div>
-        </div>
-      </div>
-      <div class="stack-group">
-        <div class="stack-cap">Warehouse</div>
-        <div class="logo-strip">
-          <div class="logo-tile">
-            <img src="/logos/bigquery.png" alt="Google BigQuery" />
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="stack-tech">
-      Python · PyMC-Marketing + nutpie · Geo-Incrementality (DiD / GeoLift-Methodik)
-      · BigQuery Sandbox · Streamlit-Surface <em>(in Arbeit)</em>
+      Modellierte Kanäle: Google PMax · Meta. Stack: Python · PyMC-Marketing + nutpie
+      · Geo-Incrementality (DiD / GeoLift-Methodik) · BigQuery Sandbox ·
+      Streamlit-Surface <em>(in Arbeit)</em>.
     </div>
   </section>
 
@@ -448,50 +428,12 @@ const scopeGeltung = {
     margin-top: 2px;
   }
 
-  /* ---------- Fußzeile / Logos ---------- */
+  /* ---------- Fußzeile / Stack ---------- */
   .footer-block {
     max-width: 760px;
     margin: 3rem 0 0;
     padding-top: 2rem;
     border-top: 1px solid var(--color-border);
-  }
-  .stack-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2.5rem;
-    align-items: flex-end;
-    margin-bottom: 1.25rem;
-  }
-  .stack-cap {
-    font-size: 11px;
-    color: var(--color-ink-3);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 0.6rem;
-    font-weight: 500;
-  }
-  .logo-strip {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  .logo-tile {
-    width: 116px;
-    height: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid var(--color-border-soft);
-    border-radius: 8px;
-    padding: 0 0.85rem;
-  }
-  .logo-tile img {
-    max-height: 26px;
-    max-width: 90px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
   }
   .stack-tech {
     font-size: 13px;
