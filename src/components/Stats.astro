@@ -21,16 +21,29 @@
     position: relative;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    padding-top: 2.5rem;
-    padding-bottom: 4rem;
+    gap: 2rem;
+    padding: 2rem 0 3.25rem;
     border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid rgba(30, 60, 100, 0.1);
+  }
+  .stats > div {
+    position: relative;
+  }
+  .stats > div + div::before {
+    content: "";
+    position: absolute;
+    left: -1rem;
+    top: 0.35rem;
+    bottom: 0.25rem;
+    width: 1px;
+    background: rgba(30, 60, 100, 0.1);
   }
   .stat-value {
-    font-size: 36px;
+    font-size: clamp(34px, 3.5vw, 44px);
     font-weight: 500;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.035em;
     color: var(--color-ink);
+    line-height: 1;
   }
   .stat-value .accent {
     color: var(--color-amber);
@@ -38,8 +51,8 @@
   .stat-label {
     font-size: 11px;
     color: var(--color-ink-3);
-    margin-top: 8px;
-    letter-spacing: 0.1em;
+    margin-top: 10px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
@@ -48,6 +61,9 @@
       grid-template-columns: 1fr;
       gap: 1.5rem;
       padding-bottom: 2.5rem;
+    }
+    .stats > div + div::before {
+      display: none;
     }
   }
 </style>

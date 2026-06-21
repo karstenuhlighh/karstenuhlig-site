@@ -13,7 +13,7 @@ const pillars = [
   {
     href: "/agentic-ai",
     title: "Agentic AI",
-    desc: "Der vorderste Hebel. Markt-These zur Implementierungs-Welle und sem-agentic, ein selbst entwickeltes agentisches System für Search-Engine-Marketing.",
+    desc: "Die Implementierungs-Welle, praktisch geprüft. Markt-These plus sem-agentic, ein eigener Engineering-Prototyp für Search-Engine-Marketing.",
   },
 ];
 ---
@@ -38,7 +38,7 @@ const pillars = [
 <style>
   .pillars-section {
     position: relative;
-    padding-top: 1rem;
+    padding-top: 4rem;
   }
   .pillars-eyebrow {
     font-size: 11px;
@@ -57,30 +57,23 @@ const pillars = [
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    background: linear-gradient(
-      180deg,
-      rgba(164, 192, 217, 0.55) 0%,
-      rgba(214, 228, 239, 0.42) 45%,
-      rgba(246, 249, 252, 0.55) 100%
-    );
-    border: 1px solid var(--color-border-soft);
-    border-radius: 3px;
-    padding: 2rem 1.75rem;
+    background: rgba(255, 255, 255, 0.54);
+    border: 1px solid rgba(30, 60, 100, 0.12);
+    border-top: 3px solid rgba(30, 60, 100, 0.22);
+    border-radius: 2px;
+    padding: 2.15rem 1.8rem 1.75rem;
     cursor: pointer;
     transition:
       border-color 0.2s ease,
+      background 0.2s ease,
+      box-shadow 0.2s ease,
       transform 0.2s ease;
     text-decoration: none;
     display: block;
   }
-  /* HairCard: zwei sehr helle 18deg-Hairlines hinter dem Text */
+  /* Hairlines bleiben auf der Startseite dem Hero vorbehalten. */
   .pillar .hair {
-    position: absolute;
-    width: 1px;
-    transform: rotate(18deg);
-    transform-origin: top center;
-    z-index: -1;
-    pointer-events: none;
+    display: none;
   }
   .pillar .hair-1 {
     top: -30px;
@@ -107,7 +100,10 @@ const pillars = [
     );
   }
   .pillar:hover {
-    border-color: rgba(180, 83, 9, 0.45);
+    background: rgba(255, 255, 255, 0.74);
+    border-color: rgba(30, 60, 100, 0.18);
+    border-top-color: rgba(180, 83, 9, 0.65);
+    box-shadow: 0 10px 24px rgba(30, 60, 100, 0.06);
     transform: translateY(-2px);
   }
   .pillar-title {

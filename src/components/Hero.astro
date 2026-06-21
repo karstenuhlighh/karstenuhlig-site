@@ -123,14 +123,14 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .hero-grid {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr 1.4fr;
+    grid-template-columns: 0.9fr 1.45fr;
     grid-template-areas:
       "portrait eyebrow"
       "portrait headline"
       "portrait subtitle"
       "portrait ueber-mich"
       "portrait bio";
-    column-gap: 4rem;
+    column-gap: 4.75rem;
     row-gap: 0;
     align-items: start;
     margin-bottom: 0;
@@ -144,7 +144,7 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   }
   .ueber-mich-eyebrow {
     font-size: 12px;
-    color: var(--color-amber);
+    color: var(--color-ink-3);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     font-weight: 500;
@@ -160,13 +160,14 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   }
   .headline {
     grid-area: headline;
-    font-size: 46px;
+    font-size: clamp(42px, 4vw, 48px);
     font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+    line-height: 1.06;
+    letter-spacing: -0.035em;
     margin-bottom: 1.5rem;
     color: var(--color-ink);
     text-wrap: balance;
+    max-width: 680px;
   }
   /* Erste Headline-Zeile nur dort umbruchfrei halten, wo die Spalte breit
      genug ist -- auf schmalen Viewports darf sie weiter umbrechen. */
@@ -203,7 +204,8 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .portrait {
     grid-area: portrait;
     align-self: start;
-    width: 100%;
+    width: min(100%, 392px);
+    justify-self: center;
     aspect-ratio: 428 / 596; /* natives Verhaeltnis der Bilddatei 856x1192 */
     position: relative;
     background: linear-gradient(
@@ -213,10 +215,10 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
       #e2ebf3 78%,
       #f3f7fb 100%
     );
-    border: 1px solid rgba(144, 166, 187, 0.4);
-    border-radius: 14px;
+    border: 1px solid rgba(144, 166, 187, 0.34);
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 8px 28px rgba(30, 50, 70, 0.12);
+    box-shadow: 0 10px 24px rgba(30, 50, 70, 0.08);
   }
   /* Zwei 18deg-Haarlinien innen (oben rechts), als "Himmel" ueber dem Kopf
      sichtbar -- echoen die Hero-Banner-Linien. */
@@ -261,8 +263,8 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     object-position: center bottom;
   }
   .teaser-area {
-    margin-top: 4rem;
-    padding-bottom: 5rem;
+    margin-top: 4.5rem;
+    padding-bottom: 5.5rem;
   }
 
   /* --- MOBILE --- Foto ganz oben (ueber der Headline), gestapelt --- */

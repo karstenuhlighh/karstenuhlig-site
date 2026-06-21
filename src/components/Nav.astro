@@ -66,9 +66,20 @@
     color: var(--color-ink);
   }
 
-  @media (max-width: 480px) {
-    .nav-left {
+  @media (max-width: 640px) {
+    .nav {
+      align-items: flex-start;
       gap: 1rem;
+      margin-bottom: 4rem;
+    }
+    .nav-left {
+      flex-wrap: wrap;
+      gap: 0.65rem 1rem;
+      max-width: 280px;
+    }
+    .nav-logo {
+      flex-basis: 100%;
+      white-space: nowrap;
     }
     .nav-link,
     .nav-right {
