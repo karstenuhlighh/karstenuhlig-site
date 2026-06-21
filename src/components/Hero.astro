@@ -18,6 +18,20 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
         E-Commerce &amp; Marketing Outcomes through MarTech,
         Data&nbsp;&amp;&nbsp;AI.
       </p>
+      <div class="cover-proof" aria-label="Kurzprofil">
+        <div class="cover-proof-item">
+          <span class="cover-proof-value">€1,6+ Mrd</span>
+          <span class="cover-proof-label">Online Business skaliert</span>
+        </div>
+        <div class="cover-proof-item">
+          <span class="cover-proof-value">25+ Jahre</span>
+          <span class="cover-proof-label">Digital Commerce</span>
+        </div>
+        <div class="cover-proof-item">
+          <span class="cover-proof-value">20+ Märkte</span>
+          <span class="cover-proof-label">Digital Commerce Europa</span>
+        </div>
+      </div>
       <div class="ueber-mich-marker">
         <div class="ueber-mich-eyebrow">Über mich</div>
       </div>
@@ -123,17 +137,20 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .hero-grid {
     position: relative;
     display: grid;
-    grid-template-columns: 0.9fr 1.45fr;
+    grid-template-columns: 0.98fr 1.32fr;
     grid-template-areas:
       "portrait eyebrow"
       "portrait headline"
       "portrait subtitle"
+      "portrait proof"
       "portrait ueber-mich"
       "portrait bio";
-    column-gap: 4.75rem;
+    column-gap: 4.25rem;
     row-gap: 0;
     align-items: start;
     margin-bottom: 0;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid rgba(30, 60, 100, 0.14);
   }
   .ueber-mich-marker {
     grid-area: ueber-mich;
@@ -160,14 +177,14 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   }
   .headline {
     grid-area: headline;
-    font-size: clamp(42px, 4vw, 48px);
+    font-size: clamp(44px, 4.55vw, 56px);
     font-weight: 500;
-    line-height: 1.06;
-    letter-spacing: -0.035em;
+    line-height: 0.99;
+    letter-spacing: -0.045em;
     margin-bottom: 1.5rem;
     color: var(--color-ink);
     text-wrap: balance;
-    max-width: 680px;
+    max-width: 760px;
   }
   /* Erste Headline-Zeile nur dort umbruchfrei halten, wo die Spalte breit
      genug ist -- auf schmalen Viewports darf sie weiter umbrechen. */
@@ -180,8 +197,41 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     grid-area: subtitle;
     font-size: 17px;
     color: var(--color-ink-2);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
     max-width: 600px;
+  }
+  .cover-proof {
+    grid-area: proof;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+    max-width: 680px;
+    margin: 1.55rem 0 1.75rem;
+    padding: 1.05rem 0 1.15rem;
+    border-top: 1px solid rgba(30, 60, 100, 0.16);
+    border-bottom: 1px solid rgba(30, 60, 100, 0.1);
+  }
+  .cover-proof-item {
+    min-width: 0;
+  }
+  .cover-proof-value,
+  .cover-proof-label {
+    display: block;
+  }
+  .cover-proof-value {
+    font-size: 16px;
+    line-height: 1.15;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+  }
+  .cover-proof-label {
+    margin-top: 0.35rem;
+    font-size: 10px;
+    line-height: 1.35;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
   }
   .bio {
     grid-area: bio;
@@ -204,8 +254,8 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   .portrait {
     grid-area: portrait;
     align-self: start;
-    width: min(100%, 392px);
-    justify-self: center;
+    width: min(100%, 444px);
+    justify-self: start;
     aspect-ratio: 428 / 596; /* natives Verhaeltnis der Bilddatei 856x1192 */
     position: relative;
     background: linear-gradient(
@@ -215,10 +265,10 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
       #e2ebf3 78%,
       #f3f7fb 100%
     );
-    border: 1px solid rgba(144, 166, 187, 0.34);
-    border-radius: 12px;
+    border: 1px solid rgba(144, 166, 187, 0.32);
+    border-radius: 4px;
     overflow: hidden;
-    box-shadow: 0 10px 24px rgba(30, 50, 70, 0.08);
+    box-shadow: 0 18px 42px rgba(30, 50, 70, 0.1);
   }
   /* Zwei 18deg-Haarlinien innen (oben rechts), als "Himmel" ueber dem Kopf
      sichtbar -- echoen die Hero-Banner-Linien. */
@@ -263,7 +313,7 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     object-position: center bottom;
   }
   .teaser-area {
-    margin-top: 4.5rem;
+    margin-top: 3.5rem;
     padding-bottom: 5.5rem;
   }
 
@@ -293,21 +343,30 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     .headline {
       order: 3;
       font-size: 32px;
+      line-height: 1.06;
+      letter-spacing: -0.035em;
       margin-bottom: 1rem;
     }
     .subtitle {
       order: 4;
       margin-bottom: 0;
     }
-    .ueber-mich-marker {
+    .cover-proof {
       order: 5;
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+      margin: 1.35rem 0 0;
+      padding: 1rem 0;
+    }
+    .ueber-mich-marker {
+      order: 6;
       margin-top: 2.5rem;
       padding-top: 2rem;
       margin-bottom: 0;
       border-top: 1px solid var(--color-border);
     }
     .bio {
-      order: 6;
+      order: 7;
       margin-top: 0.75rem;
     }
     .teaser-area {
