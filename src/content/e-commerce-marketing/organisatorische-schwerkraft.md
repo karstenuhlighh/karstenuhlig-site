@@ -22,7 +22,7 @@ Das Kernteam für die neue Plattform brauchte die Schlüsselressourcen. Damit be
 
 An diesem Punkt entscheidet sich, ob eine Transformation trägt. Die Schwerkraft lässt sich nicht dauerhaft verwalten. Man muss sie einmal bewusst überwinden. Konkret hieß das: harte Grenzen für den Scope, ein klares Nein zu den meisten Anfragen, Rückendeckung der Geschäftsführung, und eine ehrliche Ansage an die Organisation. Das Kernteam ist eine Weile unterwegs. Vieles kommt später. Das ist kein Versäumnis, sondern die Bedingung dafür, dass das Neue überhaupt entsteht.
 
-Veränderung braucht deshalb einen diskreten Schritt, eine bewusste Trennung zwischen alter und neuer Welt. Kein langsames Driften, bei dem man hofft, dass beides nebeneinander geht. Es geht nicht nebeneinander. Wer im Bestand bleiben will und gleichzeitig das Neue bauen, bekommt am Ende keins von beidem.
+Veränderung braucht deshalb einen diskreten Schritt, eine bewusste Trennung zwischen alter und neuer Welt. Kein langsames Driften, bei dem man hofft, dass beides nebeneinander geht. Es geht nicht nebeneinander. Wer im Bestand bleiben will und gleichzeitig das Neue entwickeln will, bekommt am Ende keins von beidem.
 
 ## Heute
 

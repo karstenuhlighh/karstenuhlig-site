@@ -10,29 +10,29 @@ const scopeFelder = [
   {
     label: "Zielsetzung",
     essence:
-      `Architektur-Disziplin statt „Prompt-and-hope“. Und den Abstand zwischen Demo und Betrieb von innen verstehen.`,
+      `Architektur statt reiner Prompt-Logik. Und den Abstand zwischen Demo und Betrieb von innen verstehen.`,
     detail:
-      "Zu evaluieren, wie weit sich ein agentisches System mit echter Architektur-Disziplin bauen lässt. Anwendungsfall: Automation von Google SEM, von Keyword-Recherche bis Optimierung. Ein produktionsreifes System war nicht das Ziel.",
+      "Ich wollte prüfen, wie weit sich ein agentisches System für Google SEM mit sauberer Architektur, Validierung und Rollout-Logik bringen lässt. Ein produktionsreifes System war nicht das Ziel.",
   },
   {
     label: "Vorgehen",
     essence:
-      "Fünf validierte Agenten, ein Coordinator mit Self-Critique, gestufter Rollout.",
+      "Fünf validierte Agenten, ein Coordinator mit Selbstprüfung, gestufter Rollout.",
     detail:
-      "Jeder Agent erzeugt begründete Vorschläge und durchläuft eine zu seiner Output-Klasse passende Validierungs-Schicht (Shadow-Log + Human-Review, LLM-as-a-Judge, Hypothesen-Tests); ein Strategy-Coordinator aggregiert mit Self-Critique zu einer auditfähigen Empfehlung. Deterministische Logik, wo die Regeln klar sind; ein LLM nur, wo es Mehrwert bringt. Ausführung als eigene Schicht mit gestuftem Rollout: Shadow → Sandbox → Limited Live → Autonomous.",
+      "Jeder Agent erzeugt begründete Vorschläge und wird passend zu seinem Ergebnis geprüft: Shadow-Log und Human Review, LLM-as-a-Judge oder Hypothesentests. Ein Strategy-Coordinator verdichtet die Ergebnisse zu einer nachvollziehbaren Empfehlung. Deterministische Logik, wo die Regeln klar sind; ein LLM nur dort, wo es Mehrwert bringt. Die Ausführung läuft stufenweise: Shadow → Sandbox → Limited Live → Autonomous.",
   },
   {
     label: "Rolle der agentischen KI",
     essence:
       "Der Engpass liegt nicht im Prompting, sondern in der Architektur darum herum.",
     detail:
-      "Beobachtung aus diesem Fall: Validierung je Output-Klasse, Koordination mehrerer Agenten, gestufter Rollout und nachvollziehbare Evaluation. Erst diese Disziplin trennt eine Demo von etwas Betreibbarem. Welche Vorschläge übernommen werden und ab welcher Rollout-Stufe ein Agent autonom handeln darf, bleibt eine bewusst gesetzte, menschliche Entscheidung.",
+      "Beobachtung aus diesem Fall: Validierung je Ergebnisart, Koordination mehrerer Agenten, gestufter Rollout und nachvollziehbare Evaluation. Erst diese Disziplin trennt eine Demo von etwas Betreibbarem. Welche Vorschläge übernommen werden und ab welcher Rollout-Stufe ein Agent autonom handeln darf, bleibt eine bewusst gesetzte, menschliche Entscheidung.",
   },
 ];
 const scopeGeltung = {
   belegt: [
-    "Agentisches SEM-System mit durchgängiger Architektur-Disziplin als laufender Pilot",
-    "Validierung je Agent, koordinierte Aggregation",
+    "Agentisches SEM-System als laufender Pilot",
+    "Validierung je Agent und koordinierte Verdichtung",
     "Dokumentierte Evaluation (ADRs, Eval-Framework, Audit)",
   ],
   nichtBelegt: [
@@ -55,7 +55,7 @@ const claudeChatItems = [
 const claudeCodeItems = [
   "Code-Stand prüfen",
   "Architektur-Skizze",
-  "Services bauen",
+  "Services entwickeln",
   "ADRs & Tests",
 ];
 
@@ -141,7 +141,7 @@ const adrTags = [
 const features = [
   {
     title: "Zwei-Schichten-Architektur (ADR-015)",
-    body: "Deterministische Action-Schicht (Pre-flight Rules) + optionale LLM-Analyst-Schicht. Schicht 2 unter Beweisvorbehalt, nicht gebaut bis Mehrwert belegt.",
+    body: "Deterministische Action-Schicht (Pre-flight Rules) + optionale LLM-Analyst-Schicht. Schicht 2 unter Beweisvorbehalt, nicht umgesetzt bis Mehrwert belegt.",
   },
   {
     title: "Two-Track Eval (ADR-013)",
@@ -185,7 +185,7 @@ const phase2Stages = [
   { name: "Performance", desc: "Hypothesis-Testing + Rules" },
   { name: "Copy", desc: "Ad-Copy je Cluster" },
   { name: "Synthese", desc: "Empfehlungs-Erzeugung" },
-  { name: "Reflect", desc: "Self-Critique" },
+  { name: "Reflect", desc: "Selbstprüfung" },
 ];
 const archTraits = [
   {
@@ -219,14 +219,14 @@ const modelChips: { label: string; opt: boolean }[] = [
 
 <SubPageLayout
   title="sem-agentic · Karsten Uhlig"
-  description="Bei Agentic AI war Wissen nie der Engpass, sondern die Umsetzung. Ein selbst entwickeltes agentisches System als Hands-on-Beleg."
+  description="Bei Agentic AI war Wissen nie der Engpass, sondern die Umsetzung. Ein eigener Engineering-Prototyp als praktischer Beleg."
 >
   <!-- ============================ SCOPE-STECKBRIEF (Workflow rechts oben im Header) ============================ -->
   <ScopeSteckbrief
     eyebrow="Agentic AI · Marketing"
     title="sem-agentic"
     titleAs="h1"
-    thesis="Wie weit lässt sich ein agentisches System mit echter Architektur-Disziplin bauen, am Anwendungsfall Google SEM."
+    thesis="Wie weit lässt sich ein agentisches System mit sauberer Architektur, Validierung und Rollout-Logik bringen, am Anwendungsfall Google SEM."
     felder={scopeFelder}
     geltungsbereich={scopeGeltung}
   >
@@ -466,7 +466,7 @@ const modelChips: { label: string; opt: boolean }[] = [
               </div>
             </div>
 
-            <p class="maturity-note">Die niedrigen Felder sind kein Versäumnis, sondern eine Entscheidung: gebaut wurde, was den Punkt beweist, nicht was die Tabelle füllt. Ein ehrlicher Stand sagt mehr als ein geschönter.</p>
+            <p class="maturity-note">Die niedrigen Felder sind kein Versäumnis, sondern eine Entscheidung: umgesetzt wurde, was den Punkt beweist, nicht was die Tabelle füllt. Ein ehrlicher Stand sagt mehr als ein geschönter.</p>
 
             <div class="maturity-legend">
               {
@@ -657,8 +657,8 @@ const modelChips: { label: string; opt: boolean }[] = [
         <p class="arc-subtitle">
           Fünf spezialisierte Agenten produzieren Vorschläge mit Begründung.
           Jeder Agent durchläuft eine Validierungs-Schicht, die zu seiner
-          Output-Klasse passt. Der Strategy-Coordinator aggregiert mit
-          Self-Critique zu einer auditfähigen Empfehlung.
+          Ergebnisart passt. Der Strategy-Coordinator verdichtet die Ergebnisse
+          mit Selbstprüfung zu einer auditfähigen Empfehlung.
         </p>
       </div>
       <div class="arc-mode-switch" aria-hidden="true">
@@ -759,8 +759,8 @@ const modelChips: { label: string; opt: boolean }[] = [
           <div class="arc-coord-name">Strategy-Coordinator</div>
         </div>
         <div class="arc-coord-role">
-          Aggregiert die vier Agent-Outputs zu einer kohärenten
-          Strategie-Empfehlung. Führt Self-Critique-Loop durch, identifiziert
+          Verdichtet die vier Agent-Outputs zu einer kohärenten
+          Strategie-Empfehlung. Führt eine Selbstprüfung durch, identifiziert
           Widersprüche, fordert Nachbesserung an, dokumentiert Confidence und
           offene Risiken.
         </div>
@@ -916,7 +916,7 @@ const modelChips: { label: string; opt: boolean }[] = [
               aus und erzwingt die Cluster-Action. Auditierbar, reproduzierbar,
               kein Modell beteiligt.
             </div>
-            <span class="aug-l-status">gebaut · aktiv</span>
+            <span class="aug-l-status">entwickelt · aktiv</span>
           </div>
           <div class="aug-split-num">
             <div class="aug-big">94 %</div>
@@ -937,7 +937,7 @@ const modelChips: { label: string; opt: boolean }[] = [
               Rationale-Beitrag, eigenständiges Reasoning steht unter
               Beweisvorbehalt.
             </div>
-            <span class="aug-l-status">Richtung entschieden · nicht gebaut</span>
+            <span class="aug-l-status">Richtung entschieden · nicht umgesetzt</span>
           </div>
         </div>
       </div>
@@ -1132,7 +1132,7 @@ const modelChips: { label: string; opt: boolean }[] = [
   </section>
 
   <div class="augur-tieback">
-    <p>Das eigentliche Thema ist nicht der Code. Es ist, was der Bau über das Führen einer Organisation durch Agentic AI lehrt: dass der Engpass nicht im Modell sitzt, sondern in den hundert Entscheidungen, die das System an Menschen zurückgibt. Wer für das Ergebnis geradesteht, entscheidet diese Phase. Das System baut. Es ownt nicht.</p>
+    <p>Das eigentliche Thema ist nicht der Code. Es ist, was die Entwicklung über das Führen einer Organisation durch Agentic AI lehrt: Der Engpass sitzt nicht im Modell, sondern in den hundert Entscheidungen, die das System an Menschen zurückgibt. Wer für das Ergebnis geradesteht, entscheidet diese Phase. Das System kann Arbeit erzeugen. Verantwortung bleibt beim Menschen.</p>
   </div>
 </SubPageLayout>
 

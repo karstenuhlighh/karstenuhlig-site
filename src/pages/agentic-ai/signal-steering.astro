@@ -35,23 +35,23 @@ const scopeFelder = [
   {
     label: "Zielsetzung",
     essence:
-      "Einsatzmöglichkeiten von Agentic AI im Measurement & Steering evaluieren, kein produktionsreifes System.",
+      "Prüfen, wo Agentic AI bei Measurement und Budget-Steuerung helfen kann, wenn mehrere Methoden zu unterschiedlichen Antworten kommen.",
     detail:
-      "Als Testfall diente die Entwicklung eines triangulierten Mess- und Steuerungssystems. Ziel war die Bewertung, wo und wie agentische KI in diesem Feld nutzbar ist, nicht ein fertiges Produkt.",
+      "Als Testfall entstand ein trianguliertes Mess- und Steuerungssystem. Ziel war nicht ein fertiges Produkt, sondern eine belastbare Einschätzung, wo agentische KI in diesem Feld nützlich ist.",
   },
   {
     label: "Vorgehen",
     essence:
       "Triangulation der Messung auf synthetischen Daten mit bekannter, festgelegter Wahrheit.",
     detail:
-      "Ein repräsentatives Measurement-&-Steering-Problem wurde rekonstruiert: Plattform-Attribution, Geo-Incrementality und MMM auf denselben Daten, Steuerung auf den inkrementellen Wertbeitrag statt auf die Plattform-Zahl, plus Erkennen fehlerhafter Signale. Der synthetische Datensatz ist methodisch notwendig, nur bei bekanntem wahrem Wert lässt sich prüfen, ob die Methoden ihn treffen. Keine echten, fremden oder Live-Spend-Daten. Durchgängig mit agentischer KI entwickelt, um deren Beitrag beobachtbar zu machen.",
+      "Ein repräsentatives Measurement-&-Steering-Problem wurde rekonstruiert: Plattform-Attribution, Geo-Incrementality und MMM auf denselben Daten, Steuerung auf den inkrementellen Wertbeitrag statt auf die Plattform-Zahl, plus Erkennen fehlerhafter Signale. Der synthetische Datensatz ist methodisch notwendig. Nur bei bekanntem wahrem Wert lässt sich prüfen, ob die Methoden ihn treffen. Keine echten, fremden oder Live-Spend-Daten. Entwickelt mit agentischer KI, damit ihr Beitrag sichtbar wird.",
   },
   {
     label: "Rolle der agentischen KI",
     essence:
-      "Senkt für die Prototyp-Phase die Schwelle, ein solches System selbst zu instanziieren.",
+      "Ein fachliches Profil kann heute deutlich weiter kommen als noch vor wenigen Jahren.",
     detail:
-      "Beobachtung aus diesem Fall: Datengenerierung, MMM (PyMC-Marketing), Geo-Incrementality (DID/GeoLift), Allokationslogik und Oberfläche entstanden in Wochen, ohne Entwicklungs-Team, ein fachliches statt eines Engineering-Profils konnte diesen Schritt gehen. Die methodische Entscheidung, welche Methoden trianguliert werden und wie das Signal zu lesen ist, blieb beim Menschen.",
+      "Beobachtung aus diesem Fall: Datengenerierung, MMM (PyMC-Marketing), Geo-Incrementality (DID/GeoLift), Allokationslogik und Oberfläche entstanden in Wochen, ohne Entwicklungs-Team. Nicht bis zum produktionsreifen System. Aber weit genug, um die richtigen methodischen Fragen am laufenden Modell zu prüfen. Die Entscheidung, welche Methoden trianguliert werden und wie das Signal zu lesen ist, blieb beim Menschen.",
   },
 ];
 const scopeGeltung = {
@@ -77,7 +77,7 @@ const scopeGeltung = {
     eyebrow="Agentic AI · Measurement & Steering"
     title="signal-steering"
     titleAs="h1"
-    thesis="Wie weit trägt Agentic AI im Measurement & Steering, geprüft an der Entwicklung eines triangulierten Mess- und Steuerungssystems."
+    thesis="Wie Agentic AI im Measurement & Steering helfen kann, wenn mehrere Methoden denselben Kanal messen und zu unterschiedlichen Antworten kommen."
     felder={scopeFelder}
     geltungsbereich={scopeGeltung}
   />

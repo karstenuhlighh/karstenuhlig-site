@@ -33,8 +33,8 @@ const hasVisual = Astro.slots.has("visual");
 
 <section class="scope" aria-label="Scope-Steckbrief">
   <p class="sr-only">
-    Scope-Steckbrief {title}. {thesis} Belegt: {belegt.join("; ")}. Ausgeklammert:
-    {nichtBelegt.join("; ")}.
+    Scope-Steckbrief {title}. {thesis} Belegt ist: {belegt.join(". ")}.
+    Nicht belegt ist: {nichtBelegt.join(". ")}.
   </p>
 
   <header class:list={["scope-head", { "has-visual": hasVisual }]}>

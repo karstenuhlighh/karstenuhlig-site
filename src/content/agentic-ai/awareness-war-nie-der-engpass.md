@@ -18,6 +18,6 @@ Der Punkt ist nicht das Tool von damals. Der Punkt ist das Muster. Zwischen „w
 
 ## Was AI Engineering über Umsetzung lehrt
 
-Wer schon Agentic-AI-Systeme gebaut hat, weiß, wie groß der Abstand zwischen Demo und Betrieb ist. Mit einer Demo zu beeindrucken ist leicht. Ein agentisches System in den Betrieb zu bringen verlangt etwas Unspektakuläres: Verlässlichkeit. Die Demo läuft, weil sie einmal läuft. Der Betrieb verlangt, dass dasselbe Ergebnis morgen wieder kommt, dass man messen kann, ob es schlechter wird, und dass ein Mensch es bedienen und verantworten kann, der das System nicht gebaut hat.
+Wer schon Agentic-AI-Systeme entwickelt hat, weiß, wie groß der Abstand zwischen Demo und Betrieb ist. Mit einer Demo zu beeindrucken ist leicht. Ein agentisches System in den Betrieb zu bringen verlangt etwas Unspektakuläres: Verlässlichkeit. Die Demo läuft, weil sie einmal läuft. Der Betrieb verlangt, dass dasselbe Ergebnis morgen wieder kommt, dass man messen kann, ob es schlechter wird, und dass ein Mensch es bedienen und verantworten kann, der das System nicht selbst entwickelt hat.
 
 Das ist die Arbeit, die zwischen Demo und Wirkung liegt. Über jede Technologiewelle hinweg ist das der Teil, an dem es sich entscheidet.
