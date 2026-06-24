@@ -17,11 +17,67 @@ const schwerpunkte = [
   },
 ];
 
-const ergebnisse = [
-  "Skalierung von bonprix zu einer Top 5 Online Fashion Brand in Europa.",
-  "Verbesserung des Marketing-ROI und Effizienzgewinne im zweistelligen Millionenbereich.",
-  "10x Steigerung von Entwicklungs- und Innovationsgeschwindigkeit (DORA).",
-  "Signifikante Steigerung der Kundenzufriedenheit (NPS & Benchmarks).",
+const stationen = [
+  {
+    label: "Weichenstellung",
+    rolle: "Eigene E-Commerce-Plattform",
+    zeit: "2005",
+    eingriff:
+      "Gegen die am Markt verfügbare Standardsoftware entschieden, weil sie zu unflexibel und nicht international-tauglich war, und eine eigene, schnellere Plattform aufgesetzt.",
+    ergebnis:
+      "Das Fundament, auf dem zwei Jahrzehnte internationales Wachstum aufbauten.",
+  },
+  {
+    label: "Aufbau",
+    rolle: "Head of E-Commerce & Digital Marketing",
+    zeit: "2007–2010",
+    eingriff:
+      "Internationale Online-Marketing-Organisation von Grund auf etabliert: SEM, SEO, Affiliates, Display, Email.",
+    ergebnis: "Marketing-getriebener Traffic von 0 auf 50 % des Online-Traffics.",
+  },
+  {
+    label: "Aufbau",
+    rolle: "Division Manager E-Commerce",
+    zeit: "2010–2018",
+    eingriff:
+      "Als Projektleiter die erste integrierte Marketing-Datenplattform etabliert: alle Touchpoints auf ein gemeinsames Kundenkonzept, in sechs Monaten.",
+    ergebnis:
+      "Das Datenfundament für Personalisierung und Scoring. Self-Service-Analytics für über 500 Business-User.",
+  },
+  {
+    label: "Transformation",
+    rolle: "KI/ML im Marketing",
+    zeit: "2017–2018",
+    eingriff:
+      "Performance Marketing und CRM von regelbasiert auf modellbasierte, automatisierte Steuerung umgestellt.",
+    ergebnis: "Marketing-ROI-Verbesserung im zweistelligen Millionenbereich.",
+  },
+  {
+    label: "Transformation",
+    rolle: "Webshop- und DXP-Modernisierung",
+    zeit: "2020–2022",
+    eingriff:
+      "Die eigene Shop-Plattform vom Monolithen auf eine cloudfähige Microservice-Architektur umgestellt, bei laufendem internationalem Geschäft.",
+    ergebnis:
+      "Besucher +44 % seit 2015 auf einer Architektur, die Wachstum trägt statt bremst.",
+  },
+  {
+    label: "Transformation",
+    rolle: "Produktorganisation",
+    zeit: "2022–2023",
+    eingriff:
+      "E-Commerce-Organisation zur Produktorganisation umgebaut (Team Topologies), klare Verantwortlichkeiten statt Silos.",
+    ergebnis: "10x Liefergeschwindigkeit (DORA).",
+  },
+  {
+    label: "Skalierung",
+    rolle: "VP Digital Product & Technology",
+    zeit: "2018–2025",
+    eingriff:
+      "E-Commerce-Geschäft strategisch und operativ geführt, KI-gestützte Steuerung im laufenden Betrieb eines Milliardengeschäfts.",
+    ergebnis:
+      "€1,6 Mrd. Online-Umsatz über 20+ Märkte, Top-5 Online-Fashion-Brand Europa.",
+  },
 ];
 ---
 
@@ -36,6 +92,14 @@ const ergebnisse = [
   />
 
   <section class="tr-body">
+    <p class="tr-lead">
+      Ich arbeite seit über zwanzig Jahren an digitalem Commerce. 2005 gab es
+      bereits einen Markt für Standardsoftware. Bei bonprix haben wir uns bewusst
+      dagegen entschieden: Die verfügbaren Lösungen waren zu unflexibel und für die
+      Internationalisierung nicht geeignet. Stattdessen haben wir eine eigene,
+      schnellere Plattform aufgesetzt. Sie wurde zum Fundament für zwei Jahrzehnte
+      internationales Wachstum, bis zu €1,6 Mrd. über 20 Märkte.
+    </p>
     <p>
       Bei bonprix war die strategische Awareness früh da. „Data is the next oil“,
       „Mobile First“, als C-Level-Linie gesetzt. Was fehlte, war der Schritt vom
@@ -83,10 +147,22 @@ const ergebnisse = [
       }
     </ul>
 
-    <h3 class="tr-subheading">Ergebnisse & Impact</h3>
-    <ul class="tr-list">
-      {ergebnisse.map((r) => <li>{r}</li>)}
-    </ul>
+    <h3 class="tr-subheading">Stationen & Wirkung</h3>
+    <ol class="tr-arc">
+      {
+        stationen.map(({ label, rolle, zeit, eingriff, ergebnis }) => (
+          <li class="tr-arc-item">
+            <div class="tr-arc-head">
+              <span class="tr-arc-label">{label}</span>
+              <span class="tr-arc-role">{rolle}</span>
+              <span class="tr-arc-zeit">{zeit}</span>
+            </div>
+            <p class="tr-arc-eingriff">{eingriff}</p>
+            <p class="tr-arc-ergebnis">{ergebnis}</p>
+          </li>
+        ))
+      }
+    </ol>
   </section>
 </SubPageLayout>
 
@@ -102,6 +178,13 @@ const ergebnisse = [
   }
   .tr-body p:last-child {
     margin-bottom: 0;
+  }
+  .tr-body p.tr-lead {
+    font-size: 20px;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    margin: 0 0 2rem;
   }
 
   .tr-facts {
@@ -159,5 +242,72 @@ const ergebnisse = [
   .tr-list strong {
     color: var(--color-ink);
     font-weight: 500;
+  }
+
+  .tr-arc {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 760px;
+  }
+  .tr-arc-item {
+    position: relative;
+    padding: 0 0 1.75rem 1.5rem;
+    border-left: 1px solid var(--color-border);
+  }
+  .tr-arc-item:last-child {
+    padding-bottom: 0;
+  }
+  .tr-arc-item::before {
+    content: "";
+    position: absolute;
+    left: -4px;
+    top: 0.45em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-amber);
+  }
+  .tr-arc-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .tr-arc-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: var(--color-amber);
+  }
+  .tr-arc-role {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+  .tr-arc-zeit {
+    font-size: 13px;
+    color: var(--color-body);
+    margin-left: auto;
+  }
+  .tr-arc-eingriff {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-body);
+    margin: 0 0 0.4rem;
+  }
+  .tr-arc-ergebnis {
+    font-size: 15px;
+    line-height: 1.7;
+    font-weight: 500;
+    color: var(--color-ink-2);
+    margin: 0;
+  }
+  .tr-arc-ergebnis::before {
+    content: "→ ";
+    color: var(--color-amber);
   }
 </style>
