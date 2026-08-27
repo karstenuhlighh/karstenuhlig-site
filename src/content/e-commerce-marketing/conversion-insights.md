@@ -1,10 +1,10 @@
 ---
 title: "Conversion-Insights aus 20 Jahren E-Commerce"
 date: 2026-06-24
-excerpt: "20 Jahre Conversion bei bonprix, von einer Person auf über 100. Die Lehre ist unbequem: Die Conversionrate ist eine Resultante, kein Steuerungshebel. Wer sie zentral steuern will, scheitert. Wer sie an die marktnahe Kante gibt, gewinnt."
+excerpt: "20 Jahre Conversion bei bonprix, von einer Person auf über 100. Die Lehre ist unbequem: Die Conversionrate ist auf Gesamtebene eine Resultante, kein einzelner Steuerungshebel. Wer sie zentral über Einzelmaßnahmen steuern will, scheitert. Wer sie an die marktnahe Kante gibt, gewinnt."
 ---
 
-Über zwanzig Jahre habe ich bei bonprix gesehen, wie aus einer Kennzahl ein Thema von über 100 Menschen wurde. Die wichtigste Lehre daraus ist unbequem: Die Conversionrate lässt sich nicht steuern. Sie ist eine Resultante, kein Hebel.
+Über zwanzig Jahre habe ich bei bonprix gesehen, wie aus einer Kennzahl ein Thema von über 100 Menschen wurde. Die wichtigste Lehre daraus ist unbequem: Die Conversionrate lässt sich auf Gesamtebene nicht wie ein einzelner Hebel steuern. Sie ist eine Resultante.
 
 ## Von einer Person auf über 100
 
