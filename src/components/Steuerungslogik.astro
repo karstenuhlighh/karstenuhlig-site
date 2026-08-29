@@ -1,0 +1,121 @@
+---
+// Karstens Commercial-Management-Denkweise, ein knapper Executive-Anker.
+// Fachliche Quelle: KA-OS capabilities/commercial-management/01-economic-steering.md.
+// Bewusst kein Methodenkatalog, keine Framework-Namen, kein Deep-Link — siehe
+// Stage-1-Vorschlag in der Session vom 2026-08-29.
+---
+
+<section class="steuerungslogik">
+  <div class="eyebrow">Meine Steuerungslogik</div>
+  <h2 class="sl-headline">Diagnose vor Intervention.</h2>
+  <p class="sl-intro">
+    Wenn Umsatz, Ergebnis oder Kundenbasis von Plan abweichen, beginne ich
+    nicht mit einer Maßnahme. Ich frage zuerst, wo die Abweichung
+    wirtschaftlich tatsächlich entsteht und welcher Mechanismus
+    dahintersteckt — erst dann entscheide ich, auf welcher Ebene
+    eingegriffen wird.
+  </p>
+  <div class="sl-principles">
+    <div class="sl-principle">
+      Eine Abweichung in ihre Treiber zerlegen, statt sofort eine Maßnahme zu
+      wählen.
+    </div>
+    <div class="sl-principle">
+      Temporäre Effekte von echten strukturellen Verschiebungen
+      unterscheiden.
+    </div>
+    <div class="sl-principle">
+      Das wirtschaftliche Gesamtsystem verbessern, nicht eine einzelne
+      Kennzahl.
+    </div>
+  </div>
+  <div class="sl-evidence">
+    <p>
+      Bei eingeschränkter Warenverfügbarkeit war zusätzliches Marketing für
+      mich nicht automatisch sinnvoll — Nachfrage und Marketingintensität
+      mussten an die tatsächliche Lieferfähigkeit angepasst werden, statt
+      Traffic oder Umsatz isoliert zu maximieren.
+    </p>
+  </div>
+</section>
+
+<style>
+  .steuerungslogik {
+    position: relative;
+    padding: 4.25rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .eyebrow {
+    font-size: 12px;
+    color: var(--color-ink-3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+  .sl-headline {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+  .sl-intro {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--color-body);
+    max-width: 680px;
+    margin: 0 0 2.25rem;
+  }
+  .sl-principles {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 1.75rem 0;
+    border-top: 1px solid rgba(30, 60, 100, 0.14);
+    border-bottom: 1px solid rgba(30, 60, 100, 0.1);
+    margin-bottom: 2rem;
+    max-width: 900px;
+  }
+  .sl-principle {
+    position: relative;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-ink-2);
+  }
+  .sl-principle + .sl-principle::before {
+    content: "";
+    position: absolute;
+    left: -1rem;
+    top: 0.15rem;
+    bottom: 0.15rem;
+    width: 1px;
+    background: rgba(30, 60, 100, 0.1);
+  }
+  .sl-evidence {
+    max-width: 680px;
+    background: rgba(255, 255, 255, 0.66);
+    border: 1px solid rgba(30, 60, 100, 0.14);
+    border-left: 3px solid var(--color-amber);
+    border-radius: 2px;
+    padding: 1.5rem 1.75rem;
+  }
+  .sl-evidence p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-body);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .sl-principles {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    .sl-principle + .sl-principle::before {
+      display: none;
+    }
+  }
+</style>
