@@ -1,0 +1,31 @@
+---
+import SubPageLayout from "../../layouts/SubPageLayout.astro";
+import NoteArticle from "../../components/NoteArticle.astro";
+import { commercialQuestions } from "../../data/commercial-questions";
+
+export async function getStaticPaths() {
+  return commercialQuestions
+    .filter((q) => q.slug && q.body)
+    .map((q) => ({
+      params: { slug: q.slug },
+      props: { question: q },
+    }));
+}
+
+const { question } = Astro.props;
+---
+
+<SubPageLayout
+  title={`${question.title} | Karsten Uhlig`}
+  description={question.satz}
+>
+  <NoteArticle
+    title={question.title}
+    excerpt={question.satz}
+    eyebrow="Commercial Growth"
+    backHref="/#commercial-fragen"
+    backLabel="Commercial Growth"
+  >
+    {question.body!.map((p) => <p>{p}</p>)}
+  </NoteArticle>
+</SubPageLayout>

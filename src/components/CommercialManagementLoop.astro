@@ -1,0 +1,79 @@
+<section class="steering-section" aria-labelledby="steering-title">
+  <div class="steering-heading">
+    <div class="steering-kicker">Steuerungslogik</div>
+    <p id="steering-title">
+      Beobachtung, Entscheidung und Umsetzung bleiben verbunden – damit aus
+      Signalen klare Prioritäten und aus Prioritäten wirtschaftliche Wirkung wird.
+    </p>
+  </div>
+
+  <ol class="movements">
+    <li class="movement">
+      <div class="movement-header"><span>01</span><h3>Verstehen</h3></div>
+      <div class="movement-content">
+        <div>
+          <h4>Ergebnisse &amp; Signale</h4>
+          <p>Wirtschaftliche Abweichungen, Muster und relevante Signale sichtbar machen.</p>
+        </div>
+        <div>
+          <h4>Treiber &amp; Mechanik</h4>
+          <p>Nicht bei KPIs stehen bleiben, sondern Ursachen, Engpässe und zugrunde liegende Wirkungsmechaniken verstehen.</p>
+        </div>
+      </div>
+    </li>
+    <li class="movement">
+      <div class="movement-header"><span>02</span><h3>Entscheiden</h3></div>
+      <div class="movement-content">
+        <div>
+          <h4>Prioritäten &amp; Trade-offs</h4>
+          <p>Bewusst entscheiden, wo Wachstum, Kundenwert, Marge, Geschwindigkeit und Komplexität gegeneinander abgewogen werden müssen.</p>
+        </div>
+      </div>
+    </li>
+    <li class="movement">
+      <div class="movement-header"><span>03</span><h3>Wirksam machen</h3></div>
+      <div class="movement-content">
+        <div>
+          <h4>Entscheidungen &amp; Umsetzung</h4>
+          <p>Verantwortung klären, Ressourcen konzentrieren und die Organisation auf die entscheidenden Prioritäten ausrichten.</p>
+        </div>
+        <div>
+          <h4>Wirkung &amp; Lernen</h4>
+          <p>Nicht Aktivität bewerten, sondern reale Wirkung überprüfen und Entscheidungen entsprechend nachschärfen.</p>
+        </div>
+      </div>
+    </li>
+  </ol>
+
+  <p class="outcomes">Wachstum <span>·</span> Kundenwert <span>·</span> Marge <span>·</span> Wettbewerbsfähigkeit</p>
+</section>
+
+<style>
+  .steering-section { margin-top: 4.75rem; padding-top: 3.75rem; border-top: 1px solid var(--color-border); }
+  .steering-heading { margin-bottom: 2.25rem; }
+  .steering-kicker { margin-bottom: .75rem; color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; }
+  .steering-heading > p { margin: 0; color: var(--color-ink-2); font-size: 15px; line-height: 1.7; text-align: left; white-space: nowrap; }
+  .movements { display: grid; grid-template-columns: 1.05fr .9fr 1.05fr; grid-auto-rows: 1fr; align-items: stretch; list-style: none; margin: 0; padding: 0; background: rgba(255,255,255,.38); border: 1px solid var(--color-border-soft); }
+  .movement { display: flex; min-width: 0; height: 100%; flex-direction: column; padding: 2rem 1.75rem 2.15rem; }
+  .movement + .movement { border-left: 1px solid var(--color-border-soft); }
+  .movement-header { display: flex; align-items: baseline; gap: .8rem; padding-bottom: 1.2rem; border-bottom: 2px solid rgba(180,83,9,.66); }
+  .movement-header span { color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .1em; }
+  h3 { margin: 0; color: var(--color-ink); font-size: 18px; font-weight: 500; letter-spacing: .04em; line-height: 1.25; text-transform: uppercase; }
+  .movement-content { flex: 1; }
+  .movement-content > div { padding-top: 1.25rem; }
+  .movement-content > div + div { margin-top: 1.25rem; border-top: 1px solid var(--color-border-soft); }
+  h4 { margin: 0 0 .55rem; color: var(--color-ink); font-size: 14px; font-weight: 500; line-height: 1.4; }
+  .movement-content p { margin: 0; color: var(--color-body); font-size: 13.5px; line-height: 1.65; }
+  .outcomes { margin: 0; padding: 1.3rem 1.75rem; color: var(--color-ink-3); font-size: 12px; font-weight: 500; letter-spacing: .08em; text-align: center; text-transform: uppercase; border: 1px solid var(--color-border-soft); border-top: 0; }
+  .outcomes span { padding: 0 .7rem; color: var(--color-amber); }
+  @media (max-width: 860px) {
+    .steering-heading > p { white-space: normal; }
+    .movements { grid-template-columns: 1fr; }
+    .movement + .movement { border-top: 1px solid var(--color-border-soft); border-left: 0; }
+  }
+  @media (max-width: 640px) {
+    .steering-section { margin-top: 3.5rem; padding-top: 3rem; }
+    .movement { padding: 1.5rem 1.35rem 1.7rem; }
+    .outcomes { line-height: 1.9; }
+  }
+</style>

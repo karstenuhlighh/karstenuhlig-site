@@ -1,0 +1,68 @@
+---
+const motifs = [
+  { number: "01", title: "Economic Steering", image: "/images/commercial-management/01-economic-steering.png", alt: "Cockpit-Steuerung mit aktiv verändertem wirtschaftlichem Pfad", width: 379, height: 290, scale: .95, href: "/commercial-growth/ergebnisabweichungen-zerlegen" },
+  { number: "02", title: "Future Growth", image: "/images/commercial-management/02-future-growth.png", alt: "Aufwärts gerichteter Wachstumspfad mit steigenden Balken", width: 349, height: 289, scale: .94, href: "/commercial-growth/wachstum-neu-begruenden" },
+  { number: "03", title: "Customer Base", image: "/images/commercial-management/03-customer-base.png", alt: "Kundenbasis mit Acquisition und Reactivation als Zufluss sowie Churn als Abfluss", width: 363, height: 266, scale: .92, href: "/commercial-growth/kundenbasis-ueber-economics" },
+  { number: "04", title: "Offer & Customer Journey", image: "/images/commercial-management/04-offer-customer-journey.png", alt: "Customer Journey von Awareness über Consideration und Purchase bis Retention", width: 393, height: 216, scale: 1.06, href: "/commercial-growth/angebot-und-customer-journey" },
+  { number: "05", title: "Multi-Market Scale", image: "/images/commercial-management/05-multi-market-scale.png", alt: "Weltkugel mit mehreren Märkten und internationalen Verbindungen", width: 333, height: 317, scale: 1, href: "/commercial-growth/ueber-maerkte-skalieren" },
+  { number: "06", title: "Performance Causality", image: "/images/commercial-management/06-performance-causality.png", alt: "Diagramm mit Intervention, Actual, Counterfactual und Incremental Effect", width: 388, height: 294, scale: .9 },
+  { number: "07", title: "Commercial Operating Model", image: "/images/commercial-management/07-commercial-operating-model.png", alt: "Governance- und Verantwortungslogik rund um Commercial Outcomes", width: 348, height: 321, scale: .97 },
+  { number: "08", title: "Resource Allocation", image: "/images/commercial-management/08-resource-allocation.png", alt: "Zuteilung knapper Ressourcen auf ausgewählte Prioritäten", width: 370, height: 310, scale: .94 },
+];
+---
+
+<section class="motif-section" aria-labelledby="motif-title">
+  <div class="motif-heading">
+    <div class="motif-kicker">Commercial Management</div>
+    <h2 id="motif-title">Das wirtschaftliche Gesamtsystem verstehen, priorisieren und über Funktionsgrenzen hinweg wirksam steuern.</h2>
+  </div>
+
+  <ol class="motif-grid">
+    {
+      motifs.map((motif) => (
+        <li>
+          {motif.href ? (
+            <a class="motif-card" href={motif.href}>
+              <span class="image-frame" style={`--motif-scale: ${motif.scale}`}>
+                <img src={motif.image} alt={motif.alt} width={motif.width} height={motif.height} loading="lazy" />
+              </span>
+              <span class="motif-label"><b>{motif.number}</b><span>{motif.title}</span></span>
+            </a>
+          ) : (
+            <div class="motif-card">
+              <span class="image-frame" style={`--motif-scale: ${motif.scale}`}>
+                <img src={motif.image} alt={motif.alt} width={motif.width} height={motif.height} loading="lazy" />
+              </span>
+              <span class="motif-label"><b>{motif.number}</b><span>{motif.title}</span></span>
+            </div>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .motif-section { margin-top: 4.5rem; padding-top: 3.5rem; border-top: 1px solid var(--color-border); }
+  .motif-heading { margin-bottom: 2rem; }
+  .motif-kicker { margin-bottom: .8rem; color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; }
+  h2 { margin: 0; color: var(--color-ink-2); font-size: 15px; font-weight: 400; letter-spacing: 0; line-height: 1.7; white-space: nowrap; }
+  .motif-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; list-style: none; margin: 0; padding: 0; }
+  .motif-card { display: flex; height: 100%; min-height: 235px; flex-direction: column; justify-content: space-between; padding: 1rem 1rem 1.1rem; color: inherit; text-decoration: none; background: rgba(255,255,255,.56); border: 1px solid var(--color-border-soft); transition: background .2s ease, border-color .2s ease, transform .2s ease; }
+  a.motif-card:hover { background: rgba(255,255,255,.78); border-color: rgba(180,83,9,.34); transform: translateY(-2px); }
+  .image-frame { display: flex; height: 168px; align-items: center; justify-content: center; overflow: visible; }
+  img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; transform: scale(var(--motif-scale, 1)); transform-origin: center; }
+  .motif-label { display: grid; grid-template-columns: 1.8rem 1fr; gap: .45rem; align-items: baseline; padding-top: .85rem; color: var(--color-ink); font-size: 14px; font-weight: 500; line-height: 1.3; border-top: 1px solid var(--color-border-soft); }
+  .motif-label b { color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .08em; }
+  @media (max-width: 980px) {
+    .motif-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .image-frame { height: 210px; }
+  }
+  @media (max-width: 640px) {
+    .motif-section { margin-top: 3.5rem; padding-top: 2.75rem; }
+    h2 { font-size: 15px; }
+    .motif-grid { grid-template-columns: 1fr; }
+    .motif-card { min-height: 260px; }
+    .image-frame { height: 210px; }
+  }
+</style>

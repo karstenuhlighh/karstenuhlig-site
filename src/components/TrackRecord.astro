@@ -1,73 +1,66 @@
 ---
-// Kurzfassung auf der Startseite. Der vollständige, zahlen-forward Track Record
-// (Schwerpunkte + Ergebnisse) wohnt auf /track-record — diese Sektion teasert
-// und verlinkt dorthin (loest die Namens-/Inhalts-Dopplung).
+const proofAreas = [
+  {
+    title: "Commercial Scale",
+    proof: "Bis zu €1,6 Mrd. Online-Umsatz und rund 16 Mio. aktive Kunden.",
+  },
+  {
+    title: "Internationale Verantwortung",
+    proof: "20+ Märkte mit 50 Prozent internationalem Geschäftsanteil.",
+  },
+  {
+    title: "Leadership & Transformation",
+    proof: "100+ Mitarbeitende in 20+ Teams geführt; Produktorganisation mit 10x Liefergeschwindigkeit nach DORA.",
+  },
+  {
+    title: "Data & Digital Products",
+    proof: "Integrierte Datenplattform, Self-Service-Analytics für 500+ Business User und AI-gestützte Commercial-Steuerung.",
+  },
+];
 ---
 
-<section class="track-record">
-  <div class="eyebrow">Track Record</div>
-  <div class="track-copy">
-    <h2 class="track-headline">bonprix (Otto Group), 2000–2025</h2>
-    <p class="track-intro">
-      Leadership-Rollen in E-Commerce, Digital Marketing und digitalem Produkt,
-      mit Data und KI als Hebel. Zuletzt 100+ Mitarbeitende in 20+ Teams geführt und €30 Mio. Budget
-      verantwortet. Skalierung von bonprix zu einer Top 5 Online Fashion Brand in
-      Europa.
-    </p>
-    <a class="track-link" href="/track-record">Vollständiger Track Record &rarr;</a>
+<section class="track-record" id="track-record">
+  <div class="track-heading">
+    <div class="eyebrow">Track Record</div>
+    <div>
+      <div class="track-context">bonprix (Otto Group), 2000–2025</div>
+      <h2>Commercial Scale in der Praxis</h2>
+      <p>
+        25 Jahre Digital Commerce – vom Aufbau internationaler Marketing- und
+        Plattformfähigkeiten bis zur Führung eines digitalen Milliardengeschäfts.
+      </p>
+    </div>
   </div>
+
+  <div class="proof-grid">
+    {
+      proofAreas.map((area) => (
+        <article>
+          <h3>{area.title}</h3>
+          <p>{area.proof}</p>
+        </article>
+      ))
+    }
+  </div>
+
+  <a class="track-link" href="/track-record">Vollständiger Track Record <span aria-hidden="true">→</span></a>
 </section>
 
 <style>
-  .track-record {
-    position: relative;
-    padding: 4.25rem 0;
-    border-top: 1px solid var(--color-border);
-    display: grid;
-    grid-template-columns: 0.38fr 1fr;
-    column-gap: 4rem;
-    align-items: start;
-  }
-  .eyebrow {
-    font-size: 12px;
-    color: var(--color-ink-3);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0;
-    font-weight: 500;
-  }
-  .track-headline {
-    font-size: 28px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: var(--color-ink);
-    line-height: 1.2;
-    margin: 0 0 1rem;
-  }
-  .track-intro {
-    font-size: 15px;
-    line-height: 1.75;
-    color: var(--color-body);
-    max-width: 720px;
-    margin: 0 0 1.75rem;
-  }
-  .track-link {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--color-amber);
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-  }
-  .track-link:hover {
-    opacity: 0.7;
-  }
-  @media (max-width: 768px) {
-    .track-record {
-      display: block;
-      padding: 3rem 0;
-    }
-    .eyebrow {
-      margin-bottom: 1.25rem;
-    }
-  }
+  .track-record { position: relative; padding: 4.5rem 0; border-top: 1px solid var(--color-border); }
+  .track-heading { display: grid; grid-template-columns: .38fr 1fr; gap: 4rem; align-items: start; }
+  .eyebrow { color: var(--color-ink-3); font-size: 12px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; }
+  .track-context { margin-bottom: .75rem; color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
+  h2 { margin: 0 0 .9rem; color: var(--color-ink); font-size: 30px; font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
+  .track-heading p { max-width: 720px; margin: 0; color: var(--color-body); font-size: 15px; line-height: 1.75; }
+  .proof-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 2.5rem 0 1.75rem; border-top: 1px solid var(--color-border-soft); border-bottom: 1px solid var(--color-border-soft); }
+  .proof-grid article { padding: 1.65rem 1.5rem 1.75rem 0; }
+  .proof-grid article + article { padding-left: 1.5rem; border-left: 1px solid var(--color-border-soft); }
+  h3 { margin: 0 0 .65rem; color: var(--color-ink); font-size: 14px; font-weight: 500; line-height: 1.4; }
+  .proof-grid p { margin: 0; color: var(--color-body); font-size: 13.5px; line-height: 1.65; }
+  .track-link { display: inline-flex; gap: .45rem; align-items: center; color: var(--color-amber); font-size: 15px; font-weight: 500; text-decoration: none; transition: opacity .2s ease; }
+  .track-link:hover { opacity: .7; }
+  @media (max-width: 900px) { .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .proof-grid article:nth-child(3) { padding-left: 0; border-left: 0; border-top: 1px solid var(--color-border-soft); } .proof-grid article:nth-child(4) { border-top: 1px solid var(--color-border-soft); } }
+  @media (max-width: 768px) { .track-record { padding: 3rem 0; } .track-heading { grid-template-columns: 1fr; gap: 1.25rem; } h2 { font-size: 26px; } }
+  @media (max-width: 560px) { .proof-grid { grid-template-columns: 1fr; } .proof-grid article, .proof-grid article + article { padding: 1.35rem 0; border-top: 1px solid var(--color-border-soft); border-left: 0; } .proof-grid article:first-child { border-top: 0; } }
 </style>

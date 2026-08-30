@@ -1,6 +1,5 @@
 ---
 import Nav from "./Nav.astro";
-import SemAgenticTeaser from "./SemAgenticTeaser.astro";
 ---
 
 <section class="hero">
@@ -9,18 +8,21 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
   <div class="hero-inner">
     <Nav />
     <div class="hero-grid">
-      <div class="eyebrow">Digital Commerce &amp; Growth Executive</div>
+      <div class="eyebrow">Commercial / Digital Commerce Executive</div>
       <h1 class="headline">
-        Closing the gap between strategy and measurable results.
+        Digital Commerce skalieren. Strategie wirksam machen.
       </h1>
       <p class="subtitle">
-        I connect commercial strategy, customer insight and digital
-        execution to drive conversion, customer value and profitable
-        growth, enabled by Data, MarTech and AI.
+        Ich steuere digitale Geschäfte mit klarem Blick auf Wachstum und
+        Kundenwert. Marketing, Digital Sales und CRM verbinde ich entlang der
+        Customer Journey zu einem zusammenhängenden kommerziellen System. Data,
+        AI und Digital Products setze ich dort ein, wo sie Entscheidungen
+        verbessern, Kundenerlebnisse verändern und wirtschaftliche Wirkung
+        erzeugen.
       </p>
       <div class="cover-proof" aria-label="Kurzprofil">
         <div class="cover-proof-item">
-          <span class="cover-proof-value">€1,6+ Mrd</span>
+          <span class="cover-proof-value">€1,6+ Mrd.</span>
           <span class="cover-proof-label">Online Business skaliert</span>
         </div>
         <div class="cover-proof-item">
@@ -49,23 +51,17 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
         <p>
           Als E-Commerce Executive habe ich bei bonprix das internationale
           Online-Gesch&auml;ft in mehr als 20 M&auml;rkten auf bis zu
-          1,6&nbsp;Mrd.&nbsp;&euro; Umsatz skaliert. Zuletzt verantwortete
-          ich eine breit aufgestellte Digitalorganisation und das
-          Zusammenspiel von E-Commerce, Online Marketing, CRM, digitalen
-          Touchpoints, Data und der Technologie darunter.
+          1,6&nbsp;Mrd.&nbsp;&euro; Umsatz skaliert. Zuletzt verantwortete ich
+          eine breit aufgestellte Digitalorganisation und das Zusammenspiel
+          von E-Commerce, Online Marketing, CRM, Data und Digital Product.
         </p>
         <p>
-          Mich besch&auml;ftigt seit jeher, wie sich komplexe digitale
-          Gesch&auml;ftsmodelle besser steuern lassen: von Nachfrage und
-          Kundenansprache &uuml;ber Customer Journey und Conversion bis zu
-          Kundenwert und profitablem Wachstum. Data, MarTech und AI nutze
-          ich, um diese Steuerung intelligenter, schneller und wirksamer zu
-          machen.
+          Dabei habe ich Commercial Scale nie als Summe einzelner Funktionen
+          verstanden. Wachstum, Kundenbasis, Customer Journey, Organisation und
+          digitale F&auml;higkeiten m&uuml;ssen auf dieselben wirtschaftlichen Ziele
+          einzahlen.
         </p>
       </div>
-    </div>
-    <div class="teaser-area">
-      <SemAgenticTeaser />
     </div>
     <slot />
   </div>
@@ -307,11 +303,6 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     object-fit: cover;
     object-position: center bottom;
   }
-  .teaser-area {
-    margin-top: 3.5rem;
-    padding-bottom: 5.5rem;
-  }
-
   /* --- MOBILE --- Foto ganz oben (ueber der Headline), gestapelt --- */
   @media (max-width: 768px) {
     .hero-inner {
@@ -363,10 +354,6 @@ import SemAgenticTeaser from "./SemAgenticTeaser.astro";
     .bio {
       order: 7;
       margin-top: 0.75rem;
-    }
-    .teaser-area {
-      margin-top: 2rem;
-      padding-bottom: 3rem;
     }
   }
 </style>

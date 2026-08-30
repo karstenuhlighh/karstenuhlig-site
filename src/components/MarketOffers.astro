@@ -1,0 +1,62 @@
+---
+const tensions = [
+  {
+    title: "Wachstum verliert an Effizienz",
+    body: "Mehr Aufwand erzeugt nicht mehr proportional mehr Wirkung. Wachstum wird teurer, langsamer oder instabiler.",
+  },
+  {
+    title: "Customer Journey und Kundenwert greifen nicht zusammen",
+    body: "Acquisition, CRM, Conversion und Kundenbindung optimieren lokal, aber nicht als gemeinsames wirtschaftliches System.",
+  },
+  {
+    title: "Prioritäten und Verantwortung zerfasern",
+    body: "Viele Initiativen konkurrieren um Ressourcen, Entscheidungen bleiben unklar oder verlieren sich in der Umsetzung.",
+  },
+  {
+    title: "Data, AI und Digital Products erzeugen Aktivität, aber zu wenig wirtschaftliche Wirkung",
+    body: "Plattformen, Produkte und AI-Initiativen entwickeln sich weiter, ohne dass ihr Beitrag zum kommerziellen Ergebnis ausreichend klar wird.",
+  },
+];
+---
+
+<section class="tensions" aria-labelledby="tensions-title">
+  <div class="tensions-heading">
+    <div class="eyebrow">Executive-Spannungsfelder</div>
+    <h2 id="tensions-title">Wenn Wachstum komplex wird</h2>
+  </div>
+
+  <ol class="tension-list">
+    {
+      tensions.map((tension, index) => (
+        <li>
+          <span class="tension-number">{String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <h3>{tension.title}</h3>
+            <p>{tension.body}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .tensions { position: relative; margin-top: 4.75rem; padding: 4.25rem 0; border-top: 1px solid var(--color-border); }
+  .tensions-heading { display: grid; grid-template-columns: .38fr 1fr; gap: 4rem; align-items: start; margin-bottom: 2.5rem; }
+  .eyebrow { color: var(--color-ink-3); font-size: 12px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; }
+  h2 { max-width: 760px; margin: 0; color: var(--color-ink); font-size: 30px; font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
+  .tension-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-border-soft); }
+  .tension-list li { display: grid; grid-template-columns: 2rem 1fr; gap: 1rem; padding: 1.85rem 2rem 1.9rem 0; border-bottom: 1px solid var(--color-border-soft); }
+  .tension-list li:nth-child(odd) { border-right: 1px solid var(--color-border-soft); }
+  .tension-list li:nth-child(even) { padding-left: 2rem; }
+  .tension-number { padding-top: .2rem; color: var(--color-amber); font-size: 12px; font-weight: 500; }
+  h3 { margin: 0 0 .65rem; color: var(--color-ink); font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.4; }
+  .tension-list p { margin: 0; color: var(--color-body); font-size: 14px; line-height: 1.65; }
+  @media (max-width: 768px) {
+    .tensions { margin-top: 3.5rem; padding: 3rem 0; }
+    .tensions-heading { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem; }
+    h2 { font-size: 26px; }
+    .tension-list { grid-template-columns: 1fr; }
+    .tension-list li, .tension-list li:nth-child(even) { padding: 1.5rem 0; border-right: 0; }
+  }
+</style>
