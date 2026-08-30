@@ -3,9 +3,7 @@
 // (pages/commercial-growth/[slug].astro).
 //
 // Fachliche Quelle: KA-OS capabilities/commercial-management/. Reihenfolge,
-// Texte und Freigabestatus: KA-OS market-activation/website-commercial-einstiege.md.
-// Positionen 5-7 haben laut dieser Datei noch keinen Fließtext (Stand 2026-08-30)
-// und bleiben deshalb ohne slug/body.
+// Texte und Freigabestatus: KA-OS market-activation/website-commercial-fliesstexte.md.
 
 export interface CommercialQuestion {
   position: number;
@@ -75,24 +73,42 @@ export const commercialQuestions: CommercialQuestion[] = [
     title: "Attribution von tatsächlicher Wirkung trennen",
     satz: "Was hätte ohne die Maßnahme stattgefunden, und wie belastbar ist die Antwort.",
     these: "Eine technisch saubere Messung kann wirtschaftlich die falsche Geschichte erzählen.",
-    slug: null,
-    body: null,
+    slug: "attribution-von-wirkung-trennen",
+    body: [
+      "Ein Kanal, eine Kampagne oder eine Journey-Änderung sieht im Reporting erfolgreich aus. Ein grünes Dashboard ist aber noch keine Erklärung. Es zeigt, was zugeordnet wurde, nicht, was ohne die Maßnahme ausgeblieben wäre.",
+      "Genau dort liegt der entscheidende Unterschied: zwischen Zuordnung und zusätzlicher Wirkung. Ein Kontakt kann einer Conversion zugerechnet werden, ohne sie verursacht zu haben. Deshalb stelle ich zuerst die Gegenfrage: Was wäre ohne diese Maßnahme wahrscheinlich passiert, und welcher Vergleich beantwortet das am ehesten? Das Counterfactual lässt sich nie perfekt beobachten. Die Frage danach verbessert trotzdem jede Wahl von Test, Vergleichsgruppe und Interpretation.",
+      "Ein statistisch sauberes Ergebnis muss außerdem zur realen Mechanik passen. Ich prüfe drei Dinge. Stimmt das Timing der beobachteten Wirkung? Passt die zugewiesene Kanalrolle zum tatsächlichen Kundenverhalten? Stützen die operativen Veränderungen die behauptete Erklärung? Trägt eines davon nicht, erzählt die Messung wirtschaftlich die falsche Geschichte, auch wenn technisch korrekt gerechnet wurde.",
+      "Die Evidenztiefe koppele ich an das Risiko der Entscheidung. Eine kleine, reversible Anpassung rechtfertigt keinen Testaufbau über Wochen. Eine große Budgetverschiebung oder eine mehrjährige Investition in Fähigkeiten schon. Wo Unsicherheit bleibt, mache ich sie sichtbar, statt sie in eine Nachkommastelle zu übersetzen. Falsche Präzision ist gefährlicher als offen benannte Unschärfe, weil sie eine Diskussion beendet, die noch nicht geführt wurde. Mein Ziel ist keine perfekte Messbarkeit, sondern eine Entscheidung, die belastbar genug getroffen und später erneut überprüft wird.",
+      "Bei bonprix habe ich die Marketingsteuerung von historienbasierter Planung auf modellbasierte, getestete Steuerung umgestellt. Das Ergebnis war eine ROI-Verbesserung im zweistelligen Millionenbereich. Tests dienten dort der Verbesserung von Entscheidungen, nicht der nachträglichen Bestätigung bereits getroffener.",
+    ],
   },
   {
     position: 6,
     title: "Reale Knappheit priorisieren",
     satz: "Wohin Geld, Aufmerksamkeit und knappe Fähigkeiten fließen, wenn alles begründet ist.",
     these: "Business Priority ist nicht dasselbe wie Capacity Allocation.",
-    slug: null,
-    body: null,
+    slug: "reale-knappheit-priorisieren",
+    body: [
+      "App, Pricing, Lieferfähigkeit, Marketing und Plattformarbeit konkurrieren um dieselben Mittel. In der Regel ist jeder einzelne Antrag gut begründet. Eine ROI-Rangliste sortiert sie trotzdem falsch, weil sie unterschiedliche Zeithorizonte, Risiken und Abhängigkeiten auf eine Zahl zusammenzieht.",
+      "Ich mache die Vorhaben deshalb vergleichbar, ohne ihre Unterschiedlichkeit einzuebnen. Umsatz- und Ergebniswirkung, Customer Impact, Zeitprofil, Risiko, Aufwand, Abhängigkeiten und struktureller Beitrag werden nebeneinandergelegt. Ein Kriterienkatalog hilft dabei, Annahmen zu prüfen und überzogene Nutzenversprechen zu challengen. Er ersetzt die Entscheidung nicht. Eine Rangliste, die sich selbst ausrechnet, ist kein Portfolio-Management, sondern ausgelagerte Verantwortung.",
+      "Der zweite Schritt ist die Frage nach der tatsächlichen Knappheit. Nicht jedes Vorhaben konkurriert mit jedem anderen. Gegeneinander gestellt werden muss nur, was auf dieselbe knappe Fähigkeit, denselben Engpass oder dieselbe Abhängigkeit zugreift. Und Budget ist nicht dasselbe wie Kapazität: Zusätzliches Geld löst kurzfristig weder fehlende Skills noch Recruiting, Einarbeitung, Sequenzierung oder technische Abhängigkeiten.",
+      "Daraus folgt eine saubere Trennung der Entscheidungsrechte. Das Business bestellt Outcome und Priorität, nicht einzelne Menschen. Die fachlich Verantwortlichen entscheiden, mit welchem Skill-Mix und in welcher Reihenfolge das unter realen Abhängigkeiten umsetzbar ist. Die strategische Richtung bleibt über das Jahr stabil, das Portfolio wird quartalsweise neu sortiert, sobald sich Evidenz, Risiken oder Abhängigkeiten verschieben. Scheitert die Priorisierung dagegen in jedem Quartal an derselben Plattformkomponente, ist das kein Priorisierungsproblem mehr. Dann muss das System verändert werden, nicht die Warteschlange.",
+      "Bei bonprix habe ich auf dieser Logik ein Portfolio von über 150 parallelen Maßnahmen und ein Budget von über €30 Mio. gesteuert. Wenige strategische Jahresziele wurden mit der Geschäftsführung vereinbart, die konkrete Kapazitätsverteilung blieb bei den fachlich Verantwortlichen.",
+    ],
   },
   {
     position: 7,
     title: "Verantwortung ordnen, wenn kein Bereich das Ergebnis allein trägt",
     satz: "Wer entscheidet was, in welchem Rhythmus, mit welcher Wirkungskontrolle.",
     these: "Cross-funktionale Ziele brauchen Stewardship, keine fiktive Alleinverantwortung.",
-    slug: null,
-    body: null,
+    slug: "verantwortung-ordnen",
+    body: [
+      "Marketing, CRM, Product, Data, Einkauf und Technology beeinflussen dasselbe kommerzielle Ergebnis. Geteilte Verantwortung klingt nach Zusammenarbeit, erzeugt aber häufig das Gegenteil: langsame Entscheidungen, doppelte Arbeit und am Ende niemanden, der für das Ergebnis geradesteht.",
+      "Gemeinsame Ziele und eine gemeinsame Datengrundlage sind Voraussetzung dafür. Konsens für jede einzelne Entscheidung ist es nicht. Entscheidungsrechte gehören dorthin, wo die relevante Information und die fachliche Kompetenz sitzen. Wie weit sie reichen, bestimmt der Wirkungsradius. Was lokal wirkt, wird lokal entschieden. Was andere Funktionen oder das Gesamtsystem betrifft, braucht gemeinsame Steuerung oder eine klare übergeordnete Entscheidung. Handlungsfähig wird Verantwortung erst, wenn Ergebnisverantwortung, Entscheidungsrecht und fachliche Fähigkeit an derselben Stelle liegen.",
+      "Ziele, Kennzahlen und Rollen allein tragen das nicht. Eine Entscheidung ist nicht abgeschlossen, wenn sie getroffen wurde. Sie braucht eine Routine, in der Abweichungen sichtbar werden, Ursachen gemeinsam diagnostiziert und Maßnahmen mit Owner und Termin festgelegt werden, und in der die Wirkung anschließend überprüft wird. Ohne diesen geschlossenen Kreislauf bleibt jede Entscheidung eine Absichtserklärung.",
+      "Dazu gehört ein realistisches Verständnis geteilter Kennzahlen. Wer eine bereichsübergreifende Kennzahl verantwortet, verursacht sie nicht allein. Seine Aufgabe ist Messqualität, Diagnose und Nachhalten, nicht die Fiktion der Alleinverantwortung. Zugriff auf gemeinsame Daten erzeugt außerdem noch keine Wirksamkeit. Es braucht die Fähigkeit, damit zu arbeiten, und Zielsysteme, die bereichsübergreifende Ergebnisse belohnen statt lokaler Optimierung. Tauchen dieselben Konflikte trotz guter Zusammenarbeit immer wieder auf, ist das kein Kommunikationsproblem. Dann prüfe ich Mandate, Schnittstellen, Anreize und den organisatorischen Schnitt selbst.",
+      "Bei bonprix habe ich die überlappende Verantwortung zwischen klassischer Akquise und Online-Marketing nicht moderiert, sondern anhand von Steuerungslogik, Measurement und Wertschöpfungsmechanik organisatorisch neu geordnet. In dieser Logik habe ich eine Organisation mit 100+ Mitarbeitenden in 20+ Teams geführt.",
+    ],
   },
   {
     position: 8,
