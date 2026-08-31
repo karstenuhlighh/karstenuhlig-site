@@ -2,45 +2,53 @@
 import SubPageLayout from "../layouts/SubPageLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
 
-const bereiche = [
+const enablers = [
   {
-    title: "E-Commerce & Marketing",
-    href: "/e-commerce-marketing",
+    title: "Leadership & Transformation",
+    href: "/e-commerce-marketing/organisatorische-schwerkraft",
     intro:
-      "Wo das Geschäftsergebnis entsteht. Wachstum, Conversion, Kanäle und internationale Märkte, aus 25 Jahren als Operator in einer internationalen E-Commerce-Operation.",
+      "Strategie in Organisation und Umsetzung übersetzen.",
+    linkLabel: "Praxis zur Transformation",
   },
   {
-    title: "MarTech",
-    href: "/martech",
+    title: "Data, AI & Digital Product",
+    href: "/agentic-ai/sem-agentic",
     intro:
-      "Die Schicht unter dem Geschäftsergebnis, die es trägt. Datenarchitektur, Operating Model und Anwendungen, die produktiv laufen.",
-  },
-  {
-    title: "Agentic AI",
-    href: "/agentic-ai",
-    intro:
-      "Die Implementierungs-Welle, praktisch geprüft. Markt-These plus sem-agentic, ein eigener Engineering-Prototyp für Search-Engine-Marketing.",
+      "Digitale Fähigkeiten gezielt für wirtschaftliche Wirkung einsetzen. Agentic AI ist dabei ein aktueller Praxis- und Entwicklungsbereich.",
+    linkLabel: "Aktueller Praxistest",
   },
 ];
 ---
 
 <SubPageLayout
   title="Schwerpunkte | Karsten Uhlig"
-  description="Drei Felder, ein roter Faden: aus Strategie messbare Wirkung machen. E-Commerce & Marketing, MarTech und Agentic AI."
+  description="Commercial Management / Digital Commerce als Kern, unterstützt durch Leadership & Transformation sowie Data, AI & Digital Product."
 >
   <PageHeader
     eyebrow="Übersicht"
     headline="Schwerpunkte"
-    intro="Drei Felder, ein roter Faden: aus Strategie messbare Wirkung machen. Wo ich arbeite, und worüber ich schreibe."
+    intro="Commercial Management / Digital Commerce ist der Kern. Leadership & Transformation sowie Data, AI & Digital Product unterstützen die wirtschaftliche Wirkung als Enabler."
   />
 
   <section class="sp-grid">
+    <div class="sp-meta">Kern</div>
+    <a href="/#commercial-management" class="sp-card">
+      <h2 class="sp-title">Commercial Management / Digital Commerce</h2>
+      <p class="sp-intro">
+        Digitale Geschäfte wirtschaftlich steuern und skalieren. Wachstum,
+        Kundenbasis, Customer Journey, Commercial Economics und knappe Ressourcen
+        gehören in ein zusammenhängendes Managementsystem.
+      </p>
+      <div class="sp-meta">Commercial Management ansehen &rarr;</div>
+    </a>
+
+    <h2 class="sp-meta">Enabler</h2>
     {
-      bereiche.map((b) => (
-        <a href={b.href} class="sp-card">
-          <div class="sp-title">{b.title}</div>
-          <p class="sp-intro">{b.intro}</p>
-          <div class="sp-meta">Ansehen &rarr;</div>
+      enablers.map((enabler) => (
+        <a href={enabler.href} class="sp-card">
+          <h3 class="sp-title">{enabler.title}</h3>
+          <p class="sp-intro">{enabler.intro}</p>
+          <div class="sp-meta">{enabler.linkLabel} &rarr;</div>
         </a>
       ))
     }

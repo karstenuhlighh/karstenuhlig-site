@@ -4,7 +4,7 @@ import PageHeader from "./PageHeader.astro";
 interface Props {
   title: string;
   excerpt?: string;
-  date: Date;
+  date?: Date;
   eyebrow: string; // Themen-Label, z.B. "MarTech"
   backHref: string; // z.B. "/martech"
   backLabel: string; // z.B. "MarTech"
@@ -23,7 +23,7 @@ const dateFmt = new Intl.DateTimeFormat("de-DE", {
 
   <PageHeader eyebrow={eyebrow} headline={title} intro={excerpt} />
 
-  <div class="note-meta">{dateFmt.format(date)}</div>
+  {date && <div class="note-meta">{dateFmt.format(date)}</div>}
 
   <div class="note-prose">
     <slot />

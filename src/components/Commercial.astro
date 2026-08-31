@@ -4,12 +4,16 @@ import CommercialMotifGrid from "./CommercialMotifGrid.astro";
 
 const enablers = [
   {
+    id: "leadership",
     title: "Leadership & Transformation",
     thesis: "Strategie in Organisation und Umsetzung übersetzen.",
+    body: "Richtung geben, Verantwortung klären und Teams auch gegen Widerstand durch Veränderung führen. Vorangestellt ist ein Prinzip: erst die tatsächliche Ursache diagnostizieren, dann das passende Führungsinstrument wählen.",
   },
   {
+    id: "data-ai-digital-product",
     title: "Data, AI & Digital Product",
     thesis: "Digitale Fähigkeiten gezielt für wirtschaftliche Wirkung einsetzen.",
+    body: "Kundendaten, Analytics und Machine Learning als Grundlage kommerzieller Entscheidungen. Von der gemeinsamen Datenbasis über die MarTech-Landschaft bis zur Steuerung von Marketing, CRM und Produkt im laufenden Geschäft.",
   },
 ];
 ---
@@ -29,10 +33,11 @@ const enablers = [
   <div class="enablers" aria-label="Zentrale Enabler">
     {
       enablers.map((enabler) => (
-        <article class="enabler-card">
+        <article class="enabler-card" id={enabler.id}>
           <span class="enabler-marker" aria-hidden="true"></span>
           <h2>{enabler.title}</h2>
-          <p>{enabler.thesis}</p>
+          <p class="enabler-thesis">{enabler.thesis}</p>
+          <p class="enabler-body">{enabler.body}</p>
         </article>
       ))
     }
@@ -127,12 +132,19 @@ const enablers = [
     letter-spacing: -.02em;
     line-height: 1.2;
   }
-  .enabler-card p {
+  .enabler-thesis {
     max-width: 470px;
-    margin: 0;
+    margin: 0 0 0.85rem;
     color: var(--color-ink-2);
     font-size: 16px;
     line-height: 1.55;
+  }
+  .enabler-body {
+    max-width: 470px;
+    margin: 0;
+    color: var(--color-ink-3);
+    font-size: 14px;
+    line-height: 1.6;
   }
   @media (max-width: 768px) {
     .commercial-pillar { padding-top: 3rem; }
