@@ -1,313 +1,85 @@
 ---
 import SubPageLayout from "../layouts/SubPageLayout.astro";
-import PageHeader from "../components/PageHeader.astro";
 
-const schwerpunkte = [
+const phases = [
   {
-    title: "E-Commerce & Digital Marketing",
-    body: "Skalierung von E-Commerce-Geschäftsmodellen, Performance Marketing, Customer Acquisition, CRM, Search, Personalisierung und MarTech-Architekturen.",
+    period: "2018–2025",
+    title: "Internationales E-Commerce-Geschäft steuern und skalieren",
+    body: "End-to-End-Verantwortung für ein digitales Geschäft mit €1,6 Mrd. Umsatz in 20+ Märkten – über Customer Journey, Conversion, CRM, Digital Marketing, Personalisierung und Digital Products.",
+    proof: "100+ Mitarbeitende · 20+ crossfunktionale Teams · >€30 Mio. Budget",
   },
   {
-    title: "Digital Product & Plattform",
-    body: "Webshops und mobile Apps, von Produktstrategie und User Experience bis zur technischen Architektur und Conversion-Optimierung.",
+    period: "2010–2018",
+    title: "CRM, Customer Journey und Data verbinden",
+    body: "Aufbau eines integrierten CRM- und Datenmodells über digitale und klassische Touchpoints. Einführung einer gemeinsamen Marketing-Datenplattform, Self-Service-Analytics sowie erster produktiver ML-Anwendungen. Parallel entstanden Mobile Commerce und die bonprix App als neue Vertriebskanäle.",
   },
   {
-    title: "Data & AI Implementation",
-    body: "Datenplattform-Aufbau und KI-gestützte Use Cases in Marketing und Commerce mit klarem Business Owner.",
-  },
-];
-
-const stationen = [
-  {
-    label: "Weichenstellung",
-    rolle: "Eigene E-Commerce-Plattform",
-    zeit: "2005",
-    eingriff:
-      "Gegen die am Markt verfügbare Standardsoftware entschieden, weil sie zu unflexibel und nicht international-tauglich war, und eine eigene, schnellere Plattform aufgesetzt.",
-    ergebnis:
-      "Das Fundament, auf dem zwei Jahrzehnte internationales Wachstum aufbauten.",
+    period: "2005–2010",
+    title: "Digital Marketing aufbauen und international expandieren",
+    body: "Aufbau der internationalen Online-Marketing-Organisation für SEM, SEO, Affiliates, Display und E-Mail sowie Verantwortung für Frontend, Plattform und Prozesse von 11 internationalen Webshops. Der marketinggetriebene Anteil am Online-Traffic wuchs von 0 auf 50 Prozent.",
   },
   {
-    label: "Aufbau",
-    rolle: "Head of E-Commerce & Digital Marketing",
-    zeit: "2007–2010",
-    eingriff:
-      "Internationale Online-Marketing-Organisation von Grund auf etabliert: SEM, SEO, Affiliates, Display, Email.",
-    ergebnis: "Marketing-getriebener Traffic von 0 auf 50 % des Online-Traffics.",
-  },
-  {
-    label: "Aufbau",
-    rolle: "Division Manager E-Commerce",
-    zeit: "2010–2018",
-    eingriff:
-      "Als Projektleiter die erste integrierte Marketing-Datenplattform etabliert: alle Touchpoints auf ein gemeinsames Kundenkonzept, in sechs Monaten.",
-    ergebnis:
-      "Das Datenfundament für Personalisierung und Scoring. Self-Service-Analytics für über 500 Business-User.",
-  },
-  {
-    label: "Transformation",
-    rolle: "KI/ML im Marketing",
-    zeit: "2017–2018",
-    eingriff:
-      "Performance Marketing und CRM von regelbasiert auf modellbasierte, automatisierte Steuerung umgestellt.",
-    ergebnis: "Marketing-ROI-Verbesserung im zweistelligen Millionenbereich.",
-  },
-  {
-    label: "Transformation",
-    rolle: "Webshop- und DXP-Modernisierung",
-    zeit: "2020–2022",
-    eingriff:
-      "Die eigene Shop-Plattform vom Monolithen auf eine cloudfähige Microservice-Architektur umgestellt, bei laufendem internationalem Geschäft.",
-    ergebnis:
-      "Besucher +44 % seit 2015 auf einer Architektur, die Wachstum trägt statt bremst.",
-  },
-  {
-    label: "Transformation",
-    rolle: "Produktorganisation",
-    zeit: "2022–2023",
-    eingriff:
-      "E-Commerce-Organisation zur Produktorganisation umgebaut (Team Topologies), klare Verantwortlichkeiten statt Silos.",
-    ergebnis: "10x Liefergeschwindigkeit (DORA).",
-  },
-  {
-    label: "Skalierung",
-    rolle: "VP Digital Product & Technology",
-    zeit: "2018–2025",
-    eingriff:
-      "E-Commerce-Geschäft strategisch und operativ geführt, KI-gestützte Steuerung im laufenden Betrieb eines Milliardengeschäfts.",
-    ergebnis:
-      "€1,6 Mrd. Online-Umsatz über 20+ Märkte, Top-5 Online-Fashion-Brand Europa.",
+    period: "2000–2005",
+    title: "Aus Sortiment wird datenbasierte Angebotssteuerung",
+    body: "Ausgangspunkt war das Einkaufsmarketing: Sortiment, Preis, Bestand und Verfügbarkeit wurden erstmals anhand digitaler Nachfrage- und Erfolgsdaten gesteuert. Während der Katalog rund 800 Styles abbilden konnte, ließen sich online rund 8.000 Styles wirtschaftlich darstellen.",
   },
 ];
 ---
 
 <SubPageLayout
   title="Track Record | Karsten Uhlig | CDO & VP E-Commerce"
-  description="Wie aus Strategie messbare Wirkung wird: €1,6 Mrd. E-Commerce bei der Otto Group skaliert, Datenplattform und Produktorganisation etabliert. Dasselbe Muster jetzt mit Agentic AI."
+  description="Vier fachliche Aufbau- und Skalierungsphasen bei bonprix: vom Einkauf über Digital Marketing und CRM bis zur End-to-End-Steuerung des internationalen E-Commerce-Geschäfts."
 >
-  <PageHeader
-    eyebrow="Track Record"
-    headline="Strategie wird zur Wirkung, wenn jemand den ganzen Weg verantwortet"
-    intro="Die meisten, die vom „Implementation Gap“ reden, meinen Engineering. Für mich ist die Lücke breiter. Sie reicht von der Idee bis zum Ergebnis, und der schwierige Teil sitzt selten im Code."
-  />
+<section class="track-record" id="track-record" aria-labelledby="track-record-title">
+  <div class="track-heading">
+    <div class="eyebrow">Track Record</div>
+    <div>
+      <div class="track-context">bonprix (Otto Group), 2000–2025</div>
+      <h1 class="track-lead" id="track-record-title">Vom Einkauf über Digital Marketing und CRM bis zur End-to-End-Steuerung eines internationalen E-Commerce-Geschäfts.</h1>
+      <p class="track-intro">Meine Verantwortung ist mit dem digitalen Geschäft gewachsen: von datenbasierter Angebotssteuerung über den Aufbau von Online-Marketing, Webshops und CRM bis zur durchgängigen Verantwortung für Customer Journey, Wachstum und digitale Produkte in mehr als 20 Märkten.</p>
+    </div>
+  </div>
 
-  <section class="tr-body">
-    <p class="tr-lead">
-      Ich arbeite seit über zwanzig Jahren an digitalem Commerce. 2005 gab es
-      bereits einen Markt für Standardsoftware. Bei bonprix haben wir uns bewusst
-      dagegen entschieden: Die verfügbaren Lösungen waren zu unflexibel und für die
-      Internationalisierung nicht geeignet. Stattdessen haben wir eine eigene,
-      schnellere Plattform aufgesetzt. Sie wurde zum Fundament für zwei Jahrzehnte
-      internationales Wachstum, bis zu €1,6 Mrd. über 20 Märkte.
-    </p>
-    <p>
-      Bei bonprix war die strategische Awareness früh da. „Data is the next oil“,
-      „Mobile First“, als C-Level-Linie gesetzt. Was fehlte, war der Schritt vom
-      Was zum Wie. Ich habe ihn über Jahre verantwortet: eine integrierte Daten-
-      und MarTech-Plattform aufgebaut, App und Mobile, KI-gestützte Steuerung im
-      Performance Marketing mit ROI-Beiträgen im zweistelligen Millionenbereich. Nicht als
-      Pilot, sondern als laufender Betrieb in einem €1,6-Mrd.-Geschäft über 20+
-      Märkte.
-    </p>
+  <ol class="track-phases">
+    {
+      phases.map((phase) => (
+        <li>
+          <span class="track-period">{phase.period}</span>
+          <div>
+            <h2>{phase.title}</h2>
+            <p>{phase.body}</p>
+            {phase.proof && <p class="track-proof">{phase.proof}</p>}
+          </div>
+        </li>
+      ))
+    }
+  </ol>
 
-    <p>
-      Der Hebel war selten das Modell. Eine KI-gestützte Steuerung scheitert nicht
-      an der Mathematik, sondern an Vertrauen, an einer Lern- und Fehlerkultur, an
-      der Frage, wer eine Entscheidung trägt. Deshalb habe ich die
-      E-Commerce-Organisation parallel zur Produktorganisation umgebaut (Team
-      Topologies), mit klaren Verantwortlichkeiten. Ergebnis: zehnfache
-      Liefergeschwindigkeit nach DORA.
-    </p>
-
-    <p>
-      Diesen Weg bin ich in einer 1,6-Mrd.-Operation mehrfach gegangen, nicht
-      einmal als Zufallsprodukt. Deshalb beschäftigt mich Agentic AI nicht als
-      neue Disziplin, sondern als dasselbe Muster auf einer neuen Stufe. Die
-      Aufmerksamkeitsphase ist vorbei. Was zählt, ist Umsetzung: Technik und
-      Organisation so verändern, dass aus Strategie messbare Wirkung wird.
-    </p>
-  </section>
-
-  <section class="tr-facts">
-    <h2 class="tr-facts-headline">bonprix (Otto Group), 2000–2025</h2>
-    <p class="tr-facts-intro">
-      Leadership-Rollen in E-Commerce, Digital Marketing, KI/ML, Digital Product
-      & Technology. Zuletzt 100+ Mitarbeitende in 20+ Teams geführt und €30 Mio.
-      Budget verantwortet.
-    </p>
-
-    <h3 class="tr-subheading">Schwerpunkte</h3>
-    <ul class="tr-list">
-      {
-        schwerpunkte.map(({ title, body }) => (
-          <li>
-            <strong>{title}:</strong> {body}
-          </li>
-        ))
-      }
-    </ul>
-
-    <h3 class="tr-subheading">Stationen & Wirkung</h3>
-    <ol class="tr-arc">
-      {
-        stationen.map(({ label, rolle, zeit, eingriff, ergebnis }) => (
-          <li class="tr-arc-item">
-            <div class="tr-arc-head">
-              <span class="tr-arc-label">{label}</span>
-              <span class="tr-arc-role">{rolle}</span>
-              <span class="tr-arc-zeit">{zeit}</span>
-            </div>
-            <p class="tr-arc-eingriff">{eingriff}</p>
-            <p class="tr-arc-ergebnis">{ergebnis}</p>
-          </li>
-        ))
-      }
-    </ol>
-  </section>
+  <a class="track-link" href="/track-record/deep-dive">Track Record im Deep Dive <span aria-hidden="true">→</span></a>
+</section>
 </SubPageLayout>
 
 <style>
-  .tr-body {
-    max-width: 720px;
-  }
-  .tr-body p {
-    font-size: 17px;
-    line-height: 1.75;
-    color: var(--color-ink-2);
-    margin: 0 0 1.5rem;
-  }
-  .tr-body p:last-child {
-    margin-bottom: 0;
-  }
-  .tr-body p.tr-lead {
-    font-size: 20px;
-    line-height: 1.65;
-    letter-spacing: -0.01em;
-    color: var(--color-ink);
-    margin: 0 0 2rem;
-  }
-
-  .tr-facts {
-    margin-top: 4rem;
-    padding-top: 3rem;
-    border-top: 1px solid var(--color-border);
-  }
-  .tr-facts-headline {
-    font-size: 28px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: var(--color-ink);
-    line-height: 1.2;
-    margin: 0 0 1rem;
-  }
-  .tr-facts-intro {
-    font-size: 15px;
-    line-height: 1.75;
-    color: var(--color-body);
-    max-width: 720px;
-    margin: 0 0 2.5rem;
-  }
-  .tr-subheading {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--color-ink);
-    letter-spacing: -0.01em;
-    margin: 2.5rem 0 1rem;
-  }
-  .tr-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-width: 760px;
-  }
-  .tr-list li {
-    font-size: 15px;
-    line-height: 1.75;
-    color: var(--color-body);
-    padding-left: 1.5rem;
-    position: relative;
-  }
-  .tr-list li + li {
-    margin-top: 0.65rem;
-  }
-  .tr-list li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0.85em;
-    width: 10px;
-    height: 1px;
-    background: var(--color-amber);
-  }
-  .tr-list strong {
-    color: var(--color-ink);
-    font-weight: 500;
-  }
-
-  .tr-arc {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-width: 760px;
-  }
-  .tr-arc-item {
-    position: relative;
-    padding: 0 0 1.75rem 1.5rem;
-    border-left: 1px solid var(--color-border);
-  }
-  .tr-arc-item:last-child {
-    padding-bottom: 0;
-  }
-  .tr-arc-item::before {
-    content: "";
-    position: absolute;
-    left: -4px;
-    top: 0.45em;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--color-amber);
-  }
-  .tr-arc-head {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.4rem 0.75rem;
-    margin-bottom: 0.5rem;
-  }
-  .tr-arc-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 600;
-    color: var(--color-amber);
-  }
-  .tr-arc-role {
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    color: var(--color-ink);
-  }
-  .tr-arc-zeit {
-    font-size: 13px;
-    color: var(--color-body);
-    margin-left: auto;
-  }
-  .tr-arc-eingriff {
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--color-body);
-    margin: 0 0 0.4rem;
-  }
-  .tr-arc-ergebnis {
-    font-size: 15px;
-    line-height: 1.7;
-    font-weight: 500;
-    color: var(--color-ink-2);
-    margin: 0;
-  }
-  .tr-arc-ergebnis::before {
-    content: "→ ";
-    color: var(--color-amber);
+  .track-record { position: relative; }
+  .track-heading, .track-phases li { display: grid; grid-template-columns: .38fr minmax(0, 1fr); gap: 4rem; align-items: start; }
+  .eyebrow { margin: 0; color: var(--color-ink-3); font-size: 12px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; }
+  .track-context { margin-bottom: .75rem; color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
+  .track-lead { margin: 0 0 .9rem; color: var(--color-ink); font-size: 30px; font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
+  .track-intro { max-width: 720px; margin: 0; color: var(--color-body); font-size: 15px; line-height: 1.75; }
+  .track-phases { list-style: none; margin: 2.5rem 0 1.75rem; padding: 0; border-top: 1px solid var(--color-border-soft); }
+  .track-phases li { padding: 1.65rem 0 1.75rem; border-bottom: 1px solid var(--color-border-soft); }
+  .track-period { padding-top: .2rem; color: var(--color-amber); font-size: 13px; font-weight: 500; }
+  h2 { margin: 0 0 .65rem; color: var(--color-ink); font-size: 20px; font-weight: 500; letter-spacing: -.01em; line-height: 1.35; }
+  .track-phases p { margin: 0; color: var(--color-body); font-size: 15px; line-height: 1.7; }
+  .track-phases .track-proof { margin-top: .75rem; color: var(--color-ink-2); font-size: 13px; font-weight: 500; }
+  .track-link { display: inline-flex; gap: .45rem; align-items: center; color: var(--color-amber); font-size: 15px; font-weight: 500; text-decoration: none; transition: opacity .2s ease; }
+  .track-link:hover { opacity: .7; }
+  @media (max-width: 768px) {
+    .track-heading, .track-phases li { grid-template-columns: 1fr; }
+    .track-heading { gap: 1.25rem; }
+    .track-lead { font-size: 26px; }
+    .track-phases li { gap: .65rem; padding: 1.35rem 0; }
+    .track-period { padding-top: 0; }
+    h2 { font-size: 18px; }
   }
 </style>
