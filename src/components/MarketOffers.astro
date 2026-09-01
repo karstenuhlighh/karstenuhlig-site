@@ -1,5 +1,17 @@
 ---
-const tensions = [
+interface Tension {
+  title: string;
+  body: string;
+  relevant?: string;
+}
+
+interface Props {
+  heading?: string;
+  eyebrow?: string;
+  tensions?: Tension[];
+}
+
+const defaultTensions: Tension[] = [
   {
     title: "Wachstum verliert an Effizienz",
     body: "Mehr Aufwand erzeugt nicht mehr proportional mehr Wirkung. Wachstum wird teurer, langsamer oder instabiler.",
@@ -17,12 +29,18 @@ const tensions = [
     body: "Plattformen, Produkte und AI-Initiativen entwickeln sich weiter, ohne dass ihr Beitrag zum kommerziellen Ergebnis ausreichend klar wird.",
   },
 ];
+
+const {
+  heading = "Wenn Wachstum komplex wird",
+  eyebrow = "Executive-Spannungsfelder",
+  tensions = defaultTensions,
+} = Astro.props;
 ---
 
 <section class="tensions" aria-labelledby="tensions-title">
   <div class="tensions-heading">
-    <div class="eyebrow">Executive-Spannungsfelder</div>
-    <h2 id="tensions-title">Wenn Wachstum komplex wird</h2>
+    <div class="eyebrow">{eyebrow}</div>
+    <h2 id="tensions-title">{heading}</h2>
   </div>
 
   <ol class="tension-list">
@@ -33,6 +51,7 @@ const tensions = [
           <div>
             <h3>{tension.title}</h3>
             <p>{tension.body}</p>
+            {tension.relevant && <div class="tension-relevant">Relevant: {tension.relevant}</div>}
           </div>
         </li>
       ))
@@ -52,6 +71,7 @@ const tensions = [
   .tension-number { padding-top: .2rem; color: var(--color-amber); font-size: 12px; font-weight: 500; }
   h3 { margin: 0 0 .65rem; color: var(--color-ink); font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.4; }
   .tension-list p { margin: 0; color: var(--color-body); font-size: 14px; line-height: 1.65; }
+  .tension-relevant { margin-top: .8rem; color: var(--color-ink-3); font-size: 10.5px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
   @media (max-width: 768px) {
     .tensions { margin-top: 3.5rem; padding: 3rem 0; }
     .tensions-heading { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem; }

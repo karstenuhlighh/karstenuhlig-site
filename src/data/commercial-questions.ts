@@ -1,6 +1,5 @@
-// Single source of truth für die acht Commercial-Growth-Einstiege, geteilt
-// zwischen der Startseiten-Liste (Commercial.astro) und den Unterseiten
-// (pages/commercial-growth/[slug].astro).
+// Single source of truth für die acht Commercial-Management-Felder, geteilt
+// zwischen Startseite, Landingpage, Drawer und den bestehenden Detailseiten.
 //
 // Fachliche Quelle: KA-OS capabilities/commercial-management/. Reihenfolge,
 // Texte und Freigabestatus: KA-OS market-activation/website-commercial-fliesstexte.md.
@@ -12,6 +11,18 @@ export interface CommercialQuestion {
   these: string;
   slug: string | null;
   body: string[] | null;
+  field: {
+    number: string;
+    title: string;
+    shortTitle: string;
+    description: string;
+    managementQuestion: string;
+    image: string;
+    alt: string;
+    tags: string[];
+    focus: string[];
+    tensions: string;
+  };
 }
 
 export const commercialQuestions: CommercialQuestion[] = [
@@ -21,6 +32,23 @@ export const commercialQuestions: CommercialQuestion[] = [
     satz: "Der Motor der letzten Jahre trägt nicht mehr, und die Alternativen sind unbelegt.",
     these: "Optimierung des Heutigen und strukturelles Wachstum folgen unterschiedlichen Logiken.",
     slug: "wachstum-neu-begruenden",
+    field: {
+      number: "02",
+      title: "Future Growth",
+      shortTitle: "Future Growth",
+      description: "Zukünftiges Wachstum strukturell aufbauen.",
+      managementQuestion: "Woher soll unser zukünftiges Wachstum kommen?",
+      image: "/images/commercial-management/02-future-growth.png",
+      alt: "Aufwärts gerichteter Wachstumspfad mit steigenden Balken",
+      tags: ["Growth Space", "Value Proposition", "Strategic Bets"],
+      focus: [
+        "Optimierung des bestehenden Geschäfts von strukturellem Wachstum trennen.",
+        "Veränderungen auf ihre Bedeutung für Value Proposition und Economics prüfen.",
+        "Eine bewusste Adoptionsposition zwischen Experiment, Abwarten und Skalierung wählen.",
+        "Wenige Wachstumsfelder mit Capabilities und Investitionen tatsächlich tragen.",
+      ],
+      tensions: "Heutiges Geschäft ausschöpfen oder neue Wachstumslogik aufbauen; früh lernen oder bewusst warten; viele Optionen offenhalten oder wenige belastbare Bets finanzieren.",
+    },
     body: [
       "Ein Geschäft kann solide laufen und trotzdem zu wenig zukünftiges Wachstum erzeugen. Bekannte Hebel stärker zu bedienen reicht dann nicht.",
       "Ich trenne dabei zwei Logiken. Die Optimierung des heutigen Geschäfts schöpft bestehende Mechaniken besser aus und wächst linear. Strukturelles Wachstum erweitert das Geschäft oder verändert die Value Proposition und wächst nicht linear. Wer beides vermischt, schreibt die Planung fort und nennt es Strategie.",
@@ -34,6 +62,24 @@ export const commercialQuestions: CommercialQuestion[] = [
     satz: "Marginaler CAC gegen deckungsbeitragsbasierten CLV, Payback und Liquidität.",
     these: "Der Bedarf folgt aus dem Zielbestand, nicht aus dem Marketingbudget.",
     slug: "kundenbasis-ueber-economics",
+    field: {
+      number: "03",
+      title: "Customer Base",
+      shortTitle: "Customer Base",
+      description: "Kundenbasis als wirtschaftlichen Bestand steuern.",
+      managementQuestion: "Wie steuere ich Größe, Qualität und Wert meiner Kundenbasis?",
+      image: "/images/commercial-management/03-customer-base.png",
+      alt: "Kundenbasis mit Acquisition und Reactivation als Zufluss sowie Churn als Abfluss",
+      tags: ["Acquisition", "Retention", "Customer Value"],
+      focus: [
+        "Die notwendige aktive Kundenbasis aus Zielbestand und Churn ableiten.",
+        "Acquisition, Retention und Reactivation auf denselben Bestand ausrichten.",
+        "Größe, Qualität und zukünftigen Wert gemeinsam betrachten.",
+        "Kundenwert als Guardrail gegen kurzfristige Aktivierung einsetzen.",
+        "Eine gemeinsame Kundenwahrheit über Funktionen hinweg schaffen.",
+      ],
+      tensions: "Volumen oder Kundenqualität; nächster Kauf oder zukünftiger Wert; isolierte Kanal-ROIs oder eine gemeinsame Bestandslogik.",
+    },
     body: [
       "Umsatz ist ein Ergebnisstrom. Die aktive Kundenbasis ist der Bestand, aus dem das Geschäft von morgen lebt. Wachstum kann kurzfristig gut aussehen, während Retention, Reaktivierung oder Kundenqualität unsichtbar schwächer werden.",
       "Deshalb beginnt die Steuerung nicht beim Marketingbudget, sondern beim Zielbestand. Welche aktive und wirtschaftlich tragfähige Kundenbasis braucht das Geschäft künftig? Davon abgezogen wird, was nach erwartetem Churn übrig bleibt. Die Differenz ist der tatsächliche Neukunden- und Reaktivierungsbedarf. Erst danach stellt sich die Frage nach dem Budget.",
@@ -47,6 +93,24 @@ export const commercialQuestions: CommercialQuestion[] = [
     satz: "Erst die dominante Mechanik identifizieren, dann das Instrument wählen.",
     these: "Die Wahl der Interventionsebene ist selbst eine Managemententscheidung.",
     slug: "ergebnisabweichungen-zerlegen",
+    field: {
+      number: "01",
+      title: "Economic Steering",
+      shortTitle: "Economic Steering",
+      description: "Ergebnisse, Treiber und wirtschaftliche Mechanik zusammenführen.",
+      managementQuestion: "Wie diagnostiziere und steuere ich die wirtschaftliche Entwicklung eines Geschäfts?",
+      image: "/images/commercial-management/01-economic-steering.png",
+      alt: "Cockpit-Steuerung mit aktiv verändertem wirtschaftlichem Pfad",
+      tags: ["Ergebnis", "Treiber", "Intervention"],
+      focus: [
+        "Plan, Forecast und Ist als Ausgangspunkt der Diagnose verbinden.",
+        "Outcomes in Kunden-, Nachfrage-, Angebots-, Margen- und Kostentreiber zerlegen.",
+        "Temporäre Effekte von strukturellen Veränderungen unterscheiden.",
+        "Den relevanten Bottleneck und die richtige Interventionsebene bestimmen.",
+        "Lokale KPI-Verbesserung gegen die wirtschaftliche Gesamtwirkung prüfen.",
+      ],
+      tensions: "Symptom oder Ursache; kurzfristiges Ergebnis oder zukünftige Wettbewerbsfähigkeit; lokale KPI oder wirtschaftliches Gesamtsystem.",
+    },
     body: [
       "Wenn Umsatz oder Ergebnis anders laufen als geplant, steht sofort eine isolierte Frage im Raum: Welche Maßnahme ergreifen wir? Ein sichtbares Symptom ist aber nicht automatisch die Ursache.",
       "Ich zerlege die Abweichung zuerst in ihre Treiber: Kundenbasis, Nachfrage, Conversion, Marketing, Preis, Marge, Verfügbarkeit, Kosten. Und zwar so weit, bis sichtbar wird, welche Veränderungen sie tatsächlich tragen. Ein Beispiel: Sinkt die Conversion, prüfe ich veränderten Traffic-Mix, Mobile-Nutzung und Sortimentsverschiebung gegeneinander. Die Ursache kann dann ein Verfügbarkeitsengpass sein, also an einer Stelle liegen, die mit Conversion-Optimierung nicht zu erreichen ist.",
@@ -60,6 +124,24 @@ export const commercialQuestions: CommercialQuestion[] = [
     satz: "Sortiment, Verfügbarkeit, Preis, Conversion und Marketing greifen ineinander oder gegeneinander.",
     these: "Conversion ist ein Ergebnis, keine Ursache.",
     slug: "angebot-und-customer-journey",
+    field: {
+      number: "04",
+      title: "Offer & Customer Journey",
+      shortTitle: "Offer & Customer Journey",
+      description: "Angebot und Journey in wirtschaftliche Wirkung übersetzen.",
+      managementQuestion: "Wie steuere ich Angebot und Customer Journey als wirtschaftliches Gesamtsystem?",
+      image: "/images/commercial-management/04-offer-customer-journey.png",
+      alt: "Customer Journey von Awareness über Consideration und Purchase bis Retention",
+      tags: ["Angebot", "Journey", "Availability"],
+      focus: [
+        "Sortiment, Verfügbarkeit und Preis als Teil der Journey lesen.",
+        "Traffic-Intent, Findbarkeit und Personalisierung gemeinsam betrachten.",
+        "Fulfilment, Retouren und Cost-to-Serve in die Wirkung einbeziehen.",
+        "Conversion als Resultat mehrerer Mechaniken statt als isolierte Ursache behandeln.",
+        "Die Intervention am tatsächlichen Bottleneck ansetzen.",
+      ],
+      tensions: "Conversion oder Marge; zusätzliche Nachfrage oder begrenzte Verfügbarkeit; lokaler Touchpoint oder End-to-End-Wirkung.",
+    },
     body: [
       "Wenn die Profitabilität sinkt, liegt die naheliegende Reaktion am Interface: Checkout entschlacken, Rabatt setzen, Kampagne verstärken. Der sichtbare Effekt am Touchpoint entsteht aber selten dort, wo er gemessen wird.",
       "Conversion ist ein Ergebnis, keine Ursache. Sie fasst Traffic-Intent, Verfügbarkeit, Preiswahrnehmung und Reibung im Erlebnis in einem einzigen Wert zusammen. Bevor am Interface optimiert wird, müssen die vorgelagerten Angebots-, Nachfrage- und Nutzungseffekte verstanden sein. Und eine isolierte Maßnahme kann die Journey verbessern und gleichzeitig das Geschäft verschlechtern: Ein Rabatt hebt die Conversion, lenkt Nachfrage auf knappe Bestände, treibt Retouren und Fulfilment-Kosten, und am Ende sinkt die Gesamtmarge.",
@@ -74,6 +156,24 @@ export const commercialQuestions: CommercialQuestion[] = [
     satz: "Was hätte ohne die Maßnahme stattgefunden, und wie belastbar ist die Antwort.",
     these: "Eine technisch saubere Messung kann wirtschaftlich die falsche Geschichte erzählen.",
     slug: "attribution-von-wirkung-trennen",
+    field: {
+      number: "06",
+      title: "Performance Causality",
+      shortTitle: "Performance Causality",
+      description: "Tatsächliche Wirkung statt bloßer Zuordnung verstehen.",
+      managementQuestion: "Wie stelle ich fest, was Performance wirklich verursacht?",
+      image: "/images/commercial-management/06-performance-causality.png",
+      alt: "Diagramm mit Intervention, Actual, Counterfactual und Incremental Effect",
+      tags: ["Counterfactual", "Incrementality", "Evidenz"],
+      focus: [
+        "Attribution von zusätzlicher Wirkung unterscheiden.",
+        "Den behaupteten Wirkungsmechanismus gegen reales Kundenverhalten prüfen.",
+        "Tests und Vergleiche an Entscheidung und Risiko ausrichten.",
+        "Mehrere Evidenzquellen zu einem belastbaren Entscheidungsbild verbinden.",
+        "Unsicherheit sichtbar machen und Wirkung später erneut überprüfen.",
+      ],
+      tensions: "Methodische Tiefe oder Entscheidungsgeschwindigkeit; technisch sauberes Ergebnis oder wirtschaftlich plausible Erklärung; Präzision oder transparent gemachte Unsicherheit.",
+    },
     body: [
       "Ein Kanal, eine Kampagne oder eine Journey-Änderung sieht im Reporting erfolgreich aus. Ein grünes Dashboard ist aber noch keine Erklärung. Es zeigt, was zugeordnet wurde, nicht, was ohne die Maßnahme ausgeblieben wäre.",
       "Genau dort liegt der entscheidende Unterschied: zwischen Zuordnung und zusätzlicher Wirkung. Ein Kontakt kann einer Conversion zugerechnet werden, ohne sie verursacht zu haben. Deshalb stelle ich zuerst die Gegenfrage: Was wäre ohne diese Maßnahme wahrscheinlich passiert, und welcher Vergleich beantwortet das am ehesten? Das Counterfactual lässt sich nie perfekt beobachten. Die Frage danach verbessert trotzdem jede Wahl von Test, Vergleichsgruppe und Interpretation.",
@@ -88,6 +188,24 @@ export const commercialQuestions: CommercialQuestion[] = [
     satz: "Wohin Geld, Aufmerksamkeit und knappe Fähigkeiten fließen, wenn alles begründet ist.",
     these: "Business Priority ist nicht dasselbe wie Capacity Allocation.",
     slug: "reale-knappheit-priorisieren",
+    field: {
+      number: "08",
+      title: "Resource Allocation",
+      shortTitle: "Resource Allocation",
+      description: "Ressourcen auf die wichtigsten Werthebel konzentrieren.",
+      managementQuestion: "Wie entscheide ich, wohin knappe Ressourcen und Capabilities fließen?",
+      image: "/images/commercial-management/08-resource-allocation.png",
+      alt: "Zuteilung knapper Ressourcen auf ausgewählte Prioritäten",
+      tags: ["Scarcity", "Portfolio", "Capacity"],
+      focus: [
+        "Unterschiedliche Vorhaben auf gemeinsame Entscheidungsdimensionen bringen.",
+        "Die tatsächlich knappe Capability oder Abhängigkeit identifizieren.",
+        "Budget, Capacity und Capability-Tiefe auseinanderhalten.",
+        "Business-Priorität und konkrete Ressourcenbesetzung sauber trennen.",
+        "Das Portfolio adaptiv halten, ohne die Strategie ständig zu verändern.",
+      ],
+      tensions: "Strategische Stabilität oder adaptives Portfolio; Business-Priorität oder Capacity Allocation; reale Knappheit oder allgemeine Wunschliste.",
+    },
     body: [
       "App, Pricing, Lieferfähigkeit, Marketing und Plattformarbeit konkurrieren um dieselben Mittel. In der Regel ist jeder einzelne Antrag gut begründet. Eine ROI-Rangliste sortiert sie trotzdem falsch, weil sie unterschiedliche Zeithorizonte, Risiken und Abhängigkeiten auf eine Zahl zusammenzieht.",
       "Ich mache die Vorhaben deshalb vergleichbar, ohne ihre Unterschiedlichkeit einzuebnen. Umsatz- und Ergebniswirkung, Customer Impact, Zeitprofil, Risiko, Aufwand, Abhängigkeiten und struktureller Beitrag werden nebeneinandergelegt. Ein Kriterienkatalog hilft dabei, Annahmen zu prüfen und überzogene Nutzenversprechen zu challengen. Er ersetzt die Entscheidung nicht. Eine Rangliste, die sich selbst ausrechnet, ist kein Portfolio-Management, sondern ausgelagerte Verantwortung.",
@@ -102,6 +220,24 @@ export const commercialQuestions: CommercialQuestion[] = [
     satz: "Wer entscheidet was, in welchem Rhythmus, mit welcher Wirkungskontrolle.",
     these: "Cross-funktionale Ziele brauchen Stewardship, keine fiktive Alleinverantwortung.",
     slug: "verantwortung-ordnen",
+    field: {
+      number: "07",
+      title: "Commercial Operating Model",
+      shortTitle: "Operating Model",
+      description: "Verantwortung und Zusammenarbeit an kommerzieller Logik ausrichten.",
+      managementQuestion: "Wie organisiere ich Verantwortung und Entscheidungen über Funktionen hinweg?",
+      image: "/images/commercial-management/07-commercial-operating-model.png",
+      alt: "Governance- und Verantwortungslogik rund um Commercial Outcomes",
+      tags: ["Decision Rights", "Cadence", "Capabilities"],
+      focus: [
+        "Gemeinsame Outcomes und eine gemeinsame Datengrundlage schaffen.",
+        "Decision Rights nach Information, Kompetenz und Wirkungsradius schneiden.",
+        "Business-Priorität von Capability-Verantwortung trennen.",
+        "Entscheidungen über Execution-Routinen bis zur Wirkungskontrolle schließen.",
+        "Skills und Incentives als Teil des Operating Models behandeln.",
+      ],
+      tensions: "Autonomie oder gemeinsame Governance; Entscheidungsgeschwindigkeit oder permanenter Konsens; lokale Optimierung oder gemeinsamer Outcome.",
+    },
     body: [
       "Marketing, CRM, Product, Data, Einkauf und Technology beeinflussen dasselbe kommerzielle Ergebnis. Geteilte Verantwortung klingt nach Zusammenarbeit, erzeugt aber häufig das Gegenteil: langsame Entscheidungen, doppelte Arbeit und am Ende niemanden, der für das Ergebnis geradesteht.",
       "Gemeinsame Ziele und eine gemeinsame Datengrundlage sind Voraussetzung dafür. Konsens für jede einzelne Entscheidung ist es nicht. Entscheidungsrechte gehören dorthin, wo die relevante Information und die fachliche Kompetenz sitzen. Wie weit sie reichen, bestimmt der Wirkungsradius. Was lokal wirkt, wird lokal entschieden. Was andere Funktionen oder das Gesamtsystem betrifft, braucht gemeinsame Steuerung oder eine klare übergeordnete Entscheidung. Handlungsfähig wird Verantwortung erst, wenn Ergebnisverantwortung, Entscheidungsrecht und fachliche Fähigkeit an derselben Stelle liegen.",
@@ -116,6 +252,24 @@ export const commercialQuestions: CommercialQuestion[] = [
     satz: "Standardisieren, konfigurieren oder als Ausnahme zulassen. Und wer die Komplexität trägt.",
     these: "Übertragen wird der Wirkungsmechanismus, nie die sichtbare Lösung.",
     slug: "ueber-maerkte-skalieren",
+    field: {
+      number: "05",
+      title: "Multi-Market Scale",
+      shortTitle: "Multi-Market Scale",
+      description: "Erfolgsmechanismen über Märkte skalieren.",
+      managementQuestion: "Wie skaliere ich Commercial über Märkte, ohne lokale Wirksamkeit zu verlieren?",
+      image: "/images/commercial-management/05-multi-market-scale.png",
+      alt: "Weltkugel mit mehreren Märkten und internationalen Verbindungen",
+      tags: ["Global Core", "Local Context", "Transfer"],
+      focus: [
+        "Skalierbaren Kern von begründeter lokaler Konfiguration trennen.",
+        "Lokale Abweichungen an wirtschaftliche Evidenz binden.",
+        "Dauerhafte Komplexitäts- und Opportunitätskosten einbeziehen.",
+        "Bearbeitungstiefe nach Potenzial, Reife und Capability differenzieren.",
+        "Wirkungsmechanismen übertragen statt sichtbare Lösungen zu kopieren.",
+      ],
+      tensions: "Zentralisierung oder lokale Relevanz; Ausnahme oder Complexity Tax; Copy-Paste oder kontextgerechter Mechanism Transfer.",
+    },
     body: [
       "Internationale Skalierung scheitert an zwei entgegengesetzten Fehlern. Zu viel Zentralisierung ignoriert reale Marktmechaniken und kostet lokale Relevanz. Zu viele lokale Varianten zerstören jeden Skaleneffekt. Die Frage ist nicht, wie viel Freiheit die Märkte bekommen, sondern was tatsächlich skalierbarer Kern ist und was begründete Anpassung.",
       "Ich standardisiere den Kern, nicht die Marktmechanik. Gemeinsame Plattformen, Prozesse, Datenmodelle, Rollen und das Basisangebot bleiben einheitlich. Marketing-Mix, Zahlarten, Lieferbedingungen, Kampagnen und Preisniveau sind Konfigurationsraum.",
@@ -126,3 +280,12 @@ export const commercialQuestions: CommercialQuestion[] = [
     ],
   },
 ];
+
+export const commercialFields = commercialQuestions
+  .map((question) => ({
+    ...question.field,
+    detailTitle: question.title,
+    href: question.slug ? `/commercial-growth/${question.slug}` : null,
+    about: question.body?.[0] ?? question.satz,
+  }))
+  .sort((a, b) => Number(a.number) - Number(b.number));

@@ -1,14 +1,5 @@
 ---
-const motifs = [
-  { number: "01", title: "Economic Steering", image: "/images/commercial-management/01-economic-steering.png", alt: "Cockpit-Steuerung mit aktiv verändertem wirtschaftlichem Pfad", href: "/commercial-growth/ergebnisabweichungen-zerlegen" },
-  { number: "02", title: "Future Growth", image: "/images/commercial-management/02-future-growth.png", alt: "Aufwärts gerichteter Wachstumspfad mit steigenden Balken", href: "/commercial-growth/wachstum-neu-begruenden" },
-  { number: "03", title: "Customer Base", image: "/images/commercial-management/03-customer-base.png", alt: "Kundenbasis mit Acquisition und Reactivation als Zufluss sowie Churn als Abfluss", href: "/commercial-growth/kundenbasis-ueber-economics" },
-  { number: "04", title: "Offer & Customer Journey", image: "/images/commercial-management/04-offer-customer-journey.png", alt: "Customer Journey von Awareness über Consideration und Purchase bis Retention", href: "/commercial-growth/angebot-und-customer-journey" },
-  { number: "05", title: "Multi-Market Scale", image: "/images/commercial-management/05-multi-market-scale.png", alt: "Weltkugel mit mehreren Märkten und internationalen Verbindungen", href: "/commercial-growth/ueber-maerkte-skalieren" },
-  { number: "06", title: "Performance Causality", image: "/images/commercial-management/06-performance-causality.png", alt: "Diagramm mit Intervention, Actual, Counterfactual und Incremental Effect", href: "/commercial-growth/attribution-von-wirkung-trennen" },
-  { number: "07", title: "Operating Model", image: "/images/commercial-management/07-commercial-operating-model.png", alt: "Governance- und Verantwortungslogik rund um Commercial Outcomes", href: "/commercial-growth/verantwortung-ordnen" },
-  { number: "08", title: "Resource Allocation", image: "/images/commercial-management/08-resource-allocation.png", alt: "Zuteilung knapper Ressourcen auf ausgewählte Prioritäten", href: "/commercial-growth/reale-knappheit-priorisieren" },
-];
+import { commercialFields } from "../data/commercial-questions";
 ---
 
 <section class="motif-section" aria-labelledby="motif-title">
@@ -19,23 +10,14 @@ const motifs = [
 
   <ol class="motif-grid">
     {
-      motifs.map((motif) => (
+      commercialFields.map((motif) => (
         <li>
-          {motif.href ? (
-            <a class="motif-card" href={motif.href}>
-              <span class="image-frame">
-                <img src={motif.image} alt={motif.alt} width="400" height="340" loading="lazy" />
-              </span>
-              <span class="motif-label"><b>{motif.number}</b><span>{motif.title}</span></span>
-            </a>
-          ) : (
-            <div class="motif-card">
-              <span class="image-frame">
-                <img src={motif.image} alt={motif.alt} width="400" height="340" loading="lazy" />
-              </span>
-              <span class="motif-label"><b>{motif.number}</b><span>{motif.title}</span></span>
-            </div>
-          )}
+          <a class="motif-card" href="/commercial-management">
+            <span class="image-frame">
+              <img src={motif.image} alt={motif.alt} width="400" height="340" loading="lazy" />
+            </span>
+            <span class="motif-label"><b>{motif.number}</b><span>{motif.shortTitle}</span></span>
+          </a>
         </li>
       ))
     }

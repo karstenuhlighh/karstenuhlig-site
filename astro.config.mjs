@@ -19,6 +19,7 @@ export default defineConfig({
           "/ueber-mich",
           "/track-record",
           "/track-record/deep-dive",
+          "/commercial-management",
           "/schwerpunkte",
           "/commercial-growth/ergebnisabweichungen-zerlegen",
           "/commercial-growth/wachstum-neu-begruenden",

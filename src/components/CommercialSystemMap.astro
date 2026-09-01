@@ -1,0 +1,100 @@
+<section class="system-section" aria-labelledby="commercial-system-title">
+  <div class="system-heading">
+    <div class="system-kicker">Zusammenhang</div>
+    <div>
+      <h2 id="commercial-system-title">Commercial Management als System</h2>
+      <p>Die acht Handlungsfelder sind keine isolierten Disziplinen. Sie bilden gemeinsam ein Steuerungssystem.</p>
+    </div>
+  </div>
+
+  <div class="system-model" aria-label="Integriertes Commercial-Management-Steuerungssystem">
+    <section class="system-stage steering-stage">
+      <div class="stage-label">Spannung lesen</div>
+      <div class="system-node primary-node">
+        <span>01</span>
+        <strong>Economic Steering</strong>
+        <p>Zeigt, wo wirtschaftliche Spannungen sichtbar werden.</p>
+      </div>
+    </section>
+
+    <div class="system-connector" aria-hidden="true"><span>Entscheidung</span><b>→</b></div>
+
+    <section class="system-stage levers-stage">
+      <div class="stage-label">Kommerzielle Hebel</div>
+      <div class="lever-grid">
+        <div class="system-node"><span>02</span><strong>Future Growth</strong></div>
+        <div class="system-node"><span>03</span><strong>Customer Base</strong></div>
+        <div class="system-node"><span>04</span><strong>Offer &amp; Journey</strong></div>
+        <div class="system-node"><span>05</span><strong>Multi-Market Scale</strong></div>
+      </div>
+      <p class="stage-note">Diese Felder verändern Wachstum, Kundenwert und Profitabilität.</p>
+    </section>
+
+    <div class="system-connector" aria-hidden="true"><span>Wirkung</span><b>→</b></div>
+
+    <section class="system-stage causality-stage">
+      <div class="stage-label">Wirkung prüfen</div>
+      <div class="system-node primary-node">
+        <span>06</span>
+        <strong>Performance Causality</strong>
+        <p>Prüft, ob Interventionen tatsächlich zusätzliche Wirkung erzeugen.</p>
+      </div>
+    </section>
+
+    <div class="system-connector" aria-hidden="true"><span>Konsequenz</span><b>→</b></div>
+
+    <section class="system-stage execution-stage">
+      <div class="stage-label">Umsetzung organisieren</div>
+      <div class="execution-stack">
+        <div class="system-node"><span>07</span><strong>Operating Model</strong></div>
+        <div class="system-node"><span>08</span><strong>Resource Allocation</strong></div>
+      </div>
+      <p class="stage-note">Übersetzt Entscheidungen in Verantwortung, Kapazität und Umsetzungskraft.</p>
+    </section>
+  </div>
+</section>
+
+<style>
+  .system-section { padding: 5.5rem 0; border-top: 1px solid var(--color-border); }
+  .system-heading { display: grid; grid-template-columns: .34fr 1fr; gap: 4rem; align-items: start; margin-bottom: 2.8rem; }
+  .system-kicker { color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+  .system-heading h2 { margin: 0 0 .7rem; color: var(--color-ink); font-size: 32px; font-weight: 500; letter-spacing: -.03em; line-height: 1.15; }
+  .system-heading p { max-width: 740px; margin: 0; color: var(--color-body); font-size: 15px; line-height: 1.7; }
+  .system-model { position: relative; display: grid; grid-template-columns: minmax(150px,.9fr) 62px minmax(260px,1.65fr) 62px minmax(170px,1fr) 62px minmax(190px,1.1fr); align-items: stretch; padding: 1.3rem; background: rgba(255,255,255,.38); border: 1px solid var(--color-border-soft); }
+  .system-stage { position: relative; min-width: 0; padding: 1rem; background: rgba(255,255,255,.46); border: 1px solid var(--color-border-soft); }
+  .stage-label { margin-bottom: .85rem; color: var(--color-ink-3); font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
+  .system-node { position: relative; min-width: 0; padding: 1rem; background: rgba(242,247,251,.78); border: 1px solid rgba(30,60,100,.17); }
+  .system-node span { display: block; margin-bottom: .35rem; color: var(--color-amber); font-size: 10px; font-weight: 500; letter-spacing: .1em; }
+  .system-node strong { display: block; color: var(--color-ink); font-size: 13px; font-weight: 500; line-height: 1.35; }
+  .system-node p { margin: .6rem 0 0; color: var(--color-body); font-size: 11.5px; line-height: 1.55; }
+  .primary-node { height: calc(100% - 1.85rem); background: linear-gradient(145deg, rgba(255,255,255,.82), rgba(225,235,244,.7)); border-top: 2px solid rgba(180,83,9,.7); }
+  .lever-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .65rem; }
+  .stage-note { margin: .85rem 0 0; color: var(--color-ink-3); font-size: 11px; line-height: 1.5; }
+  .execution-stack { display: grid; gap: .65rem; }
+  .execution-stage .system-node { border-left: 2px solid rgba(180,83,9,.58); }
+  .system-connector { display: flex; min-width: 0; flex-direction: column; justify-content: center; align-items: center; gap: .25rem; color: var(--color-amber); }
+  .system-connector span { font-size: 8px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
+  .system-connector b { font-size: 23px; font-weight: 400; line-height: 1; }
+
+  @media (max-width: 1040px) {
+    .system-model { grid-template-columns: 1fr 46px 1.35fr 46px 1fr; }
+    .execution-stage { grid-column: 3 / 4; margin-top: 1rem; }
+    .system-model > .system-connector:nth-of-type(3) { display: none; }
+  }
+
+  @media (max-width: 760px) {
+    .system-section { padding: 4rem 0; }
+    .system-heading { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem; }
+    .system-heading h2 { font-size: 27px; }
+    .system-model { grid-template-columns: 1fr; gap: 0; padding: 1rem; }
+    .system-stage, .execution-stage { grid-column: auto; margin: 0; }
+    .system-connector { min-height: 54px; }
+    .system-connector span { display: none; }
+    .system-connector b { transform: rotate(90deg); }
+    .system-model > .system-connector:nth-of-type(3) { display: flex; }
+  }
+
+  @media (max-width: 430px) {
+    .lever-grid { grid-template-columns: 1fr; }
+  }
+</style>
