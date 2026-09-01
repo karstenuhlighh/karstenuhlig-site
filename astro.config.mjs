@@ -20,6 +20,8 @@ export default defineConfig({
           "/track-record",
           "/track-record/deep-dive",
           "/commercial-management",
+          "/data-ai-digital-product",
+          "/leadership",
           "/schwerpunkte",
           "/commercial-growth/ergebnisabweichungen-zerlegen",
           "/commercial-growth/wachstum-neu-begruenden",

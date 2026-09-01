@@ -5,12 +5,14 @@ import CommercialMotifGrid from "./CommercialMotifGrid.astro";
 const enablers = [
   {
     id: "leadership",
+    href: "/leadership",
     title: "Leadership & Transformation",
     thesis: "Strategie in Organisation und Umsetzung übersetzen.",
     body: "Richtung geben, Verantwortung klären und Teams auch gegen Widerstand durch Veränderung führen. Vorangestellt ist ein Prinzip: erst die tatsächliche Ursache diagnostizieren, dann das passende Führungsinstrument wählen.",
   },
   {
     id: "data-ai-digital-product",
+    href: "/data-ai-digital-product",
     title: "Data, AI & Digital Product",
     thesis: "Digitale Fähigkeiten gezielt für wirtschaftliche Wirkung einsetzen.",
     body: "Kundendaten, Analytics und Machine Learning als Grundlage kommerzieller Entscheidungen. Von der gemeinsamen Datenbasis über die MarTech-Landschaft bis zur Steuerung von Marketing, CRM und Produkt im laufenden Geschäft.",
@@ -32,7 +34,14 @@ const enablers = [
 
   <div class="enablers" aria-label="Zentrale Enabler">
     {
-      enablers.map((enabler) => (
+      enablers.map((enabler) => enabler.href ? (
+        <a class="enabler-card enabler-card-link" id={enabler.id} href={enabler.href} aria-label={`${enabler.title} vertiefen`}>
+          <span class="enabler-marker" aria-hidden="true"></span>
+          <h2>{enabler.title}</h2>
+          <p class="enabler-thesis">{enabler.thesis}</p>
+          <p class="enabler-body">{enabler.body}</p>
+        </a>
+      ) : (
         <article class="enabler-card" id={enabler.id}>
           <span class="enabler-marker" aria-hidden="true"></span>
           <h2>{enabler.title}</h2>
@@ -123,6 +132,9 @@ const enablers = [
     border: 1px solid var(--color-border-soft);
     border-top: 2px solid rgba(30,60,100,.34);
   }
+  .enabler-card-link { color: inherit; text-decoration: none; cursor: pointer; transition: background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+  .enabler-card-link:hover { background: rgba(255,255,255,.72); border-color: rgba(180,83,9,.3); box-shadow: 0 12px 28px rgba(30,50,70,.07); transform: translateY(-2px); }
+  .enabler-card-link:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 4px; }
   .enabler-marker {
     display: block;
     width: 2.5rem;

@@ -1,0 +1,40 @@
+---
+import SubPageLayout from "../layouts/SubPageLayout.astro";
+import LeadershipFieldExplorer from "../components/LeadershipFieldExplorer.astro";
+---
+
+<SubPageLayout
+  title="Leadership & Transformation | Karsten Uhlig"
+  description="Leadership als Diagnose- und Entscheidungshandwerk: sieben wiederkehrende Führungsprobleme und die Modelle, mit denen ich sie löse."
+>
+  <article class="leadership-landing">
+    <header class="landing-hero">
+      <div class="hero-eyebrow">Leadership & Transformation</div>
+      <h1>Leadership & Transformation</h1>
+      <p class="hero-subheadline">Strategie in Organisation und Umsetzung übersetzen.</p>
+      <p class="hero-copy">Führung reduziert sich für mich nicht auf Stil oder Intuition. Über Jahre wiederkehrende Führungssituationen lassen sich auf sieben Problemklassen verdichten, jede mit eigener Diagnose, eigenen Modellen und eigenem Handlungsrepertoire. Das zugrundeliegende Prinzip ist immer dasselbe: erst die tatsächliche Ursache verstehen, dann das passende Führungsinstrument wählen, nicht umgekehrt.</p>
+    </header>
+
+    <LeadershipFieldExplorer />
+  </article>
+</SubPageLayout>
+
+<style>
+  .leadership-landing { min-width: 0; }
+  .landing-hero { position: relative; padding: 2.25rem 0 5.25rem; }
+  .landing-hero::after { content: ""; position: absolute; right: 2%; bottom: 0; left: 34%; height: 1px; background: linear-gradient(90deg, rgba(180,83,9,.65), rgba(30,60,100,.14), transparent); }
+  .hero-eyebrow { margin-bottom: 1rem; color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+  h1 { max-width: 900px; margin: 0; color: var(--color-ink); font-size: clamp(46px, 7vw, 82px); font-weight: 500; letter-spacing: -.055em; line-height: .98; }
+  .hero-subheadline { max-width: 860px; margin: 1.55rem 0 0; color: var(--color-ink); font-size: clamp(22px, 2.7vw, 34px); font-weight: 400; letter-spacing: -.025em; line-height: 1.25; }
+  .hero-copy { max-width: 810px; margin: 1.55rem 0 0; color: var(--color-body); font-size: 16px; line-height: 1.8; }
+
+  @media (max-width: 760px) {
+    .landing-hero { padding: 1rem 0 4rem; }
+    .landing-hero::after { left: 0; }
+    h1 { font-size: 48px; }
+    .hero-subheadline { font-size: 24px; }
+    .hero-copy { font-size: 15px; }
+  }
+
+  @media (max-width: 430px) { h1 { font-size: 41px; } }
+</style>
