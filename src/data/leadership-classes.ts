@@ -29,7 +29,7 @@ export const leadershipClasses: LeadershipClass[] = [
     shortTitle: "Autonomie & Delegation",
     description: "Autonomie als Führungsinstrument einsetzen, nicht als Rückzug.",
     managementQuestion:
-      "Wie führe ich fachlich starke, bereits autonome Führungskräfte, ohne ihnen Mandat oder Kompetenz zu nehmen, aber ohne die Gesamtverantwortung für den Bereich zu verlieren?",
+      "Wie führe ich fachlich starke, autonome Führungskräfte, ohne ihnen das Mandat zu nehmen oder die Gesamtverantwortung zu verlieren?",
     image: "/images/leadership-transformation/01-autonomie-delegation.png",
     alt: "Zwei Personen mit einem Dokument, verbunden durch einen Kreislauf aus Übergabe und Rückgabe",
     tags: ["Delegation", "Vertrauen", "Entwicklung"],
@@ -50,7 +50,7 @@ export const leadershipClasses: LeadershipClass[] = [
     shortTitle: "Performance & Entwicklung",
     description: "Erst die Ursache diagnostizieren, dann das Instrument wählen.",
     managementQuestion:
-      "Wie gehe ich mit ausbleibender Wirkung, schwierigen Mitarbeitenden und Fehlern um, ohne reflexhaft mit mehr Druck oder Kontrolle zu reagieren oder Standards aufzuweichen?",
+      "Wie gehe ich mit ausbleibender Wirkung, schwierigen Mitarbeitenden und Fehlern um, ohne in Druck oder Kontrolle zu verfallen?",
     image: "/images/leadership-transformation/02-performance-entwicklung.png",
     alt: "Person mit Diagramm-Symbolen für Diagnose und Entwicklung",
     tags: ["Diagnose", "Verbindlichkeit", "Fehlerkultur"],
