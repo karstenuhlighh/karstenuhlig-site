@@ -1,55 +1,53 @@
 ---
 import SubPageLayout from "../layouts/SubPageLayout.astro";
-
-const phases = [
-  {
-    period: "2018–2025",
-    title: "Internationales E-Commerce-Geschäft steuern und skalieren",
-    body: "End-to-End-Verantwortung für ein digitales Geschäft mit €1,6 Mrd. Umsatz in 20+ Märkten, über Customer Journey, Conversion, CRM, Digital Marketing, Personalisierung und Digital Products.",
-    proof: "100+ Mitarbeitende · 20+ crossfunktionale Teams · >€30 Mio. Budget",
-  },
-  {
-    period: "2010–2018",
-    title: "CRM, Customer Journey und Data verbinden",
-    body: "Aufbau eines integrierten CRM- und Datenmodells über digitale und klassische Touchpoints. Einführung einer gemeinsamen Marketing-Datenplattform, Self-Service-Analytics sowie erster produktiver ML-Anwendungen. Parallel entstanden Mobile Commerce und die bonprix App als neue Vertriebskanäle.",
-  },
-  {
-    period: "2005–2010",
-    title: "Digital Marketing aufbauen und international expandieren",
-    body: "Aufbau der internationalen Online-Marketing-Organisation für SEM, SEO, Affiliates, Display und E-Mail sowie Verantwortung für Frontend, Plattform und Prozesse von 11 internationalen Webshops. Der marketinggetriebene Anteil am Online-Traffic wuchs von 0 auf 50 Prozent.",
-  },
-  {
-    period: "2000–2005",
-    title: "Aus Sortiment wird datenbasierte Angebotssteuerung",
-    body: "Ausgangspunkt war das Einkaufsmarketing: Sortiment, Preis, Bestand und Verfügbarkeit wurden erstmals anhand digitaler Nachfrage- und Erfolgsdaten gesteuert. Während der Katalog rund 800 Styles abbilden konnte, ließen sich online rund 8.000 Styles wirtschaftlich darstellen.",
-  },
-];
+import { trackRecordPhases } from "../data/track-record";
 ---
 
 <SubPageLayout
   title="Track Record | Karsten Uhlig | CDO & VP E-Commerce"
-  description="Vier fachliche Aufbau- und Skalierungsphasen bei bonprix: vom Einkauf über Digital Marketing und CRM bis zur End-to-End-Steuerung des internationalen E-Commerce-Geschäfts."
+  description="Vier fachliche Aufbau- und Skalierungsphasen bei bonprix ab 2004: von Angebotssteuerung und Digital Marketing über CRM bis zur End-to-End-Steuerung des internationalen E-Commerce-Geschäfts."
 >
 <section class="track-record" id="track-record" aria-labelledby="track-record-title">
   <div class="track-heading">
     <div class="eyebrow">Track Record</div>
     <div>
-      <div class="track-context">bonprix (Otto Group), 2000–2025</div>
-      <h1 class="track-lead" id="track-record-title">Vom Einkauf über Digital Marketing und CRM bis zur End-to-End-Steuerung eines internationalen E-Commerce-Geschäfts.</h1>
-      <p class="track-intro">Meine Verantwortung ist mit dem digitalen Geschäft gewachsen: von datenbasierter Angebotssteuerung über den Aufbau von Online-Marketing, Webshops und CRM bis zur durchgängigen Verantwortung für Customer Journey, Wachstum und digitale Produkte in mehr als 20 Märkten.</p>
+      <div class="track-context">bonprix (Otto Group), 20+ Jahre</div>
+      <h1 class="track-lead" id="track-record-title">Von Angebotssteuerung und Digital Marketing über CRM bis zur End-to-End-Steuerung eines internationalen E-Commerce-Geschäfts.</h1>
+      <p class="track-intro">Meine Verantwortung ist mit dem digitalen Geschäft gewachsen: von Angebotssteuerung und bereits vorhandenem Digital Marketing über den internationalen Ausbau von Webshops und CRM bis zur durchgängigen Verantwortung für Customer Journey, Wachstum und digitale Produkte in mehr als 20 Märkten.</p>
     </div>
   </div>
 
   <ol class="track-phases">
     {
-      phases.map((phase) => (
+      trackRecordPhases.map((phase) => (
         <li>
           <span class="track-period">{phase.period}</span>
-          <div>
-            <h2>{phase.title}</h2>
-            <p>{phase.body}</p>
-            {phase.proof && <p class="track-proof">{phase.proof}</p>}
-          </div>
+          <details class="track-phase">
+            <summary>
+              <h2>{phase.title}</h2>
+              <span class="track-summary">{phase.summary}</span>
+              <span class="track-toggle">
+                <span class="track-open-label">Details ansehen</span>
+                <span class="track-close-label">Details schließen</span>
+                <svg class="track-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+                  <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </summary>
+            <div class="track-detail">
+              <p>{phase.body}</p>
+              <div class="track-detail-block">
+                <h3>Schwerpunkte</h3>
+                <p>{phase.focus}</p>
+              </div>
+              {phase.scale && (
+                <div class="track-detail-block">
+                  <h3>Scale &amp; Impact</h3>
+                  <p>{phase.scale}</p>
+                </div>
+              )}
+            </div>
+          </details>
         </li>
       ))
     }
@@ -69,9 +67,24 @@ const phases = [
   .track-phases { list-style: none; margin: 2.5rem 0 1.75rem; padding: 0; border-top: 1px solid var(--color-border-soft); }
   .track-phases li { padding: 1.65rem 0 1.75rem; border-bottom: 1px solid var(--color-border-soft); }
   .track-period { padding-top: .2rem; color: var(--color-amber); font-size: 13px; font-weight: 500; }
+  .track-phase { min-width: 0; }
+  .track-phase summary { list-style: none; cursor: pointer; }
+  .track-phase summary::-webkit-details-marker { display: none; }
+  .track-phase summary:focus-visible { outline: none; }
+  .track-phase summary:focus-visible .track-toggle { outline: 2px solid var(--color-amber); outline-offset: 4px; border-radius: 2px; }
+  .track-summary { display: block; color: var(--color-body); font-size: 15px; line-height: 1.7; }
+  .track-toggle { display: inline-flex; align-items: center; gap: .4rem; margin-top: .75rem; padding: .2rem 0; color: var(--color-amber); font-size: 13px; font-weight: 500; line-height: 1.5; }
+  .track-phase summary:hover .track-toggle { text-decoration: underline; text-underline-offset: .2em; }
+  .track-close-label { display: none; }
+  .track-phase[open] .track-open-label { display: none; }
+  .track-phase[open] .track-close-label { display: inline; }
+  .track-chevron { flex: none; }
+  .track-phase[open] .track-chevron { transform: rotate(180deg); }
+  .track-detail { margin-top: 1.5rem; }
+  .track-detail-block { margin-top: 1.25rem; }
+  .track-detail-block h3 { margin: 0 0 .4rem; color: var(--color-ink); font-size: 14px; font-weight: 500; line-height: 1.5; }
   h2 { margin: 0 0 .65rem; color: var(--color-ink); font-size: 20px; font-weight: 500; letter-spacing: -.01em; line-height: 1.35; }
   .track-phases p { margin: 0; color: var(--color-body); font-size: 15px; line-height: 1.7; }
-  .track-phases .track-proof { margin-top: .75rem; color: var(--color-ink-2); font-size: 13px; font-weight: 500; }
   .track-link { display: inline-flex; gap: .45rem; align-items: center; color: var(--color-amber); font-size: 15px; font-weight: 500; text-decoration: none; transition: opacity .2s ease; }
   .track-link:hover { opacity: .7; }
   @media (max-width: 768px) {

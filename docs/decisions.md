@@ -186,3 +186,39 @@
   (CDO / VP E-Commerce & Growth / VP Product & Technology) statt „Senior Digital Executive".
   Hintergrund-Entscheidung: AIS-OS `decisions/log.md` (2026-06-15).
 - **Featured:** /track-record als Featured-Item Position 1 (manuell gesetzt).
+
+## 12. Anpassung 2026-09-02: Positionierungstext und sichtbarer Track Record ab 2004
+
+- Direkter Auftrag von Karsten: Headline unverändert lassen und den vorgegebenen Positionierungstext im Hero wortgetreu verwenden. Deutsch bleibt Standardsprache, etablierte Fachbegriffe bleiben Englisch.
+- Sichtbarer Track Record auf Startseite, Übersicht und Deep Dive beginnt 2004 statt 2000. Die vier vorhandenen Fachphasen und ihre Reihenfolge bleiben erhalten. Die Phasengrenzen sind keine neuen Datierungen formaler Rollen.
+- Die erste Phase zeigt Angebotssteuerung und bereits vorhandenes Digital Marketing gemeinsam. 2005–2010 beschreibt den internationalen Ausbau, nicht den erstmaligen Beginn von Digital Marketing. Commercial-Herkunft und vorhandene Belege bleiben erhalten; frühere Grundlagen werden nicht als Neuerfindung ab 2004 dargestellt.
+- Evidence: `KA-OS/job/library/master-cv.md`, Stand 02.09.2026, Teamleiter Marketing & Online-Shop ab 04/2004 mit Digital Marketing, Online-Shop und Angebotssteuerung. Der sichtbare Ausschnitt verkürzt nicht die tatsächliche Berufserfahrung; „25+ Jahre“ bleibt unverändert.
+- Commercial-Modelle, Diagnose- und Entscheidungslogiken, Cases, Navigation, Layout und Bildassets bleiben unverändert. Keine neue Positionierungsarchitektur.
+- Die ältere Website-Vorgabe „ab 2000“ wird für diese Darstellung durch den aktuellen Auftrag ersetzt. `KA-OS/context/positioning-pillars.md` und `KA-OS/strategy/website-concept.md` enthalten noch den Stand vom 31.08.2026 und wurden im Website-Auftrag nicht geändert. Historische Entscheidungen bleiben erhalten.
+- Nur lokale Änderung; kein Commit, Push oder Deployment ohne gesonderte Freigabe.
+
+## 13. Anpassung 2026-09-02: Track Record mit zwei Detailstufen und 20+ Jahren
+
+- Neuer direkter Auftrag von Karsten ersetzt für die sichtbare Darstellung die Phaseneinteilung, Reihenfolge und Jahresangabe aus Abschnitt 12: 2004–2010, 2010–2014, 2014–2018, 2018–2025, chronologisch aufsteigend. Fachliche Entwicklung, keine Neudatierung formaler Rollen.
+- Stufe 1 bleibt `/track-record`: pro Phase Zeitraum, vorgegebener Titel und genau eine kompakte Unterzeile. Keine Langtexte, Schwerpunkte oder Scale-Zahlen auf dieser Scan-Ebene.
+- Stufe 2 bleibt die vorhandene Detailansicht `/track-record/deep-dive`: je Phase der vorgegebene Absatz und Schwerpunkte; nur 2018–2025 zusätzlich Scale & Impact. Der vorhandene Hin- und Rücklink bleibt erhalten, kein zusätzlicher Accordion-Mechanismus und keine dritte Detailstufe.
+- Beide Seiten importieren `src/data/track-record.ts`; Texte, Phasengrenzen und Reihenfolge werden gemeinsam gepflegt. Die gelieferten Inhalte werden wortgetreu übernommen.
+- Startseite: `src/components/Hero.astro` zeigt „20+ Jahre“ statt „25+ Jahre“. Dies ersetzt ausdrücklich die frühere Entscheidung, die sichtbare Jahresangabe unverändert zu lassen; keine Änderung der historischen Berufsdaten.
+- Geänderte Dateien: `src/components/Hero.astro`, `src/pages/track-record.astro`, `src/pages/track-record/deep-dive.astro`, neue `src/data/track-record.ts` und dieses Entscheidungsprotokoll.
+- Bestehende Layouts, Farben, Typografie, Navigation, Startseiten-Track-Record-Teaser und der separate Ausblick „Seit 2025“ bleiben erhalten. Bereits vorhandene Änderungen außerhalb der beauftragten Textblöcke werden nicht zurückgesetzt.
+- Nur lokale Änderung; kein Commit, Push oder Deployment ohne gesonderte Freigabe.
+
+## 14. Anpassung 2026-09-02: Deep-Dive-Inhalte direkt in der Track-Record-Übersicht
+
+- Karsten möchte die Inhalte des Deep Dive direkt auf der Übersicht zugänglich machen. Die Beschränkung aus Abschnitt 13 auf eine separate Detailseite wird damit erweitert.
+- Jede der vier Phasen auf `/track-record` erhält einen nativen, anfangs geschlossenen `<details>`-Bereich. `<summary>` zeigt Titel und Unterzeile sowie ein Plus-/Minus-Zeichen; der Zeitraum bleibt in der bestehenden linken Spalte beziehungsweise mobil oberhalb stehen.
+- Beim Öffnen erscheinen der unveränderte Detailabsatz und die Schwerpunkte aus `src/data/track-record.ts`, bei 2018–2025 zusätzlich Scale & Impact. Mehrere Phasen können unabhängig voneinander geöffnet bleiben; kein zusätzliches JavaScript.
+- Die native Tastaturbedienung und ein sichtbarer Fokusrahmen ermöglichen die Bedienung ohne Maus. Farben, Typografie, Phasenreihenfolge und „bonprix (Otto Group), 20+ Jahre“ bleiben erhalten.
+- `/track-record/deep-dive` und der vorhandene Link dorthin bleiben unverändert als separate Leseansicht erreichbar. Startseite, gemeinsame Inhaltsdatei und übrige Seiten werden nicht geändert.
+- Geändert werden nur `src/pages/track-record.astro` und dieses Entscheidungsprotokoll. Kein Commit, Push oder Deployment ohne gesonderte Freigabe.
+
+## 15. Anpassung 2026-09-02: Verständliche Bedienung der Track-Record-Details
+
+- Karstens Rückmeldung: Das alleinstehende Plus-/Minus-Zeichen ist weder gestalterisch überzeugend noch verständlich. Es wird durch eine dezente Textaktion direkt unter der Unterzeile ersetzt: „Details ansehen“ mit Pfeil nach unten beziehungsweise „Details schließen“ mit Pfeil nach oben.
+- Der gesamte Summary-Bereich bleibt anklickbar und per Tastatur bedienbar. Der sichtbare Tastaturfokus liegt nun auf der Textaktion statt als großer Rahmen um Titel und Unterzeile. Kein zusätzlicher Button innerhalb des nativen Summary-Elements und kein JavaScript.
+- Nur Bedienoberfläche und dieses Protokoll geändert; Inhalte, Reihenfolge, Farben, Typografie und native Klapplogik bleiben erhalten. Kein Commit, Push oder Deployment.
