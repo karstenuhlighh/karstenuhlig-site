@@ -222,3 +222,11 @@
 - Karstens Rückmeldung: Das alleinstehende Plus-/Minus-Zeichen ist weder gestalterisch überzeugend noch verständlich. Es wird durch eine dezente Textaktion direkt unter der Unterzeile ersetzt: „Details ansehen“ mit Pfeil nach unten beziehungsweise „Details schließen“ mit Pfeil nach oben.
 - Der gesamte Summary-Bereich bleibt anklickbar und per Tastatur bedienbar. Der sichtbare Tastaturfokus liegt nun auf der Textaktion statt als großer Rahmen um Titel und Unterzeile. Kein zusätzlicher Button innerhalb des nativen Summary-Elements und kein JavaScript.
 - Nur Bedienoberfläche und dieses Protokoll geändert; Inhalte, Reihenfolge, Farben, Typografie und native Klapplogik bleiben erhalten. Kein Commit, Push oder Deployment.
+
+## 16. Anpassung 2026-09-03: Eine vollständige Track-Record-Seite
+
+- Karsten möchte den bisherigen Deep Dive als normalen Track Record, ohne zwei Detailstufen. Die Aufteilung aus den Abschnitten 13 bis 15 entfällt.
+- `/track-record` übernimmt Inhalt und Layout der bisherigen Deep-Dive-Fassung: Einleitung, vier chronologische Phasen mit Langtexten und Schwerpunkten, Scale & Impact sowie den Ausblick „Seit 2025“. Alle Inhalte sind direkt sichtbar; keine Klappelemente, Scan-Ebene oder „Deep Dive“-Bezeichnung mehr.
+- Seitentitel und Eyebrow heißen Track Record; der Rücklink zur früheren Übersicht entfällt. Die Inhaltsdatei `src/data/track-record.ts` bleibt unverändert. Der wiederhergestellte Hero-Positionierungstext und die „20+ Jahre“-Angaben auf der Startseite bleiben unverändert.
+- Die alte Route `/track-record/deep-dive` leitet mit `Astro.redirect` auf `/track-record` weiter. Im bestehenden statischen Build erzeugt Astro dafür eine HTML-Weiterleitung. Die alte Route wird aus der Sitemap entfernt; die Startseite verlinkt mit „Track Record ansehen“ auf die einzige Inhaltsseite.
+- Geändert: `src/pages/track-record.astro`, `src/pages/track-record/deep-dive.astro`, `src/components/TrackRecord.astro`, `astro.config.mjs` und dieses Protokoll. Nur lokal, kein Commit, Push oder Deployment ohne gesonderte Freigabe.

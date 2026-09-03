@@ -1,98 +1,79 @@
 ---
 import SubPageLayout from "../layouts/SubPageLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
 import { trackRecordPhases } from "../data/track-record";
 ---
 
 <SubPageLayout
   title="Track Record | Karsten Uhlig | CDO & VP E-Commerce"
-  description="Vier fachliche Aufbau- und Skalierungsphasen bei bonprix ab 2004: von Angebotssteuerung und Digital Marketing über CRM bis zur End-to-End-Steuerung des internationalen E-Commerce-Geschäfts."
+  description="Von Angebotssteuerung und Digital Marketing über CRM bis zur End-to-End-Steuerung eines internationalen E-Commerce-Geschäfts. Vier Aufbau- und Skalierungsphasen bei bonprix ab 2004."
 >
-<section class="track-record" id="track-record" aria-labelledby="track-record-title">
-  <div class="track-heading">
-    <div class="eyebrow">Track Record</div>
-    <div>
-      <div class="track-context">bonprix (Otto Group), 20+ Jahre</div>
-      <h1 class="track-lead" id="track-record-title">Von Angebotssteuerung und Digital Marketing über CRM bis zur End-to-End-Steuerung eines internationalen E-Commerce-Geschäfts.</h1>
-      <p class="track-intro">Meine Verantwortung ist mit dem digitalen Geschäft gewachsen: von Angebotssteuerung und bereits vorhandenem Digital Marketing über den internationalen Ausbau von Webshops und CRM bis zur durchgängigen Verantwortung für Customer Journey, Wachstum und digitale Produkte in mehr als 20 Märkten.</p>
-    </div>
+  <PageHeader
+    eyebrow="Track Record"
+    headline="Verantwortung entlang der digitalen Wertschöpfung"
+  />
+
+  <div class="tr-body">
+    <p>Meine Entwicklung bei bonprix verlief über mehrere fachlich unterschiedliche Aufbau- und Skalierungsphasen: von Angebotssteuerung und Digital Marketing über internationale Webshops, CRM, Customer Journey und Data bis zur durchgängigen kommerziellen Steuerung eines internationalen E-Commerce-Geschäfts. Gemeinsam war diesen Phasen, neue Fähigkeiten aufzubauen, wirtschaftlich belastbar zu machen und anschließend international zu skalieren.</p>
   </div>
 
-  <ol class="track-phases">
-    {
-      trackRecordPhases.map((phase) => (
-        <li>
-          <span class="track-period">{phase.period}</span>
-          <details class="track-phase">
-            <summary>
+  <section class="tr-facts" aria-label="Fachliche Entwicklung bei bonprix, 2004–2025">
+    <ol class="tr-arc">
+      {
+        trackRecordPhases.map((phase) => (
+          <li class="tr-arc-item">
+            <div class="tr-arc-head">
+              <div class="tr-arc-period">{phase.period}</div>
               <h2>{phase.title}</h2>
-              <span class="track-summary">{phase.summary}</span>
-              <span class="track-toggle">
-                <span class="track-open-label">Details ansehen</span>
-                <span class="track-close-label">Details schließen</span>
-                <svg class="track-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
-                  <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </span>
-            </summary>
-            <div class="track-detail">
-              <p>{phase.body}</p>
-              <div class="track-detail-block">
-                <h3>Schwerpunkte</h3>
-                <p>{phase.focus}</p>
-              </div>
-              {phase.scale && (
-                <div class="track-detail-block">
-                  <h3>Scale &amp; Impact</h3>
-                  <p>{phase.scale}</p>
-                </div>
-              )}
             </div>
-          </details>
-        </li>
-      ))
-    }
-  </ol>
+            <div class="tr-arc-body">
+              <p>{phase.body}</p>
+            </div>
+            <div class="tr-closing">
+              <h3>Schwerpunkte</h3>
+              <p>{phase.focus}</p>
+            </div>
+            {phase.scale && (
+              <div class="tr-closing">
+                <h3>Scale &amp; Impact</h3>
+                <p>{phase.scale}</p>
+              </div>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </section>
 
-  <a class="track-link" href="/track-record/deep-dive">Track Record im Deep Dive <span aria-hidden="true">→</span></a>
-</section>
+  <section class="tr-now" aria-labelledby="tr-now-title">
+    <div class="tr-arc-period">Seit 2025</div>
+    <h2 id="tr-now-title">Commercial Management mit AI weiterentwickeln</h2>
+    <p>Heute entwickle ich diesen Ansatz mit AI-gestützten Entscheidungsmodellen für Marketing und Digital Commerce weiter und teste die Ansätze unter anderem an eigenen Agentic-AI-Prototypen.</p>
+  </section>
 </SubPageLayout>
 
 <style>
-  .track-record { position: relative; }
-  .track-heading, .track-phases li { display: grid; grid-template-columns: .38fr minmax(0, 1fr); gap: 4rem; align-items: start; }
-  .eyebrow { margin: 0; color: var(--color-ink-3); font-size: 12px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; }
-  .track-context { margin-bottom: .75rem; color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
-  .track-lead { margin: 0 0 .9rem; color: var(--color-ink); font-size: 30px; font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
-  .track-intro { max-width: 720px; margin: 0; color: var(--color-body); font-size: 15px; line-height: 1.75; }
-  .track-phases { list-style: none; margin: 2.5rem 0 1.75rem; padding: 0; border-top: 1px solid var(--color-border-soft); }
-  .track-phases li { padding: 1.65rem 0 1.75rem; border-bottom: 1px solid var(--color-border-soft); }
-  .track-period { padding-top: .2rem; color: var(--color-amber); font-size: 13px; font-weight: 500; }
-  .track-phase { min-width: 0; }
-  .track-phase summary { list-style: none; cursor: pointer; }
-  .track-phase summary::-webkit-details-marker { display: none; }
-  .track-phase summary:focus-visible { outline: none; }
-  .track-phase summary:focus-visible .track-toggle { outline: 2px solid var(--color-amber); outline-offset: 4px; border-radius: 2px; }
-  .track-summary { display: block; color: var(--color-body); font-size: 15px; line-height: 1.7; }
-  .track-toggle { display: inline-flex; align-items: center; gap: .4rem; margin-top: .75rem; padding: .2rem 0; color: var(--color-amber); font-size: 13px; font-weight: 500; line-height: 1.5; }
-  .track-phase summary:hover .track-toggle { text-decoration: underline; text-underline-offset: .2em; }
-  .track-close-label { display: none; }
-  .track-phase[open] .track-open-label { display: none; }
-  .track-phase[open] .track-close-label { display: inline; }
-  .track-chevron { flex: none; }
-  .track-phase[open] .track-chevron { transform: rotate(180deg); }
-  .track-detail { margin-top: 1.5rem; }
-  .track-detail-block { margin-top: 1.25rem; }
-  .track-detail-block h3 { margin: 0 0 .4rem; color: var(--color-ink); font-size: 14px; font-weight: 500; line-height: 1.5; }
-  h2 { margin: 0 0 .65rem; color: var(--color-ink); font-size: 20px; font-weight: 500; letter-spacing: -.01em; line-height: 1.35; }
-  .track-phases p { margin: 0; color: var(--color-body); font-size: 15px; line-height: 1.7; }
-  .track-link { display: inline-flex; gap: .45rem; align-items: center; color: var(--color-amber); font-size: 15px; font-weight: 500; text-decoration: none; transition: opacity .2s ease; }
-  .track-link:hover { opacity: .7; }
+  .tr-body { max-width: 720px; }
+  .tr-body p { font-size: 17px; line-height: 1.75; color: var(--color-ink-2); margin: 0 0 1.5rem; }
+  .tr-body p:last-child { margin-bottom: 0; }
+  .tr-facts { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--color-border); }
+  .tr-arc { list-style: none; padding: 0; margin: 0; max-width: 760px; }
+  .tr-arc-item { position: relative; padding: 0 0 3rem 1.5rem; border-left: 1px solid var(--color-border); }
+  .tr-arc-item:last-child { padding-bottom: 0; }
+  .tr-arc-item::before { content: ""; position: absolute; left: -4px; top: .45em; width: 7px; height: 7px; border-radius: 50%; background: var(--color-amber); }
+  .tr-arc-head { margin-bottom: 1.5rem; }
+  .tr-arc-period { margin-bottom: .75rem; font-size: 13px; font-weight: 500; color: var(--color-amber); }
+  h2 { margin: 0 0 .75rem; font-size: 28px; font-weight: 500; letter-spacing: -.02em; line-height: 1.2; color: var(--color-ink); }
+  .tr-arc-body p, .tr-closing p, .tr-now p { margin: 0 0 1rem; font-size: 15px; line-height: 1.75; color: var(--color-body); }
+  .tr-arc-body > p:last-child, .tr-closing p, .tr-now p { margin-bottom: 0; }
+  .tr-closing h3 { margin: 0 0 .4rem; font-size: 14px; line-height: 1.5; font-weight: 500; color: var(--color-ink); }
+  .tr-closing { margin-top: 1.5rem; }
+  .tr-closing p { color: var(--color-ink-2); }
+  .tr-now { max-width: 760px; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
   @media (max-width: 768px) {
-    .track-heading, .track-phases li { grid-template-columns: 1fr; }
-    .track-heading { gap: 1.25rem; }
-    .track-lead { font-size: 26px; }
-    .track-phases li { gap: .65rem; padding: 1.35rem 0; }
-    .track-period { padding-top: 0; }
-    h2 { font-size: 18px; }
+    .tr-facts { margin-top: 3rem; padding-top: 2rem; }
+    .tr-arc-item { padding-left: 1.25rem; }
+    h2 { font-size: 24px; }
+    .tr-now { margin-top: 3rem; }
   }
 </style>
