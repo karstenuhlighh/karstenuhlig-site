@@ -52,6 +52,24 @@ const enablers = [
     }
   </div>
 
+  <figure class="signature-visual">
+    <a
+      href="/images/digital_commerce_wirksam_steuern.png"
+      target="_blank"
+      rel="noopener"
+      aria-label="Digital Commerce wirksam steuern: Grafik in Originalgröße öffnen (neuer Tab)"
+    >
+      <img
+        src="/images/digital_commerce_wirksam_steuern.png"
+        alt="Digital Commerce wirksam steuern: Commercial Management verbindet Verstehen, Entscheiden, Wirksam machen und Lernen mit acht Commercial Management Capabilities. Leadership & Transformation sowie Data, AI, Digital Product und Technology ermöglichen Wachstum, Kundenwert, Profitabilität und Wettbewerbsfähigkeit."
+        width="1672"
+        height="941"
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
+  </figure>
+
   <CommercialMotifGrid />
   <CommercialManagementLoop />
 </section>
@@ -163,6 +181,27 @@ const enablers = [
     color: var(--color-ink-3);
     font-size: 14px;
     line-height: 1.6;
+  }
+  .signature-visual {
+    width: 100%;
+    max-width: 1072px;
+    margin: 4.5rem auto 0;
+  }
+  .signature-visual a {
+    display: block;
+    cursor: zoom-in;
+  }
+  .signature-visual a:focus-visible {
+    outline: 3px solid var(--color-amber);
+    outline-offset: 4px;
+  }
+  .signature-visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  @media (max-width: 640px) {
+    .signature-visual { margin-top: 3.5rem; }
   }
   @media (max-width: 768px) {
     .commercial-pillar { padding-top: 3rem; }
