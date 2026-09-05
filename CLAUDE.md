@@ -9,7 +9,7 @@
 - Eyebrow: **Commercial / Digital Commerce Executive**. H1: **Digital Commerce skalieren. Strategie wirksam machen.**
 - Commercial Management / Digital Commerce dominiert. **Leadership & Transformation** und **Data, AI & Digital Product** (im Fließtext auch **Digital Products**) sind Enabler. Agentic AI ist Entwicklungs-/Anwendungsbereich, keine tragende Säule.
 - Keine öffentliche 4-Pillars-/3-gleichrangige-Felder-Logik oder Was/Wie/Womit-Architektur. `Repertoire`, `Managementansatz`, `Positionierung` nicht als öffentliche Navigations-/Architekturbegriffe verwenden.
-- Letzte Rolle extern: **VP E-Commerce & Digital Product**. Track Record = fachliche Phasen ab 2000; LinkedIn darf bewusst erst 2004 beginnen.
+- Letzte Rolle extern: **VP E-Commerce & Digital Product**. Sichtbarer Track Record = fachliche Phasen ab 2004 (Karsten, 02.09.2026), mit Angebotssteuerung und bereits vorhandenem Digital Marketing. Frühere Erfahrung bleibt Herkunft, keine eigene sichtbare Phase; der Gesamtumfang der Berufserfahrung wird nicht umdatiert.
 - Verbindliche Fakten (Karsten, 31.08.2026): **ca. 800 → 8.000 Styles**, **€1,6 Mrd.**; **Kundenwert und Retention als Steuergrößen verankert**, kein gemessener Retention-/CLV-Uplift. Abweichende Website-Zahlen sind keine neue Faktenautorität.
 - KA-OS-Referenzen: `context/positioning-pillars.md` und `strategy/website-concept.md` (nur aktueller Stand); `references/voice.md` und `references/schreibregeln.md` (Tonalität).
 
