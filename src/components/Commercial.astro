@@ -4,6 +4,13 @@ import CommercialMotifGrid from "./CommercialMotifGrid.astro";
 
 const enablers = [
   {
+    id: "digital-product-customer-experience",
+    href: "/digital-product-customer-experience",
+    title: "Digital Product & Customer Experience",
+    thesis: "Kommerzielle Richtung in wirksame Produkte und Journeys übersetzen.",
+    body: "Von Customer Problem und Product Lifecycle über dauerhafte Ownership und Portfolio-Steuerung bis zu Multi-Market Scale und belastbarer Product-Evidenz.",
+  },
+  {
     id: "leadership",
     href: "/leadership",
     title: "Leadership & Transformation",
@@ -137,7 +144,7 @@ const enablers = [
   }
   .enablers {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.25rem;
     margin-top: 1.25rem;
   }
@@ -209,5 +216,8 @@ const enablers = [
     .commercial-intro h2 { font-size: 29px; }
     .enablers { grid-template-columns: 1fr; gap: 1rem; }
     .enabler-card { min-height: 0; padding: 1.6rem 1.5rem; }
+  }
+  @media (min-width: 769px) and (max-width: 1080px) {
+    .enablers { grid-template-columns: 1fr; }
   }
 </style>

@@ -19,6 +19,7 @@ export default defineConfig({
           "/ueber-mich",
           "/track-record",
           "/commercial-management",
+          "/digital-product-customer-experience",
           "/data-ai-digital-product",
           "/leadership",
           "/schwerpunkte",
