@@ -1,21 +1,14 @@
 ---
 ---
 
-<nav class="nav">
+<nav class="nav" aria-label="Hauptnavigation">
   <div class="nav-left">
     <a href="/" class="nav-logo">Karsten Uhlig</a>
     <a href="/commercial-management" class="nav-link">Commercial</a>
-    <a href="/data-ai-digital-product" class="nav-link">Data, AI &amp; Decisioning</a>
-    <a href="/digital-product-customer-experience" class="nav-link">Digital Product &amp; CX</a>
+    <a href="/data-ai-digital-product" class="nav-link">Data, AI &amp; Product</a>
     <a href="/leadership" class="nav-link">Leadership</a>
-    <a href="/track-record" class="nav-link">Über mich</a>
-  </div>
-  <div class="nav-right">
-    <a
-      href="https://www.linkedin.com/in/karsten-uhlig/"
-      target="_blank"
-      rel="noopener noreferrer">LinkedIn</a
-    >
+    <a href="/track-record" class="nav-link">Track Record</a>
+    <a href="/ueber-mich" class="nav-link">Über mich</a>
   </div>
 </nav>
 
@@ -23,7 +16,6 @@
   .nav {
     position: relative;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin-bottom: 6rem;
   }
@@ -52,22 +44,10 @@
   .nav-link:hover {
     color: var(--color-ink);
   }
-  .nav-right {
-    display: flex;
-    gap: 2rem;
-    font-size: 14px;
-    color: var(--color-ink-2);
+  .nav-link:focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 4px;
   }
-  .nav-right a {
-    color: inherit;
-    text-decoration: none;
-    cursor: pointer;
-    transition: color 0.2s ease;
-  }
-  .nav-right a:hover {
-    color: var(--color-ink);
-  }
-
   @media (max-width: 640px) {
     .nav {
       align-items: flex-start;
@@ -83,8 +63,7 @@
       flex-basis: 100%;
       white-space: nowrap;
     }
-    .nav-link,
-    .nav-right {
+    .nav-link {
       font-size: 13px;
     }
   }

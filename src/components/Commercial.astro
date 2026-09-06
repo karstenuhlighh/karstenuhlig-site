@@ -1,8 +1,14 @@
 ---
 import CommercialManagementLoop from "./CommercialManagementLoop.astro";
-import CommercialMotifGrid from "./CommercialMotifGrid.astro";
 
 const enablers = [
+  {
+    id: "data-ai-digital-product",
+    href: "/data-ai-digital-product",
+    title: "Data, AI & Decisioning",
+    thesis: "Bessere Evidenz in bessere kommerzielle Entscheidungen übersetzen.",
+    body: "Von belastbaren Signalen und Customer State über Analytics und Predictive AI bis zur konkreten Action – als Execution Capability für Digital Commerce.",
+  },
   {
     id: "digital-product-customer-experience",
     href: "/digital-product-customer-experience",
@@ -15,16 +21,28 @@ const enablers = [
     href: "/leadership",
     title: "Leadership & Transformation",
     thesis: "Strategie in Organisation und Umsetzung übersetzen.",
-    body: "Richtung geben, Verantwortung klären und Teams auch gegen Widerstand durch Veränderung führen. Vorangestellt ist ein Prinzip: erst die tatsächliche Ursache diagnostizieren, dann das passende Führungsinstrument wählen.",
-  },
-  {
-    id: "data-ai-digital-product",
-    href: "/data-ai-digital-product",
-    title: "Data, AI & Decisioning",
-    thesis: "Bessere Evidenz in bessere kommerzielle Entscheidungen übersetzen.",
-    body: "Von belastbaren Signalen und Customer State über Analytics und Predictive AI bis zur konkreten Action — als Execution Capability für Digital Commerce.",
+    body: "Richtung geben, Verantwortung klären und die Organisation auf die entscheidenden Prioritäten ausrichten. Erst Ursache und Entscheidung klären, dann das passende Führungs- und Veränderungsinstrument wählen.",
   },
 ];
+
+const defaultVisualLanguage = Astro.currentLocale?.toLowerCase().startsWith("en") || Astro.url.pathname === "/en" || Astro.url.pathname.startsWith("/en/")
+  ? "en"
+  : "de";
+
+const keyVisuals = {
+  de: {
+    src: "/images/digital_commerce_wirksam_steuern.png?v=20260906",
+    alt: "Digital Commerce wirksam steuern: Commercial Management verbindet Verstehen, Entscheiden, Wirksam machen und Lernen mit acht Commercial Management Capabilities. Data, AI & Decisioning, Digital Product & CX sowie Leadership & Transformation ermöglichen Wachstum, Kundenwert, Profitabilität und Wettbewerbsfähigkeit.",
+    linkLabel: "Digital Commerce wirksam steuern: Grafik in Originalgröße öffnen (neuer Tab)",
+  },
+  en: {
+    src: "/images/steering_digital_commerce_effectively.png?v=20260906",
+    alt: "Steering Digital Commerce Effectively: Commercial Management connects Understand, Decide, Drive Impact and Learn with eight Commercial Management capabilities. Data, AI & Decisioning, Digital Product & CX and Leadership & Transformation enable growth, customer value, profitability and competitiveness.",
+    linkLabel: "Steering Digital Commerce Effectively: open graphic at original size (new tab)",
+  },
+};
+
+const initialKeyVisual = keyVisuals[defaultVisualLanguage];
 ---
 
 <section class="commercial-pillar" id="commercial-management">
@@ -44,31 +62,62 @@ const enablers = [
       enablers.map((enabler) => enabler.href ? (
         <a class="enabler-card enabler-card-link" id={enabler.id} href={enabler.href} aria-label={`${enabler.title} vertiefen`}>
           <span class="enabler-marker" aria-hidden="true"></span>
-          <h2>{enabler.title}</h2>
-          <p class="enabler-thesis">{enabler.thesis}</p>
-          <p class="enabler-body">{enabler.body}</p>
+          <div class="enabler-copy">
+            <div class="enabler-heading">
+              <h2>{enabler.title}</h2>
+              <p class="enabler-thesis">{enabler.thesis}</p>
+            </div>
+            <p class="enabler-body">{enabler.body}</p>
+          </div>
         </a>
       ) : (
         <article class="enabler-card" id={enabler.id}>
           <span class="enabler-marker" aria-hidden="true"></span>
-          <h2>{enabler.title}</h2>
-          <p class="enabler-thesis">{enabler.thesis}</p>
-          <p class="enabler-body">{enabler.body}</p>
+          <div class="enabler-copy">
+            <div class="enabler-heading">
+              <h2>{enabler.title}</h2>
+              <p class="enabler-thesis">{enabler.thesis}</p>
+            </div>
+            <p class="enabler-body">{enabler.body}</p>
+          </div>
         </article>
       ))
     }
   </div>
 
-  <figure class="signature-visual">
+  <figure
+    class="signature-visual"
+    data-key-visual
+    data-default-language={defaultVisualLanguage}
+  >
+    <div class="signature-visual-switch" role="group" aria-label={defaultVisualLanguage === "en" ? "Key visual language" : "Sprache des Key Visuals"}>
+      <button
+        type="button"
+        data-visual-language="de"
+        data-visual-src={keyVisuals.de.src}
+        data-visual-alt={keyVisuals.de.alt}
+        data-visual-link-label={keyVisuals.de.linkLabel}
+        aria-pressed={defaultVisualLanguage === "de" ? "true" : "false"}
+      >DE</button>
+      <span aria-hidden="true">|</span>
+      <button
+        type="button"
+        data-visual-language="en"
+        data-visual-src={keyVisuals.en.src}
+        data-visual-alt={keyVisuals.en.alt}
+        data-visual-link-label={keyVisuals.en.linkLabel}
+        aria-pressed={defaultVisualLanguage === "en" ? "true" : "false"}
+      >EN</button>
+    </div>
     <a
-      href="/images/digital_commerce_wirksam_steuern.png"
+      href={initialKeyVisual.src}
       target="_blank"
       rel="noopener"
-      aria-label="Digital Commerce wirksam steuern: Grafik in Originalgröße öffnen (neuer Tab)"
+      aria-label={initialKeyVisual.linkLabel}
     >
       <img
-        src="/images/digital_commerce_wirksam_steuern.png"
-        alt="Digital Commerce wirksam steuern: Commercial Management verbindet Verstehen, Entscheiden, Wirksam machen und Lernen mit acht Commercial Management Capabilities. Leadership & Transformation sowie Data, AI, Digital Product und Technology ermöglichen Wachstum, Kundenwert, Profitabilität und Wettbewerbsfähigkeit."
+        src={initialKeyVisual.src}
+        alt={initialKeyVisual.alt}
         width="1672"
         height="941"
         loading="lazy"
@@ -77,7 +126,6 @@ const enablers = [
     </a>
   </figure>
 
-  <CommercialMotifGrid />
   <CommercialManagementLoop />
 </section>
 
@@ -90,7 +138,7 @@ const enablers = [
     position: relative;
     display: block;
     overflow: hidden;
-    padding: 3rem 3.25rem 3.2rem;
+    padding: 2.4rem 2.8rem 2.6rem;
     color: inherit;
     text-decoration: none;
     background: linear-gradient(135deg, rgba(255,255,255,.78) 0%, rgba(232,240,248,.62) 62%, rgba(255,255,255,.42) 100%);
@@ -115,7 +163,7 @@ const enablers = [
   .section-kicker {
     position: relative;
     z-index: 1;
-    margin-bottom: 1rem;
+    margin-bottom: .75rem;
     color: var(--color-amber);
     font-size: 11px;
     font-weight: 500;
@@ -126,9 +174,9 @@ const enablers = [
     position: relative;
     z-index: 1;
     max-width: 820px;
-    margin: 0 0 .9rem;
+    margin: 0 0 .7rem;
     color: var(--color-ink);
-    font-size: 40px;
+    font-size: 37px;
     font-weight: 500;
     letter-spacing: -.03em;
     line-height: 1.12;
@@ -136,23 +184,27 @@ const enablers = [
   .commercial-intro p {
     position: relative;
     z-index: 1;
-    max-width: 780px;
+    max-width: 820px;
     margin: 0;
     color: var(--color-ink-2);
-    font-size: 17px;
-    line-height: 1.7;
+    font-size: 16px;
+    line-height: 1.62;
   }
   .enablers {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
-    margin-top: 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .9rem;
+    margin-top: .9rem;
+  }
+  .enabler-card#leadership {
+    grid-column: 1 / -1;
+    padding: 1.45rem 2.1rem 1.55rem;
   }
   .enabler-card {
     position: relative;
     overflow: hidden;
-    min-height: 170px;
-    padding: 2rem 2.15rem;
+    min-height: 0;
+    padding: 1.55rem 1.75rem 1.65rem;
     background: rgba(255,255,255,.54);
     border: 1px solid var(--color-border-soft);
     border-top: 2px solid rgba(30,60,100,.34);
@@ -162,37 +214,100 @@ const enablers = [
   .enabler-card-link:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 4px; }
   .enabler-marker {
     display: block;
-    width: 2.5rem;
+    width: 2.15rem;
     height: 2px;
-    margin-bottom: 1.35rem;
+    margin-bottom: 1rem;
     background: var(--color-amber);
   }
   .enabler-card h2 {
-    margin: 0 0 .65rem;
+    margin: 0 0 .45rem;
     color: var(--color-ink);
-    font-size: 23px;
+    font-size: 21px;
     font-weight: 500;
     letter-spacing: -.02em;
     line-height: 1.2;
   }
   .enabler-thesis {
     max-width: 470px;
-    margin: 0 0 0.85rem;
+    margin: 0 0 .65rem;
     color: var(--color-ink-2);
-    font-size: 16px;
-    line-height: 1.55;
+    font-size: 15px;
+    line-height: 1.45;
   }
   .enabler-body {
     max-width: 470px;
     margin: 0;
     color: var(--color-ink-3);
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  .enabler-card#leadership .enabler-marker {
+    margin-right: auto;
+    margin-bottom: 1rem;
+    margin-left: auto;
+  }
+  .enabler-card#leadership .enabler-copy {
+    display: grid;
+    grid-template-columns: minmax(250px, .9fr) minmax(0, 1.1fr);
+    gap: 2.4rem;
+    align-items: center;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .enabler-card#leadership .enabler-heading {
+    text-align: center;
+  }
+  .enabler-card#leadership h2 {
+    font-size: 24px;
+  }
+  .enabler-card#leadership .enabler-thesis {
+    max-width: 390px;
+    margin: 0 auto;
+    font-size: 15.5px;
+  }
+  .enabler-card#leadership .enabler-body {
+    max-width: 560px;
+    padding-left: 2.4rem;
+    border-left: 1px solid var(--color-border-soft);
   }
   .signature-visual {
     width: 100%;
     max-width: 1072px;
     margin: 4.5rem auto 0;
+  }
+  .signature-visual-switch {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: .4rem;
+    margin: 0 0 .65rem;
+    color: var(--color-ink-3);
+    font-size: 11px;
+    letter-spacing: .08em;
+  }
+  .signature-visual-switch button {
+    appearance: none;
+    padding: .2rem .15rem;
+    color: inherit;
+    font: inherit;
+    font-weight: 500;
+    letter-spacing: inherit;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+  .signature-visual-switch button:hover {
+    color: var(--color-ink);
+  }
+  .signature-visual-switch button[aria-pressed="true"] {
+    color: var(--color-amber);
+  }
+  .signature-visual-switch button:focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 3px;
+  }
+  .signature-visual-switch span {
+    color: var(--color-border);
   }
   .signature-visual a {
     display: block;
@@ -212,12 +327,60 @@ const enablers = [
   }
   @media (max-width: 768px) {
     .commercial-pillar { padding-top: 3rem; }
-    .commercial-intro { padding: 1.9rem 1.5rem 2.1rem; }
-    .commercial-intro h2 { font-size: 29px; }
-    .enablers { grid-template-columns: 1fr; gap: 1rem; }
-    .enabler-card { min-height: 0; padding: 1.6rem 1.5rem; }
-  }
-  @media (min-width: 769px) and (max-width: 1080px) {
-    .enablers { grid-template-columns: 1fr; }
+    .commercial-intro { padding: 1.65rem 1.5rem 1.8rem; }
+    .commercial-intro h2 { font-size: 28px; }
+    .commercial-intro p { font-size: 15px; line-height: 1.58; }
+    .enablers { grid-template-columns: 1fr; gap: .8rem; }
+    .enabler-card { padding: 1.4rem 1.5rem 1.5rem; }
+    .enabler-card#leadership { padding: 1.45rem 1.5rem 1.55rem; }
+    .enabler-card#leadership .enabler-copy {
+      grid-template-columns: 1fr;
+      gap: .7rem;
+    }
+    .enabler-card#leadership .enabler-body {
+      margin: 0 auto;
+      padding-left: 0;
+      text-align: center;
+      border-left: 0;
+    }
   }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-key-visual]").forEach((visual) => {
+    const image = visual.querySelector<HTMLImageElement>("img");
+    const link = visual.querySelector<HTMLAnchorElement>("a");
+    const buttons = Array.from(visual.querySelectorAll<HTMLButtonElement>("[data-visual-language]"));
+
+    if (!image || !link || buttons.length === 0) return;
+
+    const setLanguage = (language: "de" | "en") => {
+      const activeButton = buttons.find((button) => button.dataset.visualLanguage === language);
+      if (!activeButton) return;
+
+      const { visualSrc, visualAlt, visualLinkLabel } = activeButton.dataset;
+      if (!visualSrc || !visualAlt || !visualLinkLabel) return;
+
+      image.src = visualSrc;
+      image.alt = visualAlt;
+      link.href = visualSrc;
+      link.setAttribute("aria-label", visualLinkLabel);
+
+      buttons.forEach((button) => {
+        button.setAttribute("aria-pressed", button === activeButton ? "true" : "false");
+      });
+    };
+
+    const pageLanguage = document.documentElement.lang.toLowerCase().startsWith("en")
+      ? "en"
+      : visual.dataset.defaultLanguage === "en" ? "en" : "de";
+
+    setLanguage(pageLanguage);
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setLanguage(button.dataset.visualLanguage === "en" ? "en" : "de");
+      });
+    });
+  });
+</script>

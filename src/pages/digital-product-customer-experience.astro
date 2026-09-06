@@ -39,20 +39,6 @@ const enterpriseProofs = [
   },
 ];
 
-const interfaces = [
-  {
-    title: "Commercial Management",
-    body: "setzt wirtschaftliche Richtung, Kunden-, Wachstums- und Ressourcenprioritäten.",
-  },
-  {
-    title: "Data, AI & Decisioning",
-    body: "schafft Signale, Modelle und Entscheidungsmechanismen, die Product nutzt und mit Anforderungen versorgt.",
-  },
-  {
-    title: "Leadership & Transformation",
-    body: "schafft Führung, Veränderungsfähigkeit und Zusammenarbeit über Team- und Bereichsgrenzen hinweg.",
-  },
-];
 ---
 
 <SubPageLayout
@@ -117,36 +103,6 @@ const interfaces = [
       </div>
     </section>
 
-    <section class="interfaces-section" aria-labelledby="interfaces-title">
-      <div class="section-heading">
-        <div class="section-kicker">Klare Interfaces</div>
-        <div>
-          <h2 id="interfaces-title">Product verbindet — ohne die anderen Capabilities zu duplizieren.</h2>
-          <p>Die Schnittstellen sind bewusst klar, damit Digital Product seine kommerzielle Funktion behält und nicht zur neuen Dachpositionierung wird.</p>
-        </div>
-      </div>
-      <div class="interfaces-grid">
-        {interfaces.map((item) => (
-          <article class="interface-card">
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
-          </article>
-        ))}
-      </div>
-      <div class="technology-boundary">
-        <strong>Technology bleibt bewusst geschlossen.</strong>
-        <p>Technische Entscheidungen erscheinen nur dort, wo sie Customer Experience, Product Economics, Delivery Speed, Resilienz oder Scale wesentlich verändern. Sie werden nicht als eigenes Capability-Feld geöffnet.</p>
-      </div>
-    </section>
-
-    <section class="commercial-return" aria-labelledby="commercial-return-title">
-      <div class="section-kicker">Commercial first</div>
-      <div>
-        <h2 id="commercial-return-title">Product ist kein Selbstzweck.</h2>
-        <p>Der Ausgangspunkt bleibt die kommerzielle Frage: Welches Kunden-, Wachstums- oder Ressourcenproblem muss besser gelöst werden?</p>
-        <a href="/commercial-management">Zurück zu Commercial Management <span aria-hidden="true">→</span></a>
-      </div>
-    </section>
   </article>
 </SubPageLayout>
 
@@ -160,11 +116,11 @@ const interfaces = [
   .hero-subheadline { max-width: 880px; margin: 1.55rem 0 0; color: var(--color-ink); font-size: clamp(22px, 2.7vw, 34px); font-weight: 400; letter-spacing: -.025em; line-height: 1.25; }
   .hero-copy { max-width: 840px; margin: 1.55rem 0 0; color: var(--color-body); font-size: 16px; line-height: 1.8; }
 
-  .logic-section, .principles-section, .proof-section, .interfaces-section { padding: 5.5rem 0; border-top: 1px solid var(--color-border); }
-  .section-heading, .commercial-return { display: grid; grid-template-columns: .34fr 1fr; gap: 4rem; align-items: start; }
+  .logic-section, .principles-section, .proof-section { padding: 5.5rem 0; border-top: 1px solid var(--color-border); }
+  .section-heading { display: grid; grid-template-columns: .34fr 1fr; gap: 4rem; align-items: start; }
   .section-heading { margin-bottom: 2.75rem; }
-  .section-heading h2, .commercial-return h2 { max-width: 820px; margin: 0; color: var(--color-ink); font-size: 30px; font-weight: 500; letter-spacing: -.03em; line-height: 1.2; }
-  .section-heading p, .commercial-return p { max-width: 800px; margin: .85rem 0 0; color: var(--color-body); font-size: 15px; line-height: 1.75; }
+  .section-heading h2 { max-width: 820px; margin: 0; color: var(--color-ink); font-size: 30px; font-weight: 500; letter-spacing: -.03em; line-height: 1.2; }
+  .section-heading p { max-width: 800px; margin: .85rem 0 0; color: var(--color-body); font-size: 15px; line-height: 1.75; }
   .logic-heading h2 { font-size: clamp(34px, 4vw, 52px); letter-spacing: -.045em; line-height: 1.08; }
   .logic-heading p { color: var(--color-ink-2); font-size: 18px; line-height: 1.55; }
 
@@ -181,19 +137,9 @@ const interfaces = [
   .principles-grid strong { color: var(--color-ink); font-size: 14px; font-weight: 500; line-height: 1.5; }
 
   .proof-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-  .proof-card, .interface-card { min-width: 0; padding: 1.55rem; background: rgba(255,255,255,.54); border: 1px solid var(--color-border-soft); border-top: 2px solid rgba(30,60,100,.34); }
-  .proof-card h3, .interface-card h3 { margin: 0; color: var(--color-ink); font-size: 17px; font-weight: 500; letter-spacing: -.015em; line-height: 1.35; }
-  .proof-card p, .interface-card p { margin: .75rem 0 0; color: var(--color-body); font-size: 13px; line-height: 1.65; }
-
-  .interfaces-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-  .technology-boundary { margin-top: 1rem; padding: 1.6rem; background: rgba(255,255,255,.38); border: 1px solid var(--color-border-soft); border-left: 3px solid var(--color-amber); }
-  .technology-boundary strong { color: var(--color-ink); font-size: 15px; font-weight: 500; }
-  .technology-boundary p { max-width: 880px; margin: .45rem 0 0; color: var(--color-body); font-size: 14px; line-height: 1.7; }
-
-  .commercial-return { margin-top: 1rem; padding: 5rem 0 1rem; border-top: 1px solid var(--color-border); }
-  .commercial-return a { display: inline-flex; gap: .45rem; align-items: center; margin-top: .5rem; color: var(--color-amber); font-size: 14px; font-weight: 500; text-decoration: none; }
-  .commercial-return a:hover { opacity: .72; }
-  .commercial-return a:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 4px; }
+  .proof-card { min-width: 0; padding: 1.55rem; background: rgba(255,255,255,.54); border: 1px solid var(--color-border-soft); border-top: 2px solid rgba(30,60,100,.34); }
+  .proof-card h3 { margin: 0; color: var(--color-ink); font-size: 17px; font-weight: 500; letter-spacing: -.015em; line-height: 1.35; }
+  .proof-card p { margin: .75rem 0 0; color: var(--color-body); font-size: 13px; line-height: 1.65; }
 
   @media (max-width: 1120px) {
     .principles-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -204,7 +150,7 @@ const interfaces = [
   }
 
   @media (max-width: 900px) {
-    .proof-grid, .interfaces-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 
   @media (max-width: 760px) {
@@ -213,10 +159,10 @@ const interfaces = [
     h1 { font-size: 43px; }
     .hero-subheadline { font-size: 24px; }
     .hero-copy { font-size: 15px; }
-    .logic-section, .principles-section, .proof-section, .interfaces-section { padding: 4rem 0; }
-    .section-heading, .commercial-return { grid-template-columns: 1fr; gap: 1rem; }
+    .logic-section, .principles-section, .proof-section { padding: 4rem 0; }
+    .section-heading { grid-template-columns: 1fr; gap: 1rem; }
     .section-heading { margin-bottom: 2rem; }
-    .section-heading h2, .commercial-return h2 { font-size: 26px; }
+    .section-heading h2 { font-size: 26px; }
     .logic-heading h2 { font-size: 34px; }
     .logic-heading p { font-size: 16px; line-height: 1.65; }
     .product-flow { grid-template-columns: 1fr; gap: 0; margin-top: 2.75rem; }
@@ -225,9 +171,8 @@ const interfaces = [
     .product-flow li:not(:last-child)::before { top: auto; right: auto; bottom: 7px; left: 25px; width: 7px; height: 7px; }
     .flow-node { width: 58px; height: 58px; }
     .product-flow strong { margin: 0; font-size: 17px; }
-    .principles-grid, .proof-grid, .interfaces-grid { grid-template-columns: 1fr; }
+    .principles-grid, .proof-grid { grid-template-columns: 1fr; }
     .principles-grid li { min-height: 0; }
-    .commercial-return { padding-top: 4rem; }
   }
 
   @media (max-width: 430px) {
