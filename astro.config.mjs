@@ -9,14 +9,13 @@ export default defineConfig({
   site: "https://karstenuhlig.de",
   integrations: [
     sitemap({
-      // Geprüfte veröffentlichte Seiten, Stand 31.08.2026.
+      // Geprüfte veröffentlichte Seiten, Stand 07.09.2026 (Seitenbestand-Bereinigung: /ueber-mich entfernt).
       // Neue Seiten erst nach Inhaltsprüfung ergänzen; Stubs bleiben ausgeschlossen.
       // Collection-Entwürfe (draft: true) erzeugen bereits keine Detailroute.
       filter: (page) => {
         const path = new URL(page).pathname.replace(/\/$/, "") || "/";
         return [
           "/",
-          "/ueber-mich",
           "/track-record",
           "/commercial-management",
           "/digital-product-customer-experience",
