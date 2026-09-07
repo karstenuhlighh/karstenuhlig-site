@@ -17,7 +17,6 @@ const ui = isEnglish ? {
   close: "Close details",
   about: "What it is about",
   focus: "What I pay attention to",
-  tensions: "Tensions",
 } : {
   kicker: "Die 7 Führungsfragen",
   heading: "Führung als wiederkehrendes Diagnose- und Entscheidungshandwerk, nicht als Bauchgefühl.",
@@ -26,7 +25,6 @@ const ui = isEnglish ? {
   close: "Vertiefung schließen",
   about: "Worum es geht",
   focus: "Worauf ich achte",
-  tensions: "Spannungsfelder",
 };
 
 const panelData = classes.map((item) => ({
@@ -35,7 +33,6 @@ const panelData = classes.map((item) => ({
   managementQuestion: item.managementQuestion,
   about: item.about,
   focus: item.focus,
-  tensions: item.tensions,
   tags: item.tags,
 }));
 
@@ -113,10 +110,6 @@ const anchorByNumber: Record<string, string> = {
       <ul id="field-dialog-focus"></ul>
     </section>
 
-    <section class="drawer-section" aria-labelledby="field-dialog-tensions-label">
-      <h3 id="field-dialog-tensions-label">{ui.tensions}</h3>
-      <p id="field-dialog-tensions"></p>
-    </section>
   </div>
 </dialog>
 
@@ -149,7 +142,6 @@ const anchorByNumber: Record<string, string> = {
     setText("#field-dialog-title", field.title);
     setText("#field-dialog-question", field.managementQuestion);
     setText("#field-dialog-about", field.about);
-    setText("#field-dialog-tensions", field.tensions);
 
     const tags = fieldDialog.querySelector<HTMLElement>("#field-dialog-tags");
     tags?.replaceChildren(...field.tags.map((tag: string) => {
