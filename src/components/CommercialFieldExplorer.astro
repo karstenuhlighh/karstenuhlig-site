@@ -9,7 +9,6 @@ const panelData = commercialFields.map((field) => ({
   focus: field.focus,
   tensions: field.tensions,
   tags: field.tags,
-  href: field.href,
 }));
 
 const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
@@ -84,10 +83,6 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
       <h3 id="field-dialog-tensions-label">Typische Entscheidungen und Spannungen</h3>
       <p id="field-dialog-tensions"></p>
     </section>
-
-    <a class="drawer-cta" id="field-dialog-link" href="/commercial-management">
-      Detailseite öffnen <span aria-hidden="true">→</span>
-    </a>
   </div>
 </dialog>
 
@@ -135,9 +130,6 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
       item.textContent = text;
       return item;
     }));
-
-    const link = fieldDialog.querySelector<HTMLAnchorElement>("#field-dialog-link");
-    if (link && field.href) link.href = field.href;
 
     fieldDialog.showModal();
     document.body.classList.add("commercial-dialog-open");
@@ -202,7 +194,7 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
   .drawer-number { color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
   .drawer-close { display: inline-grid; width: 42px; height: 42px; place-items: center; padding: 0; color: var(--color-ink-2); font: inherit; font-size: 25px; line-height: 1; cursor: pointer; background: rgba(255,255,255,.7); border: 1px solid var(--color-border-soft); transition: color .2s ease, border-color .2s ease; }
   .drawer-close:hover { color: var(--color-amber); border-color: rgba(180,83,9,.35); }
-  .drawer-close:focus-visible, .drawer-cta:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 3px; }
+  .drawer-close:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 3px; }
   .drawer > h2 { margin: 0 0 2rem; color: var(--color-ink); font-size: 34px; font-weight: 500; letter-spacing: -.03em; line-height: 1.12; }
   .drawer-section { padding: 1.45rem 0; border-top: 1px solid var(--color-border-soft); }
   .drawer-section h3 { margin: 0 0 .7rem; color: var(--color-ink-3); font-size: 10.5px; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; }
@@ -211,7 +203,6 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
   .drawer-section ul { display: grid; gap: .65rem; list-style: none; margin: 0; padding: 0; }
   .drawer-section :global(li) { position: relative; padding-left: 1.15rem; color: var(--color-body); font-size: 13.5px; line-height: 1.6; }
   .drawer-section :global(li)::before { content: ""; position: absolute; top: .62rem; left: 0; width: 5px; height: 5px; background: var(--color-amber); }
-  .drawer-cta { display: inline-flex; gap: .5rem; align-items: center; margin-top: 1.5rem; padding-bottom: .2rem; color: var(--color-amber); font-size: 15px; font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(180,83,9,.35); }
   :global(body.commercial-dialog-open) { overflow: hidden; }
 
   @media (max-width: 1120px) {

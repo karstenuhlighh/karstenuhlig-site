@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/commercial-growth/:path*",
+      "destination": "/commercial-management",
+      "statusCode": 301
+    }
+  ]
+}

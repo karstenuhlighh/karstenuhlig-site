@@ -24,7 +24,7 @@
 
 - **Vor Änderungen Render und tatsächliche Imports prüfen.** Vorhandene Dateinamen allein sind keine aktive Komponenten- oder Navigationsvorgabe.
 - `src/pages/index.astro` nutzt `Layout` + `Hero` mit `Commercial`, `MarketOffers` (sichtbar: Executive-Spannungsfelder), `TrackRecord`, `NowSection` (Thesen und Praxistests). `Commercial` nutzt `CommercialMotifGrid` + `CommercialManagementLoop`; keine Pillars-/Stats-Vorgabe.
-- Mehrseitige Website: u. a. `track-record` (inkl. Redirects von `ueber-mich` und `track-record/deep-dive`), `commercial-growth/[slug]`, Legal sowie bestehende Themen-/Notizseiten. Technische Altpfade sind keine öffentliche Hierarchie.
+- Mehrseitige Website: u. a. `track-record` (inkl. Redirects von `ueber-mich` und `track-record/deep-dive`), Legal sowie bestehende Themen-/Notizseiten. Technische Altpfade sind keine öffentliche Hierarchie.
 - `src/content/` enthält **befüllte** Collections `agentic-ai`, `e-commerce-marketing`, `martech` (Schema: `src/content.config.ts`). Seiteninhalte liegen auch direkt in Astro-Komponenten; Collection-Namen definieren keine Positionierungssäulen.
 - Layouts: `src/layouts/`. Styles: `src/styles/global.css` und tatsächlich verwendete Komponenten, nicht alte Farb-/Layoutbeschreibungen.
 

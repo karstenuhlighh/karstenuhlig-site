@@ -1,5 +1,5 @@
 // Single source of truth für die acht Commercial-Management-Felder, geteilt
-// zwischen Startseite, Landingpage, Drawer und den bestehenden Detailseiten.
+// zwischen Startseite, Landingpage und Drawer.
 //
 // Fachliche Quelle: KA-OS capabilities/commercial-management/. Reihenfolge,
 // Texte und Freigabestatus: KA-OS market-activation/website-commercial-fliesstexte.md.
@@ -285,7 +285,6 @@ export const commercialFields = commercialQuestions
   .map((question) => ({
     ...question.field,
     detailTitle: question.title,
-    href: question.slug ? `/commercial-growth/${question.slug}` : null,
     about: question.body?.[0] ?? question.satz,
   }))
   .sort((a, b) => Number(a.number) - Number(b.number));
