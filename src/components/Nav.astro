@@ -4,12 +4,143 @@
 <nav class="nav" aria-label="Hauptnavigation">
   <div class="nav-left">
     <a href="/" class="nav-logo">Karsten Uhlig</a>
-    <a href="/commercial-management" class="nav-link">Commercial</a>
-    <a href="/data-ai-digital-product" class="nav-link">Data, AI &amp; Product</a>
-    <a href="/leadership" class="nav-link">Leadership</a>
-    <a href="/track-record" class="nav-link">Über mich</a>
+    <div class="nav-items">
+      <a href="/commercial-management" class="nav-link">Commercial</a>
+
+      <div class="nav-menu" data-nav-menu>
+        <button
+          class="nav-link nav-trigger"
+          type="button"
+          aria-expanded="false"
+          aria-controls="data-ai-product-navigation"
+          aria-haspopup="true"
+          data-nav-trigger
+        >
+          <span>Data, AI &amp; Product</span>
+          <svg class="nav-chevron" viewBox="0 0 10 6" aria-hidden="true">
+            <path d="m1 1 4 4 4-4" />
+          </svg>
+        </button>
+
+        <ul
+          class="nav-dropdown"
+          id="data-ai-product-navigation"
+          aria-label="Data, AI und Product"
+          data-nav-dropdown
+          hidden
+        >
+          <li>
+            <a class="nav-dropdown-link" href="/data-ai-digital-product">
+              <span class="nav-dropdown-title">Data, AI &amp; Decisioning</span>
+              <span class="nav-dropdown-subline">Bessere kommerzielle Entscheidungen</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-dropdown-link" href="/digital-product-customer-experience">
+              <span class="nav-dropdown-title">Digital Product &amp; Customer Experience</span>
+              <span class="nav-dropdown-subline">Produkte und Journeys wirksam gestalten</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <a href="/leadership" class="nav-link">Leadership</a>
+      <a href="/track-record" class="nav-link">Über mich</a>
+    </div>
   </div>
 </nav>
+
+<script>
+  const hoverQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+  document.querySelectorAll<HTMLElement>("[data-nav-menu]").forEach((menu) => {
+    const trigger = menu.querySelector<HTMLButtonElement>("[data-nav-trigger]");
+    const dropdown = menu.querySelector<HTMLElement>("[data-nav-dropdown]");
+    const dropdownLinks = Array.from(menu.querySelectorAll<HTMLAnchorElement>(".nav-dropdown-link"));
+
+    if (!trigger || !dropdown) return;
+
+    let hoverOpened = false;
+    let closeTimer: number | undefined;
+
+    const isOpen = () => trigger.getAttribute("aria-expanded") === "true";
+
+    const openMenu = (options: { focus?: "first" | "last"; viaHover?: boolean } = {}) => {
+      window.clearTimeout(closeTimer);
+      dropdown.hidden = false;
+      trigger.setAttribute("aria-expanded", "true");
+      menu.classList.add("is-open");
+      hoverOpened = options.viaHover ?? false;
+
+      if (options.focus) {
+        const target = options.focus === "first" ? dropdownLinks[0] : dropdownLinks.at(-1);
+        target?.focus();
+      }
+    };
+
+    const closeMenu = (returnFocus = false) => {
+      window.clearTimeout(closeTimer);
+      dropdown.hidden = true;
+      trigger.setAttribute("aria-expanded", "false");
+      menu.classList.remove("is-open");
+      hoverOpened = false;
+      if (returnFocus) trigger.focus();
+    };
+
+    trigger.addEventListener("click", () => {
+      if (isOpen() && !hoverOpened) {
+        closeMenu();
+        return;
+      }
+
+      openMenu();
+    });
+
+    menu.addEventListener("mouseenter", () => {
+      if (!hoverQuery.matches || isOpen()) return;
+      openMenu({ viaHover: true });
+    });
+
+    menu.addEventListener("mouseleave", () => {
+      if (!hoverQuery.matches || !hoverOpened) return;
+      closeTimer = window.setTimeout(() => {
+        if (!menu.matches(":focus-within")) closeMenu();
+      }, 100);
+    });
+
+    menu.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && isOpen()) {
+        event.preventDefault();
+        closeMenu(true);
+        return;
+      }
+
+      if (event.target === trigger && (event.key === "ArrowDown" || event.key === "ArrowUp")) {
+        event.preventDefault();
+        openMenu({ focus: event.key === "ArrowDown" ? "first" : "last" });
+        return;
+      }
+
+      const linkIndex = dropdownLinks.indexOf(event.target as HTMLAnchorElement);
+      if (linkIndex < 0 || (event.key !== "ArrowDown" && event.key !== "ArrowUp")) return;
+
+      event.preventDefault();
+      const direction = event.key === "ArrowDown" ? 1 : -1;
+      const nextIndex = (linkIndex + direction + dropdownLinks.length) % dropdownLinks.length;
+      dropdownLinks[nextIndex]?.focus();
+    });
+
+    menu.addEventListener("focusout", () => {
+      window.setTimeout(() => {
+        if (!menu.contains(document.activeElement)) closeMenu();
+      });
+    });
+
+    document.addEventListener("pointerdown", (event) => {
+      if (isOpen() && !menu.contains(event.target as Node)) closeMenu();
+    });
+  });
+</script>
 
 <style>
   .nav {
@@ -18,12 +149,20 @@
     align-items: center;
     margin-bottom: 6rem;
   }
-  .nav-left {
+  .nav-left,
+  .nav-items {
     display: flex;
     align-items: center;
+  }
+  .nav-left {
+    gap: 1.1rem;
+  }
+  .nav-items {
+    flex-wrap: wrap;
     gap: 1.1rem;
   }
   .nav-logo {
+    flex: 0 0 auto;
     font-weight: 500;
     font-size: 15px;
     letter-spacing: -0.01em;
@@ -36,34 +175,145 @@
   }
   .nav-link {
     color: var(--color-ink-2);
-    text-decoration: none;
     font-size: 14px;
+  }
+  .nav-link {
+    text-decoration: none;
     transition: color 0.2s ease;
   }
-  .nav-link:hover {
+  .nav-link:hover,
+  .nav-trigger[aria-expanded="true"] {
     color: var(--color-ink);
   }
-  .nav-link:focus-visible {
+  .nav-logo:focus-visible,
+  .nav-link:focus-visible,
+  .nav-dropdown-link:focus-visible {
     outline: 2px solid var(--color-amber);
     outline-offset: 4px;
   }
+  .nav-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .nav-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0;
+    font-family: inherit;
+    line-height: inherit;
+    cursor: pointer;
+    background: none;
+    border: 0;
+  }
+  .nav-chevron {
+    width: 10px;
+    height: 6px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.2s ease;
+  }
+  .nav-trigger[aria-expanded="true"] .nav-chevron {
+    transform: rotate(180deg);
+  }
+  .nav-dropdown {
+    position: absolute;
+    z-index: 20;
+    top: calc(100% + 0.7rem);
+    left: -1rem;
+    display: grid;
+    width: min(25rem, calc(100vw - 3rem));
+    margin: 0;
+    padding: 0.45rem;
+    list-style: none;
+    background: rgba(249, 252, 254, 0.97);
+    border: 1px solid var(--color-border-soft);
+    box-shadow: 0 14px 30px rgba(30, 50, 70, 0.1);
+  }
+  .nav-dropdown-link {
+    display: grid;
+    min-height: 5.25rem;
+    align-content: center;
+    gap: 0.2rem;
+    padding: 0.8rem 0.9rem;
+    color: var(--color-ink);
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .nav-dropdown-link:hover,
+  .nav-dropdown-link:focus-visible {
+    background: rgba(255, 255, 255, 0.72);
+    border-color: var(--color-border-soft);
+  }
+  .nav-dropdown-title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+  .nav-dropdown-subline {
+    color: var(--color-ink-3);
+    font-size: 12px;
+    line-height: 1.45;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .nav-dropdown::before {
+      position: absolute;
+      right: 0;
+      bottom: 100%;
+      left: 0;
+      height: 0.7rem;
+      content: "";
+    }
+  }
+  @media (max-width: 900px) {
+    .nav-left,
+    .nav-items {
+      gap: 0.65rem 1rem;
+    }
+  }
+
   @media (max-width: 640px) {
     .nav {
       align-items: flex-start;
-      gap: 1rem;
       margin-bottom: 4rem;
     }
     .nav-left {
+      width: 100%;
       flex-wrap: wrap;
-      gap: 0.65rem 1rem;
-      max-width: 400px;
     }
     .nav-logo {
       flex-basis: 100%;
       white-space: nowrap;
     }
+    .nav-items {
+      width: 100%;
+    }
     .nav-link {
       font-size: 13px;
+    }
+    .nav-menu.is-open {
+      flex-basis: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .nav-dropdown {
+      position: static;
+      width: 100%;
+      margin-top: 0.6rem;
+      box-shadow: none;
+    }
+    .nav-dropdown-link {
+      padding: 0.75rem 0.8rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-chevron {
+      transition: none;
     }
   }
 </style>
