@@ -59,7 +59,6 @@ const englishEnablers = [
 ];
 
 const enablers = isEnglish ? englishEnablers : germanEnablers;
-const defaultVisualLanguage = language;
 const intro = isEnglish ? {
   label: "Explore Commercial Management / Digital Commerce",
   heading: "Steering and scaling digital businesses for economic impact.",
@@ -77,13 +76,13 @@ const keyVisuals = {
     linkLabel: "Digital Commerce wirksam steuern: Grafik in Originalgröße öffnen (neuer Tab)",
   },
   en: {
-    src: "/images/steering_digital_commerce_effectively.png?v=20260906",
-    alt: "Steering Digital Commerce Effectively: Commercial Management connects Understand, Decide, Drive Impact and Learn with eight Commercial Management capabilities. Data, AI & Decisioning, Digital Product & CX and Leadership & Transformation enable growth, customer value, profitability and competitiveness.",
+    src: "/images/steering_digital_commerce_effectively.png?v=20260907",
+    alt: "Steering Digital Commerce Effectively: typical tensions feed into a Commercial Management system of Understand, Decide, Drive Impact and Learn, supported by eight capabilities, Data, AI & Decisioning, Digital Product & CX, and Leadership & Transformation. The system targets growth, customer value, profitability and competitiveness and is grounded in multi-market leadership experience.",
     linkLabel: "Steering Digital Commerce Effectively: open graphic at original size (new tab)",
   },
 };
 
-const initialKeyVisual = keyVisuals[defaultVisualLanguage];
+const activeKeyVisual = keyVisuals[language];
 ---
 
 <section class="commercial-pillar" id="commercial-management">
@@ -121,39 +120,16 @@ const initialKeyVisual = keyVisuals[defaultVisualLanguage];
     }
   </div>
 
-  <figure
-    class="signature-visual"
-    data-key-visual
-    data-default-language={defaultVisualLanguage}
-  >
-    <div class="signature-visual-switch" role="group" aria-label={defaultVisualLanguage === "en" ? "Key visual language" : "Sprache des Key Visuals"}>
-      <button
-        type="button"
-        data-visual-language="de"
-        data-visual-src={keyVisuals.de.src}
-        data-visual-alt={keyVisuals.de.alt}
-        data-visual-link-label={keyVisuals.de.linkLabel}
-        aria-pressed={defaultVisualLanguage === "de" ? "true" : "false"}
-      >DE</button>
-      <span aria-hidden="true">|</span>
-      <button
-        type="button"
-        data-visual-language="en"
-        data-visual-src={keyVisuals.en.src}
-        data-visual-alt={keyVisuals.en.alt}
-        data-visual-link-label={keyVisuals.en.linkLabel}
-        aria-pressed={defaultVisualLanguage === "en" ? "true" : "false"}
-      >EN</button>
-    </div>
+  <figure class="signature-visual">
     <a
-      href={initialKeyVisual.src}
+      href={activeKeyVisual.src}
       target="_blank"
       rel="noopener"
-      aria-label={initialKeyVisual.linkLabel}
+      aria-label={activeKeyVisual.linkLabel}
     >
       <img
-        src={initialKeyVisual.src}
-        alt={initialKeyVisual.alt}
+        src={activeKeyVisual.src}
+        alt={activeKeyVisual.alt}
         width="1672"
         height="941"
         loading="lazy"
@@ -311,40 +287,6 @@ const initialKeyVisual = keyVisuals[defaultVisualLanguage];
     max-width: 1072px;
     margin: 4.5rem auto 0;
   }
-  .signature-visual-switch {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: .4rem;
-    margin: 0 0 .65rem;
-    color: var(--color-ink-3);
-    font-size: 11px;
-    letter-spacing: .08em;
-  }
-  .signature-visual-switch button {
-    appearance: none;
-    padding: .2rem .15rem;
-    color: inherit;
-    font: inherit;
-    font-weight: 500;
-    letter-spacing: inherit;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-  }
-  .signature-visual-switch button:hover {
-    color: var(--color-ink);
-  }
-  .signature-visual-switch button[aria-pressed="true"] {
-    color: var(--color-amber);
-  }
-  .signature-visual-switch button:focus-visible {
-    outline: 2px solid var(--color-amber);
-    outline-offset: 3px;
-  }
-  .signature-visual-switch span {
-    color: var(--color-border);
-  }
   .signature-visual a {
     display: block;
     cursor: zoom-in;
@@ -381,42 +323,3 @@ const initialKeyVisual = keyVisuals[defaultVisualLanguage];
     }
   }
 </style>
-
-<script>
-  document.querySelectorAll<HTMLElement>("[data-key-visual]").forEach((visual) => {
-    const image = visual.querySelector<HTMLImageElement>("img");
-    const link = visual.querySelector<HTMLAnchorElement>("a");
-    const buttons = Array.from(visual.querySelectorAll<HTMLButtonElement>("[data-visual-language]"));
-
-    if (!image || !link || buttons.length === 0) return;
-
-    const setLanguage = (language: "de" | "en") => {
-      const activeButton = buttons.find((button) => button.dataset.visualLanguage === language);
-      if (!activeButton) return;
-
-      const { visualSrc, visualAlt, visualLinkLabel } = activeButton.dataset;
-      if (!visualSrc || !visualAlt || !visualLinkLabel) return;
-
-      image.src = visualSrc;
-      image.alt = visualAlt;
-      link.href = visualSrc;
-      link.setAttribute("aria-label", visualLinkLabel);
-
-      buttons.forEach((button) => {
-        button.setAttribute("aria-pressed", button === activeButton ? "true" : "false");
-      });
-    };
-
-    const pageLanguage = document.documentElement.lang.toLowerCase().startsWith("en")
-      ? "en"
-      : visual.dataset.defaultLanguage === "en" ? "en" : "de";
-
-    setLanguage(pageLanguage);
-
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        setLanguage(button.dataset.visualLanguage === "en" ? "en" : "de");
-      });
-    });
-  });
-</script>
