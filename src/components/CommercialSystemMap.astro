@@ -1,55 +1,97 @@
+---
+interface Props {
+  language?: "de" | "en";
+}
+
+const { language = "de" } = Astro.props;
+const isEnglish = language === "en";
+const ui = isEnglish ? {
+  kicker: "How it connects",
+  title: "Commercial Management as a system",
+  intro: "The eight management fields are not isolated disciplines. Together, they form one steering system.",
+  aria: "Integrated Commercial Management steering system",
+  read: "Read the tension",
+  readBody: "Shows where economic tensions become visible.",
+  decision: "Decision",
+  levers: "Commercial levers",
+  leversBody: "These fields change growth, Customer Value and profitability.",
+  impact: "Impact",
+  test: "Test impact",
+  testBody: "Tests whether interventions genuinely create incremental impact.",
+  consequence: "Consequence",
+  organise: "Organise execution",
+  organiseBody: "Translates decisions into accountability, capacity and execution power.",
+} : {
+  kicker: "Zusammenhang",
+  title: "Commercial Management als System",
+  intro: "Die acht Handlungsfelder sind keine isolierten Disziplinen. Sie bilden gemeinsam ein Steuerungssystem.",
+  aria: "Integriertes Commercial-Management-Steuerungssystem",
+  read: "Spannung lesen",
+  readBody: "Zeigt, wo wirtschaftliche Spannungen sichtbar werden.",
+  decision: "Entscheidung",
+  levers: "Kommerzielle Hebel",
+  leversBody: "Diese Felder verändern Wachstum, Kundenwert und Profitabilität.",
+  impact: "Wirkung",
+  test: "Wirkung prüfen",
+  testBody: "Prüft, ob Interventionen tatsächlich zusätzliche Wirkung erzeugen.",
+  consequence: "Konsequenz",
+  organise: "Umsetzung organisieren",
+  organiseBody: "Übersetzt Entscheidungen in Verantwortung, Kapazität und Umsetzungskraft.",
+};
+---
+
 <section class="system-section" aria-labelledby="commercial-system-title">
   <div class="system-heading">
-    <div class="system-kicker">Zusammenhang</div>
+    <div class="system-kicker">{ui.kicker}</div>
     <div>
-      <h2 id="commercial-system-title">Commercial Management als System</h2>
-      <p>Die acht Handlungsfelder sind keine isolierten Disziplinen. Sie bilden gemeinsam ein Steuerungssystem.</p>
+      <h2 id="commercial-system-title">{ui.title}</h2>
+      <p>{ui.intro}</p>
     </div>
   </div>
 
-  <div class="system-model" aria-label="Integriertes Commercial-Management-Steuerungssystem">
+  <div class="system-model" aria-label={ui.aria}>
     <section class="system-stage steering-stage">
-      <div class="stage-label">Spannung lesen</div>
+      <div class="stage-label">{ui.read}</div>
       <div class="system-node primary-node">
         <span>01</span>
         <strong>Economic Steering</strong>
-        <p>Zeigt, wo wirtschaftliche Spannungen sichtbar werden.</p>
+        <p>{ui.readBody}</p>
       </div>
     </section>
 
-    <div class="system-connector" aria-hidden="true"><span>Entscheidung</span><b>→</b></div>
+    <div class="system-connector" aria-hidden="true"><span>{ui.decision}</span><b>→</b></div>
 
     <section class="system-stage levers-stage">
-      <div class="stage-label">Kommerzielle Hebel</div>
+      <div class="stage-label">{ui.levers}</div>
       <div class="lever-grid">
         <div class="system-node"><span>02</span><strong>Future Growth</strong></div>
         <div class="system-node"><span>03</span><strong>Customer Base</strong></div>
         <div class="system-node"><span>04</span><strong>Offer &amp; Journey</strong></div>
         <div class="system-node"><span>05</span><strong>Multi-Market Scale</strong></div>
       </div>
-      <p class="stage-note">Diese Felder verändern Wachstum, Kundenwert und Profitabilität.</p>
+      <p class="stage-note">{ui.leversBody}</p>
     </section>
 
-    <div class="system-connector" aria-hidden="true"><span>Wirkung</span><b>→</b></div>
+    <div class="system-connector" aria-hidden="true"><span>{ui.impact}</span><b>→</b></div>
 
     <section class="system-stage causality-stage">
-      <div class="stage-label">Wirkung prüfen</div>
+      <div class="stage-label">{ui.test}</div>
       <div class="system-node primary-node">
         <span>06</span>
         <strong>Performance Causality</strong>
-        <p>Prüft, ob Interventionen tatsächlich zusätzliche Wirkung erzeugen.</p>
+        <p>{ui.testBody}</p>
       </div>
     </section>
 
-    <div class="system-connector" aria-hidden="true"><span>Konsequenz</span><b>→</b></div>
+    <div class="system-connector" aria-hidden="true"><span>{ui.consequence}</span><b>→</b></div>
 
     <section class="system-stage execution-stage">
-      <div class="stage-label">Umsetzung organisieren</div>
+      <div class="stage-label">{ui.organise}</div>
       <div class="execution-stack">
         <div class="system-node"><span>07</span><strong>Operating Model</strong></div>
         <div class="system-node"><span>08</span><strong>Resource Allocation</strong></div>
       </div>
-      <p class="stage-note">Übersetzt Entscheidungen in Verantwortung, Kapazität und Umsetzungskraft.</p>
+      <p class="stage-note">{ui.organiseBody}</p>
     </section>
   </div>
 </section>

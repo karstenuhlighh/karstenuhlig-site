@@ -34,6 +34,12 @@ export default defineConfig({
           "/agentic-ai/signal-steering",
           "/impressum",
           "/datenschutz",
+          "/en",
+          "/en/track-record",
+          "/en/commercial-management",
+          "/en/digital-product-customer-experience",
+          "/en/data-ai-digital-product",
+          "/en/leadership",
         ].includes(path);
       },
     }),

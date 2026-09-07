@@ -2,35 +2,29 @@
 // Inhalt der Now-Section pflegt Karsten monatlich.
 // Marketing-affine Tonalität; keine technischen Detailbegriffe
 // (LangGraph, Recall, BOOST, LLM-as-Judge) auf der Hauptseite.
+interface Props {
+  language?: "de" | "en";
+}
+
+const { language = "de" } = Astro.props;
+const isEnglish = language === "en";
 ---
 
 <section class="now-section" id="thesen-praxistests">
-  <div class="eyebrow">Thesen und Praxistests</div>
-  <p class="now-intro">
-    Thesen werden belastbar, wenn sie sich an realen Entscheidungen,
-    wirtschaftlichen Guardrails und laufenden Systemen bewähren.
-  </p>
+  <div class="eyebrow">{isEnglish ? "Hypotheses and practical tests" : "Thesen und Praxistests"}</div>
+  <p class="now-intro">{isEnglish ? "Hypotheses become robust when they hold up against real decisions, economic guardrails and live systems." : "Thesen werden belastbar, wenn sie sich an realen Entscheidungen, wirtschaftlichen Guardrails und laufenden Systemen bewähren."}</p>
   <div class="now-grid">
-    <a href="/agentic-ai/sem-agentic" class="now-card">
+    <a href={isEnglish ? "/en/data-ai-digital-product" : "/agentic-ai/sem-agentic"} class="now-card">
       <span class="hair hair-1" aria-hidden="true"></span>
       <span class="hair hair-2" aria-hidden="true"></span>
-      <div class="now-card-label">Praxistest: Data &amp; AI</div>
-      <p class="now-card-body">
-        Wie belastbar sind AI-gestützte Entscheidungen, wenn sie auf reale
-        Kampagnenlogik, Datenqualität und wirtschaftliche Guardrails treffen?
-        Die Feasibility Study prüft nicht die Demo, sondern die
-        Steuerungswirkung.
-      </p>
+      <div class="now-card-label">{isEnglish ? "Practical test: Data & AI" : "Praxistest: Data & AI"}</div>
+      <p class="now-card-body">{isEnglish ? "How robust are AI-assisted decisions when they meet real campaign logic, data quality and economic guardrails? The feasibility study tests steering impact, not the demo." : "Wie belastbar sind AI-gestützte Entscheidungen, wenn sie auf reale Kampagnenlogik, Datenqualität und wirtschaftliche Guardrails treffen? Die Feasibility Study prüft nicht die Demo, sondern die Steuerungswirkung."}</p>
     </a>
-    <a href="/martech/operating-model-schlaegt-stack" class="now-card">
+    <a href={isEnglish ? "/en/digital-product-customer-experience" : "/martech/operating-model-schlaegt-stack"} class="now-card">
       <span class="hair hair-1" aria-hidden="true"></span>
       <span class="hair hair-2" aria-hidden="true"></span>
-      <div class="now-card-label">Managementthese</div>
-      <p class="now-card-body">
-        Warum leistungsfähige Technologie erst dann wirkt, wenn Ownership,
-        Entscheidungsrechte und Execution-Routinen geklärt sind. Das Operating
-        Model kommt vor dem Modell.
-      </p>
+      <div class="now-card-label">{isEnglish ? "Management hypothesis" : "Managementthese"}</div>
+      <p class="now-card-body">{isEnglish ? "Why capable technology only creates impact once ownership, decision rights and execution routines are clear. The operating model comes before the model." : "Warum leistungsfähige Technologie erst dann wirkt, wenn Ownership, Entscheidungsrechte und Execution-Routinen geklärt sind. Das Operating Model kommt vor dem Modell."}</p>
     </a>
   </div>
 </section>

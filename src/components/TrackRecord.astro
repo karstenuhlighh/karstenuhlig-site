@@ -1,5 +1,28 @@
 ---
-const proofAreas = [
+interface Props {
+  language?: "de" | "en";
+}
+
+const { language = "de" } = Astro.props;
+const isEnglish = language === "en";
+const proofAreas = isEnglish ? [
+  {
+    title: "Commercial Scale",
+    proof: "Up to €1.6bn in online revenue across 20+ markets. Led 100+ people across 20+ teams.",
+  },
+  {
+    title: "CRM, Customer Journey & Data/AI",
+    proof: "Integrated CRM and shared customer data across touchpoints. Productive ML applications for recommendations and forecasting.",
+  },
+  {
+    title: "Digital Marketing & international expansion",
+    proof: "Built Digital Marketing internationally and held responsibility for 11 webshops. Marketing-driven traffic increased from 0 to 50 per cent.",
+  },
+  {
+    title: "Offer Management",
+    proof: "Steered assortment, price and availability through digital demand. Around 800 styles in the catalogue and around 8,000 online.",
+  },
+] : [
   {
     title: "Commercial Scale",
     proof: "Bis zu €1,6 Mrd. Online-Umsatz in 20+ Märkten. 100+ Mitarbeitende in 20+ Teams geführt.",
@@ -23,11 +46,9 @@ const proofAreas = [
   <div class="track-heading">
     <div class="eyebrow">Track Record</div>
     <div>
-      <div class="track-context">bonprix (Otto Group), 20+ Jahre</div>
-      <h2>Commercial Scale in der Praxis</h2>
-      <p>
-        Von Angebotssteuerung und Digital Marketing über CRM und Data bis zur End-to-End-Steuerung eines internationalen E-Commerce-Geschäfts.
-      </p>
+      <div class="track-context">bonprix (Otto Group), {isEnglish ? "20+ years" : "20+ Jahre"}</div>
+      <h2>{isEnglish ? "Commercial Scale in practice" : "Commercial Scale in der Praxis"}</h2>
+      <p>{isEnglish ? "From offer management and Digital Marketing through CRM and Data to the end-to-end steering of an international E-Commerce business." : "Von Angebotssteuerung und Digital Marketing über CRM und Data bis zur End-to-End-Steuerung eines internationalen E-Commerce-Geschäfts."}</p>
     </div>
   </div>
 
@@ -42,7 +63,7 @@ const proofAreas = [
     }
   </div>
 
-  <a class="track-link" href="/track-record">Track Record ansehen <span aria-hidden="true">→</span></a>
+  <a class="track-link" href={isEnglish ? "/en/track-record" : "/track-record"}>{isEnglish ? "View Track Record" : "Track Record ansehen"} <span aria-hidden="true">→</span></a>
 </section>
 
 <style>

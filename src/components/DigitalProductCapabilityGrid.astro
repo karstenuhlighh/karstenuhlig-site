@@ -1,7 +1,39 @@
 ---
 import { digitalProductCapabilities } from "../data/digital-product-capabilities";
+import { digitalProductCapabilitiesEn } from "../data/en/digital-product-capabilities";
 
-const panelData = digitalProductCapabilities.map((item) => ({
+interface Props {
+  language?: "de" | "en";
+}
+
+const { language = "de" } = Astro.props;
+const isEnglish = language === "en";
+const capabilities = isEnglish ? digitalProductCapabilitiesEn : digitalProductCapabilities;
+const ui = isEnglish ? {
+  kicker: "The 6 capability fields",
+  heading: "From the customer and business question to scalable Product impact.",
+  explore: "Explore",
+  close: "Close capability details",
+  intro: "What it is about",
+  questions: "Management Questions",
+  principles: "Principles",
+  tradeOffs: "Trade-offs",
+  evidence: "Selected Evidence",
+  boundary: "Boundary",
+} : {
+  kicker: "Die 6 Capability-Felder",
+  heading: "Von der Kunden- und Geschäftsfrage bis zur skalierbaren Product-Wirkung.",
+  explore: "Explore",
+  close: "Capability-Details schließen",
+  intro: "Worum es geht",
+  questions: "Management Questions",
+  principles: "Principles",
+  tradeOffs: "Trade-offs",
+  evidence: "Selected Evidence",
+  boundary: "Boundary",
+};
+
+const panelData = capabilities.map((item) => ({
   number: item.number,
   title: item.title,
   signature: item.signature,
@@ -20,13 +52,13 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
 
 <section class="field-section" id="digital-product-fields" aria-labelledby="digital-product-fields-title">
   <div class="section-heading">
-    <div class="section-kicker">Die 6 Capability-Felder</div>
-    <h2 id="digital-product-fields-title">Von der Kunden- und Geschäftsfrage bis zur skalierbaren Product-Wirkung.</h2>
+    <div class="section-kicker">{ui.kicker}</div>
+    <h2 id="digital-product-fields-title">{ui.heading}</h2>
   </div>
 
   <ol class="field-grid">
     {
-      digitalProductCapabilities.map((item) => (
+      capabilities.map((item) => (
         <li>
           <button
             class="field-card"
@@ -35,7 +67,7 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
             aria-haspopup="dialog"
             aria-controls="digital-product-field-dialog"
             aria-expanded="false"
-            aria-label={`${item.number} ${item.title} erkunden`}
+            aria-label={`${ui.explore} ${item.number} ${item.title}`}
           >
             <span class="field-media">
               <img src={item.image} alt={item.alt} width="400" height="340" loading="lazy" decoding="async" />
@@ -43,11 +75,11 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
             <span class="field-content">
               <span class="field-title"><b>{item.number}</b><strong>{item.title}</strong></span>
               <span class="field-description">{item.description}</span>
-              <span class="field-mobile-action">Explore <span aria-hidden="true">→</span></span>
+              <span class="field-mobile-action">{ui.explore} <span aria-hidden="true">→</span></span>
             </span>
             <span class="field-preview" aria-hidden="true">
               <span class="preview-copy">{item.hover}</span>
-              <span class="preview-action">Explore <span aria-hidden="true">→</span></span>
+              <span class="preview-action">{ui.explore} <span aria-hidden="true">→</span></span>
             </span>
           </button>
         </li>
@@ -60,7 +92,7 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
   <div class="drawer">
     <div class="drawer-topline">
       <span class="drawer-number" id="digital-product-dialog-number"></span>
-      <button class="drawer-close" type="button" aria-label="Capability-Details schließen">×</button>
+      <button class="drawer-close" type="button" aria-label={ui.close}>×</button>
     </div>
 
     <div class="drawer-heading">
@@ -74,34 +106,34 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
     </div>
 
     <section class="drawer-section intro-section" aria-labelledby="digital-product-dialog-intro-label">
-      <h3 id="digital-product-dialog-intro-label">Worum es geht</h3>
+      <h3 id="digital-product-dialog-intro-label">{ui.intro}</h3>
       <p id="digital-product-dialog-intro"></p>
     </section>
 
     <div class="drawer-columns">
       <section class="drawer-section" aria-labelledby="digital-product-dialog-questions-label">
-        <h3 id="digital-product-dialog-questions-label">Management Questions</h3>
+        <h3 id="digital-product-dialog-questions-label">{ui.questions}</h3>
         <ul id="digital-product-dialog-questions"></ul>
       </section>
 
       <section class="drawer-section" aria-labelledby="digital-product-dialog-principles-label">
-        <h3 id="digital-product-dialog-principles-label">Principles</h3>
+        <h3 id="digital-product-dialog-principles-label">{ui.principles}</h3>
         <ul id="digital-product-dialog-principles"></ul>
       </section>
     </div>
 
     <section class="drawer-section" aria-labelledby="digital-product-dialog-tradeoffs-label">
-      <h3 id="digital-product-dialog-tradeoffs-label">Trade-offs</h3>
+      <h3 id="digital-product-dialog-tradeoffs-label">{ui.tradeOffs}</h3>
       <div class="drawer-tags" id="digital-product-dialog-tradeoffs"></div>
     </section>
 
     <section class="drawer-section" aria-labelledby="digital-product-dialog-evidence-label">
-      <h3 id="digital-product-dialog-evidence-label">Selected Evidence</h3>
+      <h3 id="digital-product-dialog-evidence-label">{ui.evidence}</h3>
       <div class="drawer-tags" id="digital-product-dialog-evidence"></div>
     </section>
 
     <section class="drawer-section boundary-section" aria-labelledby="digital-product-dialog-boundary-label">
-      <h3 id="digital-product-dialog-boundary-label">Boundary</h3>
+      <h3 id="digital-product-dialog-boundary-label">{ui.boundary}</h3>
       <p id="digital-product-dialog-boundary"></p>
     </section>
   </div>

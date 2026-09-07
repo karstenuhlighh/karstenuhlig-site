@@ -1,10 +1,19 @@
 ---
 import SubPageLayout from "../layouts/SubPageLayout.astro";
 import DigitalProductCapabilityGrid from "../components/DigitalProductCapabilityGrid.astro";
+import { getLanguage } from "../i18n/routes";
 
+const language = getLanguage(Astro.url.pathname);
+const isEnglish = language === "en";
 const productFlow = ["Commercial Intent", "Customer Problem", "Product Decision", "Digital Experience", "Evidence", "Evolution"];
 
-const principles = [
+const principles = isEnglish ? [
+  "Problem before feature.",
+  "Optimise Customer Value and Commercial Value together.",
+  "Ownership requires decision rights.",
+  "Multiply where possible. Differentiate where necessary.",
+  "A product must earn its continuing complexity.",
+] : [
   "Problem before feature.",
   "Customer Value und Commercial Value gemeinsam optimieren.",
   "Ownership requires decision rights.",
@@ -12,7 +21,32 @@ const principles = [
   "Ein Produkt muss seine fortdauernde Komplexität verdienen.",
 ];
 
-const enterpriseProofs = [
+const enterpriseProofs = isEnglish ? [
+  {
+    title: "Search & Browse",
+    body: "Treated commercial rules for ranking and assortment as hypotheses and tested them against the overall impact on Customer Journey and business.",
+  },
+  {
+    title: "Project → Product",
+    body: "Turned temporary project management into enduring Product Ownership with backlog authority, more stable teams and clearer decision rights.",
+  },
+  {
+    title: "International Checkout & Payment",
+    body: "Connected a shared Product Core with economically and regulatorily relevant local payment and service requirements.",
+  },
+  {
+    title: "Recommendations & App",
+    body: "Brought digital products live incrementally, learned from usage and impact, and derived the next stage from real evidence.",
+  },
+  {
+    title: "Portfolio focus",
+    body: "Balanced Product capacity across visible features, Customer Value, compliance, platform modernisation and legacy risks.",
+  },
+  {
+    title: "Deliberate stop decisions",
+    body: "Reduced or retired products and variants when usage and impact no longer justified their ongoing cost and additional complexity.",
+  },
+] : [
   {
     title: "Search & Browse",
     body: "Commercial Rules für Ranking und Sortiment als Hypothese behandelt und gegen die Gesamtwirkung auf Customer Journey und Geschäft geprüft.",
@@ -42,26 +76,27 @@ const enterpriseProofs = [
 ---
 
 <SubPageLayout
+  language={language}
   title="Digital Product & Customer Experience | Karsten Uhlig"
-  description="Digital Product und Customer Experience als Enabler für Commercial Digital Commerce: kommerzielle Richtung in wirksame Produkte, Journeys und Product-Systeme übersetzen."
+  description={isEnglish ? "Digital Product and Customer Experience as an enabler for Commercial Digital Commerce: translating commercial direction into effective products, journeys and Product systems." : "Digital Product und Customer Experience als Enabler für Commercial Digital Commerce: kommerzielle Richtung in wirksame Produkte, Journeys und Product-Systeme übersetzen."}
 >
   <article class="product-landing">
     <header class="landing-hero">
       <div class="hero-eyebrow">Enabler for Commercial Digital Commerce</div>
       <h1>Digital Product &amp;<br />Customer Experience</h1>
-      <p class="hero-subheadline">Kommerzielle Richtung in wirksame digitale Produkte und Journeys übersetzen.</p>
-      <p class="hero-copy">Digital Product ist für mich kein vom Geschäft gelöstes Spezialisten- oder Tech-Feld. Ausgangspunkt bleibt Commercial Management: Welches Kunden- oder Geschäftsproblem muss besser gelöst werden? Product übersetzt diese Richtung in Customer Journeys, Product-Entscheidungen, dauerhafte Ownership und lernfähige Systeme — und verantwortet die Wirkung über den gesamten Lebenszyklus.</p>
+      <p class="hero-subheadline">{isEnglish ? "Turning commercial direction into effective digital products and journeys." : "Kommerzielle Richtung in wirksame digitale Produkte und Journeys übersetzen."}</p>
+      <p class="hero-copy">{isEnglish ? "For me, Digital Product is not a specialist or technology field detached from the business. Commercial Management remains the starting point: which customer or business problem needs to be solved better? Product translates this direction into Customer Journeys, Product decisions, enduring ownership and learning systems — and remains accountable for impact across the full lifecycle." : "Digital Product ist für mich kein vom Geschäft gelöstes Spezialisten- oder Tech-Feld. Ausgangspunkt bleibt Commercial Management: Welches Kunden- oder Geschäftsproblem muss besser gelöst werden? Product übersetzt diese Richtung in Customer Journeys, Product-Entscheidungen, dauerhafte Ownership und lernfähige Systeme — und verantwortet die Wirkung über den gesamten Lebenszyklus."}</p>
     </header>
 
     <section class="logic-section" aria-labelledby="product-logic-title">
       <div class="section-heading logic-heading">
-        <div class="section-kicker">Die zentrale Logik</div>
+        <div class="section-kicker">{isEnglish ? "The central logic" : "Die zentrale Logik"}</div>
         <div>
-          <h2 id="product-logic-title">Vom Commercial Intent zur lernenden Customer Experience.</h2>
-          <p>Product verbindet die wirtschaftliche Richtung mit einem realen Kundenproblem, einer bewussten Lösungsentscheidung und Evidenz aus der Nutzung. So bleibt die Experience wirksam und das Produkt entwicklungsfähig.</p>
+          <h2 id="product-logic-title">{isEnglish ? "From Commercial Intent to a learning Customer Experience." : "Vom Commercial Intent zur lernenden Customer Experience."}</h2>
+          <p>{isEnglish ? "Product connects economic direction with a real customer problem, a deliberate solution decision and evidence from use. This keeps the experience effective and the product capable of evolving." : "Product verbindet die wirtschaftliche Richtung mit einem realen Kundenproblem, einer bewussten Lösungsentscheidung und Evidenz aus der Nutzung. So bleibt die Experience wirksam und das Produkt entwicklungsfähig."}</p>
         </div>
       </div>
-      <ol class="product-flow" aria-label={productFlow.join(" zu ")}>
+      <ol class="product-flow" aria-label={productFlow.join(isEnglish ? " to " : " zu ")}>
         {productFlow.map((step) => (
           <li>
             <span class="flow-node" aria-hidden="true"></span>
@@ -71,12 +106,12 @@ const enterpriseProofs = [
       </ol>
     </section>
 
-    <DigitalProductCapabilityGrid />
+    <DigitalProductCapabilityGrid language={language} />
 
     <section class="principles-section" aria-labelledby="principles-title">
       <div class="section-heading">
         <div class="section-kicker">Principles</div>
-        <h2 id="principles-title">Product folgt der Wirkungsfrage, nicht dem Methodenritual.</h2>
+        <h2 id="principles-title">{isEnglish ? "Product follows the impact question, not a methodological ritual." : "Product folgt der Wirkungsfrage, nicht dem Methodenritual."}</h2>
       </div>
       <ol class="principles-grid">
         {principles.map((principle, index) => (
@@ -89,8 +124,8 @@ const enterpriseProofs = [
       <div class="section-heading">
         <div class="section-kicker">Built &amp; scaled at enterprise level</div>
         <div>
-          <h2 id="proof-title">Substanz aus internationaler Digital-Commerce-Verantwortung.</h2>
-          <p>Die Capability basiert auf realen Product-, Journey-, Operating-Model- und Portfolio-Entscheidungen — nicht auf einer nachträglichen Methodenpositionierung.</p>
+          <h2 id="proof-title">{isEnglish ? "Substance from international Digital Commerce accountability." : "Substanz aus internationaler Digital-Commerce-Verantwortung."}</h2>
+          <p>{isEnglish ? "The capability is grounded in real Product, Journey, Operating Model and Portfolio decisions — not in methodological positioning applied retrospectively." : "Die Capability basiert auf realen Product-, Journey-, Operating-Model- und Portfolio-Entscheidungen — nicht auf einer nachträglichen Methodenpositionierung."}</p>
         </div>
       </div>
       <div class="proof-grid">

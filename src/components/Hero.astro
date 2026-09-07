@@ -1,60 +1,73 @@
 ---
 import Nav from "./Nav.astro";
+import type { Language } from "../i18n/routes";
+
+interface Props {
+  language?: Language;
+}
+
+const { language = "de" } = Astro.props;
+const isEnglish = language === "en";
+
+const copy = isEnglish ? {
+  headline: "Scaling digital commerce. Turning strategy into results.",
+  subtitle: "I steer digital businesses with a clear focus on growth and customer value. I connect marketing, digital sales and CRM across the customer journey into one coherent commercial system. I use data, AI and digital products where they improve decisions, change customer experiences and create economic impact.",
+  profileLabel: "Executive profile",
+  proofs: [
+    ["€1.6bn", "Online business scaled"],
+    ["20+ years", "Digital Commerce"],
+    ["20+ markets", "Digital Commerce across Europe"],
+  ],
+  about: "About",
+  portraitAlt: "Portrait of Karsten Uhlig",
+  bio: "As an E-Commerce Executive at bonprix, I scaled the international online business across more than 20 markets to €1.6bn in revenue. Most recently, I was responsible for a broad digital organisation and the interplay of E-Commerce, Digital Marketing, CRM, Data and Digital Product.",
+} : {
+  headline: "Digital Commerce skalieren. Strategie wirksam machen.",
+  subtitle: "Ich steuere digitale Geschäfte mit klarem Blick auf Wachstum und Kundenwert. Marketing, Digital Sales und CRM verbinde ich entlang der Customer Journey zu einem zusammenhängenden kommerziellen System. Data, AI und Digital Products setze ich dort ein, wo sie Entscheidungen verbessern, Kundenerlebnisse verändern und wirtschaftliche Wirkung erzeugen.",
+  profileLabel: "Kurzprofil",
+  proofs: [
+    ["€1,6 Mrd.", "Online Business skaliert"],
+    ["20+ Jahre", "Digital Commerce"],
+    ["20+ Märkte", "Digital Commerce Europa"],
+  ],
+  about: "Über mich",
+  portraitAlt: "Portrait Karsten Uhlig",
+  bio: "Als E-Commerce Executive habe ich bei bonprix das internationale Online-Geschäft in mehr als 20 Märkten auf €1,6 Mrd. Umsatz skaliert. Zuletzt verantwortete ich eine breit aufgestellte Digitalorganisation und das Zusammenspiel von E-Commerce, Digital Marketing, CRM, Data und Digital Product.",
+};
 ---
 
 <section class="hero">
   <div class="diag-line-1"></div>
   <div class="diag-line-2"></div>
   <div class="hero-inner">
-    <Nav />
+    <Nav language={language} />
     <div class="hero-grid">
       <div class="eyebrow">Commercial / Digital Commerce Executive</div>
-      <h1 class="headline">
-        Digital Commerce skalieren. Strategie wirksam machen.
-      </h1>
-      <p class="subtitle">
-        Ich steuere digitale Geschäfte mit klarem Blick auf Wachstum und
-        Kundenwert. Marketing, Digital Sales und CRM verbinde ich entlang der
-        Customer Journey zu einem zusammenhängenden kommerziellen System. Data,
-        AI und Digital Products setze ich dort ein, wo sie Entscheidungen
-        verbessern, Kundenerlebnisse verändern und wirtschaftliche Wirkung
-        erzeugen.
-      </p>
-      <div class="cover-proof" aria-label="Kurzprofil">
-        <div class="cover-proof-item">
-          <span class="cover-proof-value">€1,6 Mrd.</span>
-          <span class="cover-proof-label">Online Business skaliert</span>
-        </div>
-        <div class="cover-proof-item">
-          <span class="cover-proof-value">20+ Jahre</span>
-          <span class="cover-proof-label">Digital Commerce</span>
-        </div>
-        <div class="cover-proof-item">
-          <span class="cover-proof-value">20+ Märkte</span>
-          <span class="cover-proof-label">Digital Commerce Europa</span>
-        </div>
+      <h1 class="headline">{copy.headline}</h1>
+      <p class="subtitle">{copy.subtitle}</p>
+      <div class="cover-proof" aria-label={copy.profileLabel}>
+        {copy.proofs.map(([value, label]) => (
+          <div class="cover-proof-item">
+            <span class="cover-proof-value">{value}</span>
+            <span class="cover-proof-label">{label}</span>
+          </div>
+        ))}
       </div>
-      <div class="ueber-mich-marker">
-        <div class="ueber-mich-eyebrow">Über mich</div>
+      <div class="ueber-mich-marker" id="about">
+        <div class="ueber-mich-eyebrow">{copy.about}</div>
       </div>
       <div class="portrait">
         <div class="portrait-line-1" aria-hidden="true"></div>
         <div class="portrait-line-2" aria-hidden="true"></div>
         <img
           src="/portrait-freigestellt.png"
-          alt="Portrait Karsten Uhlig"
+          alt={copy.portraitAlt}
           width="1000"
           height="1250"
         />
       </div>
       <div class="bio">
-        <p>
-          Als E-Commerce Executive habe ich bei bonprix das internationale
-          Online-Gesch&auml;ft in mehr als 20 M&auml;rkten auf
-          €1,6 Mrd. Umsatz skaliert. Zuletzt verantwortete ich
-          eine breit aufgestellte Digitalorganisation und das Zusammenspiel
-          von E-Commerce, Digital Marketing, CRM, Data und Digital Product.
-        </p>
+        <p>{copy.bio}</p>
       </div>
     </div>
     <slot />

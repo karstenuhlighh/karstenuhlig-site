@@ -1,18 +1,34 @@
 ---
+import { getLanguage, getLanguageSwitchPath, type Language } from "../i18n/routes";
+
+interface Props {
+  language?: Language;
+}
+
+const { language = getLanguage(Astro.url.pathname) } = Astro.props;
+const isEnglish = language === "en";
+const homePath = isEnglish ? "/en/" : "/";
+const commercialPath = isEnglish ? "/en/commercial-management" : "/commercial-management";
+const dataPath = isEnglish ? "/en/data-ai-digital-product" : "/data-ai-digital-product";
+const productPath = isEnglish ? "/en/digital-product-customer-experience" : "/digital-product-customer-experience";
+const leadershipPath = isEnglish ? "/en/leadership" : "/leadership";
+const aboutPath = isEnglish ? "/en/track-record" : "/track-record";
+const deSwitchPath = getLanguageSwitchPath(Astro.url.pathname, "de");
+const enSwitchPath = getLanguageSwitchPath(Astro.url.pathname, "en");
 ---
 
-<nav class="nav" aria-label="Hauptnavigation">
+<nav class="nav" aria-label={isEnglish ? "Main navigation" : "Hauptnavigation"}>
   <div class="nav-left">
-    <a href="/" class="nav-logo">Karsten Uhlig</a>
+    <a href={homePath} class="nav-logo">Karsten Uhlig</a>
     <div class="nav-items">
-      <a href="/commercial-management" class="nav-link">Commercial</a>
+      <a href={commercialPath} class="nav-link">Commercial</a>
 
       <div class="nav-menu" data-nav-menu>
         <button
           class="nav-link nav-trigger"
           type="button"
           aria-expanded="false"
-          aria-controls="data-ai-product-navigation"
+          aria-controls={`data-ai-product-navigation-${language}`}
           aria-haspopup="true"
           data-nav-trigger
         >
@@ -24,28 +40,33 @@
 
         <ul
           class="nav-dropdown"
-          id="data-ai-product-navigation"
-          aria-label="Data, AI und Product"
+          id={`data-ai-product-navigation-${language}`}
+          aria-label={isEnglish ? "Data, AI and Product" : "Data, AI und Product"}
           data-nav-dropdown
           hidden
         >
           <li>
-            <a class="nav-dropdown-link" href="/data-ai-digital-product">
+            <a class="nav-dropdown-link" href={dataPath}>
               <span class="nav-dropdown-title">Data, AI &amp; Decisioning</span>
-              <span class="nav-dropdown-subline">Bessere kommerzielle Entscheidungen</span>
+              <span class="nav-dropdown-subline">{isEnglish ? "Better commercial decisions" : "Bessere kommerzielle Entscheidungen"}</span>
             </a>
           </li>
           <li>
-            <a class="nav-dropdown-link" href="/digital-product-customer-experience">
+            <a class="nav-dropdown-link" href={productPath}>
               <span class="nav-dropdown-title">Digital Product &amp; Customer Experience</span>
-              <span class="nav-dropdown-subline">Produkte und Journeys wirksam gestalten</span>
+              <span class="nav-dropdown-subline">{isEnglish ? "Effective products and journeys" : "Produkte und Journeys wirksam gestalten"}</span>
             </a>
           </li>
         </ul>
       </div>
 
-      <a href="/leadership" class="nav-link">Leadership</a>
-      <a href="/track-record" class="nav-link">Über mich</a>
+      <a href={leadershipPath} class="nav-link">Leadership</a>
+      <a href={aboutPath} class="nav-link">{isEnglish ? "About" : "Über mich"}</a>
+      <span class="language-switch" aria-label={isEnglish ? "Language selection" : "Sprachauswahl"}>
+        <a href={deSwitchPath} hreflang="de" lang="de" aria-current={!isEnglish ? "page" : undefined}>DE</a>
+        <span aria-hidden="true">·</span>
+        <a href={enSwitchPath} hreflang="en-GB" lang="en" aria-current={isEnglish ? "page" : undefined}>EN</a>
+      </span>
     </div>
   </div>
 </nav>
@@ -180,6 +201,26 @@
   .nav-link {
     text-decoration: none;
     transition: color 0.2s ease;
+  }
+  .language-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--color-ink-3);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+  .language-switch a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .language-switch a:hover,
+  .language-switch a[aria-current="page"] {
+    color: var(--color-ink);
+  }
+  .language-switch a:focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 4px;
   }
   .nav-link:hover,
   .nav-trigger[aria-expanded="true"] {

@@ -2,25 +2,32 @@
 import SubPageLayout from "../layouts/SubPageLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
 import { trackRecordPhases } from "../data/track-record";
+import { trackRecordPhasesEn } from "../data/en/track-record";
+import { getLanguage } from "../i18n/routes";
+
+const language = getLanguage(Astro.url.pathname);
+const isEnglish = language === "en";
+const phases = isEnglish ? trackRecordPhasesEn : trackRecordPhases;
 ---
 
 <SubPageLayout
+  language={language}
   title="Track Record | Karsten Uhlig | Commercial & Digital Commerce Executive"
-  description="Von Angebotssteuerung und Digital Marketing über CRM bis zur End-to-End-Steuerung eines internationalen E-Commerce-Geschäfts. Vier Aufbau- und Skalierungsphasen bei bonprix ab 2004."
+  description={isEnglish ? "From Offer Management and Digital Marketing through CRM to end-to-end steering of an international E-Commerce business. Four phases of building and scaling at bonprix since 2004." : "Von Angebotssteuerung und Digital Marketing über CRM bis zur End-to-End-Steuerung eines internationalen E-Commerce-Geschäfts. Vier Aufbau- und Skalierungsphasen bei bonprix ab 2004."}
 >
   <PageHeader
     eyebrow="Track Record"
-    headline="Verantwortung entlang der digitalen Wertschöpfung"
+    headline={isEnglish ? "Accountability across the digital value chain" : "Verantwortung entlang der digitalen Wertschöpfung"}
   />
 
   <div class="tr-body">
-    <p>Meine Entwicklung bei bonprix verlief über mehrere fachlich unterschiedliche Aufbau- und Skalierungsphasen: von Angebotssteuerung und Digital Marketing über internationale Webshops, CRM, Customer Journey und Data bis zur durchgängigen kommerziellen Steuerung eines internationalen E-Commerce-Geschäfts. Gemeinsam war diesen Phasen, neue Fähigkeiten aufzubauen, wirtschaftlich belastbar zu machen und anschließend international zu skalieren.</p>
+    <p>{isEnglish ? "My development at bonprix progressed through several professionally distinct phases of building and scaling: from Offer Management and Digital Marketing through international webshops, CRM, Customer Journey and Data to the end-to-end Commercial Steering of an international E-Commerce business. Across these phases, the common thread was to build new capabilities, make them economically robust and then scale them internationally." : "Meine Entwicklung bei bonprix verlief über mehrere fachlich unterschiedliche Aufbau- und Skalierungsphasen: von Angebotssteuerung und Digital Marketing über internationale Webshops, CRM, Customer Journey und Data bis zur durchgängigen kommerziellen Steuerung eines internationalen E-Commerce-Geschäfts. Gemeinsam war diesen Phasen, neue Fähigkeiten aufzubauen, wirtschaftlich belastbar zu machen und anschließend international zu skalieren."}</p>
   </div>
 
-  <section class="tr-facts" aria-label="Fachliche Entwicklung bei bonprix, 2004–2025">
+  <section class="tr-facts" aria-label={isEnglish ? "Professional development at bonprix, 2004–2025" : "Fachliche Entwicklung bei bonprix, 2004–2025"}>
     <ol class="tr-arc">
       {
-        trackRecordPhases.map((phase) => (
+        phases.map((phase) => (
           <li class="tr-arc-item">
             <div class="tr-arc-head">
               <div class="tr-arc-period">{phase.period}</div>
@@ -30,7 +37,7 @@ import { trackRecordPhases } from "../data/track-record";
               <p>{phase.body}</p>
             </div>
             <div class="tr-closing">
-              <h3>Schwerpunkte</h3>
+              <h3>{isEnglish ? "Focus" : "Schwerpunkte"}</h3>
               <p>{phase.focus}</p>
             </div>
             {phase.scale && (
@@ -46,9 +53,9 @@ import { trackRecordPhases } from "../data/track-record";
   </section>
 
   <section class="tr-now" aria-labelledby="tr-now-title">
-    <div class="tr-arc-period">Seit 2025</div>
-    <h2 id="tr-now-title">Commercial Management mit AI weiterentwickeln</h2>
-    <p>Heute entwickle ich diesen Ansatz mit AI-gestützten Entscheidungsmodellen für Marketing und Digital Commerce weiter und teste die Ansätze unter anderem an eigenen Agentic-AI-Prototypen.</p>
+    <div class="tr-arc-period">{isEnglish ? "Since 2025" : "Seit 2025"}</div>
+    <h2 id="tr-now-title">{isEnglish ? "Developing Commercial Management further with AI" : "Commercial Management mit AI weiterentwickeln"}</h2>
+    <p>{isEnglish ? "Today, I am developing this approach further through AI-assisted decision models for Marketing and Digital Commerce, and testing these approaches through my own Agentic AI prototypes, among other applications." : "Heute entwickle ich diesen Ansatz mit AI-gestützten Entscheidungsmodellen für Marketing und Digital Commerce weiter und teste die Ansätze unter anderem an eigenen Agentic-AI-Prototypen."}</p>
   </section>
 </SubPageLayout>
 

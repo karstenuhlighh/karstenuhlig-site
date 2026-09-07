@@ -1,21 +1,26 @@
 ---
 import SubPageLayout from "../layouts/SubPageLayout.astro";
 import LeadershipFieldExplorer from "../components/LeadershipFieldExplorer.astro";
+import { getLanguage } from "../i18n/routes";
+
+const language = getLanguage(Astro.url.pathname);
+const isEnglish = language === "en";
 ---
 
 <SubPageLayout
+  language={language}
   title="Leadership & Transformation | Karsten Uhlig"
-  description="Leadership als Diagnose- und Entscheidungshandwerk: sieben wiederkehrende Führungsprobleme und die Modelle, mit denen ich sie löse."
+  description={isEnglish ? "Leadership as a discipline of diagnosis and decision-making: seven recurring leadership problems and the models I use to address them." : "Leadership als Diagnose- und Entscheidungshandwerk: sieben wiederkehrende Führungsprobleme und die Modelle, mit denen ich sie löse."}
 >
   <article class="leadership-landing">
     <header class="landing-hero">
       <div class="hero-eyebrow">Leadership & Transformation</div>
       <h1>Leadership & Transformation</h1>
-      <p class="hero-subheadline">Strategie in Organisation und Umsetzung übersetzen.</p>
-      <p class="hero-copy">Führung reduziert sich für mich nicht auf Stil oder Intuition. Über Jahre wiederkehrende Führungssituationen lassen sich auf sieben Problemklassen verdichten, jede mit eigener Diagnose, eigenen Modellen und eigenem Handlungsrepertoire. Das zugrundeliegende Prinzip ist immer dasselbe: erst die tatsächliche Ursache verstehen, dann das passende Führungsinstrument wählen, nicht umgekehrt.</p>
+      <p class="hero-subheadline">{isEnglish ? "Turning strategy into organisation and execution." : "Strategie in Organisation und Umsetzung übersetzen."}</p>
+      <p class="hero-copy">{isEnglish ? "For me, leadership is not reducible to style or intuition. Leadership situations that recur over years can be distilled into seven problem classes, each with its own diagnosis, models and repertoire of action. The underlying principle remains the same: understand the actual cause first, then choose the appropriate leadership intervention — not the other way round." : "Führung reduziert sich für mich nicht auf Stil oder Intuition. Über Jahre wiederkehrende Führungssituationen lassen sich auf sieben Problemklassen verdichten, jede mit eigener Diagnose, eigenen Modellen und eigenem Handlungsrepertoire. Das zugrundeliegende Prinzip ist immer dasselbe: erst die tatsächliche Ursache verstehen, dann das passende Führungsinstrument wählen, nicht umgekehrt."}</p>
     </header>
 
-    <LeadershipFieldExplorer />
+    <LeadershipFieldExplorer language={language} />
   </article>
 </SubPageLayout>
 

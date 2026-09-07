@@ -1,22 +1,30 @@
 ---
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
+import { getLanguage, getRoutePair, type Language } from "../i18n/routes";
 
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  language?: Language;
 }
 
 const {
   title = "Karsten Uhlig | Commercial & Digital Commerce Executive",
   description = "Commercial und Digital Commerce Executive für wirtschaftliches Wachstum, Customer Journey und CRM, mit Leadership sowie Data, AI und Digital Products als Enabler.",
   ogImage = "/og-card.jpg",
+  language = getLanguage(Astro.url.pathname),
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const absoluteOgImage = new URL(ogImage, Astro.site).href;
 const siteHome = new URL("/", Astro.site).href;
+const routePair = getRoutePair(Astro.url.pathname);
+const deURL = routePair ? new URL(routePair.de, Astro.site).href : undefined;
+const enURL = routePair ? new URL(routePair.en, Astro.site).href : undefined;
+const ogLocale = language === "en" ? "en_GB" : "de_DE";
+const alternateOgLocale = language === "en" ? "de_DE" : "en_GB";
 
 // Entity-SEO: Schema.org Person — die Sprache, die KI-Recherche-Tools (ChatGPT,
 // Perplexity) und Recruiter-Sourcing lesen. Eine Person-Entity site-weit.
@@ -52,13 +60,16 @@ const personSchema = {
 ---
 
 <!doctype html>
-<html lang="de">
+<html lang={language}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalURL} />
+    {deURL && <link rel="alternate" hreflang="de" href={deURL} />}
+    {enURL && <link rel="alternate" hreflang="en-GB" href={enURL} />}
+    {deURL && <link rel="alternate" hreflang="x-default" href={deURL} />}
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=a3604600" />
     <meta name="generator" content={Astro.generator} />
 
@@ -68,7 +79,8 @@ const personSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={absoluteOgImage} />
-    <meta property="og:locale" content="de_DE" />
+    <meta property="og:locale" content={ogLocale} />
+    {routePair && <meta property="og:locale:alternate" content={alternateOgLocale} />}
 
     <!-- Twitter Card (nutzt og:* automatisch, hier nur Format-Hint) -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -80,6 +92,6 @@ const personSchema = {
   </head>
   <body>
     <slot />
-    <Footer />
+    <Footer language={language} />
   </body>
 </html>

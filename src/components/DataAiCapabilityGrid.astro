@@ -1,7 +1,37 @@
 ---
 import { dataAiCapabilities } from "../data/data-ai-capabilities";
+import { dataAiCapabilitiesEn } from "../data/en/data-ai-capabilities";
 
-const panelData = dataAiCapabilities.map((item) => ({
+interface Props {
+  language?: "de" | "en";
+}
+
+const { language = "de" } = Astro.props;
+const isEnglish = language === "en";
+const capabilities = isEnglish ? dataAiCapabilitiesEn : dataAiCapabilities;
+const ui = isEnglish ? {
+  kicker: "The 8 capability fields",
+  heading: "From robust signals to reliable, scalable automation.",
+  explore: "Explore",
+  close: "Close capability details",
+  intro: "Introduction",
+  questions: "Management Questions",
+  principles: "Principles",
+  evidence: "Selected Evidence",
+  trends: "Current Trends",
+} : {
+  kicker: "Die 8 Capability-Felder",
+  heading: "Von belastbaren Signalen bis zu verlässlicher, skalierbarer Automation.",
+  explore: "Explore",
+  close: "Capability-Details schließen",
+  intro: "Intro",
+  questions: "Management Questions",
+  principles: "Principles",
+  evidence: "Selected Evidence",
+  trends: "Aktuelle Trends",
+};
+
+const panelData = capabilities.map((item) => ({
   number: item.number,
   title: item.title,
   signature: item.signature,
@@ -21,13 +51,13 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
 
 <section class="field-section" id="data-ai-fields" aria-labelledby="data-ai-fields-title">
   <div class="section-heading">
-    <div class="section-kicker">Die 8 Capability-Felder</div>
-    <h2 id="data-ai-fields-title">Von belastbaren Signalen bis zu verlässlicher, skalierbarer Automation.</h2>
+    <div class="section-kicker">{ui.kicker}</div>
+    <h2 id="data-ai-fields-title">{ui.heading}</h2>
   </div>
 
   <ol class="field-grid">
     {
-      dataAiCapabilities.map((item) => (
+      capabilities.map((item) => (
         <li>
           <button
             class="field-card"
@@ -36,7 +66,7 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
             aria-haspopup="dialog"
             aria-controls="data-ai-field-dialog"
             aria-expanded="false"
-            aria-label={`${item.number} ${item.title} erkunden`}
+            aria-label={`${ui.explore} ${item.number} ${item.title}`}
           >
             <span class="field-media">
               <img src={item.image} alt={item.alt} width="400" height="340" loading="lazy" decoding="async" />
@@ -44,11 +74,11 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
             <span class="field-content">
               <span class="field-title"><b>{item.number}</b><strong>{item.title}</strong></span>
               <span class="field-description">{item.description}</span>
-              <span class="field-mobile-action">Explore <span aria-hidden="true">→</span></span>
+              <span class="field-mobile-action">{ui.explore} <span aria-hidden="true">→</span></span>
             </span>
             <span class="field-preview" aria-hidden="true">
               <span class="preview-copy">{item.hover}</span>
-              <span class="preview-action">Explore <span aria-hidden="true">→</span></span>
+              <span class="preview-action">{ui.explore} <span aria-hidden="true">→</span></span>
             </span>
           </button>
         </li>
@@ -61,7 +91,7 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
   <div class="drawer">
     <div class="drawer-topline">
       <span class="drawer-number" id="data-ai-dialog-number"></span>
-      <button class="drawer-close" type="button" aria-label="Capability-Details schließen">×</button>
+      <button class="drawer-close" type="button" aria-label={ui.close}>×</button>
     </div>
 
     <div class="drawer-heading">
@@ -75,33 +105,33 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
     </div>
 
     <section class="drawer-section intro-section" aria-labelledby="data-ai-dialog-intro-label">
-      <h3 id="data-ai-dialog-intro-label">Intro</h3>
+      <h3 id="data-ai-dialog-intro-label">{ui.intro}</h3>
       <p id="data-ai-dialog-intro"></p>
     </section>
 
     <div class="drawer-columns">
       <section class="drawer-section" aria-labelledby="data-ai-dialog-questions-label">
-        <h3 id="data-ai-dialog-questions-label">Management Questions</h3>
+        <h3 id="data-ai-dialog-questions-label">{ui.questions}</h3>
         <ul id="data-ai-dialog-questions"></ul>
       </section>
 
       <section class="drawer-section" aria-labelledby="data-ai-dialog-principles-label">
-        <h3 id="data-ai-dialog-principles-label">Principles</h3>
+        <h3 id="data-ai-dialog-principles-label">{ui.principles}</h3>
         <ul id="data-ai-dialog-principles"></ul>
       </section>
     </div>
 
     <section class="drawer-section" aria-labelledby="data-ai-dialog-evidence-label">
-      <h3 id="data-ai-dialog-evidence-label">Selected Evidence</h3>
+      <h3 id="data-ai-dialog-evidence-label">{ui.evidence}</h3>
       <div class="drawer-tags" id="data-ai-dialog-evidence"></div>
     </section>
 
     <section class="drawer-section" aria-labelledby="data-ai-dialog-trends-label">
-      <h3 id="data-ai-dialog-trends-label">Aktuelle Trends</h3>
+      <h3 id="data-ai-dialog-trends-label">{ui.trends}</h3>
       <div class="drawer-trends" id="data-ai-dialog-trends"></div>
     </section>
 
-    <a class="drawer-cta" id="data-ai-dialog-link" href="/data-ai-digital-product" hidden>
+    <a class="drawer-cta" id="data-ai-dialog-link" href={isEnglish ? "/en/data-ai-digital-product" : "/data-ai-digital-product"} hidden>
       <span id="data-ai-dialog-link-label"></span> <span aria-hidden="true">→</span>
     </a>
   </div>

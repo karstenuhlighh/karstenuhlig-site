@@ -1,13 +1,22 @@
+---
+interface Props {
+  language?: "de" | "en";
+}
+
+const { language = "de" } = Astro.props;
+const isEnglish = language === "en";
+---
+
 <section class="evidence-section" aria-labelledby="commercial-evidence-title">
   <div class="evidence-heading">
-    <div class="evidence-kicker">Evidenz</div>
+    <div class="evidence-kicker">{isEnglish ? "Evidence" : "Evidenz"}</div>
     <div>
-      <h2 id="commercial-evidence-title">Aus Erfahrung entwickelt</h2>
-      <p>Entstanden aus mehr als zwei Jahrzehnten Verantwortung entlang der digitalen Wertschöpfung, von Angebotssteuerung und Digital Marketing über CRM, Customer Journey und Data bis zur End-to-End-Steuerung eines internationalen E-Commerce-Geschäfts.</p>
+      <h2 id="commercial-evidence-title">{isEnglish ? "Developed through experience" : "Aus Erfahrung entwickelt"}</h2>
+      <p>{isEnglish ? "Built through more than two decades of accountability across the digital value chain, from Offer Management and Digital Marketing through CRM, Customer Journey and Data to end-to-end steering of an international E-Commerce business." : "Entstanden aus mehr als zwei Jahrzehnten Verantwortung entlang der digitalen Wertschöpfung, von Angebotssteuerung und Digital Marketing über CRM, Customer Journey und Data bis zur End-to-End-Steuerung eines internationalen E-Commerce-Geschäfts."}</p>
     </div>
   </div>
 
-  <a class="evidence-link" href="/track-record">Zum vollständigen Track Record <span aria-hidden="true">→</span></a>
+  <a class="evidence-link" href={isEnglish ? "/en/track-record" : "/track-record"}>{isEnglish ? "View the full Track Record" : "Zum vollständigen Track Record"} <span aria-hidden="true">→</span></a>
 </section>
 
 <style>

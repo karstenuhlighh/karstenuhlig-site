@@ -9,6 +9,7 @@ interface Props {
   heading?: string;
   eyebrow?: string;
   tensions?: Tension[];
+  language?: "de" | "en";
 }
 
 const defaultTensions: Tension[] = [
@@ -30,10 +31,30 @@ const defaultTensions: Tension[] = [
   },
 ];
 
+const { language = "de" } = Astro.props;
+const isEnglish = language === "en";
+const englishTensions: Tension[] = [
+  {
+    title: "Growth is becoming less efficient",
+    body: "More effort no longer creates proportionally more impact. Growth becomes more expensive, slower or less stable.",
+  },
+  {
+    title: "Customer journey and customer value do not work as one system",
+    body: "Acquisition, CRM, conversion and retention optimise locally, but not as one economic system.",
+  },
+  {
+    title: "Priorities and accountability become fragmented",
+    body: "Too many initiatives compete for resources, while decisions remain unclear or lose momentum in execution.",
+  },
+  {
+    title: "Data, AI and digital products create activity, but too little economic impact",
+    body: "Platforms, products and AI initiatives progress without a sufficiently clear contribution to commercial outcomes.",
+  },
+];
 const {
-  heading = "Wenn Wachstum komplex wird",
-  eyebrow = "Executive-Spannungsfelder",
-  tensions = defaultTensions,
+  heading = isEnglish ? "When growth becomes complex" : "Wenn Wachstum komplex wird",
+  eyebrow = isEnglish ? "Executive tensions" : "Executive-Spannungsfelder",
+  tensions = isEnglish ? englishTensions : defaultTensions,
 } = Astro.props;
 ---
 
@@ -51,7 +72,7 @@ const {
           <div>
             <h3>{tension.title}</h3>
             <p>{tension.body}</p>
-            {tension.relevant && <div class="tension-relevant">Relevant: {tension.relevant}</div>}
+            {tension.relevant && <div class="tension-relevant">{isEnglish ? "Relevant" : "Relevant"}: {tension.relevant}</div>}
           </div>
         </li>
       ))

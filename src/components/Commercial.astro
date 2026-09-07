@@ -1,7 +1,16 @@
 ---
 import CommercialManagementLoop from "./CommercialManagementLoop.astro";
+import type { Language } from "../i18n/routes";
 
-const enablers = [
+interface Props {
+  language?: Language;
+}
+
+const { language = "de" } = Astro.props;
+const isEnglish = language === "en";
+const prefix = isEnglish ? "/en" : "";
+
+const germanEnablers = [
   {
     id: "data-ai-digital-product",
     href: "/data-ai-digital-product",
@@ -25,9 +34,41 @@ const enablers = [
   },
 ];
 
-const defaultVisualLanguage = Astro.currentLocale?.toLowerCase().startsWith("en") || Astro.url.pathname === "/en" || Astro.url.pathname.startsWith("/en/")
-  ? "en"
-  : "de";
+const englishEnablers = [
+  {
+    id: "data-ai-digital-product",
+    href: "/en/data-ai-digital-product",
+    title: "Data, AI & Decisioning",
+    thesis: "Turn better evidence into better commercial decisions.",
+    body: "From robust signals and customer state through analytics and Predictive AI to concrete action — as an execution capability for Digital Commerce.",
+  },
+  {
+    id: "digital-product-customer-experience",
+    href: "/en/digital-product-customer-experience",
+    title: "Digital Product & Customer Experience",
+    thesis: "Turn commercial direction into effective products and journeys.",
+    body: "From customer problem and product lifecycle through enduring ownership and portfolio steering to multi-market scale and robust product evidence.",
+  },
+  {
+    id: "leadership",
+    href: "/en/leadership",
+    title: "Leadership & Transformation",
+    thesis: "Turn strategy into organisation and execution.",
+    body: "Set direction, clarify accountability and align the organisation behind the critical priorities. Diagnose the cause and clarify the decision first, then choose the appropriate leadership and change intervention.",
+  },
+];
+
+const enablers = isEnglish ? englishEnablers : germanEnablers;
+const defaultVisualLanguage = language;
+const intro = isEnglish ? {
+  label: "Explore Commercial Management / Digital Commerce",
+  heading: "Steering and scaling digital businesses for economic impact.",
+  body: "Growth, customer base, customer journey, commercial economics and scarce resources belong in one coherent management system. The decisive capability is to interpret signals correctly, set priorities and direct resources so that economic impact can scale.",
+} : {
+  label: "Commercial Management / Digital Commerce vertiefen",
+  heading: "Digitale Geschäfte wirtschaftlich steuern und skalieren.",
+  body: "Wachstum, Kundenbasis, Customer Journey, Commercial Economics und knappe Ressourcen gehören in ein zusammenhängendes Managementsystem. Entscheidend ist, Signale richtig zu deuten, Prioritäten zu setzen und Ressourcen so zu führen, dass wirtschaftliche Wirkung skalierbar wird.",
+};
 
 const keyVisuals = {
   de: {
@@ -46,21 +87,16 @@ const initialKeyVisual = keyVisuals[defaultVisualLanguage];
 ---
 
 <section class="commercial-pillar" id="commercial-management">
-  <a class="commercial-intro" href="/commercial-management" aria-label="Commercial Management / Digital Commerce vertiefen">
+  <a class="commercial-intro" href={`${prefix}/commercial-management`} aria-label={intro.label}>
     <div class="section-kicker">Commercial Management / Digital Commerce</div>
-    <h2>Digitale Geschäfte wirtschaftlich steuern und skalieren.</h2>
-    <p>
-      Wachstum, Kundenbasis, Customer Journey, Commercial Economics und knappe
-      Ressourcen gehören in ein zusammenhängendes Managementsystem. Entscheidend
-      ist, Signale richtig zu deuten, Prioritäten zu setzen und Ressourcen so zu
-      führen, dass wirtschaftliche Wirkung skalierbar wird.
-    </p>
+    <h2>{intro.heading}</h2>
+    <p>{intro.body}</p>
   </a>
 
-  <div class="enablers" aria-label="Zentrale Enabler">
+  <div class="enablers" aria-label={isEnglish ? "Core enablers" : "Zentrale Enabler"}>
     {
       enablers.map((enabler) => enabler.href ? (
-        <a class="enabler-card enabler-card-link" id={enabler.id} href={enabler.href} aria-label={`${enabler.title} vertiefen`}>
+        <a class="enabler-card enabler-card-link" id={enabler.id} href={enabler.href} aria-label={`${isEnglish ? "Explore" : "Vertiefen"} ${enabler.title}`}>
           <span class="enabler-marker" aria-hidden="true"></span>
           <div class="enabler-copy">
             <div class="enabler-heading">
@@ -126,7 +162,7 @@ const initialKeyVisual = keyVisuals[defaultVisualLanguage];
     </a>
   </figure>
 
-  <CommercialManagementLoop />
+  <CommercialManagementLoop language={language} />
 </section>
 
 <style>

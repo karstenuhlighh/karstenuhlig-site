@@ -1,9 +1,18 @@
+---
+interface Props {
+  language?: "de" | "en";
+}
+
+const { language = "de" } = Astro.props;
+const isEnglish = language === "en";
+---
+
 <section class="mechanics-section" aria-labelledby="mechanics-title">
   <div class="mechanics-heading">
-    <div class="mechanics-kicker">Ausgewählte Modelle</div>
+    <div class="mechanics-kicker">{isEnglish ? "Selected models" : "Ausgewählte Modelle"}</div>
     <div>
-      <h2 id="mechanics-title">Ein Blick in die Mechanik</h2>
-      <p>Einige Mechanismen entscheiden besonders stark darüber, ob Commercial Management nur kurzfristig optimiert oder strukturell Wirkung erzeugt.</p>
+      <h2 id="mechanics-title">{isEnglish ? "A look into the mechanics" : "Ein Blick in die Mechanik"}</h2>
+      <p>{isEnglish ? "Some mechanisms are particularly decisive in determining whether Commercial Management merely optimises the short term or creates structural impact." : "Einige Mechanismen entscheiden besonders stark darüber, ob Commercial Management nur kurzfristig optimiert oder strukturell Wirkung erzeugt."}</p>
     </div>
   </div>
 
@@ -12,23 +21,23 @@
       <div class="model-copy">
         <span class="model-index">A</span>
         <h3>Future Growth Logic</h3>
-        <p>Wachstum entsteht nicht allein durch bessere Steuerung des Bestehenden. Entscheidend ist, strukturelle Begrenzungen zu erkennen, ihre Mechanik zu verändern und dadurch neue wirtschaftliche Spielräume zu schaffen.</p>
+        <p>{isEnglish ? "Growth does not come from steering the existing business better alone. What matters is recognising structural constraints, changing their mechanics and creating new economic headroom." : "Wachstum entsteht nicht allein durch bessere Steuerung des Bestehenden. Entscheidend ist, strukturelle Begrenzungen zu erkennen, ihre Mechanik zu verändern und dadurch neue wirtschaftliche Spielräume zu schaffen."}</p>
       </div>
-      <div class="growth-model" aria-label="Future Growth Logic von Constraint über Structural Change und New Economics zu Growth Space">
+      <div class="growth-model" aria-label={isEnglish ? "Future Growth Logic from constraint through structural change and new economics to growth space" : "Future Growth Logic von Constraint über Structural Change und New Economics zu Growth Space"}>
         <div class="model-step">
-          <span>01</span><strong>Constraint</strong><small>Die heutige Logik stößt an eine strukturelle Grenze.</small>
+          <span>01</span><strong>Constraint</strong><small>{isEnglish ? "Today's logic reaches a structural limit." : "Die heutige Logik stößt an eine strukturelle Grenze."}</small>
         </div>
         <div class="model-arrow" aria-hidden="true">→</div>
         <div class="model-step active-step">
-          <span>02</span><strong>Structural Change</strong><small>Value Proposition, Markt, Kanal oder Technologie verändern die Mechanik.</small>
+          <span>02</span><strong>Structural Change</strong><small>{isEnglish ? "Value proposition, market, channel or technology changes the mechanics." : "Value Proposition, Markt, Kanal oder Technologie verändern die Mechanik."}</small>
         </div>
         <div class="model-arrow" aria-hidden="true">→</div>
         <div class="model-step">
-          <span>03</span><strong>New Economics</strong><small>Grenzkosten, Kundenwert oder Skalierbarkeit folgen einer neuen Logik.</small>
+          <span>03</span><strong>New Economics</strong><small>{isEnglish ? "Marginal cost, Customer Value or scalability follows a new logic." : "Grenzkosten, Kundenwert oder Skalierbarkeit folgen einer neuen Logik."}</small>
         </div>
         <div class="model-arrow" aria-hidden="true">→</div>
         <div class="model-step result-step">
-          <span>04</span><strong>Growth Space</strong><small>Ein zusätzlicher wirtschaftlicher Spielraum wird skalierbar.</small>
+          <span>04</span><strong>Growth Space</strong><small>{isEnglish ? "Additional economic headroom becomes scalable." : "Ein zusätzlicher wirtschaftlicher Spielraum wird skalierbar."}</small>
         </div>
       </div>
     </article>
@@ -37,10 +46,10 @@
       <div class="model-copy">
         <span class="model-index">B</span>
         <h3>Customer Base Economics</h3>
-        <p>Die Kundenbasis ist ein wirtschaftlicher Bestand. Wachstum entsteht aus Größe, Qualität und Dynamik dieses Bestands, nicht nur aus Traffic oder kurzfristigem Umsatz.</p>
+        <p>{isEnglish ? "The customer base is an economic asset. Growth comes from its size, quality and dynamics, not from traffic or short-term revenue alone." : "Die Kundenbasis ist ein wirtschaftlicher Bestand. Wachstum entsteht aus Größe, Qualität und Dynamik dieses Bestands, nicht nur aus Traffic oder kurzfristigem Umsatz."}</p>
       </div>
-      <div class="customer-model" aria-label="Customer Base Economics mit Zielbestand, Acquisition, Reactivation, Retention und Churn">
-        <div class="target-base"><span>Target Base</span><strong>Zukünftiger wirtschaftlicher Zielbestand</strong></div>
+      <div class="customer-model" aria-label={isEnglish ? "Customer Base Economics with target base, acquisition, reactivation, retention and churn" : "Customer Base Economics mit Zielbestand, Acquisition, Reactivation, Retention und Churn"}>
+        <div class="target-base"><span>Target Base</span><strong>{isEnglish ? "Future economic target base" : "Zukünftiger wirtschaftlicher Zielbestand"}</strong></div>
         <div class="base-flow">
           <div class="inflows">
             <div><span>Acquisition</span><b aria-hidden="true">→</b></div>
@@ -48,12 +57,12 @@
           </div>
           <div class="active-base">
             <span>Active Customer Base</span>
-            <strong>Größe · Qualität · Wert</strong>
-            <small>Retention stabilisiert den Bestand</small>
+            <strong>{isEnglish ? "Size · Quality · Value" : "Größe · Qualität · Wert"}</strong>
+            <small>{isEnglish ? "Retention stabilises the base" : "Retention stabilisiert den Bestand"}</small>
           </div>
           <div class="outflow"><b aria-hidden="true">→</b><span>Churn</span></div>
         </div>
-        <div class="base-equation"><span>Bestand heute</span><b>+</b><span>Zuflüsse</span><b>−</b><span>Churn</span><b>→</b><span>Zielbestand</span></div>
+        <div class="base-equation"><span>{isEnglish ? "Base today" : "Bestand heute"}</span><b>+</b><span>{isEnglish ? "Inflows" : "Zuflüsse"}</span><b>−</b><span>Churn</span><b>→</b><span>{isEnglish ? "Target base" : "Zielbestand"}</span></div>
       </div>
     </article>
 
@@ -61,16 +70,16 @@
       <div class="model-copy">
         <span class="model-index">C</span>
         <h3>Mechanism Transfer</h3>
-        <p>Internationale Skalierung gelingt nicht durch Copy-Paste. Entscheidend ist, den eigentlichen Wirkungsmechanismus zu verstehen und ihn im Zielmarkt passend zum lokalen Kontext neu aufzusetzen.</p>
+        <p>{isEnglish ? "International scaling does not work through copy and paste. What matters is understanding the actual mechanism of impact and rebuilding it for the local context in the target market." : "Internationale Skalierung gelingt nicht durch Copy-Paste. Entscheidend ist, den eigentlichen Wirkungsmechanismus zu verstehen und ihn im Zielmarkt passend zum lokalen Kontext neu aufzusetzen."}</p>
       </div>
-      <div class="transfer-model" aria-label="Mechanism Transfer von Beobachten über Dekonstruieren und Isolieren bis zum Neuaufsetzen im Zielmarkt">
-        <div class="transfer-step"><span>01</span><strong>Beobachten</strong><small>Was wirkt im Ausgangsmarkt tatsächlich?</small></div>
+      <div class="transfer-model" aria-label={isEnglish ? "Mechanism Transfer from observation through deconstruction and isolation to rebuilding in the target market" : "Mechanism Transfer von Beobachten über Dekonstruieren und Isolieren bis zum Neuaufsetzen im Zielmarkt"}>
+        <div class="transfer-step"><span>01</span><strong>{isEnglish ? "Observe" : "Beobachten"}</strong><small>{isEnglish ? "What actually works in the source market?" : "Was wirkt im Ausgangsmarkt tatsächlich?"}</small></div>
         <div class="model-arrow" aria-hidden="true">→</div>
-        <div class="transfer-step"><span>02</span><strong>Dekonstruieren</strong><small>Welche Kontextfaktoren tragen zur Wirkung bei?</small></div>
+        <div class="transfer-step"><span>02</span><strong>{isEnglish ? "Deconstruct" : "Dekonstruieren"}</strong><small>{isEnglish ? "Which contextual factors contribute to the impact?" : "Welche Kontextfaktoren tragen zur Wirkung bei?"}</small></div>
         <div class="model-arrow" aria-hidden="true">→</div>
-        <div class="transfer-step mechanism-step"><span>03</span><strong>Wirkungs<wbr />mechanismus isolieren</strong><small>Was ist übertragbar, was nur sichtbare Ausprägung?</small></div>
+        <div class="transfer-step mechanism-step"><span>03</span><strong>{isEnglish ? <>Isolate the impact <wbr />mechanism</> : <>Wirkungs<wbr />mechanismus isolieren</>}</strong><small>{isEnglish ? "What is transferable, and what is merely its visible expression?" : "Was ist übertragbar, was nur sichtbare Ausprägung?"}</small></div>
         <div class="model-arrow" aria-hidden="true">→</div>
-        <div class="transfer-step result-step"><span>04</span><strong>Im Zielmarkt neu aufsetzen</strong><small>Mechanik an lokalen Kontext und Constraints anpassen.</small></div>
+        <div class="transfer-step result-step"><span>04</span><strong>{isEnglish ? "Rebuild in the target market" : "Im Zielmarkt neu aufsetzen"}</strong><small>{isEnglish ? "Adapt the mechanics to local context and constraints." : "Mechanik an lokalen Kontext und Constraints anpassen."}</small></div>
       </div>
     </article>
   </div>

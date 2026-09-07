@@ -1,10 +1,19 @@
 ---
 import SubPageLayout from "../layouts/SubPageLayout.astro";
 import DataAiCapabilityGrid from "../components/DataAiCapabilityGrid.astro";
+import { getLanguage } from "../i18n/routes";
 
+const language = getLanguage(Astro.url.pathname);
+const isEnglish = language === "en";
 const decisionFlow = ["Data", "State", "Intelligence", "Decision", "Action", "Learning"];
 
-const principles = [
+const principles = isEnglish ? [
+  "Start with the decision, not the technology.",
+  "Use the simplest mechanism that solves the problem.",
+  "Evidence over plausibility.",
+  "Intelligence creates value only through action.",
+  "Reliability must scale with automation.",
+] : [
   "Start with the decision, not the technology.",
   "Use the simplest mechanism that solves the problem.",
   "Evidence over plausibility.",
@@ -12,7 +21,28 @@ const principles = [
   "Reliability must scale with automation.",
 ];
 
-const enterpriseProofs = [
+const enterpriseProofs = isEnglish ? [
+  {
+    title: "Integrated customer & marketing data platform",
+    body: "Connected web, customer, transaction and marketing data as a shared foundation for analytics and steering.",
+  },
+  {
+    title: "Data Science & predictive use cases",
+    body: "Developed scoring, forecasting models and Data Science applications from validation through to operational use.",
+  },
+  {
+    title: "Recommendation, Ranking & Personalisation",
+    body: "Connected Search & Browse ranking, recommendations and real-time Personalisation with digital customer journeys.",
+  },
+  {
+    title: "Cross-channel decisioning",
+    body: "Used customer state and response signals for coordinated decisions across CRM, Paid Media and Onsite.",
+  },
+  {
+    title: "BigQuery / GCP transformation",
+    body: "Developed an established BI and data landscape towards a cloud-based analytics and data platform.",
+  },
+] : [
   {
     title: "Integrated customer & marketing data platform",
     body: "Web-, Customer-, Transaktions- und Marketingdaten als gemeinsame Grundlage für Analytics und Steuerung verbunden.",
@@ -35,7 +65,26 @@ const enterpriseProofs = [
   },
 ];
 
-const explorations = [
+const explorations = isEnglish ? [
+  {
+    title: "Augur / sem-agentic",
+    status: "Prototype",
+    body: "AI-assisted SEM decisioning with LLMs, rules, tools, evals and human approval. Architecture and evaluation are evidenced; autonomous production impact is not.",
+    href: undefined,
+  },
+  {
+    title: "Signal Steering",
+    status: "Prototype · synthetic data",
+    body: "Measurement and Decision Intelligence through triangulation of attribution, geo-incrementality and MMM. Signal Steering is explicitly not an agentic system.",
+    href: undefined,
+  },
+  {
+    title: "KA-OS",
+    status: "Active personal use",
+    body: "AI-enabled knowledge and context system for robust, longer-term human-AI work. Active personal use, not an enterprise-scale claim.",
+    href: undefined,
+  },
+] : [
   {
     title: "Augur / sem-agentic",
     status: "Prototype",
@@ -58,15 +107,16 @@ const explorations = [
 ---
 
 <SubPageLayout
-  title="Data, AI & Decisioning | Karsten Uhlig"
-  description="Data, AI und Decisioning als Execution Capability für Digital Commerce: von belastbaren Signalen über Intelligence bis zu wirksamen Entscheidungen."
+  language={language}
+  title={isEnglish ? "Data, AI & Decisioning | Karsten Uhlig" : "Data, AI & Decisioning | Karsten Uhlig"}
+  description={isEnglish ? "Data, AI and Decisioning as an execution capability for Digital Commerce: from robust signals through intelligence to effective decisions." : "Data, AI und Decisioning als Execution Capability für Digital Commerce: von belastbaren Signalen über Intelligence bis zu wirksamen Entscheidungen."}
 >
   <article class="data-landing">
     <header class="landing-hero">
       <div class="hero-eyebrow">Execution Capability for Digital Commerce</div>
       <h1>Data, AI &amp;<br />Decisioning</h1>
-      <p class="hero-subheadline">Daten werden dann wertvoll, wenn sie bessere kommerzielle Entscheidungen ermöglichen.</p>
-      <p class="hero-copy">Ich verbinde Measurement, Customer Data, Analytics, Data Science und AI mit den Entscheidungssystemen und digitalen Produkten, die daraus konkrete Kunden- und Geschäftswirkung erzeugen. Der Ausgangspunkt bleibt dabei Commercial Management: Welche Kunden-, Wachstums- oder Ressourcenentscheidung muss besser werden?</p>
+      <p class="hero-subheadline">{isEnglish ? "Data becomes valuable when it enables better commercial decisions." : "Daten werden dann wertvoll, wenn sie bessere kommerzielle Entscheidungen ermöglichen."}</p>
+      <p class="hero-copy">{isEnglish ? "I connect Measurement, Customer Data, Analytics, Data Science and AI with the decision systems and digital products that turn them into concrete customer and business impact. Commercial Management remains the starting point: which customer, growth or resource decision needs to improve?" : "Ich verbinde Measurement, Customer Data, Analytics, Data Science und AI mit den Entscheidungssystemen und digitalen Produkten, die daraus konkrete Kunden- und Geschäftswirkung erzeugen. Der Ausgangspunkt bleibt dabei Commercial Management: Welche Kunden-, Wachstums- oder Ressourcenentscheidung muss besser werden?"}</p>
     </header>
 
     <section class="logic-section" aria-labelledby="decision-logic-title">
@@ -82,12 +132,12 @@ const explorations = [
           <circle class="signal-node signal-node-active" cx="205" cy="126" r="9" />
         </svg>
         <div class="logic-copy">
-          <div class="section-kicker">Die zentrale Logik</div>
-          <h2 id="decision-logic-title">Von Daten zur wirksamen Entscheidung.</h2>
-          <p>Belastbare Signale schaffen Customer Context. Analytics und Modelle verdichten ihn zu Intelligence. Wert entsteht erst in einer konkreten Action.</p>
+          <div class="section-kicker">{isEnglish ? "The central logic" : "Die zentrale Logik"}</div>
+          <h2 id="decision-logic-title">{isEnglish ? "From data to an effective decision." : "Von Daten zur wirksamen Entscheidung."}</h2>
+          <p>{isEnglish ? "Robust signals create customer context. Analytics and models turn it into intelligence. Value emerges only through a concrete action." : "Belastbare Signale schaffen Customer Context. Analytics und Modelle verdichten ihn zu Intelligence. Wert entsteht erst in einer konkreten Action."}</p>
         </div>
       </div>
-      <ol class="decision-flow" aria-label={decisionFlow.join(" zu ")}>
+      <ol class="decision-flow" aria-label={decisionFlow.join(isEnglish ? " to " : " zu ")}>
         {decisionFlow.map((step) => (
           <li>
             <span class="flow-node" aria-hidden="true"></span>
@@ -97,12 +147,12 @@ const explorations = [
       </ol>
     </section>
 
-    <DataAiCapabilityGrid />
+    <DataAiCapabilityGrid language={language} />
 
     <section class="principles-section" aria-labelledby="principles-title">
       <div class="section-heading">
         <div class="section-kicker">Principles</div>
-        <h2 id="principles-title">Technologie folgt der Entscheidungsfrage.</h2>
+        <h2 id="principles-title">{isEnglish ? "Technology follows the decision question." : "Technologie folgt der Entscheidungsfrage."}</h2>
       </div>
       <ol class="principles-grid">
         {principles.map((principle, index) => (
@@ -115,8 +165,8 @@ const explorations = [
       <div class="section-heading">
         <div class="section-kicker">Built &amp; scaled at enterprise level</div>
         <div>
-          <h2 id="enterprise-proof-title">Substanz aus operativer Verantwortung und Skalierung.</h2>
-          <p>Die historische Erfahrung liegt im Aufbau integrierter Data-, Analytics- und Decisioning-Capabilities für ein internationales Digital-Commerce-Geschäft.</p>
+          <h2 id="enterprise-proof-title">{isEnglish ? "Substance from operational accountability and scale." : "Substanz aus operativer Verantwortung und Skalierung."}</h2>
+          <p>{isEnglish ? "The established experience lies in building integrated Data, Analytics and Decisioning capabilities for an international Digital Commerce business." : "Die historische Erfahrung liegt im Aufbau integrierter Data-, Analytics- und Decisioning-Capabilities für ein internationales Digital-Commerce-Geschäft."}</p>
         </div>
       </div>
       <div class="proof-grid enterprise-grid">
@@ -133,8 +183,8 @@ const explorations = [
       <div class="section-heading">
         <div class="section-kicker">Current AI explorations</div>
         <div>
-          <h2 id="current-proof-title">Aktuelle Lern- und Anwendungsräume — mit offenem Reifegrad.</h2>
-          <p>Diese Arbeiten zeigen Architektur, Methoden und aktives Lernen. Sie stehen bewusst nicht auf derselben Evidenzstufe wie die Enterprise-Erfahrung.</p>
+          <h2 id="current-proof-title">{isEnglish ? "Current spaces for learning and application — with maturity made explicit." : "Aktuelle Lern- und Anwendungsräume — mit offenem Reifegrad."}</h2>
+          <p>{isEnglish ? "This work demonstrates architecture, methods and active learning. It deliberately does not carry the same level of evidence as the enterprise experience." : "Diese Arbeiten zeigen Architektur, Methoden und aktives Lernen. Sie stehen bewusst nicht auf derselben Evidenzstufe wie die Enterprise-Erfahrung."}</p>
         </div>
       </div>
       <div class="proof-grid exploration-grid">
@@ -143,7 +193,7 @@ const explorations = [
             <div class="status">{item.status}</div>
             <h3>{item.title}</h3>
             <p>{item.body}</p>
-            {item.href && <a href={item.href}>Vertiefen <span aria-hidden="true">→</span></a>}
+            {item.href && <a href={item.href}>{isEnglish ? "Explore" : "Vertiefen"} <span aria-hidden="true">→</span></a>}
           </article>
         ))}
       </div>
@@ -152,9 +202,9 @@ const explorations = [
     <section class="commercial-return" aria-labelledby="commercial-return-title">
       <div class="section-kicker">Commercial first</div>
       <div>
-        <h2 id="commercial-return-title">Data &amp; AI ist kein Selbstzweck.</h2>
-        <p>Der Ausgangspunkt bleibt die kommerzielle Frage: Welche Kunden-, Wachstums- oder Ressourcenentscheidung muss besser werden?</p>
-        <a href="/commercial-management">Zurück zu Commercial Management <span aria-hidden="true">→</span></a>
+        <h2 id="commercial-return-title">{isEnglish ? "Data & AI is not an end in itself." : "Data & AI ist kein Selbstzweck."}</h2>
+        <p>{isEnglish ? "The commercial question remains the starting point: which customer, growth or resource decision needs to improve?" : "Der Ausgangspunkt bleibt die kommerzielle Frage: Welche Kunden-, Wachstums- oder Ressourcenentscheidung muss besser werden?"}</p>
+        <a href={isEnglish ? "/en/commercial-management" : "/commercial-management"}>{isEnglish ? "Back to Commercial Management" : "Zurück zu Commercial Management"} <span aria-hidden="true">→</span></a>
       </div>
     </section>
   </article>

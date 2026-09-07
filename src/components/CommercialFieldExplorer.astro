@@ -1,7 +1,35 @@
 ---
 import { commercialFields } from "../data/commercial-questions";
+import { commercialFieldsEn } from "../data/en/commercial-fields";
 
-const panelData = commercialFields.map((field) => ({
+interface Props {
+  language?: "de" | "en";
+}
+
+const { language = "de" } = Astro.props;
+const isEnglish = language === "en";
+const fields = isEnglish ? commercialFieldsEn : commercialFields;
+const ui = isEnglish ? {
+  kicker: "The 8 management fields",
+  heading: "Understand the economic system as a whole, prioritise and steer effectively across functional boundaries.",
+  explore: "Explore",
+  managementQuestion: "Management question",
+  close: "Close details",
+  about: "What it is about",
+  focus: "What I look at",
+  tensions: "Typical decisions and tensions",
+} : {
+  kicker: "Die 8 Handlungsfelder",
+  heading: "Das wirtschaftliche Gesamtsystem verstehen, priorisieren und über Funktionsgrenzen hinweg wirksam steuern.",
+  explore: "Vertiefen",
+  managementQuestion: "Managementfrage",
+  close: "Vertiefung schließen",
+  about: "Worum es geht",
+  focus: "Worauf ich schaue",
+  tensions: "Typische Entscheidungen und Spannungen",
+};
+
+const panelData = fields.map((field) => ({
   number: field.number,
   title: field.title,
   managementQuestion: field.managementQuestion,
@@ -16,13 +44,13 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
 
 <section class="field-section" id="commercial-fields" aria-labelledby="commercial-fields-title">
   <div class="section-heading">
-    <div class="section-kicker">Die 8 Handlungsfelder</div>
-    <h2 id="commercial-fields-title">Das wirtschaftliche Gesamtsystem verstehen, priorisieren und über Funktionsgrenzen hinweg wirksam steuern.</h2>
+    <div class="section-kicker">{ui.kicker}</div>
+    <h2 id="commercial-fields-title">{ui.heading}</h2>
   </div>
 
   <ol class="field-grid">
     {
-      commercialFields.map((field) => (
+      fields.map((field) => (
         <li>
           <button
             class="field-card"
@@ -31,7 +59,7 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
             aria-haspopup="dialog"
             aria-controls="commercial-field-dialog"
             aria-expanded="false"
-            aria-label={`${field.number} ${field.title} vertiefen`}
+            aria-label={`${ui.explore} ${field.number} ${field.title}`}
           >
             <span class="field-media">
               <img src={field.image} alt={field.alt} width="400" height="340" loading="lazy" />
@@ -39,10 +67,10 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
             <span class="field-content">
               <span class="field-title"><b>{field.number}</b><strong>{field.title}</strong></span>
               <span class="field-description">{field.description}</span>
-              <span class="field-action">Vertiefen <span aria-hidden="true">→</span></span>
+              <span class="field-action">{ui.explore} <span aria-hidden="true">→</span></span>
             </span>
             <span class="field-preview" aria-hidden="true">
-              <span class="preview-label">Managementfrage</span>
+              <span class="preview-label">{ui.managementQuestion}</span>
               <span class="preview-question">{field.managementQuestion}</span>
               <span class="preview-tags">
                 {field.tags.map((tag) => <span>{tag}</span>)}
@@ -59,28 +87,28 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
   <div class="drawer">
     <div class="drawer-topline">
       <span class="drawer-number" id="field-dialog-number"></span>
-      <button class="drawer-close" type="button" aria-label="Vertiefung schließen">×</button>
+      <button class="drawer-close" type="button" aria-label={ui.close}>×</button>
     </div>
     <h2 id="field-dialog-title"></h2>
 
     <section class="drawer-section question-section" aria-labelledby="field-dialog-question-label">
-      <h3 id="field-dialog-question-label">Managementfrage</h3>
+      <h3 id="field-dialog-question-label">{ui.managementQuestion}</h3>
       <p id="field-dialog-question"></p>
       <div class="drawer-tags" id="field-dialog-tags"></div>
     </section>
 
     <section class="drawer-section" aria-labelledby="field-dialog-about-label">
-      <h3 id="field-dialog-about-label">Worum es geht</h3>
+      <h3 id="field-dialog-about-label">{ui.about}</h3>
       <p id="field-dialog-about"></p>
     </section>
 
     <section class="drawer-section" aria-labelledby="field-dialog-focus-label">
-      <h3 id="field-dialog-focus-label">Worauf ich schaue</h3>
+      <h3 id="field-dialog-focus-label">{ui.focus}</h3>
       <ul id="field-dialog-focus"></ul>
     </section>
 
     <section class="drawer-section" aria-labelledby="field-dialog-tensions-label">
-      <h3 id="field-dialog-tensions-label">Typische Entscheidungen und Spannungen</h3>
+      <h3 id="field-dialog-tensions-label">{ui.tensions}</h3>
       <p id="field-dialog-tensions"></p>
     </section>
   </div>
