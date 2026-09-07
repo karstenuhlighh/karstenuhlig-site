@@ -29,18 +29,19 @@ const navMenus = [
       },
       {
         href: `${commercialPath}#commercial-fields`,
-        title: "Growth & Customer Economics",
-        subline: isEnglish ? "Growth, Customer Value and profitability" : "Wachstum, Kundenwert und Profitabilität",
+        title: isEnglish ? "8 Management Areas" : "8 Handlungsfelder",
       },
       {
-        href: `${commercialPath}#commercial-fields`,
-        title: "Customer Journey & Offer",
-        subline: isEnglish ? "Offer, journey and Customer Experience" : "Angebot, Journey und Kundenerlebnis",
+        href: `${commercialPath}#mechanics-title`,
+        title: isEnglish ? "Models & Mechanics" : "Modelle & Mechanik",
       },
       {
-        href: `${commercialPath}#commercial-fields`,
-        title: "Operating Model & Resources",
-        subline: isEnglish ? "Organisation, steering and resources" : "Organisation, Steuerung und Ressourcen",
+        href: `${commercialPath}#steering-title`,
+        title: isEnglish ? "Steering Logic" : "Steuerungslogik",
+      },
+      {
+        href: `${commercialPath}#tensions-title`,
+        title: isEnglish ? "Executive Tensions" : "Executive-Spannungsfelder",
       },
     ],
   },
@@ -55,19 +56,20 @@ const navMenus = [
         subline: isEnglish ? "Overview and leadership approach" : "Übersicht und Führungsansatz",
       },
       {
-        href: `${leadershipPath}#leadership-classes`,
-        title: "Direction & Priorities",
-        subline: isEnglish ? "Set direction and establish focus" : "Richtung geben und Fokus setzen",
+        href: `${leadershipPath}#leadership-autonomy-performance`,
+        title: isEnglish ? "Autonomy & Performance" : "Autonomie & Performance",
       },
       {
-        href: `${leadershipPath}#leadership-classes`,
-        title: "Ownership & Accountability",
-        subline: isEnglish ? "Clarify and embed accountability" : "Verantwortung klären und verankern",
+        href: `${leadershipPath}#leadership-direction-decisions`,
+        title: isEnglish ? "Direction & Decisions" : "Richtung & Entscheidungen",
       },
       {
-        href: `${leadershipPath}#leadership-classes`,
-        title: "Change & Organisation",
-        subline: isEnglish ? "Lead change effectively" : "Veränderung wirksam führen",
+        href: `${leadershipPath}#leadership-matrix-stakeholders`,
+        title: isEnglish ? "Matrix & Stakeholders" : "Matrix & Stakeholder",
+      },
+      {
+        href: `${leadershipPath}#leadership-transformation-change`,
+        title: "Transformation & Change",
       },
     ],
   },
@@ -120,9 +122,9 @@ const navMenus = [
           >
             {menu.items.map((item) => (
               <li>
-                <a class="nav-dropdown-link" href={item.href}>
+                <a class:list={["nav-dropdown-link", { "nav-dropdown-link--compact": !item.subline }]} href={item.href}>
                   <span class="nav-dropdown-title">{item.title}</span>
-                  <span class="nav-dropdown-subline">{item.subline}</span>
+                  {item.subline && <span class="nav-dropdown-subline">{item.subline}</span>}
                 </a>
               </li>
             ))}
@@ -365,6 +367,10 @@ const navMenus = [
   .nav-dropdown-link:focus-visible {
     background: rgba(255, 255, 255, 0.72);
     border-color: var(--color-border-soft);
+  }
+  .nav-dropdown-link--compact {
+    min-height: 2.8rem;
+    padding-block: 0.45rem;
   }
   .nav-dropdown-title {
     font-size: 14px;

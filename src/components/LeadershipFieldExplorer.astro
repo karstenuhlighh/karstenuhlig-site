@@ -40,6 +40,12 @@ const panelData = classes.map((item) => ({
 }));
 
 const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
+const anchorByNumber: Record<string, string> = {
+  "01": "leadership-autonomy-performance",
+  "03": "leadership-direction-decisions",
+  "05": "leadership-matrix-stakeholders",
+  "06": "leadership-transformation-change",
+};
 ---
 
 <section class="field-section" id="leadership-classes" aria-labelledby="leadership-classes-title">
@@ -51,7 +57,7 @@ const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
   <ol class="field-grid">
     {
       classes.map((item) => (
-        <li>
+        <li id={anchorByNumber[item.number]}>
           <button
             class="field-card"
             type="button"
