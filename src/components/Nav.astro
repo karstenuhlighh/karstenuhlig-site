@@ -15,52 +15,121 @@ const leadershipPath = isEnglish ? "/en/leadership" : "/leadership";
 const aboutPath = isEnglish ? "/en/track-record" : "/track-record";
 const deSwitchPath = getLanguageSwitchPath(Astro.url.pathname, "de");
 const enSwitchPath = getLanguageSwitchPath(Astro.url.pathname, "en");
+
+const navMenus = [
+  {
+    id: "commercial",
+    label: "Commercial",
+    ariaLabel: "Commercial",
+    items: [
+      {
+        href: commercialPath,
+        title: "Commercial Management",
+        subline: isEnglish ? "Overview and management system" : "Übersicht und Managementsystem",
+      },
+      {
+        href: `${commercialPath}#commercial-fields`,
+        title: "Growth & Customer Economics",
+        subline: isEnglish ? "Growth, Customer Value and profitability" : "Wachstum, Kundenwert und Profitabilität",
+      },
+      {
+        href: `${commercialPath}#commercial-fields`,
+        title: "Customer Journey & Offer",
+        subline: isEnglish ? "Offer, journey and Customer Experience" : "Angebot, Journey und Kundenerlebnis",
+      },
+      {
+        href: `${commercialPath}#commercial-fields`,
+        title: "Operating Model & Resources",
+        subline: isEnglish ? "Organisation, steering and resources" : "Organisation, Steuerung und Ressourcen",
+      },
+    ],
+  },
+  {
+    id: "leadership",
+    label: "Leadership",
+    ariaLabel: isEnglish ? "Leadership" : "Leadership",
+    items: [
+      {
+        href: leadershipPath,
+        title: "Leadership & Transformation",
+        subline: isEnglish ? "Overview and leadership approach" : "Übersicht und Führungsansatz",
+      },
+      {
+        href: `${leadershipPath}#leadership-classes`,
+        title: "Direction & Priorities",
+        subline: isEnglish ? "Set direction and establish focus" : "Richtung geben und Fokus setzen",
+      },
+      {
+        href: `${leadershipPath}#leadership-classes`,
+        title: "Ownership & Accountability",
+        subline: isEnglish ? "Clarify and embed accountability" : "Verantwortung klären und verankern",
+      },
+      {
+        href: `${leadershipPath}#leadership-classes`,
+        title: "Change & Organisation",
+        subline: isEnglish ? "Lead change effectively" : "Veränderung wirksam führen",
+      },
+    ],
+  },
+  {
+    id: "data-ai-product",
+    label: "Data, AI & Digital Product",
+    ariaLabel: isEnglish ? "Data, AI and Digital Product" : "Data, AI und Digital Product",
+    items: [
+      {
+        href: dataPath,
+        title: "Data, AI & Decisioning",
+        subline: isEnglish ? "Better commercial decisions" : "Bessere kommerzielle Entscheidungen",
+      },
+      {
+        href: productPath,
+        title: "Digital Product & Customer Experience",
+        subline: isEnglish ? "Design effective products and journeys" : "Produkte und Journeys wirksam gestalten",
+      },
+    ],
+  },
+];
 ---
 
 <nav class="nav" aria-label={isEnglish ? "Main navigation" : "Hauptnavigation"}>
   <div class="nav-left">
     <a href={homePath} class="nav-logo">Karsten Uhlig</a>
     <div class="nav-items">
-      <a href={commercialPath} class="nav-link">Commercial</a>
+      {navMenus.map((menu) => (
+        <div class="nav-menu" data-nav-menu>
+          <button
+            class="nav-link nav-trigger"
+            type="button"
+            aria-expanded="false"
+            aria-controls={`${menu.id}-navigation-${language}`}
+            aria-haspopup="true"
+            data-nav-trigger
+          >
+            <span>{menu.label}</span>
+            <svg class="nav-chevron" viewBox="0 0 10 6" aria-hidden="true">
+              <path d="m1 1 4 4 4-4" />
+            </svg>
+          </button>
 
-      <div class="nav-menu" data-nav-menu>
-        <button
-          class="nav-link nav-trigger"
-          type="button"
-          aria-expanded="false"
-          aria-controls={`data-ai-product-navigation-${language}`}
-          aria-haspopup="true"
-          data-nav-trigger
-        >
-          <span>Data, AI &amp; Product</span>
-          <svg class="nav-chevron" viewBox="0 0 10 6" aria-hidden="true">
-            <path d="m1 1 4 4 4-4" />
-          </svg>
-        </button>
+          <ul
+            class="nav-dropdown"
+            id={`${menu.id}-navigation-${language}`}
+            aria-label={menu.ariaLabel}
+            data-nav-dropdown
+            hidden
+          >
+            {menu.items.map((item) => (
+              <li>
+                <a class="nav-dropdown-link" href={item.href}>
+                  <span class="nav-dropdown-title">{item.title}</span>
+                  <span class="nav-dropdown-subline">{item.subline}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
 
-        <ul
-          class="nav-dropdown"
-          id={`data-ai-product-navigation-${language}`}
-          aria-label={isEnglish ? "Data, AI and Product" : "Data, AI und Product"}
-          data-nav-dropdown
-          hidden
-        >
-          <li>
-            <a class="nav-dropdown-link" href={dataPath}>
-              <span class="nav-dropdown-title">Data, AI &amp; Decisioning</span>
-              <span class="nav-dropdown-subline">{isEnglish ? "Better commercial decisions" : "Bessere kommerzielle Entscheidungen"}</span>
-            </a>
-          </li>
-          <li>
-            <a class="nav-dropdown-link" href={productPath}>
-              <span class="nav-dropdown-title">Digital Product &amp; Customer Experience</span>
-              <span class="nav-dropdown-subline">{isEnglish ? "Effective products and journeys" : "Produkte und Journeys wirksam gestalten"}</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <a href={leadershipPath} class="nav-link">Leadership</a>
       <a href={aboutPath} class="nav-link">{isEnglish ? "About" : "Über mich"}</a>
       <span class="language-switch" aria-label={isEnglish ? "Language selection" : "Sprachauswahl"}>
         <a href={deSwitchPath} hreflang="de" lang="de" aria-current={!isEnglish ? "page" : undefined}>DE</a>
@@ -73,6 +142,7 @@ const enSwitchPath = getLanguageSwitchPath(Astro.url.pathname, "en");
 
 <script>
   const hoverQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const mobileQuery = window.matchMedia("(max-width: 640px)");
 
   document.querySelectorAll<HTMLElement>("[data-nav-menu]").forEach((menu) => {
     const trigger = menu.querySelector<HTMLButtonElement>("[data-nav-trigger]");
@@ -88,6 +158,7 @@ const enSwitchPath = getLanguageSwitchPath(Astro.url.pathname, "en");
 
     const openMenu = (options: { focus?: "first" | "last"; viaHover?: boolean } = {}) => {
       window.clearTimeout(closeTimer);
+      document.dispatchEvent(new CustomEvent("nav-menu-open", { detail: menu }));
       dropdown.hidden = false;
       trigger.setAttribute("aria-expanded", "true");
       menu.classList.add("is-open");
@@ -118,7 +189,7 @@ const enSwitchPath = getLanguageSwitchPath(Astro.url.pathname, "en");
     });
 
     menu.addEventListener("mouseenter", () => {
-      if (!hoverQuery.matches || isOpen()) return;
+      if (!hoverQuery.matches || mobileQuery.matches || isOpen()) return;
       openMenu({ viaHover: true });
     });
 
@@ -158,7 +229,12 @@ const enSwitchPath = getLanguageSwitchPath(Astro.url.pathname, "en");
     });
 
     document.addEventListener("pointerdown", (event) => {
-      if (isOpen() && !menu.contains(event.target as Node)) closeMenu();
+      const target = event.target as Element | null;
+      if (isOpen() && target && !menu.contains(target) && !target.closest("[data-nav-menu]")) closeMenu();
+    });
+
+    document.addEventListener("nav-menu-open", (event) => {
+      if ((event as CustomEvent<HTMLElement>).detail !== menu && isOpen()) closeMenu();
     });
   });
 </script>
@@ -173,7 +249,7 @@ const enSwitchPath = getLanguageSwitchPath(Astro.url.pathname, "en");
   .nav-left,
   .nav-items {
     display: flex;
-    align-items: center;
+    align-items: baseline;
   }
   .nav-left {
     gap: 1.1rem;
@@ -268,7 +344,7 @@ const enSwitchPath = getLanguageSwitchPath(Astro.url.pathname, "en");
     display: grid;
     width: min(25rem, calc(100vw - 3rem));
     margin: 0;
-    padding: 0.45rem;
+    padding: 0.3rem;
     list-style: none;
     background: rgba(249, 252, 254, 0.97);
     border: 1px solid var(--color-border-soft);
@@ -276,10 +352,10 @@ const enSwitchPath = getLanguageSwitchPath(Astro.url.pathname, "en");
   }
   .nav-dropdown-link {
     display: grid;
-    min-height: 5.25rem;
+    min-height: 3.9rem;
     align-content: center;
-    gap: 0.2rem;
-    padding: 0.8rem 0.9rem;
+    gap: 0.1rem;
+    padding: 0.55rem 0.75rem;
     color: var(--color-ink);
     text-decoration: none;
     border: 1px solid transparent;
@@ -293,12 +369,12 @@ const enSwitchPath = getLanguageSwitchPath(Astro.url.pathname, "en");
   .nav-dropdown-title {
     font-size: 14px;
     font-weight: 500;
-    line-height: 1.35;
+    line-height: 1.25;
   }
   .nav-dropdown-subline {
     color: var(--color-ink-3);
     font-size: 12px;
-    line-height: 1.45;
+    line-height: 1.3;
   }
   @media (hover: hover) and (pointer: fine) {
     .nav-dropdown::before {
@@ -348,7 +424,7 @@ const enSwitchPath = getLanguageSwitchPath(Astro.url.pathname, "en");
       box-shadow: none;
     }
     .nav-dropdown-link {
-      padding: 0.75rem 0.8rem;
+      padding: 0.55rem 0.7rem;
     }
   }
 
