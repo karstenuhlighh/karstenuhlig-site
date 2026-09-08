@@ -10,7 +10,7 @@ const { language = "de" } = Astro.props;
 const isEnglish = language === "en";
 
 const copy = isEnglish ? {
-  headline: "Scaling digital commerce. Turning strategy into results.",
+  headline: ["Scaling digital commerce. Turning strategy into results."],
   subtitle: "I steer digital businesses with a clear focus on growth and customer value. I connect marketing, digital sales and CRM across the customer journey into one coherent commercial system. I use data, AI and digital products where they improve decisions, change customer experiences and create economic impact.",
   profileLabel: "Executive profile",
   proofs: [
@@ -22,7 +22,7 @@ const copy = isEnglish ? {
   portraitAlt: "Portrait of Karsten Uhlig",
   bio: "As an E-Commerce Executive at bonprix, I scaled the international online business across more than 20 markets to €1.6bn in revenue. Most recently, I was responsible for a broad digital organisation and the interplay of E-Commerce, Digital Marketing, CRM, Data and Digital Product.",
 } : {
-  headline: "Digital Commerce skalieren. Strategie wirksam machen.",
+  headline: ["Digital Commerce skalieren.", "Strategie wirksam machen."],
   subtitle: "Ich steuere digitale Geschäfte mit klarem Blick auf Wachstum und Kundenwert. Marketing, Digital Sales und CRM verbinde ich entlang der Customer Journey zu einem zusammenhängenden kommerziellen System. Data, AI und Digital Products setze ich dort ein, wo sie Entscheidungen verbessern, Kundenerlebnisse verändern und wirtschaftliche Wirkung erzeugen.",
   profileLabel: "Kurzprofil",
   proofs: [
@@ -42,7 +42,14 @@ const copy = isEnglish ? {
   <div class="hero-inner">
     <Nav language={language} />
     <div class="hero-grid">
-      <h1 class="headline">{copy.headline}</h1>
+      <h1 class:list={["headline", { "headline--split": !isEnglish }]}>
+        {copy.headline.map((line, index) => (
+          <>
+            <span class="headline-line">{line}</span>
+            {index < copy.headline.length - 1 && " "}
+          </>
+        ))}
+      </h1>
       <p class="subtitle">{copy.subtitle}</p>
       <div class="cover-proof" aria-label={copy.profileLabel}>
         {copy.proofs.map(([value, label]) => (
@@ -179,6 +186,20 @@ const copy = isEnglish ? {
     color: var(--color-ink);
     text-wrap: balance;
     max-width: 760px;
+  }
+  .headline-line {
+    display: inline;
+  }
+  @media (min-width: 1024px) {
+    .headline--split {
+      width: calc(100% + 4rem);
+      max-width: 900px;
+      font-size: clamp(44px, 4.2vw, 52px);
+    }
+    .headline--split .headline-line {
+      display: block;
+      white-space: nowrap;
+    }
   }
   .subtitle {
     grid-area: subtitle;
