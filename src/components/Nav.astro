@@ -93,10 +93,22 @@ const navMenus = [
 ];
 ---
 
-<nav class="nav" aria-label={isEnglish ? "Main navigation" : "Hauptnavigation"}>
+<nav class="nav" aria-label={isEnglish ? "Main navigation" : "Hauptnavigation"} data-site-nav>
   <div class="nav-left">
     <a href={homePath} class="nav-logo">Karsten Uhlig</a>
-    <div class="nav-items">
+    <button
+      class="nav-mobile-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls={`mobile-navigation-${language}`}
+      aria-label={isEnglish ? "Open menu" : "Menü öffnen"}
+      data-open-label={isEnglish ? "Open menu" : "Menü öffnen"}
+      data-close-label={isEnglish ? "Close menu" : "Menü schließen"}
+      data-mobile-nav-trigger
+    >
+      <span class="nav-mobile-icon" aria-hidden="true"></span>
+    </button>
+    <div class="nav-items" id={`mobile-navigation-${language}`} data-mobile-nav-items>
       {navMenus.map((menu) => (
         <div class="nav-menu" data-nav-menu>
           <button
@@ -144,7 +156,7 @@ const navMenus = [
 
 <script>
   const hoverQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
-  const mobileQuery = window.matchMedia("(max-width: 640px)");
+  const mobileQuery = window.matchMedia("(max-width: 768px)");
 
   document.querySelectorAll<HTMLElement>("[data-nav-menu]").forEach((menu) => {
     const trigger = menu.querySelector<HTMLButtonElement>("[data-nav-trigger]");
@@ -238,7 +250,55 @@ const navMenus = [
     document.addEventListener("nav-menu-open", (event) => {
       if ((event as CustomEvent<HTMLElement>).detail !== menu && isOpen()) closeMenu();
     });
+
+    document.addEventListener("mobile-nav-close", () => {
+      if (isOpen()) closeMenu();
+    });
   });
+
+  const siteNav = document.querySelector<HTMLElement>("[data-site-nav]");
+  const mobileNavTrigger = siteNav?.querySelector<HTMLButtonElement>("[data-mobile-nav-trigger]");
+  const mobileNavItems = siteNav?.querySelector<HTMLElement>("[data-mobile-nav-items]");
+
+  if (siteNav && mobileNavTrigger && mobileNavItems) {
+    const setMobileNavOpen = (open: boolean, returnFocus = false) => {
+      siteNav.classList.toggle("is-mobile-open", open);
+      mobileNavTrigger.setAttribute("aria-expanded", String(open));
+      mobileNavTrigger.setAttribute(
+        "aria-label",
+        open ? mobileNavTrigger.dataset.closeLabel ?? "Close menu" : mobileNavTrigger.dataset.openLabel ?? "Open menu",
+      );
+
+      if (!open) {
+        document.dispatchEvent(new CustomEvent("mobile-nav-close"));
+        if (returnFocus) mobileNavTrigger.focus();
+      }
+    };
+
+    mobileNavTrigger.addEventListener("click", () => {
+      setMobileNavOpen(mobileNavTrigger.getAttribute("aria-expanded") !== "true");
+    });
+
+    mobileNavItems.querySelectorAll<HTMLAnchorElement>("a").forEach((link) => {
+      link.addEventListener("click", () => setMobileNavOpen(false));
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && mobileNavTrigger.getAttribute("aria-expanded") === "true") {
+        event.preventDefault();
+        setMobileNavOpen(false, true);
+      }
+    });
+
+    document.addEventListener("pointerdown", (event) => {
+      const target = event.target as Node | null;
+      if (target && mobileNavTrigger.getAttribute("aria-expanded") === "true" && !siteNav.contains(target)) {
+        setMobileNavOpen(false);
+      }
+    });
+
+    mobileQuery.addEventListener("change", () => setMobileNavOpen(false));
+  }
 </script>
 
 <style>
@@ -271,6 +331,9 @@ const navMenus = [
   }
   .nav-logo:hover {
     opacity: 0.7;
+  }
+  .nav-mobile-toggle {
+    display: none;
   }
   .nav-link {
     color: var(--color-ink-2);
@@ -399,34 +462,108 @@ const navMenus = [
     }
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     .nav {
-      align-items: flex-start;
-      margin-bottom: 4rem;
+      align-items: center;
+      margin-bottom: 2rem;
     }
     .nav-left {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
       width: 100%;
-      flex-wrap: wrap;
+      gap: 0;
     }
     .nav-logo {
-      flex-basis: 100%;
       white-space: nowrap;
     }
+    .nav-mobile-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      color: var(--color-ink-2);
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+    }
+    .nav-mobile-toggle:focus-visible {
+      outline: 2px solid var(--color-amber);
+      outline-offset: 2px;
+    }
+    .nav-mobile-icon,
+    .nav-mobile-icon::before,
+    .nav-mobile-icon::after {
+      display: block;
+      width: 18px;
+      height: 1px;
+      background: currentColor;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .nav-mobile-icon {
+      position: relative;
+    }
+    .nav-mobile-icon::before,
+    .nav-mobile-icon::after {
+      position: absolute;
+      left: 0;
+      content: "";
+    }
+    .nav-mobile-icon::before {
+      top: -5px;
+    }
+    .nav-mobile-icon::after {
+      top: 5px;
+    }
+    .nav-mobile-toggle[aria-expanded="true"] .nav-mobile-icon {
+      background: transparent;
+    }
+    .nav-mobile-toggle[aria-expanded="true"] .nav-mobile-icon::before {
+      transform: translateY(5px) rotate(45deg);
+    }
+    .nav-mobile-toggle[aria-expanded="true"] .nav-mobile-icon::after {
+      transform: translateY(-5px) rotate(-45deg);
+    }
     .nav-items {
+      display: none;
+      grid-column: 1 / -1;
+      flex-direction: column;
+      align-items: stretch;
       width: 100%;
+      gap: 0;
+      margin-top: 0.5rem;
+      padding-top: 0.55rem;
+      border-top: 1px solid var(--color-border);
+    }
+    .nav.is-mobile-open .nav-items {
+      display: flex;
     }
     .nav-link {
-      font-size: 13px;
+      font-size: 14px;
+    }
+    .nav-items > .nav-link,
+    .language-switch {
+      padding: 0.65rem 0;
+    }
+    .nav-menu {
+      width: 100%;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .nav-trigger {
+      justify-content: space-between;
+      width: 100%;
+      padding: 0.65rem 0;
     }
     .nav-menu.is-open {
-      flex-basis: 100%;
-      flex-direction: column;
-      align-items: flex-start;
+      align-items: stretch;
     }
     .nav-dropdown {
       position: static;
       width: 100%;
-      margin-top: 0.6rem;
+      margin: 0 0 0.35rem;
       box-shadow: none;
     }
     .nav-dropdown-link {
@@ -435,7 +572,10 @@ const navMenus = [
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .nav-chevron {
+    .nav-chevron,
+    .nav-mobile-icon,
+    .nav-mobile-icon::before,
+    .nav-mobile-icon::after {
       transition: none;
     }
   }

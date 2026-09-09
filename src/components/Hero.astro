@@ -320,7 +320,7 @@ const copy = isEnglish ? {
     object-fit: cover;
     object-position: center bottom;
   }
-  /* --- MOBILE --- Foto ganz oben (ueber der Headline), gestapelt --- */
+  /* --- MOBILE --- Positionierung zuerst, kompakter persoenlicher Block danach --- */
   @media (max-width: 768px) {
     .hero-inner {
       padding: 2rem 1.5rem 0;
@@ -332,41 +332,51 @@ const copy = isEnglish ? {
       margin-bottom: 0;
     }
     .portrait {
-      order: 1;
-      max-width: 320px;
+      order: 5;
+      max-width: none;
       width: 100%;
-      margin: 0 auto 1.5rem;
-      /* Hoehe kommt nur aus aspect-ratio (428/596); Bild fuellt per cover.
-         Keine feste height/min-height -> keine Luecke unten. */
+      height: 180px;
+      margin: 0 0 1rem;
+      aspect-ratio: auto;
+    }
+    .portrait img {
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      width: 88%;
+      height: auto;
+      transform: translateX(-50%);
+      object-fit: contain;
+      object-position: center top;
     }
     .headline {
-      order: 3;
+      order: 1;
       font-size: 32px;
       line-height: 1.06;
       letter-spacing: -0.035em;
       margin-bottom: 1rem;
     }
     .subtitle {
-      order: 4;
+      order: 2;
       margin-bottom: 0;
     }
     .cover-proof {
-      order: 5;
-      grid-template-columns: 1fr;
-      gap: 0.8rem;
-      margin: 1.35rem 0 0;
-      padding: 1rem 0;
+      order: 3;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.55rem;
+      margin: 1rem 0 0;
+      padding: 0.85rem 0 0.9rem;
     }
     .ueber-mich-marker {
-      order: 6;
-      margin-top: 2.5rem;
-      padding-top: 2rem;
-      margin-bottom: 0;
+      order: 4;
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      margin-bottom: 0.75rem;
       border-top: 1px solid var(--color-border);
     }
     .bio {
-      order: 7;
-      margin-top: 0.75rem;
+      order: 6;
+      margin-top: 0;
     }
   }
 </style>
