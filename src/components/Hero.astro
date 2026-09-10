@@ -10,7 +10,7 @@ const { language = "de" } = Astro.props;
 const isEnglish = language === "en";
 
 const copy = isEnglish ? {
-  headline: ["Scaling digital commerce. Turning strategy into results."],
+  headline: ["Scaling digital commerce.", "Turning strategy into results."],
   subtitle: "I steer digital businesses with a clear focus on growth and customer value. I connect marketing, digital sales and CRM across the customer journey into one coherent commercial system. I use data, AI and digital products where they improve decisions, change customer experiences and create economic impact.",
   profileLabel: "Executive profile",
   proofs: [
@@ -42,7 +42,7 @@ const copy = isEnglish ? {
   <div class="hero-inner">
     <Nav language={language} />
     <div class="hero-grid">
-      <h1 class:list={["headline", { "headline--split": !isEnglish }]}>
+      <h1 class="headline headline--split">
         {copy.headline.map((line, index) => (
           <>
             <span class="headline-line">{line}</span>
