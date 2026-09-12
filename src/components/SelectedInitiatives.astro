@@ -1,0 +1,523 @@
+---
+interface Props {
+  language?: "de" | "en";
+  phases?: Array<{
+    period: string;
+    title: string;
+    summary: string;
+    body: string;
+    scale?: string;
+  }>;
+}
+
+const { language = "de", phases = [] } = Astro.props;
+const isEnglish = language === "en";
+
+const labels = isEnglish ? {
+  development: "Development",
+  developmentIntro: "How my accountability developed.",
+  commercial: "Commercial Management",
+  commercialIntro: "How I steer business performance.",
+  initiatives: "Selected initiatives",
+  initiativesIntro: "What was built or changed in practice.",
+  explore: "Explore",
+  close: "Close details",
+  phaseDetail: "Phase in detail",
+  scale: "Scale & Impact",
+  context: "Starting point",
+  role: "My role",
+  change: "What changed",
+  perspective: "Perspective",
+} : {
+  development: "Entwicklung",
+  developmentIntro: "Wie sich meine Verantwortung entwickelte.",
+  commercial: "Commercial Management",
+  commercialIntro: "Wie ich Geschäft steuere.",
+  initiatives: "Ausgewählte Initiativen",
+  initiativesIntro: "Was konkret aufgebaut oder verändert wurde.",
+  explore: "Vertiefen",
+  close: "Vertiefung schließen",
+  phaseDetail: "Phase im Detail",
+  scale: "Scale & Impact",
+  context: "Ausgangslage",
+  role: "Meine Rolle",
+  change: "Was sich verändert hat",
+  perspective: "Einordnung",
+};
+
+const initiatives = isEnglish ? [
+  {
+    id: "business-performance-back-on-track",
+    field: "Commercial Management",
+    title: "Business behind plan: Bringing performance back on track",
+    subtitle: "Diagnosing causes, combining interventions and improving the result",
+    teaser: "Plan, forecast and actual performance were connected with customer development, demand, Marketing, conversion, availability and costs to identify the economically relevant bottleneck.",
+    context: "During a period of weaker business performance, the challenge was to establish which drivers actually caused the gap. Isolated responses from individual functions would have optimised symptoms without resolving the commercial problem.",
+    role: "I brought the different functional perspectives into one commercial view, broke the gap down along the relevant value drivers and prioritised a coordinated set of interventions. The focus was on the few levers that could improve revenue and earnings across the system.",
+    change: "Inefficient Marketing investment was reduced or reallocated, promotional material and the minimum order value were adjusted, and sales steering became more closely data-based. The measures were assessed together rather than through their effect on one local KPI.",
+    perspective: "The management principle was diagnosis before intervention. Additional traffic, for example, did not help when availability or customer quality constrained the business. The measures were judged by their effect on revenue and earnings across the system.",
+  },
+  {
+    id: "profitable-customer-base",
+    field: "Commercial Management",
+    title: "Developing a profitable customer base instead of maximising acquisition",
+    subtitle: "Connecting customer knowledge, targets and differentiated investment decisions",
+    teaser: "Acquisition, retention and reactivation were brought into one steering model so that customer quality and future value could shape Marketing and CRM decisions.",
+    context: "Customer knowledge was historically distributed unevenly across functions. Acquisition, CRM and sales perspectives could therefore support locally plausible decisions while producing an incomplete view of the future customer base.",
+    role: "I connected acquisition, retention and reactivation around a shared customer view and expanded the common data and Analytics foundation. Shared and functional targets were combined at roughly 50:50 to reduce silo optimisation without removing clear local accountability.",
+    change: "Customer groups were treated differently according to behaviour, repeat-purchase probability, returns and economics. Reactivation was managed as a distinct cohort, high-return customer groups received less incentive, and CLV and retention became guardrails for lifecycle and CRM decisions across more than 20 markets.",
+    perspective: "The concrete change was the steering logic: the next order or a higher customer count no longer determined success on its own. There is no claim of a measured CLV or retention uplift; the verified evidence is that customer value and retention were embedded as steering metrics.",
+  },
+  {
+    id: "international-growth-by-market",
+    field: "Commercial Management",
+    title: "Scaling international growth without treating every market the same",
+    subtitle: "Combining a scalable commercial core with economically justified local differentiation",
+    teaser: "The business scaled across more than 20 markets to €1.6 billion in e-commerce revenue, with international markets reaching 50 per cent of revenue.",
+    context: "A uniform rollout would have ignored differences in customers, competition and market mechanics. Unrestricted local variation would have weakened scale benefits and created permanent complexity.",
+    role: "Together with the responsible leaders, I determined which commercial elements could scale as a shared core and where local differentiation was economically necessary. Market potential, maturity and required capability depth shaped the level of investment.",
+    change: "Platforms, data models, order handling, roles and core processes were shared. Marketing mix, payment, delivery terms, campaigns, price levels and regulatory requirements remained configurable by market. Local practices had to justify their continuing cost and complexity.",
+    perspective: "Successful local approaches were assessed for their underlying mechanism before being transferred. This made international scaling an active commercial management task rather than a technical rollout.",
+  },
+  {
+    id: "strategy-to-resource-decisions",
+    field: "Commercial Management",
+    title: "Translating strategy into real portfolio and resource decisions",
+    subtitle: "Making unlike investments comparable without automating the decision",
+    teaser: "Initiatives in areas such as app, Brand, Pricing, availability, Marketing and platform work were assessed through one transparent decision logic.",
+    context: "Very different initiatives competed for budget, management attention and scarce capabilities. One ROI figure could not represent their different revenue effects, time horizons, customer impact, risk, effort and strategic contribution.",
+    role: "I brought these initiatives into a common decision process with my leadership team and challenged their assumptions. Around 30 criteria were used historically to make costs, benefits and effort more transparent, not to produce an automatic ranking.",
+    change: "A small number of annual strategic objectives were agreed with the executive board. The direction remained stable for around a year, while the portfolio was reordered quarterly as evidence, dependencies and available capacity changed. Business priority and concrete capacity allocation remained separate decisions.",
+    perspective: "The Business set the problem, desired outcome and priority. Capability owners decided how people, skills and sequence could deliver it under real constraints. A priority became tangible when it changed resource allocation.",
+  },
+  {
+    id: "data-driven-marketing",
+    field: "Marketing Steering",
+    title: "Data-Driven Marketing Transformation",
+    subtitle: "From separate data logics to integrated, model-based steering",
+    teaser: "Customer, transaction and behavioural data were connected so that models and scores could shape CRM, Marketing and Personalisation decisions.",
+    context: "Separate channel and data logics limited relevance, speed and cross-channel efficiency. The commercial opportunity was not a single model, but an integrated system linking data, decisions and touchpoints.",
+    role: "I developed the target model for integrated, data- and model-based Marketing Steering and led the functional implementation from data modelling and architecture through to the selection and prioritisation of use cases. Together with the respective channel owners, the models were then translated into concrete Marketing and CRM decisions.",
+    change: "Models for Purchase Propensity, Next Best Product, CLV and Churn were put into operational use. Self-service analytics reached 50+ business units and 500+ users. The overall transformation delivered recurring eight-figure annual advertising cost savings at unchanged revenue.",
+    perspective: "The savings belong to the transformation as a whole, not to one model. Data Scientists, Data Engineers, architects, Marketing and Product teams owned the technical and operational detail. Customer Identity, integration and adoption remained part of the management task.",
+  },
+  {
+    id: "web-tracking-marketing-steering",
+    field: "Measurement & Performance",
+    title: "From web tracking to data-based Marketing Steering",
+    subtitle: "Building measurement as steering infrastructure",
+    teaser: "A scalable tracking and attribution system turned campaign data into concrete channel, partner and budget decisions.",
+    context: "Manual deep links, roughly a day of reporting delay and limited flexibility no longer supported a growing international Online Marketing operation. The economic question was which channel contributed demand and at what cost.",
+    role: "Together with a development agency, I developed the functional concept for a scalable Analytics and tracking system. This included tracking logic, campaign hierarchy, conversion windows, attribution, multi-client capability, reporting and fraud detection.",
+    change: "CPO, new-customer CPO and demand became comparable across channels. Session analysis exposed cookie dropping, incentivised affiliates and manipulated click or order patterns, and the findings led to real budget reallocations between Affiliates, portals and SEA.",
+    perspective: "The system improved attribution and steering, not causal proof. A strong Brand SEA result can still capture demand that already exists. Attribution allocates credit; it does not demonstrate incremental effect.",
+  },
+  {
+    id: "shopping-app-customer-touchpoint",
+    field: "Digital Product & Customer Journey",
+    title: "Shopping app as a strategic customer touchpoint",
+    subtitle: "Creating a distinct role beyond the existing Mobile Shop",
+    teaser: "Permanent login, push, a persistent basket and app-specific experiences created a lasting touchpoint within the wider Customer Journey.",
+    context: "The Mobile Shop already performed well. The app therefore had to create distinct value rather than reproduce a second frontend, while remaining internationally scalable and commercially assessable.",
+    role: "I embedded the app in the Customer Journey, strategy, Analytics and architecture and developed its role as a permanent digital customer touchpoint. In my VP role, I was also accountable for the app team and for its strategic development, prioritisation and scaling within Digital Commerce.",
+    change: "A deliberately hybrid start combined a native shell with the existing Mobile Shop core, reducing duplicate development and supporting international scaling. Commercial evaluation moved beyond downloads and attributed app revenue to Install, activation, purchase, repeat purchase and Incrementality.",
+    perspective: "More valuable app customers do not prove that the app made them more valuable. Install economics, Selection Bias and possible shifts from Mobile Web therefore remained explicit parts of the assessment.",
+  },
+  {
+    id: "omnichannel-journey-data-integration",
+    field: "Omnichannel & Data Integration",
+    title: "Omnichannel Customer Journey & Data Integration",
+    subtitle: "From digital store services to the connected Fashion.Connect store",
+    teaser: "An early multichannel phase connected store search, local availability, reservation and digital advice with the online shop. The later Fashion.Connect pilot linked the app, store experience and shared data capabilities much more deeply.",
+    context: "The first phase focused on connecting online and store operations pragmatically. Digital services were intended to guide customers to relevant stores and support sales advisers. Fashion.Connect later became a substantially more ambitious innovation pilot, connecting the app, store experience and digital Customer Journey more closely.",
+    role: "In the first multichannel phase, my area was accountable for the digital capabilities around store search, local availability and connecting the online shop with stores. For Fashion.Connect, my area contributed the app and digital capabilities and ensured that the existing Experience, Identity, Tracking, Analytics and CRM foundations were used.",
+    change: "Early multichannel phase: Store search, local availability, reservation and a digital advisory tool connected the online shop and store network. Later Fashion.Connect phase: The app, store experience, login and Identity, product interaction, basket, store visit and purchase were connected much more deeply through the existing data and Experience platform.",
+    perspective: "The first phase was a broadly deployed multichannel approach connecting the online business and store network. Fashion.Connect, by contrast, was a single innovative pilot showing how deeply the app, store experience and shared data architecture could be integrated. It therefore does not provide evidence of commercial impact across the store network.",
+  },
+  {
+    id: "digital-product-operating-model",
+    field: "Product Operating Model",
+    title: "Digital Product Operating Model Transformation",
+    subtitle: "Improving Time-to-Market through architecture, organisation and decision rights",
+    teaser: "The shift from functional project structures to stable Product teams connected ownership, platform modularisation and portfolio steering.",
+    context: "Functional handovers, specialist chains, central pools and recurring dependencies constrained Time-to-Market. New role labels alone could not create end-to-end ownership while the platform still forced constant coordination.",
+    role: "I developed the target model and transformation framework for the shift to a product-oriented organisation and implemented it with my leadership team. This included the design of stable Product teams, clearer end-to-end accountability, new Product Management roles and a closer connection between strategic prioritisation, OKRs and Portfolio Steering.",
+    change: "Platform modularisation and organisational design were changed together. Strategy and management priorities were translated through portfolio and Flight-Level steering and OKRs, while roadmap, backlog and technical implementation remained close to the Product teams. Deployment frequency rose from 50 per year in 2021 to 250 in 2023.",
+    perspective: "The documented result is a fivefold increase in deployment frequency from 2021 to 2023. Product autonomy only becomes real when decision rights, architecture and prioritisation are designed to support it.",
+  },
+  {
+    id: "data-ai-operational-steering",
+    field: "Data & AI",
+    title: "Scaling Data & AI from reporting into operational steering",
+    subtitle: "Building a reusable Commerce capability instead of a model factory",
+    teaser: "Data, models, Product decisions and operational activation were connected across Analytics, Data Science, Data Engineering and platform capabilities.",
+    context: "Data silos, slow reports, long modelling cycles, limited real-time capability and a central Analytics bottleneck restricted the operational use of Data & AI.",
+    role: "I built Data & AI as an integrated Business Capability and created the organisational and functional conditions for Analytics, Data Science, Data Engineering and platform capabilities to work together on concrete Commerce use cases. This included the target model, central architecture and make-or-buy decisions, as well as prioritising use cases by business impact, data availability, time to value and scalability.",
+    change: "Every use case required a business owner and a real activation path. Product teams at the point of use shared the go-live decision, based on business and A/B tests, technical stability and integration. Self-service reached 50+ business units and 500+ users, while documented ML development time fell from months to around two weeks.",
+    perspective: "I was responsible for the direction, prioritisation, organisational design, business cases and major investment decisions. Specialist leads and teams owned the technical design, implementation and operation of platforms and models.",
+  },
+] : [
+  {
+    id: "business-performance-back-on-track",
+    field: "Commercial Management",
+    title: "Geschäft unter Plan: Performance gezielt zurück auf Kurs bringen",
+    subtitle: "Ursachen klären, Maßnahmen bündeln, Ergebnis verbessern",
+    teaser: "Plan-, Forecast- und Ist-Entwicklung wurden mit Kundenentwicklung, Nachfrage, Marketing, Conversion, Verfügbarkeit und Kosten verbunden, um den wirtschaftlich relevanten Bottleneck zu identifizieren.",
+    context: "In einer Phase mit schwächerer Geschäftsentwicklung musste geklärt werden, welche Treiber die Abweichung tatsächlich verursachten. Isolierte Reaktionen einzelner Funktionen hätten Symptome optimiert, ohne das kommerzielle Problem zu lösen.",
+    role: "Meine Rolle war, wirtschaftliche Abweichungen auf ihre wesentlichen Treiber zurückzuführen, die relevanten Bottlenecks zu identifizieren und daraus konkrete Prioritäten für die Commercial Steuerung abzuleiten. Entscheidend war für mich die Gesamtwirkung auf Umsatz und Ergebnis, nicht die isolierte Optimierung einzelner Funktionen oder KPIs.",
+    change: "Ineffiziente Marketinginvestitionen wurden reduziert oder verlagert, Werbemittel und Mindestbestellwert angepasst und die Vertriebssteuerung enger datenbasiert geführt. Die Maßnahmen wurden gemeinsam bewertet, nicht über ihre Wirkung auf eine einzelne lokale KPI.",
+    perspective: "Das Managementprinzip war Diagnose vor Intervention. Mehr Traffic half beispielsweise nicht, wenn Verfügbarkeit oder Kundenqualität das Geschäft begrenzten. Entscheidend war die Wirkung der Maßnahmen auf Umsatz und Ergebnis im Gesamtsystem.",
+  },
+  {
+    id: "profitable-customer-base",
+    field: "Commercial Management",
+    title: "Kundenbasis profitabel entwickeln statt nur Neukunden maximieren",
+    subtitle: "Kundenwissen, Ziele und differenzierte Investitionsentscheidungen verbinden",
+    teaser: "Acquisition, Retention und Reactivation wurden in einer Steuerungslogik verbunden, damit Kundenqualität und zukünftiger Wert Marketing- und CRM-Entscheidungen prägen konnten.",
+    context: "Kundenwissen war historisch ungleich über Funktionen verteilt. Acquisition, CRM und Vertrieb konnten deshalb lokal plausible Entscheidungen treffen, ohne ein vollständiges Bild der zukünftigen Kundenbasis zu haben.",
+    role: "Ich verband Acquisition, Retention und Reactivation über eine gemeinsame Kundensicht und verbreiterte die Daten- und Analytics-Basis. Gemeinsame und funktionale Ziele wurden ungefähr im Verhältnis 50:50 kombiniert, um Silooptimierung zu reduzieren und klare lokale Verantwortung zu erhalten.",
+    change: "Kundengruppen wurden nach Verhalten, Wiederkaufswahrscheinlichkeit, Retouren und Economics unterschiedlich behandelt. Reaktivierung wurde als eigene Kohorte gesteuert, Kundengruppen mit hohen Retouren weniger intensiv incentiviert und CLV sowie Retention über 20+ Märkte als Guardrails für Lifecycle- und CRM-Entscheidungen genutzt.",
+    perspective: "Die konkrete Veränderung lag in der Steuerungslogik: Der nächste Kauf oder eine höhere Kundenzahl bestimmte den Erfolg nicht mehr allein. Ein gemessener CLV- oder Retention-Uplift wird nicht behauptet. Belegt ist, dass Kundenwert und Retention als Steuergrößen verankert wurden.",
+  },
+  {
+    id: "international-growth-by-market",
+    field: "Commercial Management",
+    title: "Internationales Wachstum skalieren – ohne Märkte über einen Kamm zu scheren",
+    subtitle: "Skalierbaren Commercial Core und wirtschaftlich begründete Differenzierung verbinden",
+    teaser: "Das Geschäft wurde über 20+ Märkte auf €1,6 Mrd. E-Commerce-Umsatz skaliert; der internationale Anteil erreichte 50 Prozent.",
+    context: "Ein identischer Roll-out hätte Unterschiede bei Kunden, Wettbewerb und Marktmechanik ignoriert. Unbegrenzte lokale Varianten hätten dagegen Skaleneffekte geschwächt und dauerhafte Komplexität erzeugt.",
+    role: "Gemeinsam mit den Verantwortlichen entschied ich, welche Commercial-Elemente als gemeinsamer Kern skalieren konnten und wo lokale Differenzierung wirtschaftlich notwendig war. Marktpotenzial, Reife und benötigte Capability-Tiefe bestimmten die Investitionstiefe.",
+    change: "Plattformen, Datenmodelle, Order Handling, Rollen und Kernprozesse wurden gemeinsam genutzt. Marketing-Mix, Payment, Delivery Terms, Kampagnen, Preisniveau und regulatorische Anforderungen blieben je Markt konfigurierbar. Lokale Varianten mussten ihre dauerhaften Kosten und ihre Komplexität rechtfertigen.",
+    perspective: "Bei erfolgreichen lokalen Ansätzen wurde zuerst der zugrunde liegende Wirkmechanismus geprüft. Erst danach fiel die Entscheidung über eine Übertragung. Internationale Skalierung blieb damit eine aktive Commercial-Management-Aufgabe und kein technischer Roll-out.",
+  },
+  {
+    id: "strategy-to-resource-decisions",
+    field: "Commercial Management",
+    title: "Strategie in reale Portfolio- und Ressourcenentscheidungen übersetzen",
+    subtitle: "Unterschiedliche Investments vergleichbar machen, ohne die Entscheidung zu automatisieren",
+    teaser: "Vorhaben wie App, Brand, Pricing, Availability, Marketing und Plattformarbeit wurden über eine gemeinsame, transparente Entscheidungslogik bewertet.",
+    context: "Sehr unterschiedliche Initiativen konkurrierten um Budget, Management Attention und knappe Capabilities. Eine einzelne ROI-Zahl konnte ihre Unterschiede bei Umsatzwirkung, Zeithorizont, Customer Impact, Risiko, Aufwand und strategischem Beitrag nicht abbilden.",
+    role: "Ich habe einen Portfolio Prozess etabliert, der strategische Ziele mit konkreten Investitions und Ressourcenentscheidungen verbunden hat. Unterschiedliche Vorhaben wurden nach wirtschaftlicher Wirkung, Customer Impact, Aufwand, Risiko und Abhängigkeiten bewertet, mit den verantwortlichen Führungskräften priorisiert und das Portfolio regelmäßig an neue Evidenz und Engpässe angepasst.",
+    change: "Wenige strategische Jahresziele wurden mit der Geschäftsführung vereinbart. Die Richtung blieb ungefähr ein Jahr stabil, während das Portfolio quartalsweise anhand neuer Evidenz, Abhängigkeiten und verfügbarer Kapazität neu sortiert wurde. Business Priority und konkrete Capacity Allocation blieben getrennte Entscheidungen.",
+    perspective: "Das Business setzte Problem, gewünschten Outcome und Priorität. Capability Owner entschieden, wie Menschen, Skills und Reihenfolge unter realen Restriktionen eingesetzt wurden. Eine Priorität wurde erst konkret, wenn sie die Ressourcenallokation veränderte.",
+  },
+  {
+    id: "data-driven-marketing",
+    field: "Marketingsteuerung",
+    title: "Data-Driven Marketing Transformation",
+    subtitle: "Von getrennten Datenlogiken zu integrierter, modellbasierter Steuerung",
+    teaser: "Kunden-, Transaktions- und Verhaltensdaten wurden so verbunden, dass Modelle und Scores in CRM, Marketing und Personalisierung wirksam werden konnten.",
+    context: "Getrennte Kanal- und Datenlogiken begrenzten Relevanz, Geschwindigkeit und kanalübergreifende Effizienz. Der wirtschaftliche Hebel lag nicht in einem einzelnen Modell, sondern in einem integrierten System aus Daten, Entscheidungen und Touchpoints.",
+    role: "Ich habe das Zielbild für eine integrierte, daten- und modellbasierte Marketingsteuerung entwickelt und die fachliche Umsetzung von Datenmodellierung und Architektur bis zur Auswahl und Priorisierung der Use Cases gesteuert. Gemeinsam mit den jeweiligen Channel Verantwortlichen wurden die Modelle anschließend in konkrete Marketing- und CRM-Entscheidungen überführt.",
+    change: "Modelle für Purchase Propensity, Next Best Product, CLV und Churn wurden produktiv genutzt. Self-Service-Analytics erreichte 50+ Business Units und 500+ User. Die Gesamttransformation führte zu wiederkehrenden Werbekosteneinsparungen im zweistelligen Millionenbereich bei gleichem Umsatz.",
+    perspective: "Die Einsparung gehört zur Gesamttransformation, nicht zu einem einzelnen Modell. Data Scientists, Data Engineers, Architekten, Marketing- und Produktteams verantworteten die technische und operative Detailarbeit. Customer Identity, Integration und Adoption blieben Teil der Managementaufgabe.",
+  },
+  {
+    id: "web-tracking-marketing-steering",
+    field: "Measurement & Performance",
+    title: "Von Web-Tracking zu datenbasierter Marketingsteuerung",
+    subtitle: "Messung als Steuerungsinfrastruktur aufbauen",
+    teaser: "Ein skalierbares Tracking- und Attributionssystem übersetzte Kampagnendaten in konkrete Kanal-, Partner- und Budgetentscheidungen.",
+    context: "Manuell angelegte Deeplinks, rund ein Tag Reporting-Verzug und geringe Flexibilität trugen ein wachsendes internationales Online Marketing nicht mehr. Wirtschaftlich entscheidend war, welcher Kanal welche Nachfrage zu welchen Kosten beitrug.",
+    role: "Ich habe gemeinsam mit einer Entwicklungsagentur die fachliche Konzeption eines skalierbaren Analytics- und Trackingsystems entwickelt. Dazu gehörten Trackinglogik, Kampagnenhierarchie, Conversion Windows, Attribution, Mandantenfähigkeit, Reporting und Fraud Detection.",
+    change: "CPO, Neukunden-CPO und Nachfrage wurden über Kanäle vergleichbarer. Sessionanalysen machten Cookie Dropping, incentivierte Affiliates und manipulierte Klick- oder Ordermuster sichtbar. Aus den Erkenntnissen entstanden reale Budgetverschiebungen zwischen Affiliates, Portalen und SEA.",
+    perspective: "Das System verbesserte Attribution und Steuerung, nicht den kausalen Wirkungsnachweis. Auch ein starker Brand-SEA-Wert kann bereits vorhandene Nachfrage abholen. Attribution verteilt Kredit; sie belegt keine zusätzliche Wirkung.",
+  },
+  {
+    id: "shopping-app-customer-touchpoint",
+    field: "Digital Product & Customer Journey",
+    title: "Shopping-App als strategischer Customer Touchpoint",
+    subtitle: "Eine eigenständige Rolle neben dem bestehenden Mobile Shop schaffen",
+    teaser: "Permanent Login, Push, persistenter Warenkorb und App-spezifische Experiences schufen einen dauerhaften Touchpoint innerhalb der gesamten Customer Journey.",
+    context: "Der Mobile Shop war bereits leistungsfähig. Die App musste deshalb einen eigenen Wert schaffen, statt nur ein zweites Frontend zu reproduzieren. Gleichzeitig sollte sie international skalierbar und wirtschaftlich beurteilbar bleiben.",
+    role: "Ich habe die App in Customer Journey, Strategie, Analytics und Architektur eingebettet und ihre Rolle als dauerhaften digitalen Customer Touchpoint weiterentwickelt. In meiner VP Rolle verantwortete ich zudem das App Team sowie die strategische Weiterentwicklung, Priorisierung und Skalierung im Digital Commerce.",
+    change: "Ein bewusst hybrider Einstieg verband einen nativen Rahmen mit dem bestehenden Mobile-Shop-Core. Das reduzierte Doppelentwicklung und erleichterte die internationale Skalierung. Die kommerzielle Bewertung ging über Downloads und attribuierten App-Umsatz hinaus und betrachtete Install, Aktivierung, Kauf, Wiederkauf und Incrementality.",
+    perspective: "Wertvollere App-Kundinnen belegen nicht, dass die App sie wertvoller gemacht hat. Install-Economics, Selection Bias und mögliche Verlagerung vom Mobile Web blieben deshalb explizite Teile der Bewertung.",
+  },
+  {
+    id: "omnichannel-journey-data-integration",
+    field: "Omnichannel & Data Integration",
+    title: "Omnichannel Customer Journey & Data Integration",
+    subtitle: "Vom digitalen Filialservice zum vernetzten Fashion.Connect Store",
+    teaser: "Eine frühe Multichannel-Phase verband Filialsuche, lokale Verfügbarkeit, Reservierung und digitale Beratung mit dem Online Shop. Der spätere Fashion.Connect-Pilot vernetzte App, Store Experience und gemeinsame Datenfähigkeiten deutlich tiefer.",
+    context: "In einer ersten Phase ging es darum, Online und Filiale pragmatisch miteinander zu verbinden. Digitale Services sollten Kunden gezielt in die Filialen führen und Verkäufer in der Beratung unterstützen. Später entstand mit Fashion.Connect ein deutlich weitergehender Innovationspilot, der App, Store Experience und digitale Customer Journey enger miteinander verband.",
+    role: "In der ersten Multichannel Phase verantwortete mein Bereich die digitalen Fähigkeiten rund um Filialsuche, lokale Verfügbarkeit und die Verbindung von Online Shop und Filiale. Bei Fashion.Connect brachte mein Bereich die App und Digital Kompetenz ein und stellte sicher, dass vorhandene Experience, Identity, Tracking, Analytics und CRM Grundlagen genutzt wurden.",
+    change: "Frühe Multichannel-Phase: Filialsuche, lokale Verfügbarkeit, Reservierung und ein digitales Beratungstool verbanden Online Shop und Filialnetz. Spätere Fashion.Connect-Phase: App, Store Experience, Login und Identity, Produktinteraktion, Warenkorb, Store Visit und Kauf wurden deutlich tiefer über die bestehende Daten- und Experience-Plattform verbunden.",
+    perspective: "Die erste Phase war ein breit eingesetzter Multichannel-Ansatz zur Verbindung von Online Geschäft und Filialnetz. Fashion.Connect war dagegen ein einzelner, innovativer Pilot, der zeigte, wie weit sich App, Store Experience und gemeinsame Datenarchitektur integrieren lassen. Gerade deshalb sollte daraus keine flächendeckend nachgewiesene kommerzielle Wirkung abgeleitet werden.",
+  },
+  {
+    id: "digital-product-operating-model",
+    field: "Product Operating Model",
+    title: "Digital Product Operating Model Transformation",
+    subtitle: "Time-to-Market durch Architektur, Organisation und Entscheidungsrechte verbessern",
+    teaser: "Der Wechsel von funktionalen Projektstrukturen zu stabilen Produktteams verband Ownership, Plattformmodularisierung und Portfoliosteuerung.",
+    context: "Funktionale Übergaben, Spezialistenketten, zentrale Pools und wiederkehrende Abhängigkeiten begrenzten die Time-to-Market. Neue Rollenbezeichnungen allein konnten keine End-to-End-Verantwortung schaffen, solange die Plattform ständige Abstimmungen erzwang.",
+    role: "Ich habe Zielbild und Transformationsrahmen für den Umbau zu einer produktorientierten Organisation entwickelt und mit meinem Leadership Team umgesetzt. Dazu gehörten der Zuschnitt stabiler Produktteams, klarere End to End Verantwortung, neue Product Management Rollen sowie eine engere Verbindung von strategischer Priorisierung, OKRs und Portfolio Steuerung.",
+    change: "Plattformmodularisierung und Organisationsdesign wurden gemeinsam verändert. Strategie und GF-Prioritäten wurden über Portfolio- und Flight-Level-Steuerung sowie OKRs übersetzt; Roadmap, Backlog und technische Umsetzung blieben produktnah. Die Deployment Frequency stieg von 50 pro Jahr 2021 auf 250 im Jahr 2023.",
+    perspective: "Der dokumentierte Beleg ist eine Verfünffachung der Deployment Frequency von 2021 bis 2023. Product-Autonomie wird erst real, wenn Entscheidungsrechte, Architektur und Priorisierung sie tragen.",
+  },
+  {
+    id: "data-ai-operational-steering",
+    field: "Data & AI",
+    title: "Data & AI vom Reporting in die operative Steuerung skalieren",
+    subtitle: "Eine wiederverwendbare Commerce-Capability statt einer Modellfabrik aufbauen",
+    teaser: "Daten, Modelle, Product-Entscheidungen und operative Aussteuerung wurden über Analytics, Data Science, Data Engineering und Plattformfähigkeiten verbunden.",
+    context: "Datensilos, langsame Reports, lange Modellierungszyklen, begrenzte Realtime-Fähigkeit und ein zentraler Analytics-Flaschenhals schränkten die operative Nutzung von Data & AI ein.",
+    role: "Ich habe Data & AI als integrierte Business Capability aufgebaut und die organisatorischen und fachlichen Voraussetzungen dafür geschaffen, dass Analytics, Data Science, Data Engineering und Plattformfähigkeiten gemeinsam auf konkrete Commerce Use Cases arbeiten. Dazu gehörten Zielbild, zentrale Architektur und Make or Buy Entscheidungen sowie die Priorisierung der Use Cases nach Business Impact, Datenverfügbarkeit, Time to Value und Skalierbarkeit.",
+    change: "Jeder Use Case brauchte einen Business Owner und einen realen Aussteuerungspfad. Das Produktteam am Einsatzort entschied über den Go-live mit, gestützt auf Business- und A/B-Tests, technische Stabilität und Integration. Self-Service erreichte 50+ Business Units und 500+ User; die dokumentierte ML-Entwicklungszeit sank von Monaten auf rund zwei Wochen.",
+    perspective: "Ich verantwortete Richtung, Priorisierung, Organisationsdesign, Business Cases und wesentliche Investmententscheidungen. Spezialistische Leads und Teams verantworteten technische Ausgestaltung, Implementierung und Betrieb der Plattformen und Modelle.",
+  },
+];
+
+const shortTitleById: Record<string, string> = isEnglish ? {
+  "business-performance-back-on-track": "Steer business performance",
+  "profitable-customer-base": "Develop a profitable customer base",
+  "international-growth-by-market": "Scale international growth",
+  "strategy-to-resource-decisions": "Translate strategy into resource decisions",
+  "data-driven-marketing": "Data-Driven Marketing",
+  "web-tracking-marketing-steering": "Tracking & Attribution",
+  "shopping-app-customer-touchpoint": "Shopping App",
+  "omnichannel-journey-data-integration": "Omnichannel",
+  "digital-product-operating-model": "Product Operating Model",
+  "data-ai-operational-steering": "Data & AI",
+} : {
+  "business-performance-back-on-track": "Geschäftsentwicklung steuern",
+  "profitable-customer-base": "Kundenbasis profitabel entwickeln",
+  "international-growth-by-market": "Internationales Wachstum skalieren",
+  "strategy-to-resource-decisions": "Strategie in Ressourcenentscheidungen übersetzen",
+  "data-driven-marketing": "Data-Driven Marketing",
+  "web-tracking-marketing-steering": "Tracking & Attribution",
+  "shopping-app-customer-touchpoint": "Shopping App",
+  "omnichannel-journey-data-integration": "Omnichannel",
+  "digital-product-operating-model": "Product Operating Model",
+  "data-ai-operational-steering": "Data & AI",
+};
+
+const phaseTeaserByPeriod: Record<string, string> = isEnglish ? {
+  "2004–2010": "Offer Management, Online Marketing, conversion and digital growth.",
+  "2010–2014": "Mobile, Customer Journey and international scaling.",
+  "2014–2018": "CRM, Analytics, Personalisation and Customer Value.",
+  "2018–2025": "Connecting Marketing, Product, Data and Technology end to end.",
+} : {
+  "2000–2010": "Angebotssteuerung, Online Marketing, Conversion und digitales Wachstum.",
+  "2010–2014": "Mobile, Customer Journey und internationale Skalierung.",
+  "2014–2018": "CRM, Analytics, Personalisierung und Customer Value.",
+  "2018–2025": "Marketing, Product, Data und Technology End-to-End verbinden.",
+};
+
+const commercialCases = initiatives.slice(0, 4);
+const selectedInitiatives = initiatives.slice(4);
+
+const layerItems = [
+  ...phases.map((phase, index) => ({
+    id: `phase-${index + 1}`,
+    meta: `${labels.development} · ${phase.period}`,
+    title: phase.title,
+    subtitle: phase.summary,
+    sections: [
+      { label: labels.phaseDetail, text: phase.body },
+      ...(phase.scale ? [{ label: labels.scale, text: phase.scale }] : []),
+    ],
+  })),
+  ...initiatives.map((initiative, index) => ({
+    id: `case-${initiative.id}`,
+    meta: `${index < 4 ? labels.commercial : labels.initiatives} · ${String(index < 4 ? index + 1 : index - 3).padStart(2, "0")}`,
+    title: initiative.title,
+    subtitle: initiative.subtitle,
+    sections: [
+      { label: labels.context, text: initiative.context },
+      { label: labels.role, text: initiative.role },
+      { label: labels.change, text: initiative.change },
+      { label: labels.perspective, text: initiative.perspective },
+    ],
+  })),
+];
+
+const serializedLayerItems = JSON.stringify(layerItems).replace(/</g, "\\u003c");
+---
+
+<section class="perspectives" aria-label={isEnglish ? "Three perspectives on my track record" : "Drei Perspektiven auf meinen Track Record"}>
+  <div class="perspective-grid">
+    <section class="perspective-column" aria-labelledby="development-column-title">
+      <header class="column-header">
+        <div class="column-number">01</div>
+        <h2 id="development-column-title">{labels.development}</h2>
+        <p>{labels.developmentIntro}</p>
+      </header>
+      <ol class="perspective-list">
+        {phases.map((phase, index) => (
+          <li>
+            <button class="perspective-card" type="button" data-track-record-item={`phase-${index + 1}`} aria-haspopup="dialog" aria-controls="track-record-detail-dialog" aria-expanded="false">
+              <span class="card-meta">{phase.period}</span>
+              <strong>{phase.title}</strong>
+              <span class="card-teaser">{phaseTeaserByPeriod[phase.period] ?? phase.summary}</span>
+              <span class="card-action">{labels.explore} <span aria-hidden="true">→</span></span>
+            </button>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="perspective-column" aria-labelledby="commercial-column-title">
+      <header class="column-header">
+        <div class="column-number">02</div>
+        <h2 id="commercial-column-title">{labels.commercial}</h2>
+        <p>{labels.commercialIntro}</p>
+      </header>
+      <ol class="perspective-list">
+        {commercialCases.map((initiative, index) => (
+          <li>
+            <button class="perspective-card" type="button" data-track-record-item={`case-${initiative.id}`} aria-haspopup="dialog" aria-controls="track-record-detail-dialog" aria-expanded="false">
+              <span class="card-meta">{String(index + 1).padStart(2, "0")}</span>
+              <strong>{shortTitleById[initiative.id]}</strong>
+              <span class="card-teaser">{initiative.teaser}</span>
+              <span class="card-action">{labels.explore} <span aria-hidden="true">→</span></span>
+            </button>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="perspective-column" aria-labelledby="initiatives-column-title">
+      <header class="column-header">
+        <div class="column-number">03</div>
+        <h2 id="initiatives-column-title">{labels.initiatives}</h2>
+        <p>{labels.initiativesIntro}</p>
+      </header>
+      <ol class="perspective-list compact-list">
+        {selectedInitiatives.map((initiative, index) => (
+          <li>
+            <button class="perspective-card compact-card" type="button" data-track-record-item={`case-${initiative.id}`} aria-haspopup="dialog" aria-controls="track-record-detail-dialog" aria-expanded="false">
+              <span class="card-meta">{String(index + 1).padStart(2, "0")}</span>
+              <strong>{shortTitleById[initiative.id]}</strong>
+              <span class="card-teaser">{initiative.teaser}</span>
+              <span class="card-action">{labels.explore} <span aria-hidden="true">→</span></span>
+            </button>
+          </li>
+        ))}
+      </ol>
+    </section>
+  </div>
+</section>
+
+<dialog class="field-dialog" id="track-record-detail-dialog" aria-labelledby="track-record-dialog-title">
+  <div class="drawer">
+    <div class="drawer-topline">
+      <span class="drawer-meta" id="track-record-dialog-meta"></span>
+      <button class="drawer-close" type="button" aria-label={labels.close}>×</button>
+    </div>
+    <h2 id="track-record-dialog-title"></h2>
+    <p class="drawer-subtitle" id="track-record-dialog-subtitle"></p>
+    <div id="track-record-dialog-sections"></div>
+  </div>
+</dialog>
+
+<script type="application/json" id="track-record-layer-data" set:html={serializedLayerItems}></script>
+
+<script>
+  const trackRecordDialog = document.querySelector<HTMLDialogElement>("#track-record-detail-dialog");
+  const trackRecordDataNode = document.querySelector<HTMLScriptElement>("#track-record-layer-data");
+  const trackRecordTriggers = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-track-record-item]"));
+  const trackRecordCloseButton = trackRecordDialog?.querySelector<HTMLButtonElement>(".drawer-close");
+  let activeTrackRecordTrigger: HTMLButtonElement | null = null;
+
+  const trackRecordItems = trackRecordDataNode ? JSON.parse(trackRecordDataNode.textContent || "[]") : [];
+  const trackRecordItemsById = new Map(trackRecordItems.map((item: { id: string }) => [item.id, item]));
+
+  function setTrackRecordText(selector: string, value: string) {
+    const node = trackRecordDialog?.querySelector<HTMLElement>(selector);
+    if (node) node.textContent = value;
+  }
+
+  function openTrackRecordDialog(trigger: HTMLButtonElement) {
+    if (!trackRecordDialog) return;
+    const item = trackRecordItemsById.get(trigger.dataset.trackRecordItem || "");
+    if (!item) return;
+
+    activeTrackRecordTrigger = trigger;
+    trackRecordTriggers.forEach((entry) => entry.setAttribute("aria-expanded", entry === trigger ? "true" : "false"));
+    setTrackRecordText("#track-record-dialog-meta", item.meta);
+    setTrackRecordText("#track-record-dialog-title", item.title);
+    setTrackRecordText("#track-record-dialog-subtitle", item.subtitle);
+
+    const sections = trackRecordDialog.querySelector<HTMLElement>("#track-record-dialog-sections");
+    sections?.replaceChildren(...item.sections.map((section: { label: string; text: string }) => {
+      const wrapper = document.createElement("section");
+      wrapper.className = "drawer-section";
+      const heading = document.createElement("h3");
+      heading.textContent = section.label;
+      const paragraph = document.createElement("p");
+      paragraph.textContent = section.text;
+      wrapper.append(heading, paragraph);
+      return wrapper;
+    }));
+
+    trackRecordDialog.showModal();
+    document.body.classList.add("track-record-dialog-open");
+    trackRecordCloseButton?.focus();
+  }
+
+  trackRecordTriggers.forEach((trigger) => trigger.addEventListener("click", () => openTrackRecordDialog(trigger)));
+  trackRecordCloseButton?.addEventListener("click", () => trackRecordDialog?.close());
+  trackRecordDialog?.addEventListener("click", (event) => {
+    if (event.target === trackRecordDialog) trackRecordDialog.close();
+  });
+  trackRecordDialog?.addEventListener("close", () => {
+    document.body.classList.remove("track-record-dialog-open");
+    trackRecordTriggers.forEach((entry) => entry.setAttribute("aria-expanded", "false"));
+    activeTrackRecordTrigger?.focus();
+    activeTrackRecordTrigger = null;
+  });
+</script>
+
+<style>
+  .perspectives { margin-top: 2rem; }
+  .perspective-grid { display: grid; gap: 2.25rem; }
+  .perspective-column { min-width: 0; padding-top: 1.5rem; border-top: 1px solid var(--color-border); }
+  .column-header { padding-bottom: .85rem; }
+  .column-number { margin-bottom: .45rem; color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .12em; }
+  .column-header h2 { margin: 0 0 .35rem; color: var(--color-ink); font-size: 23px; font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
+  .column-header p { margin: 0; color: var(--color-ink-2); font-size: 13.5px; line-height: 1.55; }
+  .perspective-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 1fr; column-gap: 1rem; row-gap: .75rem; list-style: none; margin: 0; padding: 0; }
+  .perspective-list li { display: flex; min-width: 0; }
+  .perspective-card { display: flex; width: 100%; height: 100%; min-height: 8.75rem; flex-direction: column; padding: .75rem 1rem; color: inherit; text-align: left; font: inherit; cursor: pointer; background: rgba(255,255,255,.62); border: 1px solid var(--color-border-soft); transition: transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease; }
+  .perspective-card:hover { background: rgba(255,255,255,.82); border-color: rgba(180,83,9,.32); transform: translateY(-2px); box-shadow: 0 12px 26px rgba(30,50,70,.07); }
+  .perspective-card:focus-visible, .drawer-close:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 3px; }
+  .card-meta { margin-bottom: .35rem; color: var(--color-amber); font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
+  .perspective-card strong { color: var(--color-ink); font-size: 15px; font-weight: 500; letter-spacing: -.01em; line-height: 1.35; }
+  .card-teaser { display: -webkit-box; margin-top: .4rem; overflow: hidden; color: var(--color-body); font-size: 12px; line-height: 1.5; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+  .card-action { display: inline-flex; gap: .35rem; align-items: center; margin-top: auto; padding-top: .5rem; color: var(--color-amber); font-size: 11.5px; font-weight: 500; }
+  .compact-card { min-height: 7.25rem; }
+  .compact-card .card-teaser { -webkit-line-clamp: 2; }
+
+  .field-dialog { position: fixed; inset: 0 0 0 auto; width: min(570px, 100vw); max-width: none; height: 100dvh; max-height: none; margin: 0; padding: 0; overflow: visible; color: var(--color-ink); background: transparent; border: 0; }
+  .field-dialog::backdrop { background: rgba(15,23,41,.38); backdrop-filter: blur(3px); }
+  .drawer { height: 100%; padding: 2.35rem 2.5rem 2.75rem; overflow-y: auto; background: linear-gradient(180deg, #f9fbfd 0%, #eef3f8 100%); border-left: 1px solid rgba(30,60,100,.2); box-shadow: -18px 0 50px rgba(15,23,41,.14); }
+  .drawer-topline { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+  .drawer-meta { color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
+  .drawer-close { display: inline-grid; width: 42px; height: 42px; place-items: center; padding: 0; color: var(--color-ink-2); font: inherit; font-size: 25px; line-height: 1; cursor: pointer; background: rgba(255,255,255,.7); border: 1px solid var(--color-border-soft); transition: color .2s ease, border-color .2s ease; }
+  .drawer-close:hover { color: var(--color-amber); border-color: rgba(180,83,9,.35); }
+  .drawer > h2 { margin: 0 0 .75rem; color: var(--color-ink); font-size: 34px; font-weight: 500; letter-spacing: -.03em; line-height: 1.12; }
+  .drawer-subtitle { margin: 0 0 1.7rem; color: var(--color-ink-2); font-size: 15px; line-height: 1.6; }
+  :global(.drawer-section) { padding: 1.45rem 0; border-top: 1px solid var(--color-border-soft); }
+  :global(.drawer-section h3) { margin: 0 0 .7rem; color: var(--color-ink-3); font-size: 10.5px; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; }
+  :global(.drawer-section p) { margin: 0; color: var(--color-body); font-size: 14px; line-height: 1.7; }
+  :global(body.track-record-dialog-open) { overflow: hidden; }
+
+  @media (max-width: 1050px) {
+    .perspective-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 600px) {
+    .perspectives { margin-top: 1.75rem; }
+    .perspective-grid { gap: 1.75rem; }
+    .perspective-column { padding-top: 1.25rem; }
+    .perspective-list { row-gap: .7rem; }
+    .perspective-list { grid-template-columns: 1fr; grid-auto-rows: auto; }
+    .perspective-list li { display: block; }
+    .perspective-card, .compact-card { height: auto; min-height: 0; }
+    .field-dialog { inset: auto 0 0; width: 100%; height: min(88dvh, 760px); }
+    .drawer { padding: 1.35rem 1.4rem 2rem; border-top: 1px solid rgba(30,60,100,.2); border-left: 0; box-shadow: 0 -18px 50px rgba(15,23,41,.16); }
+    .drawer > h2 { font-size: 28px; }
+  }
+</style>
