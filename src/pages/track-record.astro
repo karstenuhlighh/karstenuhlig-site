@@ -17,9 +17,9 @@ const phases = isEnglish ? trackRecordPhasesEn : trackRecordPhases;
   description={isEnglish ? "From Offer Management and Digital Marketing through CRM to end-to-end steering of an international E-Commerce business. Four phases of building and scaling at bonprix since 2004." : "Von Angebotssteuerung und Digital Marketing über CRM bis zur End-to-End-Steuerung eines internationalen E-Commerce-Geschäfts. Vier Aufbau- und Skalierungsphasen bei bonprix ab 2004."}
 >
   <div class="tr-intro">
-    <div class="tr-eyebrow">Track Record</div>
-
     <div class="tr-copy">
+      <div class="tr-eyebrow">Track Record</div>
+
       <h1 class="tr-headline">{isEnglish ? "Accountability across the digital value chain" : "Verantwortung entlang der digitalen Wertschöpfung"}</h1>
 
       <div class="tr-body">
@@ -31,8 +31,8 @@ const phases = isEnglish ? trackRecordPhasesEn : trackRecordPhases;
       class="tr-portrait"
       src="/images/karsten-uhlig-track-record-portrait.png"
       alt={isEnglish ? "Portrait of Karsten Uhlig in a suit" : "Portrait von Karsten Uhlig im Anzug"}
-      width={996}
-      height={1024}
+      width={1122}
+      height={1402}
     />
 
     <div class="tr-divider" aria-hidden="true"></div>
@@ -48,14 +48,14 @@ const phases = isEnglish ? trackRecordPhasesEn : trackRecordPhases;
 </SubPageLayout>
 
 <style>
-  .tr-intro { display: grid; grid-template-columns: minmax(0, 1fr) 260px; grid-template-areas: "eyebrow ." "copy portrait" "divider divider"; column-gap: clamp(3rem, 6vw, 5.25rem); row-gap: 1.5rem; align-items: start; padding: 1.5rem 0 0; }
-  .tr-eyebrow { grid-area: eyebrow; color: var(--color-amber); font-size: 12px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; }
+  .tr-intro { display: grid; grid-template-columns: clamp(300px, 29%, 330px) minmax(0, 1fr); grid-template-areas: "portrait copy" "divider divider"; column-gap: clamp(55px, 4.5vw, 65px); row-gap: 0; align-items: start; padding: 1.5rem 0 0; }
+  .tr-eyebrow { margin-bottom: 30px; color: var(--color-amber); font-size: 12px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; }
   .tr-copy { grid-area: copy; min-width: 0; }
-  .tr-headline { margin: 0 0 1.5rem; color: var(--color-ink); font-size: 44px; font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }
+  .tr-headline { margin: 0 0 28px; color: var(--color-ink); font-size: 44px; font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }
   .tr-body { max-width: 100%; }
   .tr-body p { font-size: 17px; line-height: 1.75; color: var(--color-ink-2); margin: 0 0 1.5rem; }
   .tr-body p:last-child { margin-bottom: 0; }
-  :global(.tr-portrait) { --editorial-image-margin: 0; grid-area: portrait; width: 260px; justify-self: end; }
+  :global(.tr-portrait) { --editorial-image-margin: 0; grid-area: portrait; width: 100%; justify-self: start; }
   .tr-divider { grid-area: divider; width: 100%; margin-top: 1.25rem; border-top: 1px solid var(--color-border); }
   :global(.page-main > .perspectives) { margin-top: 0; }
   :global(.page-main > .perspectives .perspective-column:first-child) { border-top: 0; }
@@ -64,7 +64,9 @@ const phases = isEnglish ? trackRecordPhasesEn : trackRecordPhases;
   .tr-now p { margin: 0; font-size: 15px; line-height: 1.7; color: var(--color-body); }
   .tr-now { max-width: 760px; margin-top: 2.25rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); }
   @media (max-width: 900px) {
-    .tr-intro { grid-template-columns: 1fr; grid-template-areas: "eyebrow" "copy" "portrait" "divider"; column-gap: 0; row-gap: 1.5rem; padding-top: 1rem; }
+    .tr-intro { grid-template-columns: 1fr; grid-template-areas: "copy" "portrait" "divider"; column-gap: 0; row-gap: 1.5rem; padding-top: 1rem; }
+    .tr-eyebrow { margin-bottom: 1.5rem; }
+    .tr-headline { margin-bottom: 1.5rem; }
     :global(.tr-portrait) { width: min(100%, 390px); justify-self: center; }
     .tr-divider { margin-top: 0; }
   }
