@@ -10,7 +10,7 @@ interface Props {
 const { src, alt, width, height, class: className } = Astro.props;
 ---
 
-<figure class:list={["editorial-image", className]}>
+<figure class:list={["image-frame-shell", "editorial-image", className]}>
   <div class="editorial-image__media">
     <img
       src={src}
@@ -24,22 +24,9 @@ const { src, alt, width, height, class: className } = Astro.props;
 
 <style>
   .editorial-image {
-    position: relative;
     margin: var(--editorial-image-margin, 0);
     padding: clamp(.45rem, .8vw, .7rem);
     background: rgba(255, 255, 255, .3);
-    border: 1px solid var(--color-border-soft);
-  }
-
-  .editorial-image::before {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    top: -1px;
-    left: -1px;
-    width: clamp(52px, 7vw, 84px);
-    height: 2px;
-    background: var(--color-amber);
   }
 
   .editorial-image__media {

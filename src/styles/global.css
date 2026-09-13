@@ -44,3 +44,20 @@ body {
 *::after {
   box-sizing: border-box;
 }
+
+.image-frame-shell {
+  position: relative;
+  border: 1px solid var(--color-border-soft);
+}
+
+.image-frame-shell::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: clamp(52px, 7vw, 84px);
+  height: 2px;
+  background: var(--color-amber);
+  pointer-events: none;
+}
