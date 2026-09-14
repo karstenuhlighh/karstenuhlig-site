@@ -28,10 +28,10 @@ export const leadershipClassesEn: LeadershipClass[] = [
     image: "/images/leadership-transformation/02-performance-entwicklung.png",
     alt: "Person with chart symbols representing diagnosis and development",
     tags: ["Diagnosis", "Accountability", "Learning from mistakes"],
-    about: "Nine possible causes are examined before an intervention is chosen, from missing experience and role fit to a behavioural problem. The diagnosis is located closely in the person, role or system rather than becoming an overall judgement of the person. Freedom from error is not the standard: what matters is diligence before a decision and ownership afterwards. One team treated a first mistake as a learning error and assessed a structurally identical repeat one week later much more critically.",
+    about: "Before I choose a leadership intervention, I clarify where the cause actually lies: in experience or behaviour, in the role, in expectations or in the system. What matters is making the impact or variance concrete and not rushing to an overall judgement of the person. Freedom from error is not the standard. More important are diligence before the decision and ownership afterwards. A first mistake can be a learning error; a structurally identical repeat is a different signal.",
     focus: [
       "Make the impact or variance concrete, then separate person, role and system",
-      "Locate the cause closely before choosing an intervention",
+      "Look for the cause where it actually arises — in the person, role or system",
       "Observe behaviour over time, then return accountability or change role and structure",
       "Treat repeated, independent feedback on the same pattern as a signal in its own right",
     ],

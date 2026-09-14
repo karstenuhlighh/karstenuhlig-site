@@ -55,10 +55,10 @@ export const leadershipClasses: LeadershipClass[] = [
     alt: "Person mit Diagramm-Symbolen für Diagnose und Entwicklung",
     tags: ["Diagnose", "Verbindlichkeit", "Fehlerkultur"],
     about:
-      "Neun mögliche Ursachen werden geprüft, bevor ein Instrument gewählt wird, von fehlender Erfahrung über Rollenfit bis zu einem Verhaltensproblem, eng an Person, Rolle oder System lokalisiert statt als Gesamturteil über die Person. Fehlerfreiheit ist dabei kein Maßstab: Maßgeblich sind Sorgfalt vor der Entscheidung und Verantwortungsübernahme danach. Ein Team behandelte einen Erstfehler als Lernfehler und bewertete einen strukturgleichen Wiederholungsfehler eine Woche später deutlich kritischer.",
+      "Bevor ich ein Führungsinstrument wähle, kläre ich, wo die Ursache tatsächlich liegt: bei Erfahrung oder Verhalten, in der Rolle, den Erwartungen oder im System. Entscheidend ist, Wirkung oder Abweichung konkret zu machen und nicht vorschnell ein Gesamturteil über die Person zu fällen. Fehlerfreiheit ist dabei kein Maßstab. Wichtiger sind Sorgfalt vor der Entscheidung und Verantwortungsübernahme danach. Ein Erstfehler kann ein Lernfehler sein; ein strukturgleicher Wiederholungsfehler ist ein anderes Signal.",
     focus: [
       "Wirkung oder Abweichung konkret machen, dann Person, Rolle und System trennen",
-      "Ursache eng lokalisieren, bevor ein Instrument gewählt wird",
+      "Ursache dort suchen, wo sie tatsächlich entsteht – bei Person, Rolle oder System",
       "Verhalten über Zeit beobachten, dann Verantwortung zurückgeben oder Rolle und Struktur ändern",
       "Wiederholtes, unabhängiges Feedback zum selben Muster als eigenständiges Signal werten",
     ],
