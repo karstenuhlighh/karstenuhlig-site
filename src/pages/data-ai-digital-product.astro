@@ -1,6 +1,7 @@
 ---
 import SubPageLayout from "../layouts/SubPageLayout.astro";
 import DataAiCapabilityGrid from "../components/DataAiCapabilityGrid.astro";
+import MarketingDecisioningCase from "../components/MarketingDecisioningCase.astro";
 import { getLanguage } from "../i18n/routes";
 
 const language = getLanguage(Astro.url.pathname);
@@ -118,6 +119,8 @@ const explorations = isEnglish ? [
       <p class="hero-subheadline">{isEnglish ? "Data becomes valuable when it enables better commercial decisions." : "Daten werden dann wertvoll, wenn sie bessere kommerzielle Entscheidungen ermöglichen."}</p>
       <p class="hero-copy">{isEnglish ? "I connect Measurement, Customer Data, Analytics, Data Science and AI with the decision systems and digital products that turn them into concrete customer and business impact. Commercial Management remains the starting point: which customer, growth or resource decision needs to improve?" : "Ich verbinde Measurement, Customer Data, Analytics, Data Science und AI mit den Entscheidungssystemen und digitalen Produkten, die daraus konkrete Kunden- und Geschäftswirkung erzeugen. Der Ausgangspunkt bleibt dabei Commercial Management: Welche Kunden-, Wachstums- oder Ressourcenentscheidung muss besser werden?"}</p>
     </header>
+
+    {!isEnglish && <MarketingDecisioningCase />}
 
     <section class="logic-section" aria-labelledby="decision-logic-title">
       <div class="logic-intro">

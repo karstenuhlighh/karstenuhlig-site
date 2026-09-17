@@ -1,0 +1,278 @@
+---
+const visuals = [
+  {
+    id: "case-transition",
+    eyebrow: "Ausgangslage → Zielbild",
+    title: "Von fragmentierter Steuerung zu einem integrierten kommerziellen System.",
+    description: "Am Anfang standen getrennte Daten, kanalbezogene Prozesse und historisch gewachsene Planungslogiken. Ziel war kein isoliertes Datenprojekt, sondern eine gemeinsame Entscheidungsgrundlage für Marketing, CRM, Analytics und Aktivierung.",
+    src: "/images/data-ai-decisioning-case/01-systemwirkung-diagramm.png",
+    alt: "Diagramm der Marketing-Decisioning-Transformation: von fragmentierter Steuerung über ein integriertes kommerzielles System zu messbarer Wirkung.",
+    width: 1774,
+    height: 887,
+  },
+  {
+    id: "case-foundation",
+    eyebrow: "DATA FOUNDATION",
+    title: "Von getrennten Signalen zu einer gemeinsamen Entscheidungsbasis.",
+    description: "Die Grundlage war eine Plattformlogik, in der Kundensignale, Reaktionen, Transaktionen und Verhaltensdaten zusammengeführt wurden. Ziel war nicht bessere Transparenz allein, sondern eine belastbare Basis für operative Marketingentscheidungen.",
+    src: "/images/data-ai-decisioning-case/02-data-foundation-diagram-core.png",
+    alt: "Data Foundation: Datenquellen aus Online Shop, App, Filialen, CRM, Marketing und weiteren Quellen fließen in eine zentrale Kundendatenplattform und werden für Marketing, CRM, Angebote, Analytics und operative Systeme nutzbar.",
+    width: 2079,
+    height: 756,
+  },
+  {
+    id: "case-scale",
+    eyebrow: "ORGANISATION + SCALE",
+    title: "Operating Model und Technologiegrundlage gemeinsam weiterentwickeln.",
+    description: "Operating Model und Technologiegrundlage entwickelten sich gemeinsam. So wurde aus einzelnen Anwendungen eine wiederholbare, international skalierbare Capability für Marketing- und Entscheidungssteuerung.",
+    src: "/images/data-ai-decisioning-case/03-organisation-scale.png",
+    alt: "Organisation und Scale: Business, BI, Analytics, Data Management und Technologie bilden eine wiederholbare, international skalierbare Capability.",
+    width: 1942,
+    height: 810,
+  },
+  {
+    id: "case-integrated-decisioning",
+    eyebrow: "Integrated Decisioning",
+    title: "Daten, Entscheidungslogik und Aktivierung entlang der Journey verbinden.",
+    description: "Aus Daten und Modellen entstehen konkrete Entscheidungshilfen für Marketing, CRM, Mediensteuerung und Angebotslogik. Entscheidend ist die nahtlose Verbindung von Insight, Decision und Activation und ein geschlossener Lernkreislauf.",
+    src: "/images/data-ai-decisioning-case/04-integrated-decisioning.png",
+    alt: "Integrated Decisioning: Daten, Marketing, Product Management und Engineering werden mit Predictive Models und Aktivierungskanälen entlang der Customer Journey verbunden.",
+    width: 1672,
+    height: 941,
+  },
+  {
+    id: "case-impact",
+    eyebrow: "Commercial Impact · Auswahl",
+    title: "Beispiele für messbare Geschäftswirkung.",
+    description: "Die Capability wirkte in unterschiedlichen Entscheidungsfeldern. Die folgenden Beispiele zeigen exemplarisch, wie aus Daten, Decisioning und operativer Aktivierung konkreter wirtschaftlicher Beitrag entstand.",
+    src: "/images/data-ai-decisioning-case/05-commercial-impact.png",
+    alt: "Auswahl messbarer Geschäftswirkung: zweistelliger Millionenbetrag weniger Werbekosten bei stabilem Umsatz, über 40 Prozent weniger untargeted Voucher Displays, messbarer Nachfragebeitrag und nachweisbare Werbekosteneinsparungen.",
+    width: 1536,
+    height: 1024,
+  },
+  {
+    id: "case-learning",
+    eyebrow: "REALITY & LEARNING",
+    title: "Was den Unterschied gemacht hat.",
+    description: "Die eigentliche Hebelwirkung entstand dort, wo Daten, Entscheidungslogik, Organisation und Aktivierung zusammengedacht wurden. Aus einzelnen Use Cases wurde eine wirksame, skalierbare Capability.",
+    src: "/images/data-ai-decisioning-case/06-reality-learning.png",
+    alt: "Reality und Learning: Use Cases schaffen Traktion; People, Skills, Ownership und eine skalierbare Plattform verbinden Insight, Action, Messung und Lernen.",
+    width: 1536,
+    height: 1024,
+  },
+];
+---
+
+<section class="case-study" aria-labelledby="marketing-decisioning-case-title">
+  <header class="case-opening">
+    <div class="case-kicker">Signature Case · Marketing Decisioning</div>
+    <h2 id="marketing-decisioning-case-title">Von fragmentierter Marketingsteuerung zur Marketing Decisioning Capability</h2>
+    <p>Die Transformation verband Daten, Measurement, Entscheidungslogik und Organisation, damit Marketing als integriertes kommerzielles System gesteuert werden konnte.</p>
+  </header>
+
+  <div class="case-sequence">
+    {visuals.map((visual) => (
+      <section class="case-section" aria-labelledby={`${visual.id}-title`}>
+        <header class="case-section-heading">
+          <div class="case-kicker">{visual.eyebrow}</div>
+          {visual.description ? (
+            <div class="case-section-copy">
+              <h3 id={`${visual.id}-title`}>{visual.title}</h3>
+              <p>{visual.description}</p>
+            </div>
+          ) : (
+            <h3 id={`${visual.id}-title`}>{visual.title}</h3>
+          )}
+        </header>
+
+        <p class="mobile-zoom-hint">Horizontal scrollen oder antippen, um die Grafik in voller Größe zu öffnen.</p>
+        <div class="visual-viewport" tabindex="0" aria-label={`${visual.title} – horizontal scrollbar auf kleinen Bildschirmen`}>
+          <a class:list={[
+            "visual-link",
+            visual.id === "case-scale" && "visual-link--scale-trimmed",
+            visual.id === "case-integrated-decisioning" && "visual-link--decisioning-trimmed",
+            visual.id === "case-impact" && "visual-link--impact-trimmed",
+            visual.id === "case-learning" && "visual-link--trimmed",
+          ]} href={visual.src} target="_blank" rel="noopener" aria-label={`${visual.title} In voller Größe öffnen`}>
+            <img
+              src={visual.src}
+              alt={visual.alt}
+              width={visual.width}
+              height={visual.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+        </div>
+      </section>
+    ))}
+  </div>
+</section>
+
+<style>
+  .case-study { min-width: 0; }
+
+  .case-opening {
+    max-width: 970px;
+    padding: 5.5rem 0 5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .case-kicker {
+    color: var(--color-amber);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  .case-opening h2 {
+    margin: 1.15rem 0 0;
+    color: var(--color-ink);
+    font-size: clamp(36px, 4.6vw, 58px);
+    font-weight: 500;
+    letter-spacing: -.045em;
+    line-height: 1.06;
+  }
+
+  .case-opening p {
+    max-width: 850px;
+    margin: 1.5rem 0 0;
+    color: var(--color-ink-2);
+    font-size: 18px;
+    line-height: 1.65;
+  }
+
+  .case-section {
+    min-width: 0;
+    padding: 5.5rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .case-section-heading {
+    display: grid;
+    grid-template-columns: minmax(170px, .34fr) minmax(0, 1fr);
+    gap: 4rem;
+    align-items: start;
+    margin-bottom: 2.75rem;
+  }
+
+  .case-section-heading h3 {
+    max-width: 850px;
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: -.03em;
+    line-height: 1.2;
+  }
+
+  .case-section-copy p {
+    max-width: 850px;
+    margin: 1.25rem 0 0;
+    color: var(--color-ink-2);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .visual-viewport { width: 100%; min-width: 0; }
+
+  .visual-viewport:focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 6px;
+  }
+
+  .visual-link,
+  .visual-link img {
+    display: block;
+    width: 100%;
+  }
+
+  .visual-link { color: inherit; }
+  .visual-link img { height: auto; }
+  .visual-link--scale-trimmed {
+    position: relative;
+    aspect-ratio: 1942 / 726;
+    overflow: hidden;
+  }
+  .visual-link--scale-trimmed img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-10.37037037%);
+  }
+  .visual-link--decisioning-trimmed {
+    position: relative;
+    aspect-ratio: 1672 / 808;
+    overflow: hidden;
+  }
+  .visual-link--decisioning-trimmed img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-14.13%);
+  }
+  .visual-link--impact-trimmed {
+    position: relative;
+    aspect-ratio: 1536 / 879;
+    overflow: hidden;
+  }
+  .visual-link--impact-trimmed img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-14.16015625%);
+  }
+  .visual-link--trimmed {
+    position: relative;
+    aspect-ratio: 1536 / 830;
+    overflow: hidden;
+  }
+  .visual-link--trimmed img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-12.20703125%);
+  }
+  .mobile-zoom-hint { display: none; }
+
+  @media (max-width: 760px) {
+    .case-opening,
+    .case-section { padding: 4rem 0; }
+
+    .case-opening h2 { font-size: 36px; }
+    .case-opening p { font-size: 16px; }
+
+    .case-section-heading {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .case-section-heading h3 { font-size: 26px; }
+
+    .mobile-zoom-hint {
+      display: block;
+      margin: 0 0 1.25rem;
+      color: var(--color-muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .visual-viewport {
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .visual-link {
+      width: 960px;
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .case-opening h2 { font-size: 32px; }
+  }
+</style>
