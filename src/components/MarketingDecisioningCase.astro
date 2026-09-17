@@ -17,18 +17,18 @@ const visuals = [
     description: "Die Grundlage war eine Plattformlogik, in der Kundensignale, Reaktionen, Transaktionen und Verhaltensdaten zusammengeführt wurden. Ziel war nicht bessere Transparenz allein, sondern eine belastbare Basis für operative Marketingentscheidungen.",
     src: "/images/data-ai-decisioning-case/02-data-foundation-diagram-core.png",
     alt: "Data Foundation: Datenquellen aus Online Shop, App, Filialen, CRM, Marketing und weiteren Quellen fließen in eine zentrale Kundendatenplattform und werden für Marketing, CRM, Angebote, Analytics und operative Systeme nutzbar.",
-    width: 2079,
-    height: 756,
+    width: 1672,
+    height: 941,
   },
   {
     id: "case-scale",
     eyebrow: "ORGANISATION + SCALE",
-    title: "Operating Model und Technologiegrundlage gemeinsam weiterentwickeln.",
-    description: "Operating Model und Technologiegrundlage entwickelten sich gemeinsam. So wurde aus einzelnen Anwendungen eine wiederholbare, international skalierbare Capability für Marketing- und Entscheidungssteuerung.",
+    title: "Aus Use Cases eine skalierbare Capability entwickeln.",
+    description: "Aus einzelnen Use Cases wurde schrittweise eine belastbare Marketing-Decisioning-Capability: mit klaren Rollen, gemeinsamer Governance, integrierter Daten- und Technologiegrundlage und wiederholbaren Mechanismen für die internationale Skalierung.",
     src: "/images/data-ai-decisioning-case/03-organisation-scale.png",
-    alt: "Organisation und Scale: Business, BI, Analytics, Data Management und Technologie bilden eine wiederholbare, international skalierbare Capability.",
-    width: 1942,
-    height: 810,
+    alt: "Organisation und Scale: Use Cases und Erfahrung werden in einer skalierenden Marketing-Organisation mit Governance, Marketing Operations, Data und BI, CRM und Personalisierung sowie MarTech und Engineering gebündelt und international ausgerollt.",
+    width: 1774,
+    height: 887,
   },
   {
     id: "case-integrated-decisioning",
@@ -65,10 +65,38 @@ const visuals = [
 
 <section class="case-study" aria-labelledby="marketing-decisioning-case-title">
   <header class="case-opening">
-    <div class="case-kicker">Signature Case · Marketing Decisioning</div>
+    <div class="case-kicker">Building the Marketing Decisioning Capability at bonprix</div>
     <h2 id="marketing-decisioning-case-title">Von fragmentierter Marketingsteuerung zur Marketing Decisioning Capability</h2>
     <p>Die Transformation verband Daten, Measurement, Entscheidungslogik und Organisation, damit Marketing als integriertes kommerzielles System gesteuert werden konnte.</p>
   </header>
+
+  <div class="case-transition-viewport" tabindex="0" aria-label="Übergang von der Ausgangslage zum Zielbild – horizontal scrollbar auf kleinen Bildschirmen">
+    <div class="case-transition-crop">
+      <img
+        src="/images/data-ai-decisioning-case/marketing_decisioning_transition.png"
+        alt="Übergang von fragmentierten Daten, kanalbezogenen Prozessen und historisch geprägter Planung zu einer gemeinsamen Datenbasis, Measurement, Decision Logic und integrierter kommerzieller Steuerung."
+        width="2172"
+        height="724"
+        decoding="async"
+      />
+    </div>
+  </div>
+
+  <div class="case-bridge" aria-labelledby="case-bridge-title">
+    <div class="case-kicker">Vom Zielbild zur Umsetzung</div>
+    <h3 id="case-bridge-title">Drei Bausteine machten daraus eine skalierbare Marketing-Decisioning-Capability.</h3>
+    <p><a href="#case-foundation-title">Foundation, Scale und Decisioning im Detail <span aria-hidden="true">↓</span></a></p>
+  </div>
+
+  <div class="case-overview-viewport" tabindex="0" aria-label="Gesamtübersicht der Marketing-Decisioning-Transformation – horizontal scrollbar auf kleinen Bildschirmen">
+    <img
+      src="/images/data-ai-decisioning-case/marketing_decisioning_journey_infografik.png"
+      alt="Gesamtübersicht der Marketing-Decisioning-Transformation: von fragmentierter Ausgangslage über Data Foundation, Organisation und Scale sowie Integrated Decisioning zu beispielhafter Geschäftswirkung."
+      width="1448"
+      height="1086"
+      decoding="async"
+    />
+  </div>
 
   <div class="case-sequence">
     {visuals.map((visual) => (
@@ -89,6 +117,7 @@ const visuals = [
         <div class="visual-viewport" tabindex="0" aria-label={`${visual.title} – horizontal scrollbar auf kleinen Bildschirmen`}>
           <a class:list={[
             "visual-link",
+            visual.id === "case-foundation" && "visual-link--foundation-trimmed",
             visual.id === "case-scale" && "visual-link--scale-trimmed",
             visual.id === "case-integrated-decisioning" && "visual-link--decisioning-trimmed",
             visual.id === "case-impact" && "visual-link--impact-trimmed",
@@ -110,11 +139,14 @@ const visuals = [
 </section>
 
 <style>
-  .case-study { min-width: 0; }
+  .case-study {
+    min-width: 0;
+    padding-bottom: 1rem;
+  }
 
   .case-opening {
     max-width: 970px;
-    padding: 5.5rem 0 5rem;
+    padding: 4rem 0 2.5rem;
     border-top: 1px solid var(--color-border);
   }
 
@@ -143,18 +175,108 @@ const visuals = [
     line-height: 1.65;
   }
 
+  .case-transition-viewport {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .case-transition-viewport:focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 6px;
+  }
+
+  .case-transition-crop {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1974 / 416;
+    overflow: hidden;
+  }
+
+  .case-transition-crop img {
+    position: absolute;
+    top: -40.7%;
+    left: -7.25%;
+    display: block;
+    width: 114.5%;
+    max-width: none;
+    height: auto;
+  }
+
+  .case-bridge {
+    position: relative;
+    z-index: 1;
+    max-width: 850px;
+    margin: 1.5rem 0 .5rem;
+  }
+
+  .case-bridge h3 {
+    margin: 1rem 0 0;
+    color: var(--color-ink);
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: -.03em;
+    line-height: 1.2;
+  }
+
+  .case-bridge p {
+    margin: 1rem 0 0;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .case-bridge a {
+    color: var(--color-ink-2);
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: .28em;
+    transition: color .18s ease, text-decoration-color .18s ease;
+  }
+
+  .case-bridge a:hover {
+    color: var(--color-amber);
+    text-decoration-color: currentColor;
+  }
+
+  .case-bridge a:focus-visible {
+    outline: 3px solid rgba(180,83,9,.4);
+    outline-offset: 4px;
+  }
+
+  .case-overview-viewport {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .case-overview-viewport:focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 6px;
+  }
+
+  .case-overview-viewport img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: -3.73%;
+  }
+
+  .case-sequence { padding-top: 1rem; }
+
   .case-section {
     min-width: 0;
-    padding: 5.5rem 0;
+    padding: 3rem 0 0;
     border-top: 1px solid var(--color-border);
   }
+
+  .case-section + .case-section { margin-top: 1rem; }
 
   .case-section-heading {
     display: grid;
     grid-template-columns: minmax(170px, .34fr) minmax(0, 1fr);
     gap: 4rem;
     align-items: start;
-    margin-bottom: 2.75rem;
+    margin-bottom: 2rem;
   }
 
   .case-section-heading h3 {
@@ -190,16 +312,27 @@ const visuals = [
 
   .visual-link { color: inherit; }
   .visual-link img { height: auto; }
+  .visual-link--foundation-trimmed {
+    position: relative;
+    aspect-ratio: 1672 / 632;
+    overflow: hidden;
+  }
+  .visual-link--foundation-trimmed img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-15.4091392136%);
+  }
   .visual-link--scale-trimmed {
     position: relative;
-    aspect-ratio: 1942 / 726;
+    aspect-ratio: 1774 / 670;
     overflow: hidden;
   }
   .visual-link--scale-trimmed img {
     position: absolute;
     top: 0;
     left: 0;
-    transform: translateY(-10.37037037%);
+    transform: translateY(-15.78354002%);
   }
   .visual-link--decisioning-trimmed {
     position: relative;
@@ -237,8 +370,43 @@ const visuals = [
   .mobile-zoom-hint { display: none; }
 
   @media (max-width: 760px) {
-    .case-opening,
-    .case-section { padding: 4rem 0; }
+    .case-study { padding-bottom: .75rem; }
+    .case-opening { padding: 3rem 0 2rem; }
+    .case-sequence { padding-top: .75rem; }
+    .case-section { padding-top: 2.25rem; }
+    .case-section + .case-section { margin-top: .75rem; }
+
+    .case-overview-viewport {
+      margin-bottom: 0;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .case-transition-viewport {
+      margin-bottom: 0;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .case-bridge {
+      margin: 1.25rem 0 .5rem;
+    }
+
+    .case-bridge h3 { font-size: 26px; }
+
+    .case-transition-crop {
+      width: 960px;
+    }
+
+    .case-overview-viewport img {
+      width: 960px;
+      max-width: none;
+      margin-top: -36px;
+    }
 
     .case-opening h2 { font-size: 36px; }
     .case-opening p { font-size: 16px; }
@@ -253,7 +421,7 @@ const visuals = [
 
     .mobile-zoom-hint {
       display: block;
-      margin: 0 0 1.25rem;
+      margin: 0 0 .75rem;
       color: var(--color-muted);
       font-size: 12px;
       line-height: 1.5;
@@ -274,5 +442,9 @@ const visuals = [
 
   @media (max-width: 430px) {
     .case-opening h2 { font-size: 32px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .case-bridge a { transition: none; }
   }
 </style>
