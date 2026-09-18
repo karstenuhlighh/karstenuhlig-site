@@ -1,0 +1,226 @@
+<section class="steering-section" id="steuerungsmodell" aria-labelledby="steering-model-title">
+  <div class="steering-copy">
+    <div class="steering-kicker">Steuerungsmodell</div>
+    <h2 id="steering-model-title">Wie ich digitale Geschäfte steuere.</h2>
+    <p>Mein Steuerungsmodell verbindet Marktverständnis, klare Entscheidungen und konsequente Umsetzung. Es zeigt, wie aus Signalen Prioritäten werden – und wie diese über Capabilities, Daten, Produkt und Organisation wirksam in Wachstum, Kundenwert und Profitabilität münden.</p>
+    <button class="enlarge-button" type="button" data-open-steering-model>
+      Modell vergrößern <span aria-hidden="true">↗</span>
+    </button>
+  </div>
+
+  <button
+    class="overview-preview"
+    type="button"
+    data-open-steering-model
+    aria-label="Steuerungsmodell vergrößern"
+  >
+    <img
+      src="/images/commercial-management/digital-commerce-steuerungsmodell.png"
+      alt="Übersicht: Digital Commerce wirksam steuern – von typischen Spannungsfeldern über Commercial Management und seine Enabler bis zu Wachstum, Kundenwert, Profitabilität und Wettbewerbsfähigkeit."
+      width="1672"
+      height="941"
+      loading="lazy"
+    />
+  </button>
+</section>
+
+<dialog class="model-dialog" id="steering-model-dialog" aria-labelledby="steering-dialog-title">
+  <div class="dialog-header">
+    <h2 id="steering-dialog-title">Digital Commerce wirksam steuern.</h2>
+    <button class="dialog-close" type="button" aria-label="Vergrößerte Ansicht schließen">Schließen <span aria-hidden="true">×</span></button>
+  </div>
+  <div class="dialog-image-wrap">
+    <img
+      src="/images/commercial-management/digital-commerce-steuerungsmodell.png"
+      alt="Übersicht: Digital Commerce wirksam steuern – von typischen Spannungsfeldern über Commercial Management und seine Enabler bis zu Wachstum, Kundenwert, Profitabilität und Wettbewerbsfähigkeit."
+      width="1672"
+      height="941"
+    />
+  </div>
+</dialog>
+
+<script>
+  const steeringDialog = document.querySelector<HTMLDialogElement>("#steering-model-dialog");
+  const steeringTriggers = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-open-steering-model]"));
+  const steeringClose = steeringDialog?.querySelector<HTMLButtonElement>(".dialog-close");
+  let steeringTrigger: HTMLButtonElement | null = null;
+
+  steeringTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      if (!steeringDialog) return;
+      steeringTrigger = trigger;
+      steeringDialog.showModal();
+      document.body.classList.add("steering-dialog-open");
+      steeringClose?.focus();
+    });
+  });
+
+  steeringClose?.addEventListener("click", () => steeringDialog?.close());
+
+  steeringDialog?.addEventListener("click", (event) => {
+    if (event.target === steeringDialog) steeringDialog.close();
+  });
+
+  steeringDialog?.addEventListener("close", () => {
+    document.body.classList.remove("steering-dialog-open");
+    steeringTrigger?.focus();
+    steeringTrigger = null;
+  });
+</script>
+
+<style>
+  .steering-section {
+    display: grid;
+    grid-template-columns: minmax(250px, .38fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: center;
+    padding: 5.5rem 0;
+    border-top: 1px solid var(--color-border);
+    scroll-margin-top: 2rem;
+  }
+
+  .steering-kicker {
+    margin-bottom: 1rem;
+    color: var(--color-amber);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  .steering-copy h2 {
+    margin: 0 0 1rem;
+    color: var(--color-ink);
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 500;
+    letter-spacing: -.035em;
+    line-height: 1.13;
+  }
+
+  .steering-copy p {
+    margin: 0;
+    color: var(--color-body);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .enlarge-button {
+    display: inline-flex;
+    gap: .45rem;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding: 0 0 .3rem;
+    color: var(--color-amber);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(180, 83, 9, .38);
+  }
+
+  .enlarge-button:hover { border-bottom-color: var(--color-amber); }
+  .enlarge-button:focus-visible,
+  .overview-preview:focus-visible,
+  .dialog-close:focus-visible { outline: 3px solid rgba(180, 83, 9, .42); outline-offset: 4px; }
+
+  .overview-preview {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    overflow: hidden;
+    cursor: zoom-in;
+    background: transparent;
+    border: 1px solid var(--color-border-soft);
+  }
+
+  .overview-preview img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .model-dialog {
+    width: min(96vw, 1760px);
+    max-width: none;
+    height: min(94dvh, 1080px);
+    max-height: none;
+    margin: auto;
+    padding: 0;
+    color: var(--color-ink);
+    background: #f7fafc;
+    border: 1px solid var(--color-border);
+  }
+
+  .model-dialog::backdrop { background: rgba(15, 23, 41, .72); }
+
+  .dialog-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    background: #fff;
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+
+  .dialog-header h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -.015em;
+  }
+
+  .dialog-close {
+    display: inline-flex;
+    gap: .45rem;
+    align-items: center;
+    padding: .55rem .75rem;
+    color: var(--color-ink-2);
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid var(--color-border-soft);
+  }
+
+  .dialog-close span { font-size: 19px; line-height: .7; }
+
+  .dialog-image-wrap {
+    display: grid;
+    height: calc(100% - 65px);
+    place-items: center;
+    padding: 1rem;
+    overflow: auto;
+  }
+
+  .dialog-image-wrap img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  :global(body.steering-dialog-open) { overflow: hidden; }
+
+  @media (max-width: 980px) {
+    .steering-section { grid-template-columns: 1fr; gap: 2rem; }
+    .steering-copy { max-width: 720px; }
+  }
+
+  @media (max-width: 760px) {
+    .steering-section { gap: 1.5rem; padding: 4rem 0; }
+    .steering-copy h2 { font-size: 28px; }
+    .steering-copy p { font-size: 14px; }
+    .overview-preview { min-height: 0; }
+    .model-dialog { width: 100vw; height: 100dvh; border: 0; }
+    .dialog-header { position: sticky; top: 0; z-index: 1; padding: .8rem 1rem; }
+    .dialog-header h2 { font-size: 14px; }
+    .dialog-close { padding: .5rem .65rem; }
+    .dialog-image-wrap { display: block; height: calc(100% - 59px); padding: .75rem; place-items: normal; }
+    .dialog-image-wrap img { width: 1120px; max-width: none; }
+  }
+</style>
