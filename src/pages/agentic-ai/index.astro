@@ -39,12 +39,41 @@ notes.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
     </a>
   </section>
 
+  <section class="featured featured-secondary">
+    <div class="featured-eyebrow">Dahinter</div>
+    <a href="/agentic-ai/ai-engineering-praxis" class="featured-card featured-card-secondary">
+      <div class="featured-title">Wie ich mit AI arbeite</div>
+      <div class="featured-desc">
+        Kein Commercial-Proof, sondern die eigene AI-Engineering-Praxis dahinter:
+        Claude Chat und Claude Code im Duo, ein ehrlicher Reifegrad-Tracker,
+        Patterns aus dem Augur-Engineering.
+      </div>
+      <div class="featured-meta">Detail-Seite →</div>
+    </a>
+  </section>
+
   {notes.length > 0 && <NotesList notes={notes} basePath="/agentic-ai" />}
 </SubPageLayout>
 
 <style>
   .featured {
     margin-bottom: 3rem;
+  }
+  .featured-secondary {
+    margin-bottom: 2.5rem;
+    max-width: 640px;
+  }
+  .featured-card-secondary {
+    padding: 1.35rem 1.5rem;
+    background: rgba(255, 255, 255, 0.35);
+  }
+  .featured-card-secondary .featured-title {
+    font-size: 18px;
+    margin-bottom: 0.5rem;
+  }
+  .featured-card-secondary .featured-desc {
+    font-size: 14px;
+    margin-bottom: 0.75rem;
   }
   .featured-eyebrow {
     font-size: 11px;

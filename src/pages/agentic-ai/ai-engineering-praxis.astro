@@ -1,6 +1,5 @@
 ---
 import SubPageLayout from "../../layouts/SubPageLayout.astro";
-import AugurWorkflowSchaubild from "../../components/AugurWorkflowSchaubild.astro";
 import ScopeSteckbrief from "../../components/ScopeSteckbrief.astro";
 
 // ============================================================
@@ -10,42 +9,133 @@ const scopeFelder = [
   {
     label: "Zielsetzung",
     essence:
-      "Google-Ads-Budget wirkt nur, wenn Kampagnensteuerung und Wirkungsmessung zusammenspielen.",
+      "Die eigene AI-Engineering-Praxis so ehrlich tracken wie ein Geschäftskennzahl.",
     detail:
-      "Augur ist der gebaute Beleg für die Steuerungsseite: ein Multi-Agent-System, das Keyword-Strategie, Performance-Analyse und budgetrelevante Empfehlungen für eine Google-SEM-Kampagne durchgängig abbildet — mit derselben Mess-Disziplin, die signal-steering auf der Auswertungsseite zeigt.",
+      "sem-agentic (Augur) war der Testfall, an dem ich meine eigene Arbeitsweise mit AI-Tools geprüft habe: nicht nur ob ein System entsteht, sondern wie diszipliniert der Weg dahin war. Das Ergebnis ist ein Reifegrad-Tracker, kein Hochglanz-Portfolio.",
   },
   {
     label: "Vorgehen",
     essence:
-      "Fünf validierte Agenten, ein Coordinator mit Selbstprüfung, gestufter Rollout.",
+      "Zwei Werkzeuge, zwei Rollen: Claude Chat für Strategie und Sparring, Claude Code für Architektur und Umsetzung.",
     detail:
-      "Jeder Agent erzeugt begründete Vorschläge und wird passend zu seinem Ergebnis geprüft: Shadow-Log und Human Review, LLM-as-a-Judge oder Hypothesentests. Ein Strategy-Coordinator verdichtet die Ergebnisse zu einer nachvollziehbaren Empfehlung. Deterministische Logik, wo die Regeln klar sind; ein LLM nur dort, wo es Mehrwert bringt. Die Ausführung läuft stufenweise: Shadow → Sandbox → Limited Live → Autonomous.",
+      "Re-Audit gegen ein festes Reifegrad-Raster (Engineering Discipline, Knowledge & Workspace, Agentic System Architecture, Quality & Observability), Stand nach jeder wesentlichen Aktualisierung neu datiert. Niedrige Felder sind Entscheidung, nicht Versäumnis: umgesetzt wurde, was den Punkt beweist, nicht was die Tabelle füllt.",
   },
   {
-    label: "Build vs. Buy",
+    label: "Warum das eine eigene Seite ist",
     essence:
-      "Risiko vor Autonomie einführen, statt eine fertige Lösung blind zu kaufen oder ungeprüft selbst zu bauen.",
+      "Kampagnensteuerung und AI-Arbeitsweise sind zwei verschiedene Beweise.",
     detail:
-      "Der Simulation/Production-Mode-Switch und das 5-Stufen-Rollout-Modell (Shadow-Analyse → Shadow-Implementation → Sandbox → begrenzte Live-Schaltung → autonome Operation) sind die Architektur-Antwort auf genau diese Frage. Stufen 1–2 sind umgesetzt, 3–5 sind dokumentierte Erweiterungspunkte, kein Live-Betrieb. Welche Vorschläge übernommen werden und ab welcher Stufe ein Agent autonom handeln darf, bleibt eine bewusst gesetzte, menschliche Entscheidung.",
+      "sem-agentic als Commercial-Case zeigt, was das System für Google-Ads-Kampagnensteuerung leistet. Diese Seite zeigt etwas anderes: wie ich als Führungskraft mit AI-Tools selbst arbeite und daraus für Organisationen lerne, die dieselbe Transformation vor sich haben.",
   },
 ];
 const scopeGeltung = {
   belegt: [
-    "Agentisches SEM-System als laufender Pilot",
-    "Validierung je Agent und koordinierte Verdichtung",
-    "Dokumentierte Evaluation (ADRs, Eval-Framework, Audit)",
+    "Eigener Reifegrad-Tracker, wiederholt re-auditiert",
+    "Sieben dokumentierte Engineering-Patterns aus dem Augur-Projekt",
+    "Dual-Tool-Arbeitsweise (Claude Chat + Claude Code) mit klarer Rollentrennung",
   ],
   nichtBelegt: [
-    "Autonomer Live-Betrieb",
-    "Wirkung im Maßstab",
-    "Performance-Grundlage teils synthetisch",
-    "Ausführung in frühen Rollout-Stufen, unter menschlicher Kontrolle",
+    "Vollständige Agentic-System-Architektur (aktuell 2/20 — bewusst niedrig)",
+    "Organisationsweite Skalierung dieser Arbeitsweise",
+    "Externe Validierung des Reifegrad-Rasters",
   ],
 };
 
 // ============================================================
-// TAB 2 — ARCHITEKTUR: PRODUCT-BESONDERHEITEN (vormals Working Map)
+// TAB 1 — WORKING & PRODUCT MAP DATA
 // ============================================================
+const claudeChatItems = [
+  "Strategy & Sparring",
+  "VP-Story Material",
+  "Reflection & Memory",
+  "Documents & Visuals",
+];
+const claudeCodeItems = [
+  "Code-Stand prüfen",
+  "Architektur-Skizze",
+  "Services entwickeln",
+  "ADRs & Tests",
+];
+
+const maturityLegend = [
+  { lvl: "0", text: "not present", bg: "#D3D1C7", fg: "#2C2C2A" },
+  { lvl: "1", text: "aware", bg: "#F5C4B3", fg: "#4A1B0C" },
+  { lvl: "2", text: "repeatable", bg: "#FAC775", fg: "#412402" },
+  { lvl: "3", text: "defined", bg: "#C0DD97", fg: "#173404" },
+  { lvl: "4", text: "managed", bg: "#97C459", fg: "#173404" },
+  { lvl: "5", text: "optim.", bg: "#639922", fg: "#FFFFFF" },
+];
+
+type Pillar = {
+  letter: string;
+  title: string;
+  score: string;
+  accent: string;
+  items: { name: string; level: 0 | 1 | 2 | 3 | 4 | 5 }[];
+};
+
+const pillars: Pillar[] = [
+  {
+    letter: "A",
+    title: "engineering discipline",
+    score: "15/20",
+    accent: "#534AB7",
+    items: [
+      { name: "stage-1/2 build", level: 3 },
+      { name: "pre-flight audit", level: 4 },
+      { name: "discrepancy-driven", level: 4 },
+      { name: "hard-fail senior", level: 4 },
+    ],
+  },
+  {
+    letter: "B",
+    title: "knowledge & workspace",
+    score: "16/30",
+    accent: "#378ADD",
+    items: [
+      { name: "cross-chat memory", level: 2 },
+      { name: "conversation recall", level: 2 },
+      { name: "audit + re-audit", level: 3 },
+      { name: "reusable prompts", level: 3 },
+      { name: "shared workspace", level: 4 },
+      { name: "tiered knowledge", level: 3 },
+    ],
+  },
+  {
+    letter: "C",
+    title: "agentic system architecture",
+    score: "2/20",
+    accent: "#BA7517",
+    items: [
+      { name: "skills-system", level: 1 },
+      { name: "goal-setter", level: 1 },
+      { name: "background-routines", level: 0 },
+      { name: "mcp-integration", level: 0 },
+    ],
+  },
+  {
+    letter: "D",
+    title: "quality & observability",
+    score: "5/20",
+    accent: "#1D9E75",
+    items: [
+      { name: "eval-driven ci", level: 2 },
+      { name: "observability+cost", level: 2 },
+      { name: "a/b prompt-testing", level: 0 },
+      { name: "self-maintenance", level: 1 },
+    ],
+  },
+];
+
+const adrTags = [
+  "project.md",
+  "status.md",
+  "adrs/ ·15",
+  "reflections/",
+  "audit.md",
+  "backlog.md",
+];
+
 const features = [
   {
     title: "Zwei-Schichten-Architektur (ADR-015)",
@@ -82,523 +172,283 @@ const features = [
 ];
 
 // ============================================================
-// TAB 2 — AUGUR ARCHITEKTUR DATA
-// ============================================================
-const phase1Stages = [
-  { name: "Research", desc: "Keywords via DataForSEO" },
-  { name: "Embed", desc: "Vektoren, nomic-embed" },
-  { name: "Cluster", desc: "Assign + LLM-Judge" },
-];
-const phase2Stages = [
-  { name: "Performance", desc: "Hypothesis-Testing + Rules" },
-  { name: "Copy", desc: "Ad-Copy je Cluster" },
-  { name: "Synthese", desc: "Empfehlungs-Erzeugung" },
-  { name: "Reflect", desc: "Selbstprüfung" },
-];
-const archTraits = [
-  {
-    title: "Deterministisch wo regelbar",
-    desc: "Die Action kommt aus dem Regelwerk, nicht aus dem LLM. Das Modell ist Rationale-Schreiber, nicht Entscheider.",
-  },
-  {
-    title: "Mode-Switch Simulation ↔ Production",
-    desc: "Mock-DB für 0-€-Demos via Replay-Cache, DataForSEO live für Produktion. Umschaltung ohne Code-Change, Default ist Simulation.",
-  },
-  {
-    title: "Faktencheck als Korrektheits-Anker",
-    desc: "Ein Evidence-Validator prüft jede LLM-Zahl gegen die DB. Er deckte auf, wo das Modell Kausalität halluzinierte, und setzte den Reasoning-Proof auf ein ehrliches FAIL statt einen geschönten Pass.",
-  },
-];
-const stackChips = [
-  "LangGraph",
-  "n8n",
-  "FastAPI",
-  "Pydantic v2",
-  "PostgreSQL + pgvector",
-  "Streamlit",
-  "Docker",
-];
-const modelChips: { label: string; opt: boolean }[] = [
-  { label: "qwen2.5:7b · Default", opt: false },
-  { label: "nomic-embed", opt: false },
-  { label: "Sonnet · opt-in reasoning", opt: true },
-];
 ---
 
 <SubPageLayout
-  title="sem-agentic · Karsten Uhlig"
-  description="Google-Ads-SEM-Kampagnensteuerung als agentisches System: Keyword-Strategie, Performance-Analyse und Budget-relevante Empfehlungen durchgängig abgebildet, mit derselben Mess-Disziplin wie signal-steering."
+  title="AI-Engineering-Praxis · Karsten Uhlig"
+  description="Wie ich als Führungskraft selbst mit AI-Tools arbeite: Claude Chat und Claude Code im Duo, ein ehrlicher Reifegrad-Tracker, Engineering-Patterns aus dem Augur-Projekt."
 >
-  <!-- ============================ SCOPE-STECKBRIEF (Workflow rechts oben im Header) ============================ -->
+  <!-- ============================ SCOPE-STECKBRIEF ============================ -->
   <ScopeSteckbrief
-    eyebrow="Commercial · Google-Ads-SEM-Kampagnensteuerung"
-    title="sem-agentic"
+    eyebrow="AI-Engineering-Praxis"
+    title="Wie ich mit AI arbeite"
     titleAs="h1"
-    thesis="Google-Ads-Budget läuft nur dann effizient, wenn Kampagnensteuerung und Wirkungsmessung zusammenspielen. Augur ist der gebaute Beleg für die Steuerungsseite."
+    thesis="Der ehrliche Reifegrad einer eigenen AI-Arbeitsweise, geprüft am Bau von sem-agentic — getrennt vom Commercial-Beweis, den das System selbst liefert."
     felder={scopeFelder}
     geltungsbereich={scopeGeltung}
-  >
-    <AugurWorkflowSchaubild slot="visual" />
-  </ScopeSteckbrief>
+  />
 
   <!-- ============================ TABS ============================ -->
-  <nav class="tabs" role="tablist" aria-label="sem-agentic Detail-Tabs">
+  <nav class="tabs" role="tablist" aria-label="AI-Engineering-Praxis Detail-Tabs">
     <button
       class="tab tab-active"
-      data-tab="dashboard"
+      data-tab="working-map"
       role="tab"
       aria-selected="true"
       type="button"
     >
-      1 · Dashboard
+      1 · Working Map
     </button>
     <button
       class="tab"
-      data-tab="architektur"
+      data-tab="reflexionen"
       role="tab"
       aria-selected="false"
       type="button"
     >
-      2 · Architektur
+      2 · Reflexionen
     </button>
     <button
       class="tab"
-      data-tab="proof-of-concept"
+      data-tab="erkenntnisse"
       role="tab"
       aria-selected="false"
       type="button"
     >
-      3 · Proof of Concept
-    </button>
-    <button
-      class="tab"
-      data-tab="blueprint"
-      role="tab"
-      aria-selected="false"
-      type="button"
-    >
-      4 · Blueprint
+      3 · Erkenntnisse
     </button>
   </nav>
 
-  <!-- ============================ TAB 1: DASHBOARD ============================ -->
-  <section data-panel="dashboard" role="tabpanel">
-    <div class="tab-sub">
-      Augur Operator-Dashboard, die Streamlit-Oberfläche eines vollständigen
-      Coordinator-Runs: KPI-Cards, Pipeline-Status, Recall-Verlauf, Critique-Ergebnisse
-      und die priorisierten Cluster-Actions.
-    </div>
-
-    <figure class="dash-figure">
-      <img
-        src="/images/augur-dashboard.png"
-        alt="Augur Operator-Dashboard mit KPI-Cards, Pipeline-Status, Recall-Verlauf, Critique-Ergebnissen und priorisierten Cluster-Actions"
-        loading="lazy"
-        decoding="async"
-        width="650"
-      />
-    </figure>
-  </section>
-
-  <!-- ============================ TAB 2: ARCHITEKTUR (Multi-Agent) ============================ -->
-  <section data-panel="architektur" role="tabpanel" hidden>
-    <div class="arc-top">
-      <div class="arc-header">
-        <div class="arc-eyebrow">
-          <span class="arc-live-dot" aria-hidden="true"></span>Augur · Architektur
-        </div>
-        <h2 class="arc-h1">Multi-Agent-System mit gestufter Validierung</h2>
-        <p class="arc-subtitle">
-          Fünf spezialisierte Agenten produzieren Vorschläge mit Begründung.
-          Jeder Agent durchläuft eine Validierungs-Schicht, die zu seiner
-          Ergebnisart passt. Der Strategy-Coordinator verdichtet die Ergebnisse
-          mit Selbstprüfung zu einer auditfähigen Empfehlung.
-        </p>
-      </div>
-      <div class="arc-mode-switch" aria-hidden="true">
-        Mode
-        <span class="arc-mode-toggle">
-          <span class="arc-active">Sim</span>
-          <span>Prod</span>
-        </span>
-      </div>
-    </div>
-
-    <!-- INPUT -->
-    <div class="arc-input-row">
-      <div class="arc-input-box">
-        Brief <strong>NordicGlow Skincare D2C, DACH-Markteintritt</strong>
-      </div>
-    </div>
-    <div class="arc-down-arrow" aria-hidden="true">↓</div>
-
-    <!-- AGENT GRID -->
-    <div class="arc-agent-grid">
-      <div class="arc-agent-card">
-        <div class="arc-agent-number">1</div>
-        <div class="arc-agent-name">Research-Agent</div>
-        <div class="arc-agent-role">Keyword-Discovery aus Markt-Daten</div>
-        <div class="arc-agent-tags">
-          <div class="arc-agent-tag">
-            <span class="arc-tag-label">Tool</span>DataForSEO API
-          </div>
-          <div class="arc-agent-tag">
-            <span class="arc-tag-label">Pattern</span>ReAct mit Tool-Loop
-          </div>
-          <div class="arc-agent-tag">
-            <span class="arc-tag-label">Check</span>Shadow Log + Human
-          </div>
-        </div>
-      </div>
-
-      <div class="arc-agent-card">
-        <div class="arc-agent-number">2</div>
-        <div class="arc-agent-name">Cluster-Agent</div>
-        <div class="arc-agent-role">Semantisches Keyword-Clustering</div>
-        <div class="arc-agent-tags">
-          <div class="arc-agent-tag">
-            <span class="arc-tag-label">Tool</span>Embedding + pgvector
-          </div>
-          <div class="arc-agent-tag">
-            <span class="arc-tag-label">Pattern</span>Vector-Similarity
-          </div>
-          <div class="arc-agent-tag">
-            <span class="arc-tag-label">Check</span>LLM-as-a-Judge
-          </div>
-        </div>
-      </div>
-
-      <div class="arc-agent-card">
-        <div class="arc-agent-number">3</div>
-        <div class="arc-agent-name">Performance-Analyst</div>
-        <div class="arc-agent-role">Daten-Analyse, Hypothesen-Tests</div>
-        <div class="arc-agent-tags">
-          <div class="arc-agent-tag">
-            <span class="arc-tag-label">Tool</span>SQL + Statistik-Libs
-          </div>
-          <div class="arc-agent-tag">
-            <span class="arc-tag-label">Pattern</span>Hypothesis-Testing
-          </div>
-          <div class="arc-agent-tag">
-            <span class="arc-tag-label">Check</span>Historisches Backtest
-          </div>
-        </div>
-      </div>
-
-      <div class="arc-agent-card">
-        <div class="arc-agent-number">4</div>
-        <div class="arc-agent-name">Copy-Agent</div>
-        <div class="arc-agent-role">Ad-Copy mit Brand-Voice</div>
-        <div class="arc-agent-tags">
-          <div class="arc-agent-tag">
-            <span class="arc-tag-label">Tool</span>LLM + Brand-Prompt
-          </div>
-          <div class="arc-agent-tag">
-            <span class="arc-tag-label">Pattern</span>Constrained Generation
-          </div>
-          <div class="arc-agent-tag">
-            <span class="arc-tag-label">Check</span>Judge + Human-Review
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="arc-down-arrow" aria-hidden="true">↓</div>
-
-    <!-- COORDINATOR -->
-    <div class="arc-coordinator-row">
-      <div class="arc-coordinator">
-        <div class="arc-coord-header">
-          <div class="arc-coord-icon">5</div>
-          <div class="arc-coord-name">Strategy-Coordinator</div>
-        </div>
-        <div class="arc-coord-role">
-          Verdichtet die vier Agent-Outputs zu einer kohärenten
-          Strategie-Empfehlung. Führt eine Selbstprüfung durch, identifiziert
-          Widersprüche, fordert Nachbesserung an, dokumentiert Confidence und
-          offene Risiken.
-        </div>
-        <div class="arc-coord-tags">
-          <span class="arc-coord-pill">Self-Reflection-Pattern</span>
-          <span class="arc-coord-pill">Python + LangGraph</span>
-          <span class="arc-coord-pill">Confidence-Scoring</span>
-          <span class="arc-coord-pill">Audit-Trail</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- OUTPUT -->
-    <div class="arc-output-row">
-      <div class="arc-output-box">
-        Proposal
-        <small>
-          Cluster + Budget + Copy + Risiken, strukturiert &amp; auditfähig
-        </small>
-      </div>
-    </div>
-
-    <div class="arc-proposal-notice">
-      <strong>Architektur-Prinzip:</strong> Proposal Generation, nicht Action
-      Execution. Execution ist eine separate Schicht mit Stufen-Rollout
-      (Shadow → Sandbox → Limited Live → Autonomous).
-    </div>
-
-    <!-- DATA LAYER -->
-    <div class="arc-data-layer">
-      <div class="arc-data-header">Daten-Fundament</div>
-      <div class="arc-data-items">
-        <div class="arc-data-item">
-          <span class="arc-data-dot" aria-hidden="true"></span>
-          PostgreSQL + pgvector
-        </div>
-        <div class="arc-data-item">
-          <span class="arc-data-dot" aria-hidden="true"></span>
-          DataForSEO Live-Daten
-        </div>
-        <div class="arc-data-item">
-          <span class="arc-data-dot" aria-hidden="true"></span>
-          Synthetic Performance-Daten (90 Tage)
-        </div>
-        <div class="arc-data-item">
-          <span class="arc-data-dot" aria-hidden="true"></span>
-          n8n Workflow-Orchestrierung
-        </div>
-      </div>
-    </div>
-
-    <div class="arc-legend">
-      <div class="arc-legend-item">
-        <span class="arc-legend-label">Tool</span> Was der Agent aufruft
-      </div>
-      <div class="arc-legend-item">
-        <span class="arc-legend-label">Pattern</span> Reasoning-Strategie
-      </div>
-      <div class="arc-legend-item">
-        <span class="arc-legend-label">Check</span> Validierungs-Methode
-      </div>
-    </div>
-
-    <!-- BUILD VS. BUY -->
-    <section class="buildbuy">
-      <div class="buildbuy-eyebrow">Build vs. Buy als Architekturentscheidung</div>
-      <p class="buildbuy-body">
-        Der Simulation/Production-Mode-Switch und das 5-Stufen-Rollout-Modell
-        (Shadow-Analyse → Shadow-Implementation → Sandbox-Test → begrenzte
-        Live-Schaltung → autonome Operation) sind keine Nebensache, sondern die
-        eigentliche Architektur-Antwort auf eine Führungsfrage: Wann kauft man
-        eine fertige Lösung, wann baut man selbst, und wie viel Autonomie
-        verdient sich ein System, bevor es echtes Budget bewegt? Stufen 1–2
-        sind umgesetzt (Agent analysiert, Mensch reviewt), Stufen 3–5 sind
-        dokumentierte Erweiterungspunkte, kein Live-Betrieb. Genau dieses
-        Risiko-vor-Autonomie-Denken ist übertragbar, unabhängig davon, ob am
-        Ende Augur selbst oder eine Drittanbieter-Lösung im Einsatz steht.
+  <!-- ============================ TAB 2: REFLEXIONEN ============================ -->
+  <section data-panel="reflexionen" role="tabpanel" hidden>
+    <div class="refl-head">
+      <div class="refl-eyebrow">Im Engineering gelernt</div>
+      <h2 class="refl-h2">Sieben Patterns aus 2 Wochen Augur-Projekt.</h2>
+      <p class="refl-lead">
+        Pitfalls werden nicht vorab katalogisiert, sondern beim Engineering
+        gesammelt. Pro Tag 30–60 Min Reflexion, verdichtet zu sieben
+        übergreifenden Patterns. Jedes Pattern aus mindestens zwei
+        unabhängigen Beobachtungen.
       </p>
-    </section>
-
-    <!-- PRODUCT-BESONDERHEITEN -->
-    <section class="features">
-      <div class="features-eyebrow">
-        Product Besonderheiten: was es differenziert
-      </div>
-      <div class="features-grid">
-        {
-          features.map((f) => (
-            <div class="feature">
-              <div class="feature-title">{f.title}</div>
-              <div
-                class="feature-body"
-                set:html={f.body.replace(/`([^`]+)`/g, "<code>$1</code>")}
-              />
-            </div>
-          ))
-        }
-      </div>
-      <div class="features-source">
-        Quellen: 15 ADRs · Reflections · status.md · Code-Patterns · audit.md ·
-        Maturity-v3
-      </div>
-    </section>
-  </section>
-
-  <!-- ============================ TAB 3: PROOF OF CONCEPT (Augur-Beweis) ============================ -->
-  <section data-panel="proof-of-concept" role="tabpanel" hidden>
-    <div class="aug-head">
-      <div class="aug-kicker">sem-agentic · architektur-beweis</div>
-      <h2 class="aug-h1">Augur</h2>
-      <div class="aug-sub">
-        Ein Multi-Agent-System für SEM-Performance. Deterministisch, wo die
-        Regeln klar sind. LLM nur, wo es Mehrwert bringt.
-      </div>
     </div>
 
-    <div class="aug-flow">
-      <!-- Input -->
-      <div class="aug-io">
-        <div class="aug-io-t">Brand-Briefing + Keyword-Set</div>
-        <div class="aug-io-s">Eingang eines vollständigen Coordinator-Runs</div>
-      </div>
-      <div class="aug-varr" aria-hidden="true">↓</div>
+    <div class="refl-grid">
+      <article class="refl-card">
+        <div class="refl-num">01</div>
+        <h3 class="refl-title">
+          Architektur-Erosion durch<br />Werkzeug-Schwerkraft
+        </h3>
+        <p class="refl-body">
+          Eine Architektur erodiert durch tausend Mikroentscheidungen, wenn
+          sie nicht in jedem operativen Schritt aktiv durchgesetzt wird.
+        </p>
+      </article>
 
-      <!-- Phase 1 -->
-      <div class="aug-band">
-        <div class="aug-phase-label">
-          Beschaffung &amp; Clustering
-          <span class="aug-tech">n8n · Ollama · pgvector</span>
-        </div>
-        <div class="aug-stages">
-          {
-            phase1Stages.map((s, i) => (
-              <>
-                {i > 0 && (
-                  <div class="aug-arr" aria-hidden="true">
-                    →
-                  </div>
-                )}
-                <div class="aug-stage">
-                  <div class="aug-s-n">{s.name}</div>
-                  <div class="aug-s-d">{s.desc}</div>
-                </div>
-              </>
-            ))
-          }
-        </div>
-      </div>
-      <div class="aug-varr" aria-hidden="true">↓</div>
+      <article class="refl-card">
+        <div class="refl-num">02</div>
+        <h3 class="refl-title">
+          Senior-Aufmerksamkeit als<br />Schärfungs-Instrument
+        </h3>
+        <p class="refl-body">
+          Senior-Sponsoren entscheiden nicht Inhalte, sondern stellen an den
+          richtigen Stellen die richtige Frage.
+        </p>
+      </article>
 
-      <!-- Phase 2 -->
-      <div class="aug-band">
-        <div class="aug-phase-label">
-          Analyse &amp; Strategie
-          <span class="aug-tech">LangGraph-Coordinator · Python</span>
-        </div>
-        <div class="aug-stages">
-          {
-            phase2Stages.map((s, i) => (
-              <>
-                {i > 0 && (
-                  <div class="aug-arr" aria-hidden="true">
-                    →
-                  </div>
-                )}
-                <div class="aug-stage">
-                  <div class="aug-s-n">{s.name}</div>
-                  <div class="aug-s-d">{s.desc}</div>
-                </div>
-              </>
-            ))
-          }
-        </div>
-        <div class="aug-loop">
-          ↺ Refine-Loop bei ungelösten Issues · max. 2 Iterationen
-        </div>
-      </div>
+      <article class="refl-card">
+        <div class="refl-num">03</div>
+        <h3 class="refl-title">
+          Sprachliche Skizze ≠<br />operative Realität
+        </h3>
+        <p class="refl-body">
+          Was im Plan klar klingt, ist im Team noch nicht definiert.
+          Konkretion erzwingen, bevor Mehrarbeit beginnt.
+        </p>
+      </article>
 
-      <!-- Architecture core -->
-      <div class="aug-core">
-        <div class="aug-core-head">
-          <div class="aug-ct">Das Herzstück: die Empfehlungs-Erzeugung</div>
-          <div class="aug-cs">
-            Hier verläuft die Architektur-Grenze, nicht zwischen Komponenten,
-            sondern innerhalb der Entscheidung.
+      <article class="refl-card">
+        <div class="refl-num">04</div>
+        <h3 class="refl-title">
+          Eval-Disziplin gegen<br />das eigene Wunschergebnis
+        </h3>
+        <p class="refl-body">
+          Ohne harte Messgrößen entscheidet die letzte Output-Inspektion.
+          Und die ist immer durch das eigene Wunschergebnis gefärbt.
+        </p>
+      </article>
+
+      <article class="refl-card">
+        <div class="refl-num">05</div>
+        <h3 class="refl-title">Lernkultur statt Fehlerkultur</h3>
+        <p class="refl-body">
+          Eine Org lernt nicht durch Workshops, sondern durch dauerhafte
+          Verankerung an der Stelle, wo die nächste Entscheidung fällt.
+        </p>
+      </article>
+
+      <article class="refl-card">
+        <div class="refl-num">06</div>
+        <h3 class="refl-title">
+          Pattern-Wiederverwendung<br />und Library-Effekt
+        </h3>
+        <p class="refl-body">
+          Die wertvollste Investition ist nicht das nächste Tool, sondern
+          eine Library aus internen Mustern, die als IP behandelt wird.
+        </p>
+      </article>
+
+      <article class="refl-card">
+        <div class="refl-num">07</div>
+        <h3 class="refl-title">
+          Operationalisierbarkeit und<br />Operator-Empathie
+        </h3>
+        <p class="refl-body">
+          Marketing-AI scheitert nicht am Modell, sondern an der
+          Bedienbarkeit für die Person, die es täglich nutzen muss.
+        </p>
+      </article>
+    </div>
+
+    <div class="refl-cta-row">
+      <a
+        href="/Augur_Reflexionen_Pitch.pdf"
+        class="refl-cta"
+        download="Augur_Reflexionen_Pitch.pdf"
+      >
+        <span class="refl-cta-icon" aria-hidden="true">⬇</span>
+        Volle Präsentation als PDF
+        <span class="refl-cta-meta">(15 Seiten)</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================ TAB 2: WORKING & PRODUCT MAP ============================ -->
+  <section data-panel="working-map" role="tabpanel">
+    <div class="tab-sub">
+      Working Organization: wie ich mit AI-Tools arbeite und wie ich meinen
+      eigenen Reifegrad dabei ehrlich nachhalte. Stand 01.06.2026.
+    </div>
+
+    <div class="map">
+      <div class="map-grid map-grid-single">
+        <!-- Working Organization -->
+        <div class="panel">
+          <div class="panel-title">working organization</div>
+
+          <div class="role-card">
+            <div class="role-name">Karsten</div>
+            <div class="role-sub">senior · approval · vp-story owner</div>
           </div>
-        </div>
-        <div class="aug-core-grid">
-          <div class="aug-layer aug-layer-1">
-            <div class="aug-l-tag">Schicht 1 · deterministisch</div>
-            <div class="aug-l-h">Pre-flight-Rules → forcierte Actions</div>
-            <div class="aug-l-b">
-              Versioniertes Best-Practice-Regelwerk wertet den Daten-Snapshot
-              aus und erzwingt die Cluster-Action. Auditierbar, reproduzierbar,
-              kein Modell beteiligt.
-            </div>
-            <span class="aug-l-status">entwickelt · aktiv</span>
-          </div>
-          <div class="aug-split-num">
-            <div class="aug-big">94 %</div>
-            <div class="aug-big-l">
-              der System-Regeln<br />deterministisch gesichert
-            </div>
-            <div class="aug-vs">— vs —</div>
-            <div class="aug-small">6 %</div>
-            <div class="aug-small-l">
-              hält das 7B-Modell<br />von sich aus ein
-            </div>
-          </div>
-          <div class="aug-layer aug-layer-2">
-            <div class="aug-l-tag">Schicht 2 · LLM-reasoning</div>
-            <div class="aug-l-h">Priorisierung &amp; Cross-Cluster-Narrative</div>
-            <div class="aug-l-b">
-              Soll Urteilsvermögen beitragen, wo keine Regel greift. Heute nur
-              Rationale-Beitrag, eigenständiges Reasoning steht unter
-              Beweisvorbehalt.
-            </div>
-            <span class="aug-l-status">Richtung entschieden · nicht umgesetzt</span>
-          </div>
-        </div>
-      </div>
 
-      <div class="aug-varr" aria-hidden="true">↓</div>
-
-      <!-- Output -->
-      <div class="aug-io">
-        <div class="aug-io-t">Priorisierte Cluster-Actions</div>
-        <div class="aug-io-s">
-          Scale · Maintain · Investigate · Pause, mit Rationale, Confidence,
-          Impact &amp; voller Lineage
-        </div>
-      </div>
-
-      <!-- Footer cards -->
-      <div class="aug-foot">
-        <div class="aug-foot-card">
-          <div class="aug-fc-t">Was die Architektur differenziert</div>
-          {
-            archTraits.map((t) => (
-              <div class="aug-trait">
-                <div class="aug-tr-h">{t.title}</div>
-                <div class="aug-tr-d">{t.desc}</div>
+          <div class="duo-grid">
+            <div class="duo claude-chat">
+              <div class="duo-title">claude chat</div>
+              <div class="chip-stack">
+                {claudeChatItems.map((s) => <div class="chip">{s}</div>)}
               </div>
-            ))
-          }
-        </div>
-        <div class="aug-foot-card">
-          <div class="aug-fc-t">Stack</div>
-          <div class="aug-fc-b chip-area">
-            {stackChips.map((c) => <span class="aug-chip">{c}</span>)}
+            </div>
+            <div class="duo claude-code">
+              <div class="duo-title">claude code</div>
+              <div class="chip-stack">
+                {claudeCodeItems.map((s) => <div class="chip">{s}</div>)}
+              </div>
+            </div>
           </div>
-          <div class="aug-fc-t" style="margin-top:0.7rem;">Modelle</div>
-          <div class="aug-fc-b chip-area">
+
+          <div class="maturity">
+            <div class="maturity-head">
+              <div class="maturity-title">
+                ai engineering practices · reifegrad
+              </div>
+              <div class="maturity-meta">
+                re-audit v3 · stand 31.05.2026 · 38 / 90 · 42 % maturity (von
+                33 %)
+              </div>
+            </div>
+
+            <p class="maturity-note">Die niedrigen Felder sind kein Versäumnis, sondern eine Entscheidung: umgesetzt wurde, was den Punkt beweist, nicht was die Tabelle füllt. Ein ehrlicher Stand sagt mehr als ein geschönter.</p>
+
+            <div class="maturity-legend">
+              {
+                maturityLegend.map((l) => (
+                  <span class="legend-item">
+                    <span
+                      class="legend-box"
+                      style={`background:${l.bg}; color:${l.fg};`}
+                    >
+                      {l.lvl}
+                    </span>
+                    {l.text}
+                  </span>
+                ))
+              }
+            </div>
+
             {
-              modelChips.map((m) => (
-                <span class={`aug-chip ${m.opt ? "aug-chip-opt" : ""}`}>
-                  {m.label}
-                </span>
+              pillars.map((p) => (
+                <div class="pillar">
+                  <div
+                    class="pillar-head"
+                    style={`border-left-color:${p.accent};`}
+                  >
+                    <span>
+                      {p.letter} · {p.title}
+                    </span>
+                    <span class="pillar-score" style={`color:${p.accent};`}>
+                      {p.score}
+                    </span>
+                  </div>
+                  <div class="pillar-items">
+                    {p.items.map((it) => {
+                      const tone = maturityLegend[it.level];
+                      return (
+                        <div class="pillar-item">
+                          <span>{it.name}</span>
+                          <span
+                            class="lvl-pill"
+                            style={`background:${tone.bg}; color:${tone.fg};`}
+                          >
+                            {it.level}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               ))
             }
           </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="aug-stamp">
-      <span class="aug-dot" aria-hidden="true"></span>
-      Verifizierter Architektur-Stand · 9 Workflows · 7 Coordinator-Stages · 17
-      Cluster
+          <div class="block">
+            <div class="block-title">shared workspace · 15 ADRs</div>
+            <div class="tag-row">
+              {adrTags.map((t) => <span class="tag mono">{t}</span>)}
+            </div>
+          </div>
+
+          <div class="block">
+            <div class="block-title">tools &amp; plattformen</div>
+            <div class="block-body">
+              claude.ai · claude code · github · localhost:5678 · browser
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
-  <!-- ============================ TAB 4: BLUEPRINT (PDF.js Viewer) ============================ -->
-  <section data-panel="blueprint" role="tabpanel" hidden>
+  <!-- ============================ TAB 6: ERKENNTNISSE (PDF.js Viewer) ============================ -->
+  <section data-panel="erkenntnisse" role="tabpanel" hidden>
     <div class="tab-sub">
-      Augur Architecture Blueprint, gesamtes Dokument als PDF, im Browser
-      gerendert mit PDF.js. Wird beim ersten Tab-Wechsel nachgeladen
-      (~19&nbsp;MB).
+      The Agentic Blueprint, Erkenntnisse aus dem Engineering, im Browser gerendert
+      mit PDF.js. Wird beim ersten Tab-Wechsel nachgeladen (~19&nbsp;MB).
     </div>
 
     <div
       class="pdf-viewer"
-      data-pdf-id="blueprint"
-      data-pdf-src="/pdf/augur-blueprint.pdf"
+      data-pdf-id="erkenntnisse"
+      data-pdf-src="/pdf/the-agentic-blueprint.pdf"
     >
       <div class="pdf-toolbar">
         <div class="pdf-toolbar-group">
@@ -641,8 +491,8 @@ const modelChips: { label: string; opt: boolean }[] = [
         <div class="pdf-toolbar-group">
           <a
             class="pdf-btn pdf-btn-text"
-            href="/pdf/augur-blueprint.pdf"
-            download="AUGUR_Architecture_Blueprint.pdf">
+            href="/pdf/the-agentic-blueprint.pdf"
+            download="The_Agentic_Blueprint.pdf">
             ⬇ Download
           </a>
         </div>
@@ -658,16 +508,8 @@ const modelChips: { label: string; opt: boolean }[] = [
   </section>
 
   <div class="augur-tieback">
-    <div class="buildbuy-eyebrow">Was das für eine Marketing-Organisation heißt</div>
-    <p>Der Performance-Analyst-Agent arbeitet mit Hypothesis-Testing gegen
-      Backtesting-Daten — dieselbe Denkweise wie inkrementalitätsorientierte
-      Budgetsteuerung, nur auf Kampagnenebene statt Kanalebene. Für eine
-      Marketing-Organisation heißt das: Google-Ads-Kampagnen lassen sich
-      strukturiert und auditierbar steuern, bevor ein Agent überhaupt
-      autonom entscheiden darf. Das System kann Vorschläge erzeugen.
-      Welcher Vorschlag übernommen wird und wie viel Autonomie er sich
-      verdient, bleibt eine geführte, menschliche Entscheidung.</p>
-    <p class="augur-tieback-link">Wie ich als Führungskraft selbst mit AI-Tools arbeite: <a href="/agentic-ai/ai-engineering-praxis">AI-Engineering-Praxis →</a></p>
+    <p>Das eigentliche Thema ist nicht der Code. Es ist, was die Entwicklung über das Führen einer Organisation durch Agentic AI lehrt: Der Engpass sitzt nicht im Modell, sondern in den hundert Entscheidungen, die das System an Menschen zurückgibt. Wer für das Ergebnis geradesteht, entscheidet diese Phase. Das System kann Arbeit erzeugen. Verantwortung bleibt beim Menschen.</p>
+    <p class="augur-tieback-link">Der Commercial-Beweis dazu: <a href="/agentic-ai/sem-agentic">sem-agentic — Google-Ads-SEM-Kampagnensteuerung →</a></p>
   </div>
 </SubPageLayout>
 
@@ -698,10 +540,9 @@ const modelChips: { label: string; opt: boolean }[] = [
 
     const hash = (window.location.hash || "").slice(1);
     if (
-      hash === "dashboard" ||
-      hash === "architektur" ||
-      hash === "proof-of-concept" ||
-      hash === "blueprint"
+      hash === "working-map" ||
+      hash === "reflexionen" ||
+      hash === "erkenntnisse"
     ) {
       activate(hash);
     }
@@ -932,9 +773,6 @@ const modelChips: { label: string; opt: boolean }[] = [
   .augur-tieback-link { font-size: 0.95rem !important; margin-top: 0.75rem !important; }
   .augur-tieback-link a { color: var(--color-amber); text-decoration: none; border-bottom: 1px dotted currentColor; }
   .augur-tieback-link a:hover { border-bottom-style: solid; }
-  .buildbuy { max-width: 720px; margin: 2rem 0; padding: 1.25rem 1.5rem; background: rgba(180, 83, 9, 0.05); border-left: 3px solid var(--color-amber); border-radius: 0 6px 6px 0; }
-  .buildbuy-eyebrow { font-size: 12px; color: var(--color-amber); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; margin-bottom: 0.6rem; }
-  .buildbuy-body { font-size: 0.98rem; line-height: 1.7; color: #2A3D55; margin: 0; }
   /* ============================== TABS ============================== */
   .tabs {
     display: flex;
@@ -996,6 +834,10 @@ const modelChips: { label: string; opt: boolean }[] = [
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+  }
+  .map-grid-single {
+    grid-template-columns: 1fr;
+    max-width: 520px;
   }
   .panel {
     background: rgba(255, 255, 255, 0.55);

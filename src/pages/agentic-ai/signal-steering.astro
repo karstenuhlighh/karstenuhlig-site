@@ -35,23 +35,23 @@ const scopeFelder = [
   {
     label: "Zielsetzung",
     essence:
-      "Prüfen, wo Agentic AI bei Measurement und Budget-Steuerung helfen kann, wenn mehrere Methoden zu unterschiedlichen Antworten kommen.",
+      "Welcher Zahl traut man bei einer Google-Ads-Budgetentscheidung, wenn drei Methoden sich widersprechen?",
     detail:
-      "Als Testfall entstand ein trianguliertes Mess- und Steuerungssystem. Ziel war nicht ein fertiges Produkt, sondern eine belastbare Einschätzung, wo agentische KI in diesem Feld nützlich ist.",
+      "Als Testfall entstand ein trianguliertes Mess- und Steuerungssystem: Plattform-Attribution, Geo-Incrementality und Marketing-Mix-Modelling auf denselben Daten. Ziel war nicht ein fertiges Produkt, sondern eine belastbare Antwort auf eine reale Budget-Steuerungsfrage.",
   },
   {
     label: "Vorgehen",
     essence:
       "Triangulation der Messung auf synthetischen Daten mit bekannter, festgelegter Wahrheit.",
     detail:
-      "Ein repräsentatives Measurement-&-Steering-Problem wurde rekonstruiert: Plattform-Attribution, Geo-Incrementality und MMM auf denselben Daten, Steuerung auf den inkrementellen Wertbeitrag statt auf die Plattform-Zahl, plus Erkennen fehlerhafter Signale. Der synthetische Datensatz ist methodisch notwendig. Nur bei bekanntem wahrem Wert lässt sich prüfen, ob die Methoden ihn treffen. Keine echten, fremden oder Live-Spend-Daten. Entwickelt mit agentischer KI, damit ihr Beitrag sichtbar wird.",
+      "Ein repräsentatives Measurement-&-Steering-Problem wurde rekonstruiert: Plattform-Attribution, Geo-Incrementality und MMM auf denselben Daten, Steuerung auf den inkrementellen Wertbeitrag statt auf die Plattform-Zahl, plus Erkennen fehlerhafter Signale. Der synthetische Datensatz ist methodisch notwendig. Nur bei bekanntem wahrem Wert lässt sich prüfen, ob die Methoden ihn treffen. Keine echten, fremden oder Live-Spend-Daten.",
   },
   {
-    label: "Rolle der agentischen KI",
+    label: "Warum als Prototyp gebaut",
     essence:
-      "Ein fachliches Profil kann heute deutlich weiter kommen als noch vor wenigen Jahren.",
+      "Ein fachliches Profil kann heute deutlich weiter kommen als noch vor wenigen Jahren — als Mittel zum Zweck, nicht als Selbstzweck.",
     detail:
-      "Beobachtung aus diesem Fall: Datengenerierung, MMM (PyMC-Marketing), Geo-Incrementality (DID/GeoLift), Allokationslogik und Oberfläche entstanden in Wochen, ohne Entwicklungs-Team. Nicht bis zum produktionsreifen System. Aber weit genug, um die richtigen methodischen Fragen am laufenden Modell zu prüfen. Die Entscheidung, welche Methoden trianguliert werden und wie das Signal zu lesen ist, blieb beim Menschen.",
+      "Entwickelt mit agentischer KI: Datengenerierung, MMM (PyMC-Marketing), Geo-Incrementality (DID/GeoLift), Allokationslogik und Oberfläche entstanden in Wochen, ohne Entwicklungs-Team. Nicht bis zum produktionsreifen System, aber weit genug, um die Steuerungsfrage am laufenden Modell zu prüfen. Die Entscheidung, welche Methoden trianguliert werden und wie das Signal zu lesen ist, blieb beim Menschen.",
   },
 ];
 const scopeGeltung = {
@@ -74,10 +74,10 @@ const scopeGeltung = {
 >
   <!-- SCOPE-STECKBRIEF (Header; Projektziel + Scope gehen hier auf) -->
   <ScopeSteckbrief
-    eyebrow="Agentic AI · Measurement & Steering"
+    eyebrow="Commercial · Marketing Measurement"
     title="signal-steering"
     titleAs="h1"
-    thesis="Wie Agentic AI im Measurement & Steering helfen kann, wenn mehrere Methoden denselben Kanal messen und zu unterschiedlichen Antworten kommen."
+    thesis="Wenn drei Messmethoden denselben Google-Ads-Kanal unterschiedlich bewerten, ist das eine Steuerungsfrage, keine Zahlenfrage."
     felder={scopeFelder}
     geltungsbereich={scopeGeltung}
   />
@@ -202,6 +202,7 @@ const scopeGeltung = {
       das nächste Budget. Der Prototyp macht diese Entscheidung sichtbar und
       prüfbar, bevor echtes Geld daran hängt.
     </p>
+    <p class="tieback-link">Die Steuerungsseite dazu: <a href="/agentic-ai/sem-agentic">sem-agentic — Google-Ads-SEM-Kampagnensteuerung →</a></p>
   </div>
 </SubPageLayout>
 
@@ -457,6 +458,18 @@ const scopeGeltung = {
     line-height: 1.7;
     color: var(--color-ink);
     margin: 0;
+  }
+  .tieback-link {
+    font-size: 0.95rem !important;
+    margin-top: 0.75rem !important;
+  }
+  .tieback-link a {
+    color: var(--color-amber);
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+  }
+  .tieback-link a:hover {
+    border-bottom-style: solid;
   }
 
   @media (max-width: 600px) {
