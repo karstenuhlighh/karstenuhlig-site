@@ -3,9 +3,10 @@ import { getLanguage, getLanguageSwitchPath, type Language } from "../i18n/route
 
 interface Props {
   language?: Language;
+  homepage?: boolean;
 }
 
-const { language = getLanguage(Astro.url.pathname) } = Astro.props;
+const { language = getLanguage(Astro.url.pathname), homepage = false } = Astro.props;
 const isEnglish = language === "en";
 const homePath = isEnglish ? "/en/" : "/";
 const commercialPath = isEnglish ? "/en/commercial-management" : "/commercial-management";
@@ -93,7 +94,7 @@ const navMenus = [
 ];
 ---
 
-<nav class="nav" aria-label={isEnglish ? "Main navigation" : "Hauptnavigation"} data-site-nav>
+<nav class:list={["nav", { "nav--homepage": homepage }]} aria-label={isEnglish ? "Main navigation" : "Hauptnavigation"} data-site-nav>
   <div class="nav-left">
     <a href={homePath} class="nav-logo">Karsten Uhlig</a>
     <button
@@ -466,6 +467,10 @@ const navMenus = [
     .nav {
       align-items: center;
       margin-bottom: 2rem;
+      padding-bottom: 0;
+    }
+    .nav::after {
+      display: none;
     }
     .nav-left {
       display: grid;
@@ -476,6 +481,7 @@ const navMenus = [
     }
     .nav-logo {
       white-space: nowrap;
+      font-size: 15px;
     }
     .nav-mobile-toggle {
       display: inline-flex;
@@ -546,6 +552,8 @@ const navMenus = [
     .nav-items > .nav-link,
     .language-switch {
       padding: 0.65rem 0;
+      margin-left: 0;
+      border-left: 0;
     }
     .nav-menu {
       width: 100%;
@@ -577,6 +585,38 @@ const navMenus = [
     .nav-mobile-icon::before,
     .nav-mobile-icon::after {
       transition: none;
+    }
+  }
+  @media (min-width: 769px) {
+    .nav--homepage {
+      margin-bottom: 1.7rem;
+      padding-bottom: 1.05rem;
+    }
+    .nav--homepage::after {
+      position: absolute;
+      right: 50%;
+      bottom: 0;
+      width: 100vw;
+      height: 1px;
+      background: rgba(30, 60, 100, 0.12);
+      content: "";
+      transform: translateX(50%);
+    }
+    .nav--homepage .nav-left {
+      width: 100%;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .nav--homepage .nav-items {
+      gap: 2rem;
+    }
+    .nav--homepage .nav-logo {
+      font-size: 24px;
+    }
+    .nav--homepage .language-switch {
+      margin-left: .5rem;
+      padding-left: 1.5rem;
+      border-left: 1px solid rgba(30, 60, 100, 0.16);
     }
   }
 </style>

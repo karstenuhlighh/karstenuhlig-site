@@ -12,49 +12,41 @@ const prefix = isEnglish ? "/en" : "";
 
 const germanEnablers = [
   {
-    id: "data-ai-digital-product",
-    href: "/data-ai-digital-product",
-    title: "Data, AI & Decisioning",
-    thesis: "Aus Daten bessere kommerzielle Entscheidungen machen.",
-    body: "Entscheidend ist nicht das Modell allein, sondern ob Kundenverhalten, Analytics und Predictive AI zu klaren Entscheidungen im Geschäft führen.",
-  },
-  {
-    id: "digital-product-customer-experience",
-    href: "/digital-product-customer-experience",
-    title: "Digital Product & Customer Experience",
-    thesis: "Digitale Produkte und Journeys bauen, die im Markt tragen.",
-    body: "Gute digitale Produkte beginnen bei einem klaren Kundenproblem. Danach zählt, ob Ownership, Priorisierung und Skalierung über mehrere Märkte sauber geführt werden und ob sich der Nutzen belegen lässt.",
-  },
-  {
     id: "leadership",
-    href: "/leadership",
     title: "Leadership & Transformation",
     thesis: "Strategie in Organisation und Umsetzung übersetzen.",
     body: "Richtung geben, Verantwortung klären und die Organisation auf die entscheidenden Prioritäten ausrichten. Vor dem Instrument steht die Klärung: Was ist die Ursache, welche Entscheidung fehlt, wer steht für das Ergebnis gerade?",
+    links: [{ href: "/leadership", label: "Leadership vertiefen" }],
+  },
+  {
+    id: "data-ai-digital-product",
+    title: "Data, AI & Digital Product",
+    thesis: "Aus Daten bessere kommerzielle Entscheidungen machen.",
+    body: "Entscheidend ist nicht das Modell allein, sondern ob Kundenverhalten, Analytics und Predictive AI zu klaren Entscheidungen im Geschäft führen. Digitale Produkte beginnen bei einem klaren Kundenproblem und brauchen saubere Ownership und Priorisierung.",
+    links: [
+      { href: "/data-ai-digital-product", label: "Data, AI & Decisioning" },
+      { href: "/digital-product-customer-experience", label: "Digital Product & CX" },
+    ],
   },
 ];
 
 const englishEnablers = [
   {
-    id: "data-ai-digital-product",
-    href: "/en/data-ai-digital-product",
-    title: "Data, AI & Decisioning",
-    thesis: "Turn better evidence into better commercial decisions.",
-    body: "From robust signals and customer state through analytics and Predictive AI to concrete action — as an execution capability for Digital Commerce.",
-  },
-  {
-    id: "digital-product-customer-experience",
-    href: "/en/digital-product-customer-experience",
-    title: "Digital Product & Customer Experience",
-    thesis: "Turn commercial direction into effective products and journeys.",
-    body: "From customer problem and product lifecycle through enduring ownership and portfolio steering to multi-market scale and robust product evidence.",
-  },
-  {
     id: "leadership",
-    href: "/en/leadership",
     title: "Leadership & Transformation",
     thesis: "Turn strategy into organisation and execution.",
     body: "Set direction, clarify accountability and align the organisation behind the critical priorities. Diagnose the cause and clarify the decision first, then choose the appropriate leadership and change intervention.",
+    links: [{ href: "/en/leadership", label: "Explore Leadership" }],
+  },
+  {
+    id: "data-ai-digital-product",
+    title: "Data, AI & Digital Product",
+    thesis: "Turn better evidence into better commercial decisions.",
+    body: "The model alone is not decisive. Customer behaviour, analytics and Predictive AI need to lead to concrete action, while digital products require clear customer problems, ownership and prioritisation.",
+    links: [
+      { href: "/en/data-ai-digital-product", label: "Data, AI & Decisioning" },
+      { href: "/en/digital-product-customer-experience", label: "Digital Product & CX" },
+    ],
   },
 ];
 
@@ -67,6 +59,47 @@ const intro = isEnglish ? {
   label: "Commercial Management / Digital Commerce vertiefen",
   heading: "Digitale Geschäfte wirtschaftlich steuern und skalieren.",
   body: "Wachstum entsteht nicht in einem einzelnen Kanal. Es hängt daran, wie Kundenbasis, Customer Journey, Marge und Ressourcen zusammen gesteuert werden. Entscheidend ist, die richtigen Signale zu lesen, Prioritäten zu setzen und Ressourcen dorthin zu bringen, wo sie den größten Beitrag leisten.",
+};
+
+const selectedPractice = isEnglish ? {
+  sectionLabel: "Practice & Proof",
+  caseLabel: "Signature Case",
+  caseTitle: "Marketing Decisioning Capability",
+  caseBody: "From fragmented marketing steering to an integrated Decisioning Capability connecting data foundation, analytics, predictive models and activation.",
+  outcome: "Double-digit millions less advertising spend with stable revenue.",
+  caseAction: "Explore the capability",
+  caseHref: "/en/data-ai-digital-product",
+  explorationLabel: "Current AI Explorations",
+  explorationTitle: "AI-enabled decisioning, measurement and knowledge systems.",
+  explorationBody: "Current practical tests in AI-enabled decisioning, measurement and knowledge systems — with maturity and evidence made explicit.",
+  explorationAction: "Explore current work",
+  explorationHref: "/en/data-ai-digital-product#current-proof-title",
+} : {
+  sectionLabel: "Practice & Proof",
+  caseLabel: "Signature Case",
+  caseTitle: "Marketing Decisioning Capability",
+  caseBody: "Von fragmentierter Marketingsteuerung zu einer integrierten Decisioning Capability: gemeinsame Datenbasis, Analytics, Predictive Models und Aktivierung als kommerzielles System verbunden.",
+  outcome: "Zweistelliger Mio.-Betrag weniger Werbekosten bei stabilem Umsatz.",
+  caseAction: "Case ansehen",
+  caseHref: "/data-ai-digital-product#marketing-decisioning-case-title",
+  explorationLabel: "Current AI Explorations",
+  explorationTitle: "AI-enabled Decisioning, Measurement und Knowledge Systems.",
+  explorationBody: "Aktuelle Praxistests zu AI-enabled Decisioning, Measurement und Knowledge Systems — mit klarer Trennung zwischen Prototyping und Enterprise-Scale-Erfahrung.",
+  explorationAction: "Explorations ansehen",
+  explorationHref: "/data-ai-digital-product#current-proof-title",
+};
+
+const enablerVisuals = {
+  leadership: {
+    src: "/images/homepage/02-leadership-transformation.png",
+    width: 465,
+    height: 416,
+  },
+  "data-ai-digital-product": {
+    src: "/images/homepage/03-data-ai-digital-product.png",
+    width: 420,
+    height: 413,
+  },
 };
 
 const keyVisuals = {
@@ -86,38 +119,105 @@ const activeKeyVisual = keyVisuals[language];
 ---
 
 <section class="commercial-pillar" id="commercial-management">
-  <a class="commercial-intro" href={`${prefix}/commercial-management`} aria-label={intro.label}>
-    <div class="section-kicker">Commercial Management</div>
-    <h2>{intro.heading}</h2>
-    <p>{intro.body}</p>
-  </a>
+  <div class="showcase-grid">
+    <div class="capability-column">
+      <a class="commercial-intro" href={`${prefix}/commercial-management`} aria-label={intro.label}>
+        <div class="commercial-copy">
+          <div class="card-eyebrow">Commercial Management</div>
+          <h2>{intro.heading}</h2>
+          <p>{intro.body}</p>
+          <span class="text-link">{isEnglish ? "Explore Commercial Management" : "Commercial Management vertiefen"} <span aria-hidden="true">→</span></span>
+        </div>
+        <figure class="commercial-visual" aria-hidden="true">
+          <img
+            src="/images/homepage/01-commercial-management.png"
+            alt=""
+            width="568"
+            height="438"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      </a>
 
-  <div class="enablers" aria-label={isEnglish ? "Core enablers" : "Zentrale Enabler"}>
-    {
-      enablers.map((enabler) => enabler.href ? (
-        <a class="enabler-card enabler-card-link" id={enabler.id} href={enabler.href} aria-label={`${isEnglish ? "Explore" : "Vertiefen"} ${enabler.title}`}>
-          <span class="enabler-marker" aria-hidden="true"></span>
-          <div class="enabler-copy">
-            <div class="enabler-heading">
-              <h2>{enabler.title}</h2>
-              <p class="enabler-thesis">{enabler.thesis}</p>
-            </div>
-            <p class="enabler-body">{enabler.body}</p>
-          </div>
-        </a>
-      ) : (
-        <article class="enabler-card" id={enabler.id}>
-          <span class="enabler-marker" aria-hidden="true"></span>
-          <div class="enabler-copy">
-            <div class="enabler-heading">
-              <h2>{enabler.title}</h2>
-              <p class="enabler-thesis">{enabler.thesis}</p>
-            </div>
-            <p class="enabler-body">{enabler.body}</p>
-          </div>
-        </article>
-      ))
-    }
+      <div class="enablers" aria-label={isEnglish ? "Core enablers" : "Zentrale Enabler"}>
+        {enablers.map((enabler) => {
+          const visual = enablerVisuals[enabler.id as keyof typeof enablerVisuals];
+          return (
+            <article class="enabler-card" id={enabler.id}>
+              <div class="enabler-copy">
+                <div class="card-eyebrow">{enabler.title}</div>
+                <h2>{enabler.thesis}</h2>
+                <p>{enabler.body}</p>
+                <div class="enabler-links">
+                  {enabler.links.map((link) => (
+                    <a href={link.href}>{link.label} <span aria-hidden="true">→</span></a>
+                  ))}
+                </div>
+              </div>
+              <figure class="enabler-visual" aria-hidden="true">
+                <img
+                  src={visual.src}
+                  alt=""
+                  width={visual.width}
+                  height={visual.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+
+    <span class="column-divider" aria-hidden="true"></span>
+
+    <aside class="proof-column" aria-labelledby={`practice-proof-${language}`}>
+      <div class="proof-heading" id={`practice-proof-${language}`}>
+        <span>{selectedPractice.sectionLabel}</span>
+        <i aria-hidden="true"></i>
+      </div>
+
+      <a class="selected-practice" href={selectedPractice.caseHref}>
+        <div class="practice-copy">
+          <div class="card-eyebrow">{selectedPractice.caseLabel}</div>
+          <h2>{selectedPractice.caseTitle}</h2>
+          <p>{selectedPractice.caseBody}</p>
+        </div>
+        <figure class="practice-visual" aria-hidden="true">
+          <img
+            src="/images/homepage/04-marketing-decisioning.png"
+            alt=""
+            width="444"
+            height="485"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+        <div class="outcome-strip"><strong>{selectedPractice.outcome}</strong></div>
+        <span class="text-link case-link">{selectedPractice.caseAction} <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="practice-exploration" href={selectedPractice.explorationHref}>
+        <div class="exploration-copy">
+          <div class="card-eyebrow">{selectedPractice.explorationLabel}</div>
+          <h3>{selectedPractice.explorationTitle}</h3>
+          <p>{selectedPractice.explorationBody}</p>
+          <span class="text-link">{selectedPractice.explorationAction} <span aria-hidden="true">→</span></span>
+        </div>
+        <figure class="exploration-visual" aria-hidden="true">
+          <img
+            src="/images/homepage/05-ai-explorations.png"
+            alt=""
+            width="504"
+            height="432"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      </a>
+    </aside>
   </div>
 
   <figure class="signature-visual">
@@ -144,148 +244,301 @@ const activeKeyVisual = keyVisuals[language];
 <style>
   .commercial-pillar {
     position: relative;
-    padding-top: 4rem;
+    padding-top: 2rem;
   }
-  .commercial-intro {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    padding: 2.4rem 2.8rem 2.6rem;
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) 1px minmax(360px, 1fr);
+    gap: 1.5rem;
+    align-items: stretch;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .capability-column,
+  .proof-column {
+    display: grid;
+    min-width: 0;
+    align-content: start;
+    gap: 1.25rem;
+  }
+  .column-divider {
+    width: 1px;
+    height: 100%;
+    background: rgba(30,60,100,.2);
+  }
+  .commercial-intro,
+  .selected-practice,
+  .practice-exploration {
     color: inherit;
     text-decoration: none;
-    background: linear-gradient(135deg, rgba(255,255,255,.78) 0%, rgba(232,240,248,.62) 62%, rgba(255,255,255,.42) 100%);
-    border: 1px solid rgba(30,60,100,.18);
-    border-left: 3px solid var(--color-amber);
-    box-shadow: 0 14px 34px rgba(30,50,70,.06);
-    transition: background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
   }
-  .commercial-intro:hover { background: linear-gradient(135deg, rgba(255,255,255,.9) 0%, rgba(232,240,248,.7) 62%, rgba(255,255,255,.52) 100%); border-color: rgba(180,83,9,.28); box-shadow: 0 18px 40px rgba(30,50,70,.08); transform: translateY(-2px); }
-  .commercial-intro:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 4px; }
-  .commercial-intro::after {
-    content: "";
-    position: absolute;
-    top: -4rem;
-    right: 8%;
-    width: 1px;
-    height: 20rem;
-    background: linear-gradient(180deg, transparent, rgba(30,60,100,.16), transparent);
-    transform: rotate(18deg);
-    pointer-events: none;
+  .commercial-intro,
+  .enabler-card,
+  .selected-practice,
+  .practice-exploration {
+    min-width: 0;
+    border: 1px solid rgba(30,60,100,.17);
+    border-radius: 2px;
   }
-  .section-kicker {
-    position: relative;
-    z-index: 1;
-    margin-bottom: .75rem;
+  .commercial-intro,
+  .enabler-card {
+    background: rgba(255,255,255,.43);
+  }
+  .selected-practice,
+  .practice-exploration {
+    background: linear-gradient(135deg, rgba(255,255,255,.5), rgba(255,248,242,.52));
+  }
+  .commercial-intro:hover,
+  .selected-practice:hover,
+  .practice-exploration:hover {
+    border-color: rgba(180,83,9,.3);
+  }
+  .commercial-intro:focus-visible,
+  .selected-practice:focus-visible,
+  .practice-exploration:focus-visible,
+  .enabler-links a:focus-visible {
+    outline: 3px solid rgba(180,83,9,.4);
+    outline-offset: 4px;
+  }
+  .card-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: 1rem;
     color: var(--color-amber);
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 500;
-    letter-spacing: .13em;
+    letter-spacing: .14em;
+    line-height: 1.3;
     text-transform: uppercase;
   }
-  .commercial-intro h2 {
-    position: relative;
-    z-index: 1;
-    max-width: 820px;
-    margin: 0 0 .7rem;
-    color: var(--color-ink);
-    font-size: 37px;
+  .card-eyebrow::before {
+    width: 2.25rem;
+    height: 2px;
+    flex: 0 0 auto;
+    background: var(--color-amber);
+    content: "";
+  }
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    margin-top: auto;
+    padding-top: 1.2rem;
+    color: var(--color-amber);
+    font-size: 12.5px;
     font-weight: 500;
-    letter-spacing: -.03em;
-    line-height: 1.12;
+  }
+  .commercial-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.18fr) minmax(260px, .82fr);
+    min-height: 438px;
+    overflow: hidden;
+  }
+  .commercial-copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    padding: 2.1rem 1rem 2rem 2rem;
+  }
+  .commercial-intro h2 {
+    max-width: 510px;
+    margin: 0 0 1rem;
+    color: var(--color-ink);
+    font-size: clamp(34px, 3vw, 43px);
+    font-weight: 500;
+    letter-spacing: -.04em;
+    line-height: 1.08;
   }
   .commercial-intro p {
-    position: relative;
-    z-index: 1;
-    max-width: 820px;
+    max-width: 530px;
     margin: 0;
     color: var(--color-ink-2);
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.62;
+  }
+  .commercial-visual,
+  .enabler-visual,
+  .practice-visual,
+  .exploration-visual {
+    margin: 0;
+  }
+  .commercial-visual {
+    min-width: 0;
+    padding: 1.25rem .8rem 1.25rem 0;
+  }
+  .commercial-visual img,
+  .enabler-visual img,
+  .practice-visual img,
+  .exploration-visual img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
   .enablers {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: .9rem;
-    margin-top: .9rem;
-  }
-  .enabler-card#leadership {
-    grid-column: 1 / -1;
-    padding: 1.45rem 2.1rem 1.55rem;
+    gap: 1rem;
   }
   .enabler-card {
     position: relative;
+    min-height: 418px;
     overflow: hidden;
-    min-height: 0;
-    padding: 1.55rem 1.75rem 1.65rem;
-    background: rgba(255,255,255,.54);
-    border: 1px solid var(--color-border-soft);
-    border-top: 2px solid rgba(30,60,100,.34);
+    padding: 1.65rem 1.6rem 1.5rem;
   }
-  .enabler-card-link { color: inherit; text-decoration: none; cursor: pointer; transition: background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
-  .enabler-card-link:hover { background: rgba(255,255,255,.72); border-color: rgba(180,83,9,.3); box-shadow: 0 12px 28px rgba(30,50,70,.07); transform: translateY(-2px); }
-  .enabler-card-link:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 4px; }
-  .enabler-marker {
-    display: block;
-    width: 2.15rem;
-    height: 2px;
-    margin-bottom: 1rem;
-    background: var(--color-amber);
+  .enabler-copy {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    height: 100%;
+    min-width: 0;
+    flex-direction: column;
   }
   .enabler-card h2 {
-    margin: 0 0 .45rem;
+    max-width: 330px;
+    margin: 0 0 .85rem;
     color: var(--color-ink);
-    font-size: 21px;
+    font-size: 22px;
     font-weight: 500;
-    letter-spacing: -.02em;
-    line-height: 1.2;
+    letter-spacing: -.025em;
+    line-height: 1.18;
   }
-  .enabler-thesis {
-    max-width: 470px;
-    margin: 0 0 .65rem;
-    color: var(--color-ink-2);
-    font-size: 15px;
-    line-height: 1.45;
-  }
-  .enabler-body {
-    max-width: 470px;
+  .enabler-card p {
+    max-width: 330px;
     margin: 0;
-    color: var(--color-ink-3);
+    color: var(--color-ink-2);
     font-size: 13.5px;
     line-height: 1.55;
   }
-  .enabler-card#leadership .enabler-marker {
-    margin-right: auto;
-    margin-bottom: 1rem;
-    margin-left: auto;
+  .enabler-links {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    max-width: 58%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .55rem;
+    margin-top: auto;
+    padding-top: 1rem;
   }
-  .enabler-card#leadership .enabler-copy {
-    display: grid;
-    grid-template-columns: minmax(250px, .9fr) minmax(0, 1.1fr);
-    gap: 2.4rem;
+  .enabler-links a {
+    color: var(--color-amber);
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .enabler-links a:hover { opacity: .72; }
+  .enabler-visual {
+    position: absolute;
+    right: .55rem;
+    bottom: .45rem;
+    width: 46%;
+    height: 155px;
+  }
+  .proof-heading {
+    display: flex;
     align-items: center;
-    max-width: 920px;
-    margin: 0 auto;
+    gap: 1rem;
+    min-height: 1.55rem;
+    color: var(--color-ink-3);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .19em;
+    text-transform: uppercase;
   }
-  .enabler-card#leadership .enabler-heading {
-    text-align: center;
+  .proof-heading span {
+    flex: 0 0 auto;
   }
-  .enabler-card#leadership h2 {
-    font-size: 24px;
+  .proof-heading i {
+    width: 100%;
+    height: 1px;
+    background: rgba(30,60,100,.2);
   }
-  .enabler-card#leadership .enabler-thesis {
-    max-width: 390px;
-    margin: 0 auto;
-    font-size: 15.5px;
+  .selected-practice {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(145px, .8fr);
+    grid-template-areas:
+      "copy visual"
+      "outcome outcome"
+      "cta cta";
+    gap: 1rem 1.1rem;
+    min-height: 490px;
+    padding: 1.7rem 1.55rem 1.5rem;
+    overflow: hidden;
   }
-  .enabler-card#leadership .enabler-body {
-    max-width: 560px;
-    padding-left: 2.4rem;
-    border-left: 1px solid var(--color-border-soft);
+  .practice-copy {
+    grid-area: copy;
+    min-width: 0;
+  }
+  .practice-copy h2,
+  .exploration-copy h3 {
+    margin: 0;
+    color: var(--color-ink);
+    font-weight: 500;
+    letter-spacing: -.025em;
+    line-height: 1.17;
+  }
+  .practice-copy h2 {
+    font-size: 22px;
+  }
+  .practice-copy p,
+  .exploration-copy p {
+    margin: 1rem 0 0;
+    color: var(--color-ink-2);
+    font-size: 13px;
+    line-height: 1.58;
+  }
+  .practice-visual {
+    grid-area: visual;
+    min-width: 0;
+    min-height: 220px;
+  }
+  .outcome-strip {
+    grid-area: outcome;
+    align-self: end;
+    padding: 1rem 1.1rem;
+    background: rgba(255,247,238,.66);
+    border: 1px solid rgba(180,83,9,.08);
+  }
+  .outcome-strip strong {
+    display: block;
+    color: var(--color-ink);
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.42;
+  }
+  .case-link {
+    grid-area: cta;
+    justify-self: start;
+    margin-top: 0;
+    padding-top: .35rem;
+  }
+  .practice-exploration {
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(150px, .88fr);
+    min-height: 410px;
+    gap: 1rem;
+    padding: 1.7rem 1.55rem 1.5rem;
+    overflow: hidden;
+  }
+  .exploration-copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+  }
+  .exploration-copy h3 {
+    font-size: 23px;
+  }
+  .exploration-visual {
+    min-width: 0;
+    align-self: center;
+    height: 240px;
   }
   .signature-visual {
     width: 100%;
     max-width: 1072px;
-    margin: 4.5rem auto 0;
+    margin: 3.75rem auto 0;
   }
   .signature-visual a {
     display: block;
@@ -300,26 +553,126 @@ const activeKeyVisual = keyVisuals[language];
     width: 100%;
     height: auto;
   }
-  @media (max-width: 640px) {
-    .signature-visual { margin-top: 3.5rem; }
+  @media (max-width: 1160px) {
+    .showcase-grid {
+      grid-template-columns: minmax(0, 1.58fr) 1px minmax(330px, 1fr);
+      gap: 1rem;
+    }
+    .commercial-intro {
+      grid-template-columns: minmax(0, 1.2fr) minmax(210px, .8fr);
+    }
+    .commercial-copy {
+      padding-left: 1.65rem;
+    }
+    .selected-practice,
+    .practice-exploration {
+      grid-template-columns: 1fr;
+    }
+    .selected-practice {
+      grid-template-areas:
+        "copy"
+        "visual"
+        "outcome"
+        "cta";
+    }
+    .practice-visual {
+      height: 180px;
+      min-height: 0;
+    }
+    .exploration-visual {
+      height: 180px;
+    }
+  }
+  @media (max-width: 940px) {
+    .showcase-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .capability-column,
+    .proof-column {
+      display: contents;
+    }
+    .column-divider {
+      display: none;
+    }
+    .commercial-intro { order: 1; }
+    .proof-heading { order: 2; margin-top: .75rem; }
+    .selected-practice { order: 3; }
+    .practice-exploration { order: 4; }
+    .enablers { order: 5; }
+    .selected-practice {
+      grid-template-columns: minmax(0, 1.1fr) minmax(250px, .9fr);
+      grid-template-areas:
+        "copy visual"
+        "outcome outcome"
+        "cta cta";
+    }
+    .practice-exploration {
+      grid-template-columns: minmax(0, 1.2fr) minmax(240px, .8fr);
+    }
+    .practice-visual,
+    .exploration-visual {
+      height: 220px;
+    }
   }
   @media (max-width: 768px) {
-    .commercial-pillar { padding-top: 3rem; }
-    .commercial-intro { padding: 1.65rem 1.5rem 1.8rem; }
+    .commercial-pillar { padding-top: 2.5rem; }
+    .showcase-grid { padding-bottom: 3rem; }
+    .commercial-intro {
+      grid-template-columns: 1fr;
+      min-height: 0;
+    }
+    .commercial-copy {
+      padding: 1.65rem 1.5rem 1.35rem;
+    }
     .commercial-intro h2 { font-size: 28px; }
     .commercial-intro p { font-size: 15px; line-height: 1.58; }
-    .enablers { grid-template-columns: 1fr; gap: .8rem; }
-    .enabler-card { padding: 1.4rem 1.5rem 1.5rem; }
-    .enabler-card#leadership { padding: 1.45rem 1.5rem 1.55rem; }
-    .enabler-card#leadership .enabler-copy {
-      grid-template-columns: 1fr;
-      gap: .7rem;
+    .commercial-visual {
+      height: 220px;
+      padding: 0 1rem 1rem;
     }
-    .enabler-card#leadership .enabler-body {
-      margin: 0 auto;
-      padding-left: 0;
-      text-align: center;
-      border-left: 0;
+    .selected-practice,
+    .practice-exploration {
+      grid-template-columns: 1fr;
+      padding: 1.5rem;
+    }
+    .selected-practice {
+      grid-template-areas:
+        "copy"
+        "visual"
+        "outcome"
+        "cta";
+    }
+    .practice-visual,
+    .exploration-visual {
+      height: 210px;
+    }
+    .enablers {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .enabler-card {
+      min-height: 390px;
+      padding: 1.5rem;
+    }
+    .enabler-visual {
+      width: 45%;
+      height: 150px;
+    }
+    .signature-visual { margin-top: 3rem; }
+  }
+  @media (max-width: 430px) {
+    .card-eyebrow {
+      font-size: 10px;
+      letter-spacing: .11em;
+    }
+    .practice-copy h2,
+    .exploration-copy h3 {
+      font-size: 22px;
+    }
+    .enabler-card h2 {
+      font-size: 21px;
     }
   }
 </style>

@@ -40,8 +40,12 @@ const copy = isEnglish ? {
   <div class="diag-line-1"></div>
   <div class="diag-line-2"></div>
   <div class="hero-inner">
-    <Nav language={language} />
+    <Nav language={language} homepage />
     <div class="hero-grid">
+      <div class="hero-intro-eyebrow">
+        <span aria-hidden="true"></span>
+        {copy.about}
+      </div>
       <h1 class="headline headline--split">
         {copy.headline.map((line, index) => (
           <>
@@ -85,6 +89,10 @@ const copy = isEnglish ? {
     position: relative;
     width: 100%;
     overflow: hidden;
+    background:
+      radial-gradient(circle at 84% 14%, rgba(255,255,255,.82) 0, rgba(255,255,255,0) 28rem),
+      radial-gradient(circle at 12% 34%, rgba(181,202,221,.42) 0, rgba(181,202,221,0) 32rem),
+      linear-gradient(180deg, #EEF2F7 0, #D6E1ED 45rem, #EEF2F7 90rem, #EEF2F7 100%);
   }
   .hero::before {
     content: "";
@@ -92,20 +100,20 @@ const copy = isEnglish ? {
     top: 0;
     left: 0;
     right: 0;
-    height: 320px;
+    height: 520px;
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.18) 0%,
-      rgba(220, 235, 250, 0.06) 60%,
+      rgba(255, 255, 255, 0.36) 0%,
+      rgba(220, 235, 250, 0.12) 60%,
       transparent 100%
     );
     pointer-events: none;
   }
   .hero-inner {
     position: relative;
-    max-width: 1200px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 3rem 4rem 3rem;
+    padding: 1.25rem 4.25rem 4rem;
   }
   .diag-line-1 {
     position: absolute;
@@ -116,8 +124,8 @@ const copy = isEnglish ? {
     background: linear-gradient(
       180deg,
       transparent 0%,
-      rgba(30, 60, 100, 0.3) 25%,
-      rgba(30, 60, 100, 0.1) 65%,
+      rgba(30, 60, 100, 0.12) 25%,
+      rgba(30, 60, 100, 0.04) 65%,
       transparent 100%
     );
     transform: rotate(18deg);
@@ -148,8 +156,9 @@ const copy = isEnglish ? {
   .hero-grid {
     position: relative;
     display: grid;
-    grid-template-columns: 0.98fr 1.32fr;
+    grid-template-columns: minmax(390px, .86fr) minmax(0, 1.34fr);
     grid-template-areas:
+      "portrait intro-eyebrow"
       "portrait headline"
       "portrait subtitle"
       "portrait proof"
@@ -159,42 +168,59 @@ const copy = isEnglish ? {
     row-gap: 0;
     align-items: start;
     margin-bottom: 0;
-    padding-bottom: 4rem;
-    border-bottom: 1px solid rgba(30, 60, 100, 0.14);
+    padding-bottom: 1.5rem;
   }
   .ueber-mich-marker {
     grid-area: ueber-mich;
-    padding-top: 2rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.75rem;
-    border-top: 1px solid var(--color-border);
+    padding-top: 1.55rem;
+    margin-top: 0;
+    margin-bottom: 0.65rem;
   }
   .ueber-mich-eyebrow {
     font-size: 12px;
-    color: var(--color-amber);
+    color: var(--color-ink-3);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     font-weight: 500;
   }
   .headline {
     grid-area: headline;
-    font-size: clamp(44px, 4.55vw, 56px);
+    font-size: clamp(46px, 4.15vw, 60px);
     font-weight: 500;
-    line-height: 0.99;
-    letter-spacing: -0.045em;
-    margin-bottom: 1.5rem;
+    line-height: 1;
+    letter-spacing: -0.047em;
+    margin-bottom: 1.35rem;
     color: var(--color-ink);
-    text-wrap: balance;
-    max-width: 760px;
+    max-width: 800px;
+  }
+  .hero-intro-eyebrow {
+    grid-area: intro-eyebrow;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    color: var(--color-amber);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  .hero-intro-eyebrow span {
+    width: 2.25rem;
+    height: 2px;
+    flex: 0 0 auto;
+    background: var(--color-amber);
   }
   .headline-line {
     display: inline;
   }
   @media (min-width: 1024px) {
     .headline--split {
-      width: calc(100% + 4rem);
-      max-width: 900px;
-      font-size: clamp(44px, 4.2vw, 52px);
+      width: 100%;
+      max-width: 800px;
+      font-size: clamp(46px, 4.15vw, 60px);
+      line-height: 1;
     }
     .headline--split .headline-line {
       display: block;
@@ -203,51 +229,55 @@ const copy = isEnglish ? {
   }
   .subtitle {
     grid-area: subtitle;
-    font-size: 17px;
+    font-size: 16.5px;
     color: var(--color-ink-2);
     margin-bottom: 0;
-    max-width: 600px;
+    max-width: 680px;
   }
   .cover-proof {
     grid-area: proof;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.9rem;
-    max-width: 680px;
-    margin: 1.55rem 0 1.75rem;
-    padding: 1.05rem 0 1.15rem;
-    border-top: 1px solid rgba(30, 60, 100, 0.16);
-    border-bottom: 1px solid rgba(30, 60, 100, 0.1);
+    gap: 0;
+    max-width: 720px;
+    margin: 1.8rem 0 1.35rem;
+    padding: 0;
   }
   .cover-proof-item {
     min-width: 0;
+    padding: 0 1.5rem;
+  }
+  .cover-proof-item:first-child {
+    padding-left: 0;
+  }
+  .cover-proof-item + .cover-proof-item {
+    border-left: 1px solid rgba(30, 60, 100, 0.18);
   }
   .cover-proof-value,
   .cover-proof-label {
     display: block;
   }
   .cover-proof-value {
-    font-size: 16px;
+    font-size: 28px;
     line-height: 1.15;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.02em;
     color: var(--color-ink);
   }
   .cover-proof-label {
     margin-top: 0.35rem;
-    font-size: 10px;
-    line-height: 1.35;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: 0;
     color: var(--color-ink-3);
   }
   .bio {
     grid-area: bio;
-    max-width: 580px;
+    max-width: 680px;
   }
   .bio p {
-    font-size: 15px;
-    line-height: 1.75;
+    font-size: 14px;
+    line-height: 1.62;
     color: var(--color-body);
     margin: 0;
   }
@@ -259,17 +289,11 @@ const copy = isEnglish ? {
   .portrait {
     grid-area: portrait;
     align-self: start;
-    width: min(100%, 444px);
+    width: min(100%, 500px);
     justify-self: start;
-    aspect-ratio: 428 / 596; /* natives Verhaeltnis der Bilddatei 856x1192 */
+    aspect-ratio: 494 / 607;
     position: relative;
-    background: linear-gradient(
-      180deg,
-      #a4c0d9 0%,
-      #c0d3e4 42%,
-      #e2ebf3 78%,
-      #f3f7fb 100%
-    );
+    background: #D6E1ED;
     border-radius: 4px;
     overflow: hidden;
   }
@@ -277,11 +301,7 @@ const copy = isEnglish ? {
      sichtbar -- echoen die Hero-Banner-Linien. */
   .portrait-line-1,
   .portrait-line-2 {
-    position: absolute;
-    width: 1px;
-    transform: rotate(18deg);
-    transform-origin: top center;
-    pointer-events: none;
+    display: none;
   }
   .portrait-line-1 {
     top: -40px;
@@ -313,10 +333,38 @@ const copy = isEnglish ? {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 10% bottom;
+    object-position: center;
+  }
+  @media (min-width: 769px) and (max-width: 1023px) {
+    .hero-inner {
+      padding-inline: 2.5rem;
+    }
+    .hero-grid {
+      grid-template-columns: 0.85fr 1.15fr;
+      column-gap: 2.5rem;
+    }
+    .headline {
+      font-size: 39px;
+    }
+    .subtitle {
+      font-size: 16px;
+    }
+  }
+  @media (min-width: 1024px) and (max-width: 1280px) {
+    .headline--split {
+      font-size: clamp(42px, 3.7vw, 47px);
+    }
+    .headline--split .headline-line {
+      white-space: nowrap;
+    }
   }
   /* --- MOBILE --- Positionierung zuerst, kompakter persoenlicher Block danach --- */
   @media (max-width: 768px) {
+    .hero {
+      background:
+        radial-gradient(circle at 88% 6rem, rgba(255,255,255,.72) 0, rgba(255,255,255,0) 20rem),
+        linear-gradient(180deg, #D6E1ED 0, #EEF2F7 74rem, #EEF2F7 100%);
+    }
     .hero-inner {
       padding: 2rem 1.5rem 0;
     }
@@ -327,11 +375,11 @@ const copy = isEnglish ? {
       margin-bottom: 0;
     }
     .portrait {
-      order: 5;
-      max-width: none;
-      width: 100%;
+      order: 4;
+      max-width: 280px;
+      width: 72%;
       height: auto;
-      margin: 0 0 1rem;
+      margin: 1.35rem auto 1.5rem;
       aspect-ratio: 4 / 5;
     }
     .portrait img {
@@ -350,6 +398,14 @@ const copy = isEnglish ? {
       letter-spacing: -0.035em;
       margin-bottom: 1rem;
     }
+    .hero-intro-eyebrow {
+      order: 0;
+      margin-bottom: 0.85rem;
+      font-size: 10px;
+    }
+    .headline--split .headline-line {
+      white-space: normal;
+    }
     .subtitle {
       order: 2;
       margin-bottom: 0;
@@ -361,9 +417,15 @@ const copy = isEnglish ? {
       margin: 1rem 0 0;
       padding: 0.85rem 0 0.9rem;
     }
+    .cover-proof-item {
+      padding-inline: .65rem;
+    }
+    .cover-proof-value {
+      font-size: 16px;
+    }
     .ueber-mich-marker {
-      order: 4;
-      margin-top: 1.5rem;
+      order: 5;
+      margin-top: 0;
       padding-top: 1.25rem;
       margin-bottom: 0.75rem;
       border-top: 1px solid var(--color-border);
@@ -371,6 +433,12 @@ const copy = isEnglish ? {
     .bio {
       order: 6;
       margin-top: 0;
+    }
+  }
+  @media (max-width: 420px) {
+    .cover-proof-label {
+      font-size: 9px;
+      letter-spacing: 0.04em;
     }
   }
 </style>

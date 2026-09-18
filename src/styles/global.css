@@ -2,6 +2,7 @@
 
 @import "@fontsource/inter/400.css";
 @import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
 
 @theme {
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -37,6 +38,10 @@ body {
   );
   background-attachment: fixed;
   min-height: 100vh;
+}
+
+body.is-homepage {
+  background: #EEF2F7;
 }
 
 *,
