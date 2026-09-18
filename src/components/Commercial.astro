@@ -63,7 +63,7 @@ const intro = isEnglish ? {
 
 const selectedPractice = isEnglish ? {
   sectionLabel: "Practice & Proof",
-  caseLabel: "Signature Case",
+  caseLabel: "Transformation Case",
   caseTitle: "Marketing Decisioning Capability",
   caseBody: "From fragmented marketing steering to an integrated Decisioning Capability connecting data foundation, analytics, predictive models and activation.",
   outcome: "Double-digit millions less advertising spend with stable revenue.",
@@ -76,7 +76,7 @@ const selectedPractice = isEnglish ? {
   explorationHref: "/en/data-ai-digital-product#current-proof-title",
 } : {
   sectionLabel: "Practice & Proof",
-  caseLabel: "Signature Case",
+  caseLabel: "Transformation Case",
   caseTitle: "Marketing Decisioning Capability",
   caseBody: "Von fragmentierter Marketingsteuerung zu einer integrierten Decisioning Capability: gemeinsame Datenbasis, Analytics, Predictive Models und Aktivierung als kommerzielles System verbunden.",
   outcome: "Zweistelliger Mio.-Betrag weniger Werbekosten bei stabilem Umsatz.",
@@ -181,7 +181,10 @@ const enablerVisuals = {
             decoding="async"
           />
         </figure>
-        <div class="outcome-strip"><strong>{selectedPractice.outcome}</strong></div>
+        <div class="outcome-strip">
+          <span class="outcome-icon" aria-hidden="true">↗</span>
+          <strong>{selectedPractice.outcome}</strong>
+        </div>
         <span class="text-link case-link">{selectedPractice.caseAction} <span aria-hidden="true">→</span></span>
       </a>
 
@@ -425,6 +428,12 @@ const enablerVisuals = {
     height: 1px;
     background: rgba(30,60,100,.2);
   }
+  .proof-column .card-eyebrow {
+    margin-bottom: .75rem;
+  }
+  .proof-column .text-link {
+    padding-top: .75rem;
+  }
   .selected-practice {
     display: grid;
     grid-template-columns: minmax(0, 1.2fr) minmax(145px, .8fr);
@@ -432,9 +441,9 @@ const enablerVisuals = {
       "copy visual"
       "outcome outcome"
       "cta cta";
-    gap: 1rem 1.1rem;
-    min-height: 490px;
-    padding: 1.7rem 1.55rem 1.5rem;
+    gap: .75rem 1rem;
+    min-height: 0;
+    padding: 1.35rem 1.35rem 1.2rem;
     overflow: hidden;
   }
   .practice-copy {
@@ -454,7 +463,7 @@ const enablerVisuals = {
   }
   .practice-copy p,
   .exploration-copy p {
-    margin: 1rem 0 0;
+    margin: .75rem 0 0;
     color: var(--color-ink-2);
     font-size: 13px;
     line-height: 1.58;
@@ -462,14 +471,22 @@ const enablerVisuals = {
   .practice-visual {
     grid-area: visual;
     min-width: 0;
-    min-height: 220px;
+    min-height: 190px;
   }
   .outcome-strip {
     grid-area: outcome;
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    gap: .6rem;
+    align-items: start;
     align-self: end;
-    padding: 1rem 1.1rem;
-    background: rgba(255,247,238,.66);
-    border: 1px solid rgba(180,83,9,.08);
+    padding: .1rem 0 0;
+  }
+  .outcome-icon {
+    color: var(--color-amber);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.15;
   }
   .outcome-strip strong {
     display: block;
@@ -482,14 +499,14 @@ const enablerVisuals = {
     grid-area: cta;
     justify-self: start;
     margin-top: 0;
-    padding-top: .35rem;
+    padding-top: 0;
   }
   .practice-exploration {
     display: grid;
     grid-template-columns: minmax(0, 1.12fr) minmax(150px, .88fr);
-    min-height: 410px;
-    gap: 1rem;
-    padding: 1.7rem 1.55rem 1.5rem;
+    min-height: 0;
+    gap: .75rem;
+    padding: 1.35rem 1.35rem 1.2rem;
     overflow: hidden;
   }
   .exploration-copy {
@@ -503,7 +520,12 @@ const enablerVisuals = {
   .exploration-visual {
     min-width: 0;
     align-self: center;
-    height: 240px;
+    height: 200px;
+  }
+  @media (min-width: 1161px) {
+    .proof-column {
+      grid-template-rows: auto 440px 370px;
+    }
   }
   @media (max-width: 1160px) {
     .showcase-grid {
