@@ -11,8 +11,9 @@ import TrackRecord from "../components/TrackRecord.astro";
   description="Digital Commerce skalieren. Strategie wirksam machen."
 >
   <Hero>
-    <Commercial />
+    <Commercial>
+      <TrackRecord slot="before-steering" />
+    </Commercial>
     <MarketOffers />
-    <TrackRecord />
   </Hero>
 </Layout>

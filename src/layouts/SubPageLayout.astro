@@ -7,31 +7,59 @@ interface Props {
   title?: string;
   description?: string;
   language?: Language;
+  editorial?: boolean;
 }
 
-const { title, description, language = getLanguage(Astro.url.pathname) } = Astro.props;
+const { title, description, language = getLanguage(Astro.url.pathname), editorial = false } = Astro.props;
 ---
 
-<Layout title={title} description={description} language={language}>
-  <div class="page-shell">
-    <header class="page-header">
-      <Nav language={language} />
-    </header>
-    <main class="page-main">
-      <slot />
-    </main>
+<Layout title={title} description={description} language={language} bodyClass={editorial ? "is-editorial-subpage" : undefined}>
+  <div class:list={["subpage-surface", { "subpage-surface--editorial": editorial }]}>
+    <div class="page-shell">
+      <header class="page-header">
+        <Nav language={language} homepage={editorial} />
+      </header>
+      <main class="page-main">
+        <slot />
+      </main>
+    </div>
   </div>
 </Layout>
 
 <style>
+  .subpage-surface--editorial {
+    min-height: 100vh;
+    overflow-x: clip;
+    background:
+      radial-gradient(circle at 84% 8rem, rgba(255,255,255,.72) 0, rgba(255,255,255,0) 31rem),
+      linear-gradient(180deg, #EEF2F7 0, #D6E1ED 44rem, #E7EEF5 82rem, #EEF2F7 100%);
+  }
   .page-shell {
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
     padding: 3rem 4rem 5rem;
   }
+  .subpage-surface--editorial .page-shell {
+    max-width: 1440px;
+    padding: 1.25rem 4.25rem 5rem;
+  }
+  .page-main {
+    min-width: 0;
+  }
+  @media (max-width: 1100px) {
+    .subpage-surface--editorial .page-shell {
+      padding-inline: 2.5rem;
+    }
+  }
   @media (max-width: 768px) {
-    .page-shell {
+    .subpage-surface--editorial {
+      background:
+        radial-gradient(circle at 100% 6rem, rgba(255,255,255,.65) 0, rgba(255,255,255,0) 22rem),
+        linear-gradient(180deg, #EEF2F7 0, #D6E1ED 34rem, #EEF2F7 76rem);
+    }
+    .page-shell,
+    .subpage-surface--editorial .page-shell {
       padding: 2rem 1.5rem 3rem;
     }
   }

@@ -107,6 +107,7 @@ const explorations = isEnglish ? [
 ---
 
 <SubPageLayout
+  editorial
   language={language}
   title={isEnglish ? "Data, AI & Decisioning | Karsten Uhlig" : "Data, AI & Decisioning | Karsten Uhlig"}
   description={isEnglish ? "Data, AI and Decisioning as an execution capability for Digital Commerce: from robust signals through intelligence to effective decisions." : "Data, AI und Decisioning als Execution Capability für Digital Commerce: von belastbaren Signalen über Intelligence bis zu wirksamen Entscheidungen."}
@@ -123,11 +124,11 @@ const explorations = isEnglish ? [
       {!isEnglish && (
         <nav class="page-jump-nav" aria-label="Auf dieser Seite">
           <div class="jump-nav-title">Auf dieser Seite</div>
-          <a href="#marketing-decisioning-case-title"><span aria-hidden="true">01</span>Building the Marketing Decisioning Capability at bonprix</a>
-          <a href="#current-proof-title"><span aria-hidden="true">02</span>Current AI Explorations</a>
-          <a href="#data-ai-fields"><span aria-hidden="true">03</span>8 Capability Fields</a>
-          <a href="#principles-title"><span aria-hidden="true">04</span>Principles</a>
-          <a href="#enterprise-proof-title"><span aria-hidden="true">05</span>Built &amp; scaled at enterprise level</a>
+          <a href="#marketing-decisioning-case-title"><span aria-hidden="true">01</span>Marketing Decisioning Capability bei bonprix</a>
+          <a href="#current-proof-title"><span aria-hidden="true">02</span>Aktuelle AI-Explorationen</a>
+          <a href="#data-ai-fields"><span aria-hidden="true">03</span>8 Capability-Felder</a>
+          <a href="#principles-title"><span aria-hidden="true">04</span>Prinzipien</a>
+          <a href="#enterprise-proof-title"><span aria-hidden="true">05</span>Auf Enterprise-Level aufgebaut und skaliert</a>
         </nav>
       )}
     </header>
@@ -192,14 +193,14 @@ const explorations = isEnglish ? [
 <style>
   .data-landing { min-width: 0; }
   :global(html) { scroll-behavior: smooth; }
-  .landing-hero { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(400px, 420px); gap: clamp(2rem, 3.5vw, 3.5rem); align-items: start; padding: 2.25rem 0 4rem; }
-  .landing-hero::after { content: ""; position: absolute; right: 2%; bottom: 0; left: 34%; height: 1px; background: linear-gradient(90deg, rgba(180,83,9,.65), rgba(30,60,100,.14), transparent); }
+  .landing-hero { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(400px, 420px); gap: clamp(2rem, 3.5vw, 3.5rem); align-items: start; padding: 2rem 0 4rem; border-bottom: 1px solid var(--color-border-soft); }
   .hero-eyebrow, .section-kicker { color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
-  .hero-eyebrow { margin-bottom: 1rem; }
-  h1 { max-width: 900px; margin: 0; color: var(--color-ink); font-size: clamp(46px, 6.5vw, 78px); font-weight: 500; letter-spacing: -.055em; line-height: .98; }
-  .hero-subheadline { max-width: 860px; margin: 1.55rem 0 0; color: var(--color-ink); font-size: clamp(22px, 2.7vw, 34px); font-weight: 400; letter-spacing: -.025em; line-height: 1.25; }
-  .hero-copy { max-width: 830px; margin: 1.55rem 0 0; color: var(--color-body); font-size: 16px; line-height: 1.8; }
-  .page-jump-nav { display: grid; gap: .05rem; padding-top: 2.05rem; }
+  .hero-eyebrow { display: flex; gap: .85rem; align-items: center; margin-bottom: 1.1rem; }
+  .hero-eyebrow::before { content: ""; width: 2.25rem; height: 2px; flex: 0 0 auto; background: var(--color-amber); }
+  h1 { max-width: 800px; margin: 0; color: var(--color-ink); font-size: clamp(46px, 5.4vw, 64px); font-weight: 500; letter-spacing: -.045em; line-height: 1; }
+  .hero-subheadline { max-width: 800px; margin: 1.35rem 0 0; color: var(--color-ink); font-size: clamp(22px, 2.35vw, 30px); font-weight: 500; letter-spacing: -.025em; line-height: 1.25; }
+  .hero-copy { max-width: 800px; margin: 1.35rem 0 0; color: var(--color-body); font-size: 15.5px; line-height: 1.72; }
+  .page-jump-nav { display: grid; gap: .05rem; margin-top: 1rem; padding: 1.25rem 1.4rem; background: rgba(255,255,255,.38); border: 1px solid var(--color-border-soft); border-radius: 2px; }
   .jump-nav-title { margin-bottom: .8rem; color: var(--color-amber); font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
   .page-jump-nav a { display: grid; grid-template-columns: 1.7rem minmax(0, 1fr); gap: .55rem; padding: .62rem 0; color: var(--color-ink); font-size: 14px; font-weight: 600; line-height: 1.4; text-decoration: none; border-bottom: 1px solid rgba(30,60,100,.2); transition: color .18s ease; }
   .page-jump-nav a span { color: var(--color-amber); font-size: 11.5px; font-weight: 600; letter-spacing: .08em; }
@@ -250,11 +251,10 @@ const explorations = isEnglish ? [
 
   @media (max-width: 760px) {
     .landing-hero { grid-template-columns: 1fr; gap: 2rem; padding: 1rem 0 3rem; }
-    .landing-hero::after { left: 0; }
-    h1 { font-size: 46px; }
-    .hero-subheadline { font-size: 24px; }
+    h1 { font-size: 42px; }
+    .hero-subheadline { font-size: 23px; }
     .hero-copy { font-size: 15px; }
-    .page-jump-nav { padding-top: 0; }
+    .page-jump-nav { margin-top: 0; padding: 1.1rem 1.2rem; }
     .principles-section, .proof-section { padding: 3rem 0; }
     .section-heading { grid-template-columns: 1fr; gap: 1rem; }
     .section-heading { margin-bottom: 1.5rem; }
@@ -266,7 +266,7 @@ const explorations = isEnglish ? [
   }
 
   @media (max-width: 430px) {
-    h1 { font-size: 39px; }
+    h1 { font-size: 38px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
