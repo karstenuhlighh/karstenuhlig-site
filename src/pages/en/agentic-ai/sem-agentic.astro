@@ -1,0 +1,2347 @@
+---
+import SubPageLayout from "../../../layouts/SubPageLayout.astro";
+import AugurWorkflowSchaubild from "../../../components/AugurWorkflowSchaubild.astro";
+import ScopeSteckbrief from "../../../components/ScopeSteckbrief.astro";
+
+// ============================================================
+// SCOPE-STECKBRIEF — Inhalte (nur hier, Komponente bleibt generisch)
+// ============================================================
+const scopeFelder = [
+  {
+    label: "Objective",
+    essence:
+      "Google Ads budget delivers only when campaign steering and impact measurement work together.",
+    detail:
+      "Augur is the working proof for the steering side: a multi-agent system that maps keyword strategy, performance analysis and budget-relevant recommendations for a Google SEM campaign end to end — with the same measurement discipline that signal-steering demonstrates on the evaluation side.",
+  },
+  {
+    label: "Approach",
+    essence:
+      "Five validated agents, a coordinator with self-checking and a staged rollout.",
+    detail:
+      "Each agent produces reasoned proposals and is checked in a way suited to its output: shadow log and human review, LLM-as-a-judge or hypothesis tests. A strategy coordinator consolidates the results into a traceable recommendation. Deterministic logic where the rules are clear; an LLM only where it adds value. Execution progresses in stages: Shadow → Sandbox → Limited Live → Autonomous.",
+  },
+  {
+    label: "Build vs. Buy",
+    essence:
+      "Introduce risk controls before autonomy instead of buying blindly or building without validation.",
+    detail:
+      "The simulation/production mode switch and five-stage rollout model (shadow analysis → shadow implementation → sandbox → limited live activation → autonomous operation) are the architectural answer to this question. Stages 1–2 are implemented; 3–5 are documented extension points, not live operation. Which proposals are adopted and from which stage an agent may act autonomously remains a deliberate human decision.",
+  },
+];
+const scopeGeltung = {
+  belegt: [
+    "Agentic SEM system as a running pilot",
+    "Validation per agent and coordinated consolidation",
+    "Documented evaluation (ADRs, evaluation framework, audit)",
+  ],
+  nichtBelegt: [
+    "Autonomous live operation",
+    "Impact at scale",
+    "Performance foundation partly synthetic",
+    "Execution in early rollout stages under human control",
+  ],
+};
+
+// ============================================================
+// TAB 2 — ARCHITEKTUR: PRODUCT-BESONDERHEITEN (vormals Working Map)
+// ============================================================
+const features = [
+  {
+    title: "Two-layer architecture (ADR-015)",
+    body: "Deterministic action layer (pre-flight rules) plus optional LLM analyst layer. Layer 2 remains subject to evidence and is not implemented until its value is demonstrated.",
+  },
+  {
+    title: "Two-Track Eval (ADR-013)",
+    body: "F1 versus domain ground truth plus rule compliance as orthogonal dimensions. Evidence: the LLM meets 6% of constraints by itself; deterministic logic secures 94%.",
+  },
+  {
+    title: "Cluster aggregation against prompt collapse (ADR-014)",
+    body: "626 keyword-forced recommendations → 17 cluster requirements, prompt reduced from 33k to 3–4k tokens. Zero determinism violations across N runs.",
+  },
+  {
+    title: "Selectable LLM backend per step",
+    body: "Sonnet for reasoning, Ollama for low-cost calls, configurable via `llm_overrides`.",
+  },
+  {
+    title: "Mode-Switch Simulation / Production",
+    body: "Mock database for demo and development, live DataForSEO for production, with no code change required.",
+  },
+  {
+    title: "Variante-B: n8n-Wrapper → Python-Endpoint (ADR-012)",
+    body: "Single source of truth in the Python coordinator, n8n as an HTTP proxy, replicated three times (cluster-full, strategy, reflect).",
+  },
+  {
+    title: "Hybrid keyword generation",
+    body: "Anchor clusters as the skeleton plus parallel LLM variation per anchor, producing 401 keywords with a realistic long-tail distribution.",
+  },
+  {
+    title: "Best practices as a YAML library",
+    body: "Declarative rules (for example `v2026_05.yaml`), versioned, with custom overrides available.",
+  },
+];
+
+// ============================================================
+// TAB 2 — AUGUR ARCHITEKTUR DATA
+// ============================================================
+const phase1Stages = [
+  { name: "Research", desc: "Keywords via DataForSEO" },
+  { name: "Embed", desc: "Vectors, nomic-embed" },
+  { name: "Cluster", desc: "Assign + LLM-Judge" },
+];
+const phase2Stages = [
+  { name: "Performance", desc: "Hypothesis testing + rules" },
+  { name: "Copy", desc: "Ad copy per cluster" },
+  { name: "Synthesis", desc: "Recommendation generation" },
+  { name: "Reflect", desc: "Self-check" },
+];
+const archTraits = [
+  {
+    title: "Deterministic where rules apply",
+    desc: "The action comes from the rules, not from the LLM. The model writes the rationale; it does not make the decision.",
+  },
+  {
+    title: "Mode-Switch Simulation ↔ Production",
+    desc: "Mock database for zero-cost demos via replay cache; live DataForSEO for production. Switching requires no code change; simulation is the default.",
+  },
+  {
+    title: "Fact-checking as a correctness anchor",
+    desc: "An evidence validator checks every LLM figure against the database. It exposed where the model hallucinated causality and set the reasoning proof to an honest FAIL instead of a polished pass.",
+  },
+];
+const stackChips = [
+  "LangGraph",
+  "n8n",
+  "FastAPI",
+  "Pydantic v2",
+  "PostgreSQL + pgvector",
+  "Streamlit",
+  "Docker",
+];
+const modelChips: { label: string; opt: boolean }[] = [
+  { label: "qwen2.5:7b · Default", opt: false },
+  { label: "nomic-embed", opt: false },
+  { label: "Sonnet · opt-in reasoning", opt: true },
+];
+---
+
+<SubPageLayout
+  editorial
+  variant="agentic"
+  title="sem-agentic · Karsten Uhlig"
+  description="Google Ads SEM campaign steering as an agentic system: keyword strategy, performance analysis and budget-relevant recommendations mapped end to end, with the same measurement discipline as signal-steering."
+  language="en"
+>
+  <!-- ============================ SCOPE-STECKBRIEF (Workflow rechts oben im Header) ============================ -->
+  <ScopeSteckbrief
+    editorial
+    language="en"
+    eyebrow="Commercial · Google Ads SEM campaign steering"
+    title="sem-agentic"
+    titleAs="h1"
+    thesis="Google Ads budget runs efficiently only when campaign steering and impact measurement work together. Augur is the working proof for the steering side."
+    felder={scopeFelder}
+    geltungsbereich={scopeGeltung}
+  >
+    <AugurWorkflowSchaubild slot="visual" language="en" />
+  </ScopeSteckbrief>
+
+  <!-- ============================ TABS ============================ -->
+  <nav class="tabs" role="tablist" aria-label="sem-agentic Detail-Tabs">
+    <button
+      class="tab tab-active"
+      data-tab="dashboard"
+      role="tab"
+      aria-selected="true"
+      type="button"
+    >
+      1 · Dashboard
+    </button>
+    <button
+      class="tab"
+      data-tab="architecture"
+      role="tab"
+      aria-selected="false"
+      type="button"
+    >
+      2 · Architecture
+    </button>
+    <button
+      class="tab"
+      data-tab="proof-of-concept"
+      role="tab"
+      aria-selected="false"
+      type="button"
+    >
+      3 · Proof of Concept
+    </button>
+    <button
+      class="tab"
+      data-tab="blueprint"
+      role="tab"
+      aria-selected="false"
+      type="button"
+    >
+      4 · Blueprint
+    </button>
+  </nav>
+
+  <!-- ============================ TAB 1: DASHBOARD ============================ -->
+  <section data-panel="dashboard" role="tabpanel">
+    <div class="tab-sub">
+      Augur operator dashboard, the Streamlit interface of a complete coordinator
+      run: KPI cards, pipeline status, recall history, critique results and prioritised cluster actions.
+    </div>
+
+    <figure class="dash-figure">
+      <img
+        src="/images/augur-dashboard.png"
+        alt="Augur operator dashboard with KPI cards, pipeline status, recall history, critique results and prioritised cluster actions"
+        loading="lazy"
+        decoding="async"
+        width="650"
+      />
+    </figure>
+  </section>
+
+  <!-- ============================ TAB 2: ARCHITEKTUR (Multi-Agent) ============================ -->
+  <section data-panel="architecture" role="tabpanel" hidden>
+    <div class="arc-top">
+      <div class="arc-header">
+        <div class="arc-eyebrow">
+          <span class="arc-live-dot" aria-hidden="true"></span>Augur · Architecture
+        </div>
+        <h2 class="arc-h1">Multi-agent system with staged validation</h2>
+        <p class="arc-subtitle">
+          Five specialised agents produce reasoned proposals. Each agent passes
+          through a validation layer suited to its output. The strategy coordinator
+          consolidates the results, with self-checking, into an auditable recommendation.
+        </p>
+      </div>
+      <div class="arc-mode-switch" aria-hidden="true">
+        Mode
+        <span class="arc-mode-toggle">
+          <span class="arc-active">Sim</span>
+          <span>Prod</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div class="arc-input-row">
+      <div class="arc-input-box">
+        Brief <strong>NordicGlow Skincare D2C, DACH market entry</strong>
+      </div>
+    </div>
+    <div class="arc-down-arrow" aria-hidden="true">↓</div>
+
+    <!-- AGENT GRID -->
+    <div class="arc-agent-grid">
+      <div class="arc-agent-card">
+        <div class="arc-agent-number">1</div>
+        <div class="arc-agent-name">Research-Agent</div>
+        <div class="arc-agent-role">Keyword discovery from market data</div>
+        <div class="arc-agent-tags">
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Tool</span>DataForSEO API
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Pattern</span>ReAct with tool loop
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Check</span>Shadow Log + Human
+          </div>
+        </div>
+      </div>
+
+      <div class="arc-agent-card">
+        <div class="arc-agent-number">2</div>
+        <div class="arc-agent-name">Cluster-Agent</div>
+        <div class="arc-agent-role">Semantic keyword clustering</div>
+        <div class="arc-agent-tags">
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Tool</span>Embedding + pgvector
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Pattern</span>Vector-Similarity
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Check</span>LLM-as-a-Judge
+          </div>
+        </div>
+      </div>
+
+      <div class="arc-agent-card">
+        <div class="arc-agent-number">3</div>
+        <div class="arc-agent-name">Performance-Analyst</div>
+        <div class="arc-agent-role">Data analysis, hypothesis tests</div>
+        <div class="arc-agent-tags">
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Tool</span>SQL + statistics libraries
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Pattern</span>Hypothesis-Testing
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Check</span>Historical backtest
+          </div>
+        </div>
+      </div>
+
+      <div class="arc-agent-card">
+        <div class="arc-agent-number">4</div>
+        <div class="arc-agent-name">Copy-Agent</div>
+        <div class="arc-agent-role">Ad copy with brand voice</div>
+        <div class="arc-agent-tags">
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Tool</span>LLM + Brand-Prompt
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Pattern</span>Constrained Generation
+          </div>
+          <div class="arc-agent-tag">
+            <span class="arc-tag-label">Check</span>Judge + Human-Review
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arc-down-arrow" aria-hidden="true">↓</div>
+
+    <!-- COORDINATOR -->
+    <div class="arc-coordinator-row">
+      <div class="arc-coordinator">
+        <div class="arc-coord-header">
+          <div class="arc-coord-icon">5</div>
+          <div class="arc-coord-name">Strategy-Coordinator</div>
+        </div>
+        <div class="arc-coord-role">
+          Consolidates the four agent outputs into a coherent strategy recommendation.
+          Performs a self-check, identifies contradictions, requests revision and
+          documents confidence and open risks.
+        </div>
+        <div class="arc-coord-tags">
+          <span class="arc-coord-pill">Self-Reflection-Pattern</span>
+          <span class="arc-coord-pill">Python + LangGraph</span>
+          <span class="arc-coord-pill">Confidence-Scoring</span>
+          <span class="arc-coord-pill">Audit-Trail</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="arc-output-row">
+      <div class="arc-output-box">
+        Proposal
+        <small>
+          Cluster + budget + copy + risks, structured and auditable
+        </small>
+      </div>
+    </div>
+
+    <div class="arc-proposal-notice">
+      <strong>Architecture principle:</strong> proposal generation, not action
+      execution. Execution is a separate layer with a staged rollout
+      (Shadow → Sandbox → Limited Live → Autonomous).
+    </div>
+
+    <!-- DATA LAYER -->
+    <div class="arc-data-layer">
+      <div class="arc-data-header">Data foundation</div>
+      <div class="arc-data-items">
+        <div class="arc-data-item">
+          <span class="arc-data-dot" aria-hidden="true"></span>
+          PostgreSQL + pgvector
+        </div>
+        <div class="arc-data-item">
+          <span class="arc-data-dot" aria-hidden="true"></span>
+          Live DataForSEO data
+        </div>
+        <div class="arc-data-item">
+          <span class="arc-data-dot" aria-hidden="true"></span>
+          Synthetic performance data (90 days)
+        </div>
+        <div class="arc-data-item">
+          <span class="arc-data-dot" aria-hidden="true"></span>
+          n8n workflow orchestration
+        </div>
+      </div>
+    </div>
+
+    <div class="arc-legend">
+      <div class="arc-legend-item">
+        <span class="arc-legend-label">Tool</span> What the agent calls
+      </div>
+      <div class="arc-legend-item">
+        <span class="arc-legend-label">Pattern</span> Reasoning strategy
+      </div>
+      <div class="arc-legend-item">
+        <span class="arc-legend-label">Check</span> Validation method
+      </div>
+    </div>
+
+    <!-- BUILD VS. BUY -->
+    <section class="buildbuy">
+      <div class="buildbuy-eyebrow">Build versus buy as an architecture decision</div>
+      <p class="buildbuy-body">
+        The simulation/production mode switch and five-stage rollout model
+        (shadow analysis → shadow implementation → sandbox test → limited live
+        activation → autonomous operation) are not incidental. They are the
+        architectural answer to a leadership question: when should you buy a
+        finished solution, when should you build, and how much autonomy must a
+        system earn before moving real budget? Stages 1–2 are implemented (the
+        agent analyses, a human reviews); stages 3–5 are documented extension
+        points, not live operation. This risk-before-autonomy logic is transferable,
+        whether Augur itself or a third-party solution is used in the end.
+      </p>
+    </section>
+
+    <!-- PRODUCT-BESONDERHEITEN -->
+    <section class="features">
+      <div class="features-eyebrow">
+        Product characteristics: what differentiates it
+      </div>
+      <div class="features-grid">
+        {
+          features.map((f) => (
+            <div class="feature">
+              <div class="feature-title">{f.title}</div>
+              <div
+                class="feature-body"
+                set:html={f.body.replace(/`([^`]+)`/g, "<code>$1</code>")}
+              />
+            </div>
+          ))
+        }
+      </div>
+      <div class="features-source">
+        Sources: 15 ADRs · reflections · status.md · code patterns · audit.md ·
+        Maturity-v3
+      </div>
+    </section>
+  </section>
+
+  <!-- ============================ TAB 3: PROOF OF CONCEPT (Augur-Beweis) ============================ -->
+  <section data-panel="proof-of-concept" role="tabpanel" hidden>
+    <div class="aug-head">
+      <div class="aug-kicker">sem-agentic · architecture proof</div>
+      <h2 class="aug-h1">Augur</h2>
+      <div class="aug-sub">
+        A multi-agent system for SEM performance. Deterministic where the rules
+        are clear. An LLM only where it adds value.
+      </div>
+    </div>
+
+    <div class="aug-flow">
+      <!-- Input -->
+      <div class="aug-io">
+        <div class="aug-io-t">Brand brief + keyword set</div>
+        <div class="aug-io-s">Input to a complete coordinator run</div>
+      </div>
+      <div class="aug-varr" aria-hidden="true">↓</div>
+
+      <!-- Phase 1 -->
+      <div class="aug-band">
+        <div class="aug-phase-label">
+          Sourcing &amp; clustering
+          <span class="aug-tech">n8n · Ollama · pgvector</span>
+        </div>
+        <div class="aug-stages">
+          {
+            phase1Stages.map((s, i) => (
+              <>
+                {i > 0 && (
+                  <div class="aug-arr" aria-hidden="true">
+                    →
+                  </div>
+                )}
+                <div class="aug-stage">
+                  <div class="aug-s-n">{s.name}</div>
+                  <div class="aug-s-d">{s.desc}</div>
+                </div>
+              </>
+            ))
+          }
+        </div>
+      </div>
+      <div class="aug-varr" aria-hidden="true">↓</div>
+
+      <!-- Phase 2 -->
+      <div class="aug-band">
+        <div class="aug-phase-label">
+          Analysis &amp; strategy
+          <span class="aug-tech">LangGraph-Coordinator · Python</span>
+        </div>
+        <div class="aug-stages">
+          {
+            phase2Stages.map((s, i) => (
+              <>
+                {i > 0 && (
+                  <div class="aug-arr" aria-hidden="true">
+                    →
+                  </div>
+                )}
+                <div class="aug-stage">
+                  <div class="aug-s-n">{s.name}</div>
+                  <div class="aug-s-d">{s.desc}</div>
+                </div>
+              </>
+            ))
+          }
+        </div>
+        <div class="aug-loop">
+          ↺ Refine loop for unresolved issues · max. 2 iterations
+        </div>
+      </div>
+
+      <!-- Architecture core -->
+      <div class="aug-core">
+        <div class="aug-core-head">
+          <div class="aug-ct">The core: recommendation generation</div>
+          <div class="aug-cs">
+            The architectural boundary runs here: not between components, but
+            within the decision.
+          </div>
+        </div>
+        <div class="aug-core-grid">
+          <div class="aug-layer aug-layer-1">
+            <div class="aug-l-tag">Layer 1 · deterministic</div>
+            <div class="aug-l-h">Pre-flight rules → forced actions</div>
+            <div class="aug-l-b">
+              A versioned best-practice rule set evaluates the data snapshot and
+              enforces the cluster action. Auditable, reproducible, with no model involved.
+            </div>
+            <span class="aug-l-status">developed · active</span>
+          </div>
+          <div class="aug-split-num">
+            <div class="aug-big">94 %</div>
+            <div class="aug-big-l">
+              of system rules<br />secured deterministically
+            </div>
+            <div class="aug-vs">— vs —</div>
+            <div class="aug-small">6 %</div>
+            <div class="aug-small-l">
+              met by the 7B model<br />on its own
+            </div>
+          </div>
+          <div class="aug-layer aug-layer-2">
+            <div class="aug-l-tag">Layer 2 · LLM reasoning</div>
+            <div class="aug-l-h">Prioritisation &amp; cross-cluster narrative</div>
+            <div class="aug-l-b">
+              Intended to contribute judgement where no rule applies. Today it
+              contributes rationale only; independent reasoning remains subject to evidence.
+            </div>
+            <span class="aug-l-status">direction decided · not implemented</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="aug-varr" aria-hidden="true">↓</div>
+
+      <!-- Output -->
+      <div class="aug-io">
+        <div class="aug-io-t">Prioritised cluster actions</div>
+        <div class="aug-io-s">
+          Scale · Maintain · Investigate · Pause, with rationale, confidence,
+          impact &amp; full lineage
+        </div>
+      </div>
+
+      <!-- Footer cards -->
+      <div class="aug-foot">
+        <div class="aug-foot-card">
+          <div class="aug-fc-t">What differentiates the architecture</div>
+          {
+            archTraits.map((t) => (
+              <div class="aug-trait">
+                <div class="aug-tr-h">{t.title}</div>
+                <div class="aug-tr-d">{t.desc}</div>
+              </div>
+            ))
+          }
+        </div>
+        <div class="aug-foot-card">
+          <div class="aug-fc-t">Stack</div>
+          <div class="aug-fc-b chip-area">
+            {stackChips.map((c) => <span class="aug-chip">{c}</span>)}
+          </div>
+          <div class="aug-fc-t" style="margin-top:0.7rem;">Models</div>
+          <div class="aug-fc-b chip-area">
+            {
+              modelChips.map((m) => (
+                <span class={`aug-chip ${m.opt ? "aug-chip-opt" : ""}`}>
+                  {m.label}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="aug-stamp">
+      <span class="aug-dot" aria-hidden="true"></span>
+      Verified architecture state · 9 workflows · 7 coordinator stages · 17 clusters
+    </div>
+  </section>
+
+  <!-- ============================ TAB 4: BLUEPRINT (PDF.js Viewer) ============================ -->
+  <section data-panel="blueprint" role="tabpanel" hidden>
+    <div class="tab-sub">
+      Augur Architecture Blueprint, the complete document as a PDF rendered in
+      the browser with PDF.js. Loaded on the first tab change
+      (~19&nbsp;MB).
+    </div>
+
+    <div
+      class="pdf-viewer"
+      data-pdf-id="blueprint"
+      data-pdf-src="/pdf/augur-blueprint.pdf"
+    >
+      <div class="pdf-toolbar">
+        <div class="pdf-toolbar-group">
+          <button
+            class="pdf-btn"
+            data-pdf-action="prev"
+            type="button"
+            aria-label="Previous page">←</button
+          >
+          <span class="pdf-pagecount">
+            Page <span data-pdf-page>—</span> / <span data-pdf-pages>—</span>
+          </span>
+          <button
+            class="pdf-btn"
+            data-pdf-action="next"
+            type="button"
+            aria-label="Next page">→</button
+          >
+        </div>
+        <div class="pdf-toolbar-group">
+          <button
+            class="pdf-btn"
+            data-pdf-action="zoom-out"
+            type="button"
+            aria-label="Zoom out">−</button
+          >
+          <span class="pdf-zoom" data-pdf-zoom>Fit</span>
+          <button
+            class="pdf-btn"
+            data-pdf-action="zoom-in"
+            type="button"
+            aria-label="Zoom in">+</button
+          >
+          <button
+            class="pdf-btn pdf-btn-text"
+            data-pdf-action="zoom-fit"
+            type="button">↔ Fit</button
+          >
+        </div>
+        <div class="pdf-toolbar-group">
+          <a
+            class="pdf-btn pdf-btn-text"
+            href="/pdf/augur-blueprint.pdf"
+            download="AUGUR_Architecture_Blueprint.pdf">
+            ⬇ Download
+          </a>
+        </div>
+      </div>
+
+      <div class="pdf-canvas-wrap" data-pdf-canvas-wrap>
+        <div data-pdf-status class="pdf-status">
+          Loading PDF…
+        </div>
+        <canvas data-pdf-canvas class="pdf-canvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <div class="augur-tieback">
+    <div class="buildbuy-eyebrow">What this means for a marketing organisation</div>
+    <p>The performance analyst agent uses hypothesis testing against backtesting
+      data — the same logic as incrementality-led budget steering, but at campaign
+      rather than channel level. For a marketing organisation, this means Google
+      Ads campaigns can be steered in a structured, auditable way before an agent
+      is ever allowed to decide autonomously. The system can generate proposals.
+      Which proposal is adopted, and how much autonomy it earns, remains a guided human decision.</p>
+    <p class="augur-tieback-link">How I work with AI tools as a leader: <a href="/en/agentic-ai/how-i-work-with-ai">AI engineering practice →</a></p>
+  </div>
+</SubPageLayout>
+
+<script is:inline>
+  (function () {
+    const tabs = document.querySelectorAll("[data-tab]");
+    const panels = document.querySelectorAll("[data-panel]");
+
+    function activate(name) {
+      tabs.forEach(function (t) {
+        const active = t.getAttribute("data-tab") === name;
+        t.classList.toggle("tab-active", active);
+        t.setAttribute("aria-selected", String(active));
+      });
+      panels.forEach(function (p) {
+        p.hidden = p.getAttribute("data-panel") !== name;
+      });
+      if (history.replaceState) {
+        history.replaceState(null, "", "#" + name);
+      }
+    }
+
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () {
+        activate(t.getAttribute("data-tab"));
+      });
+    });
+
+    const hash = (window.location.hash || "").slice(1);
+    if (
+      hash === "dashboard" ||
+      hash === "architecture" ||
+      hash === "proof-of-concept" ||
+      hash === "blueprint"
+    ) {
+      activate(hash);
+    }
+  })();
+</script>
+
+<!-- PDF.js viewer — Multi-Instance support, lazy-loaded via dynamic import.
+     Jeder [data-pdf-id="..."] Container ist eine eigenständige Viewer-Instanz
+     mit eigenem State (currentPage, currentScale, doc, renderTask).            -->
+<script>
+  type Lib = typeof import("pdfjs-dist");
+
+  interface ViewerState {
+    id: string;
+    pdfUrl: string;
+    container: HTMLElement;
+    doc: import("pdfjs-dist").PDFDocumentProxy | null;
+    currentPage: number;
+    currentScale: number | "fit";
+    renderTask: import("pdfjs-dist").RenderTask | null;
+    initialised: boolean;
+    canvas: HTMLCanvasElement;
+    wrap: HTMLElement;
+    pageEl: Element | null;
+    pagesEl: Element | null;
+    zoomEl: Element | null;
+    statusEl: HTMLElement | null;
+  }
+
+  let pdfLib: Lib | null = null;
+  const viewers = new Map<string, ViewerState>();
+
+  async function ensurePdfLib(): Promise<Lib> {
+    if (pdfLib) return pdfLib;
+    const [lib, workerUrl] = await Promise.all([
+      import("pdfjs-dist"),
+      import("pdfjs-dist/build/pdf.worker.min.mjs?url"),
+    ]);
+    lib.GlobalWorkerOptions.workerSrc = workerUrl.default;
+    pdfLib = lib;
+    return lib;
+  }
+
+  function getViewer(container: HTMLElement): ViewerState | null {
+    const id = container.dataset.pdfId;
+    if (!id) return null;
+    const cached = viewers.get(id);
+    if (cached) return cached;
+    const canvas = container.querySelector<HTMLCanvasElement>(
+      "[data-pdf-canvas]",
+    );
+    const wrap = container.querySelector<HTMLElement>("[data-pdf-canvas-wrap]");
+    if (!canvas || !wrap) return null;
+    const state: ViewerState = {
+      id,
+      pdfUrl: container.dataset.pdfSrc || "",
+      container,
+      doc: null,
+      currentPage: 1,
+      currentScale: "fit",
+      renderTask: null,
+      initialised: false,
+      canvas,
+      wrap,
+      pageEl: container.querySelector("[data-pdf-page]"),
+      pagesEl: container.querySelector("[data-pdf-pages]"),
+      zoomEl: container.querySelector("[data-pdf-zoom]"),
+      statusEl: container.querySelector<HTMLElement>("[data-pdf-status]"),
+    };
+    viewers.set(id, state);
+    return state;
+  }
+
+  function updateMeta(v: ViewerState) {
+    if (v.pageEl) v.pageEl.textContent = String(v.currentPage);
+    if (v.pagesEl) v.pagesEl.textContent = v.doc ? String(v.doc.numPages) : "—";
+    if (v.zoomEl) {
+      v.zoomEl.textContent =
+        v.currentScale === "fit"
+          ? "Fit"
+          : Math.round((v.currentScale as number) * 100) + "%";
+    }
+  }
+
+  async function renderPage(v: ViewerState, pageNum: number) {
+    if (!v.doc) return;
+    if (v.renderTask) {
+      try {
+        v.renderTask.cancel();
+      } catch {}
+      v.renderTask = null;
+    }
+    const page = await v.doc.getPage(pageNum);
+    const containerWidth = Math.max(280, v.wrap.clientWidth - 16);
+    const baseViewport = page.getViewport({ scale: 1 });
+    const fitScale = containerWidth / baseViewport.width;
+    const finalScale =
+      v.currentScale === "fit" ? fitScale : (v.currentScale as number);
+    const viewport = page.getViewport({ scale: finalScale });
+    const dpr = window.devicePixelRatio || 1;
+    v.canvas.width = Math.floor(viewport.width * dpr);
+    v.canvas.height = Math.floor(viewport.height * dpr);
+    v.canvas.style.width = viewport.width + "px";
+    v.canvas.style.height = viewport.height + "px";
+    const ctx = v.canvas.getContext("2d");
+    if (!ctx) return;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    v.renderTask = page.render({ canvasContext: ctx, viewport });
+    try {
+      await v.renderTask.promise;
+    } catch {
+      // cancelled — fine
+    }
+    v.renderTask = null;
+    updateMeta(v);
+  }
+
+  async function initViewer(v: ViewerState) {
+    if (v.initialised) return;
+    v.initialised = true;
+    try {
+      const lib = await ensurePdfLib();
+      if (v.statusEl) v.statusEl.textContent = "Reading document…";
+      const task = lib.getDocument({
+        url: v.pdfUrl,
+        cMapUrl: "https://unpkg.com/pdfjs-dist@6.0.227/cmaps/",
+        cMapPacked: true,
+      });
+      v.doc = await task.promise;
+      if (v.statusEl) v.statusEl.style.display = "none";
+      v.currentScale = "fit";
+      v.currentPage = 1;
+      await renderPage(v, 1);
+    } catch (e) {
+      console.error(e);
+      if (v.statusEl) {
+        v.statusEl.textContent =
+          "PDF could not be loaded: " + (e as Error).message;
+      }
+      v.initialised = false;
+    }
+  }
+
+  function bindControls() {
+    document.querySelectorAll<HTMLElement>("[data-pdf-action]").forEach(
+      function (btn) {
+        btn.addEventListener("click", async function () {
+          const container = btn.closest<HTMLElement>("[data-pdf-id]");
+          if (!container) return;
+          const v = getViewer(container);
+          if (!v || !v.doc) return;
+          const action = btn.dataset.pdfAction;
+          if (action === "prev" && v.currentPage > 1) {
+            v.currentPage--;
+            await renderPage(v, v.currentPage);
+          } else if (
+            action === "next" &&
+            v.doc &&
+            v.currentPage < v.doc.numPages
+          ) {
+            v.currentPage++;
+            await renderPage(v, v.currentPage);
+          } else if (action === "zoom-in") {
+            const base =
+              v.currentScale === "fit" ? 1 : (v.currentScale as number);
+            v.currentScale = Math.min(3, base + 0.25);
+            await renderPage(v, v.currentPage);
+          } else if (action === "zoom-out") {
+            const base =
+              v.currentScale === "fit" ? 1 : (v.currentScale as number);
+            v.currentScale = Math.max(0.25, base - 0.25);
+            await renderPage(v, v.currentPage);
+          } else if (action === "zoom-fit") {
+            v.currentScale = "fit";
+            await renderPage(v, v.currentPage);
+          }
+        });
+      },
+    );
+  }
+
+  function maybeInitOnTab() {
+    document.querySelectorAll<HTMLElement>("[data-pdf-id]").forEach(
+      function (container) {
+        const panel = container.closest<HTMLElement>("[data-panel]");
+        if (!panel) return;
+        const panelName = panel.getAttribute("data-panel");
+        if (!panelName) return;
+        const tab = document.querySelector<HTMLElement>(
+          '[data-tab="' + panelName + '"]',
+        );
+        if (tab) {
+          tab.addEventListener("click", function () {
+            const v = getViewer(container);
+            if (v && !v.initialised) initViewer(v);
+          });
+        }
+        if (window.location.hash === "#" + panelName) {
+          const v = getViewer(container);
+          if (v) initViewer(v);
+        }
+      },
+    );
+  }
+
+  // Re-render alle Viewer in fit mode bei Resize
+  let resizeTimer: number | undefined;
+  window.addEventListener("resize", function () {
+    if (resizeTimer) window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(function () {
+      viewers.forEach(function (v) {
+        if (v.currentScale === "fit" && v.doc) {
+          renderPage(v, v.currentPage);
+        }
+      });
+    }, 200);
+  });
+
+  bindControls();
+  maybeInitOnTab();
+</script>
+
+<style>
+  /* Augur-Umbau (2026-06): Hero (Text links + Schaubild rechts, höhenbündig), Tie-back, Scorecard-Note */
+  .maturity-note { font-size: 0.85rem; color: #5B6B82; font-style: italic; margin: 0.6rem 0 0.2rem; max-width: 660px; }
+  .augur-tieback { max-width: 720px; margin: 2.5rem auto 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(30, 60, 100, .15); }
+  .augur-tieback p { font-size: 1.05rem; line-height: 1.7; color: #2A3D55; }
+  .augur-tieback-link { font-size: 0.95rem !important; margin-top: 0.75rem !important; }
+  .augur-tieback-link a { color: var(--color-amber); text-decoration: none; border-bottom: 1px dotted currentColor; }
+  .augur-tieback-link a:hover { border-bottom-style: solid; }
+  .buildbuy { max-width: 720px; margin: 2rem 0; padding: 1.25rem 1.5rem; background: rgba(180, 83, 9, 0.05); border-left: 3px solid var(--color-amber); border-radius: 0 6px 6px 0; }
+  .buildbuy-eyebrow { font-size: 12px; color: var(--color-amber); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; margin-bottom: 0.6rem; }
+  .buildbuy-body { font-size: 0.98rem; line-height: 1.7; color: #2A3D55; margin: 0; }
+  /* ============================== TABS ============================== */
+  .tabs {
+    display: flex;
+    gap: 0.25rem;
+    border-bottom: 1px solid var(--color-border);
+    margin: -0.5rem 0 2rem;
+    flex-wrap: wrap;
+  }
+  .tab {
+    border: none;
+    background: transparent;
+    padding: 0.75rem 1.25rem;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-ink-3);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .tab:hover {
+    color: var(--color-ink-2);
+  }
+  .tab-active {
+    color: var(--color-ink);
+    border-bottom-color: var(--color-amber);
+  }
+  .tab-sub {
+    font-size: 13px;
+    color: var(--color-ink-3);
+    margin-bottom: 1.25rem;
+    font-style: italic;
+  }
+
+  /* ============================== TAB 1 — DASHBOARD ============================== */
+  .dash-figure {
+    margin: 0 0 2rem;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 12px;
+    padding: 0.75rem;
+  }
+  .dash-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--color-border-soft);
+  }
+
+  /* ============================== TAB 1 — MAP ============================== */
+  .map {
+    margin-bottom: 3rem;
+  }
+  .map-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .panel {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 12px;
+    padding: 1rem;
+  }
+  .panel-title {
+    text-align: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border-soft);
+    font-size: 11px;
+    color: var(--color-ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+  .role-card {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 8px;
+    padding: 0.65rem 0.8rem;
+    margin-bottom: 0.7rem;
+    text-align: center;
+  }
+  .role-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-ink);
+    margin-bottom: 0.15rem;
+  }
+  .role-sub {
+    font-size: 10.5px;
+    color: var(--color-ink-3);
+  }
+  .duo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 0.7rem;
+  }
+  .duo {
+    border-radius: 6px;
+    padding: 0.55rem;
+  }
+  .duo-title {
+    font-size: 10.5px;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+    text-align: center;
+  }
+  .duo-title-lg {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 0.15rem;
+    text-align: center;
+  }
+  .duo-sub {
+    font-size: 10.5px;
+    text-align: center;
+    color: var(--color-ink-3);
+  }
+  .chip-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .chip {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    padding: 0.18rem 0.4rem;
+    font-size: 10.5px;
+    color: var(--color-body);
+  }
+  .chip-dashed {
+    border: 1px dashed #ba7517;
+    background: rgba(255, 255, 255, 0.7);
+  }
+  .claude-chat {
+    background: rgba(83, 74, 183, 0.08);
+    border: 1px solid rgba(83, 74, 183, 0.35);
+  }
+  .claude-chat .duo-title,
+  .claude-chat .duo-title-lg {
+    color: #2e2867;
+  }
+  .strategy-coord {
+    margin-bottom: 0.7rem;
+    padding: 0.7rem 0.85rem;
+  }
+  .claude-code {
+    background: rgba(55, 138, 221, 0.08);
+    border: 1px solid rgba(55, 138, 221, 0.4);
+  }
+  .claude-code .duo-title {
+    color: #042c53;
+  }
+  .n8n-cat {
+    background: rgba(218, 137, 100, 0.1);
+    border: 1px solid rgba(218, 137, 100, 0.5);
+  }
+  .n8n-cat .duo-title {
+    color: #4a1b0c;
+  }
+  .python-cat {
+    background: rgba(91, 138, 30, 0.1);
+    border: 1px solid rgba(91, 138, 30, 0.5);
+  }
+  .python-cat .duo-title {
+    color: #173404;
+  }
+  .container-cat {
+    background: rgba(200, 83, 106, 0.1);
+    border: 1px solid rgba(200, 83, 106, 0.45);
+  }
+  .container-cat .duo-title {
+    color: #5c0a1b;
+  }
+  .maturity {
+    background: rgba(218, 137, 100, 0.08);
+    border: 1px solid rgba(218, 137, 100, 0.4);
+    border-radius: 8px;
+    padding: 0.7rem;
+    margin-bottom: 0.7rem;
+  }
+  .maturity-head {
+    text-align: center;
+    margin-bottom: 0.55rem;
+  }
+  .maturity-title {
+    font-size: 10.5px;
+    font-weight: 500;
+    color: #4a1b0c;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .maturity-meta {
+    font-size: 9.5px;
+    color: var(--color-ink-3);
+    margin-top: 0.1rem;
+  }
+  .maturity-legend {
+    display: flex;
+    gap: 0.35rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.55rem;
+    font-size: 8.5px;
+    color: var(--color-ink-3);
+  }
+  .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+  .legend-box {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    font-size: 7px;
+    text-align: center;
+    line-height: 12px;
+    font-weight: 500;
+  }
+  .pillar {
+    margin-bottom: 0.35rem;
+  }
+  .pillar-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.15rem 0.3rem;
+    border-left: 2px solid;
+    margin-bottom: 0.15rem;
+    font-size: 9.5px;
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+  .pillar-head > span:first-child {
+    padding-left: 0.3rem;
+  }
+  .pillar-score {
+    font-size: 8.5px;
+    font-weight: 500;
+  }
+  .pillar-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.15rem;
+    padding-left: 0.4rem;
+  }
+  .pillar-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.08rem 0.3rem;
+    font-size: 9.5px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 3px;
+    color: var(--color-body);
+  }
+  .lvl-pill {
+    display: inline-block;
+    min-width: 14px;
+    height: 12px;
+    border-radius: 2px;
+    font-size: 8.5px;
+    text-align: center;
+    line-height: 12px;
+    font-weight: 500;
+    padding: 0 0.15rem;
+  }
+  .block {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 6px;
+    padding: 0.55rem 0.65rem;
+    margin-bottom: 0.45rem;
+  }
+  .block:last-child {
+    margin-bottom: 0;
+  }
+  .block-title {
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--color-ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
+  }
+  .block-body {
+    font-size: 10.5px;
+    color: var(--color-body);
+  }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  .tag {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 3px;
+    padding: 0.1rem 0.35rem;
+    font-size: 9.5px;
+    color: var(--color-body);
+  }
+  .mono {
+    font-family: "SF Mono", Consolas, Monaco, monospace;
+  }
+  .features {
+    margin-top: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+    margin-bottom: 2rem;
+  }
+  .features-eyebrow {
+    font-size: 12px;
+    color: var(--color-amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+  .feature {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--color-border-soft);
+    border-left: 3px solid #ba7517;
+    border-radius: 6px;
+    padding: 0.65rem 0.85rem;
+  }
+  .feature-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-ink);
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+  }
+  .feature-body {
+    font-size: 12px;
+    color: var(--color-body);
+    line-height: 1.5;
+  }
+  .feature-body code {
+    font-family: "SF Mono", Consolas, Monaco, monospace;
+    font-size: 11px;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 0.05rem 0.25rem;
+    border-radius: 3px;
+  }
+  .features-source {
+    margin-top: 1rem;
+    text-align: center;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--color-border-soft);
+    font-size: 11px;
+    color: var(--color-ink-3);
+  }
+
+  /* ============================== TAB 2 — AUGUR ARCHITEKTUR ============================== */
+  /* Lokale Akzent-Tokens — die "kategorische" Blau-Palette der Vorlage
+     bleibt für Layer 1 (deterministisch); Amber kommt aus dem Site-System
+     und ersetzt das Vorlage-Orange für Layer 2 (LLM-reasoning).            */
+  .aug-flow {
+    --aug-blau-tief: #3c5567;
+    --aug-blau-mittel: #5e7e96;
+    --aug-blau: #91afcb;
+  }
+  .aug-head {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .aug-kicker {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-amber);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .aug-h1 {
+    font-size: 32px;
+    font-weight: 500;
+    margin: 0 0 0.5rem;
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+  }
+  .aug-sub {
+    font-size: 14px;
+    color: var(--color-ink-2);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  .aug-io {
+    background: #3c5567;
+    color: #edf3f7;
+    text-align: center;
+    border-radius: 12px;
+    padding: 0.85rem 1.2rem;
+  }
+  .aug-io-t {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .aug-io-s {
+    font-size: 11px;
+    color: #b7cad6;
+    margin-top: 0.15rem;
+  }
+  .aug-varr {
+    text-align: center;
+    color: var(--color-border);
+    font-size: 15px;
+    line-height: 1;
+    margin: 0.3rem 0;
+  }
+  .aug-band {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 14px;
+    padding: 1rem 1.2rem;
+  }
+  .aug-phase-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .aug-tech {
+    font-size: 9.5px;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: var(--color-ink-2);
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 20px;
+    padding: 0.05rem 0.55rem;
+  }
+  .aug-stages {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 0;
+  }
+  .aug-stage {
+    flex: 1 1 0;
+    min-width: 92px;
+    background: rgba(244, 248, 251, 0.85);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 9px;
+    padding: 0.55rem 0.5rem;
+    text-align: center;
+  }
+  .aug-s-n {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--aug-blau-tief);
+  }
+  .aug-s-d {
+    font-size: 9.5px;
+    color: var(--color-ink-3);
+    margin-top: 0.15rem;
+    line-height: 1.3;
+  }
+  .aug-arr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-border);
+    font-size: 15px;
+    padding: 0 0.3rem;
+    flex: 0 0 auto;
+  }
+  .aug-loop {
+    font-size: 10px;
+    color: var(--color-amber);
+    font-weight: 500;
+    margin-top: 0.55rem;
+    text-align: right;
+    font-style: italic;
+  }
+  /* Core — Herzstück */
+  .aug-core {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1.5px solid var(--color-border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin: 0.7rem 0;
+  }
+  .aug-core-head {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .aug-ct {
+    font-size: 17px;
+    color: var(--color-ink);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .aug-cs {
+    font-size: 11.5px;
+    color: var(--color-ink-2);
+    margin-top: 0.2rem;
+    line-height: 1.5;
+  }
+  .aug-core-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0.9rem;
+    align-items: stretch;
+  }
+  .aug-layer {
+    border-radius: 12px;
+    padding: 0.9rem;
+  }
+  .aug-layer-1 {
+    background: rgba(145, 175, 203, 0.18);
+    border: 1.5px solid var(--aug-blau);
+  }
+  .aug-layer-2 {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1.5px dashed var(--color-amber);
+  }
+  .aug-l-tag {
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+  .aug-layer-1 .aug-l-tag {
+    color: var(--aug-blau-tief);
+  }
+  .aug-layer-2 .aug-l-tag {
+    color: var(--color-amber);
+  }
+  .aug-l-h {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: 0.3rem;
+  }
+  .aug-l-b {
+    font-size: 11px;
+    color: var(--color-ink-2);
+    line-height: 1.45;
+  }
+  .aug-l-status {
+    font-size: 9.5px;
+    margin-top: 0.5rem;
+    font-weight: 600;
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    border-radius: 12px;
+  }
+  .aug-layer-1 .aug-l-status {
+    background: var(--aug-blau);
+    color: #fff;
+  }
+  .aug-layer-2 .aug-l-status {
+    background: rgba(233, 195, 163, 0.6);
+    color: #7a3f12;
+  }
+  .aug-split-num {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 0.3rem;
+    min-width: 88px;
+  }
+  .aug-big {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--color-amber);
+    line-height: 1;
+  }
+  .aug-big-l {
+    font-size: 10px;
+    color: var(--color-ink-3);
+    margin-top: 0.25rem;
+    line-height: 1.3;
+  }
+  .aug-vs {
+    font-size: 10px;
+    color: var(--color-border);
+    margin: 0.4rem 0;
+  }
+  .aug-small {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--aug-blau-mittel);
+    line-height: 1;
+  }
+  .aug-small-l {
+    font-size: 9px;
+    color: var(--color-ink-3);
+    margin-top: 0.2rem;
+    line-height: 1.3;
+  }
+  /* Foot */
+  .aug-foot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 0.9rem;
+  }
+  .aug-foot-card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+  }
+  .aug-fc-t {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+    font-weight: 600;
+    margin-bottom: 0.45rem;
+  }
+  .aug-fc-b {
+    font-size: 11px;
+    color: var(--color-ink);
+    line-height: 1.5;
+  }
+  .aug-trait {
+    margin-bottom: 0.55rem;
+  }
+  .aug-trait:last-child {
+    margin-bottom: 0;
+  }
+  .aug-tr-h {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--aug-blau-tief);
+  }
+  .aug-tr-d {
+    font-size: 10.5px;
+    color: var(--color-ink-2);
+    line-height: 1.4;
+  }
+  .aug-chip {
+    display: inline-block;
+    font-size: 10px;
+    color: var(--aug-blau-tief);
+    background: rgba(145, 175, 203, 0.2);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 6px;
+    padding: 0.12rem 0.45rem;
+    margin: 0.12rem 0.18rem 0.12rem 0;
+  }
+  .aug-chip-opt {
+    border-style: dashed;
+    border-color: rgba(180, 83, 9, 0.5);
+    color: var(--color-amber);
+    background: rgba(255, 255, 255, 0.5);
+  }
+  .chip-area {
+    margin-bottom: 0.1rem;
+  }
+  .aug-stamp {
+    text-align: center;
+    font-size: 10px;
+    color: var(--color-ink-3);
+    margin-top: 1rem;
+  }
+  .aug-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-amber);
+    margin-right: 0.4rem;
+    vertical-align: middle;
+    animation: aug-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes aug-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
+
+  /* ============================== TAB 2 — MULTI-AGENT ARCHITEKTUR ============================== */
+  .arc-top {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  .arc-header {
+    text-align: center;
+  }
+  .arc-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 11px;
+    color: var(--color-amber);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+  }
+  .arc-live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-amber);
+    box-shadow: 0 0 0 0 rgba(180, 83, 9, 0.6);
+    animation: arc-pulse 2s infinite;
+  }
+  @keyframes arc-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(180, 83, 9, 0.6);
+    }
+    70% {
+      box-shadow: 0 0 0 8px rgba(180, 83, 9, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(180, 83, 9, 0);
+    }
+  }
+  .arc-h1 {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.4rem;
+    color: var(--color-ink);
+  }
+  .arc-subtitle {
+    font-size: 14px;
+    color: var(--color-ink-2);
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+  .arc-mode-switch {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 11px;
+    color: var(--color-ink-2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .arc-mode-toggle {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 20px;
+    padding: 3px;
+    font-size: 10px;
+  }
+  .arc-mode-toggle span {
+    padding: 3px 9px;
+    border-radius: 14px;
+    color: var(--color-ink-3);
+  }
+  .arc-mode-toggle .arc-active {
+    background: var(--color-amber);
+    color: white;
+  }
+
+  /* INPUT */
+  .arc-input-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.1rem;
+  }
+  .arc-input-box {
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 10px;
+    padding: 0.65rem 1.1rem;
+    font-size: 13px;
+    color: var(--color-body);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .arc-input-box::before {
+    content: "▶";
+    color: var(--color-amber);
+    font-size: 10px;
+  }
+  .arc-input-box strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+  .arc-down-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 24px;
+    color: rgba(30, 60, 100, 0.3);
+    font-size: 18px;
+    margin-bottom: 1rem;
+  }
+
+  /* AGENT GRID */
+  .arc-agent-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.85rem;
+    margin-bottom: 1.3rem;
+  }
+  .arc-agent-card {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 12px;
+    padding: 0.95rem 0.85rem;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(30, 60, 100, 0.06);
+  }
+  .arc-agent-number {
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #1e3a5f;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .arc-agent-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin: 0.15rem 0 0.3rem;
+  }
+  .arc-agent-role {
+    font-size: 11px;
+    color: var(--color-ink-3);
+    margin-bottom: 0.7rem;
+    line-height: 1.35;
+  }
+  .arc-agent-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid rgba(30, 60, 100, 0.1);
+  }
+  .arc-agent-tag {
+    font-size: 10.5px;
+    color: var(--color-body);
+    line-height: 1.35;
+    display: flex;
+    gap: 0.4rem;
+  }
+  .arc-tag-label {
+    font-size: 9px;
+    color: var(--color-amber);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    flex-shrink: 0;
+    padding-top: 1px;
+    min-width: 38px;
+  }
+
+  /* COORDINATOR */
+  .arc-coordinator-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.3rem;
+  }
+  .arc-coordinator {
+    background: linear-gradient(
+      145deg,
+      rgba(180, 83, 9, 0.1),
+      rgba(180, 83, 9, 0.04)
+    );
+    border: 1.5px solid rgba(180, 83, 9, 0.32);
+    border-radius: 14px;
+    padding: 1.05rem 1.4rem;
+    width: 100%;
+    max-width: 580px;
+    box-shadow: 0 6px 22px -4px rgba(180, 83, 9, 0.12);
+  }
+  .arc-coord-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.4rem;
+  }
+  .arc-coord-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--color-amber);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .arc-coord-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .arc-coord-role {
+    font-size: 12px;
+    color: var(--color-ink-2);
+    margin-bottom: 0.8rem;
+    line-height: 1.45;
+  }
+  .arc-coord-tags {
+    display: flex;
+    gap: 0.5rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid rgba(180, 83, 9, 0.18);
+    flex-wrap: wrap;
+  }
+  .arc-coord-pill {
+    font-size: 10.5px;
+    color: var(--color-body);
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(180, 83, 9, 0.2);
+    padding: 0.18rem 0.55rem;
+    border-radius: 12px;
+  }
+
+  /* OUTPUT */
+  .arc-output-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .arc-output-box {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1.5px solid var(--color-border);
+    border-radius: 10px;
+    padding: 0.8rem 1.25rem;
+    font-size: 13px;
+    color: var(--color-ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-weight: 500;
+  }
+  .arc-output-box::before {
+    content: "◆";
+    color: var(--color-amber);
+    font-size: 10px;
+  }
+  .arc-output-box small {
+    color: var(--color-ink-3);
+    font-size: 11px;
+    font-weight: 400;
+    margin-left: 0.4rem;
+  }
+  .arc-proposal-notice {
+    text-align: center;
+    font-size: 11.5px;
+    color: var(--color-ink-3);
+    margin-bottom: 1.75rem;
+    font-style: italic;
+  }
+  .arc-proposal-notice strong {
+    color: var(--color-body);
+    font-style: normal;
+  }
+
+  /* DATA LAYER */
+  .arc-data-layer {
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px dashed var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+  }
+  .arc-data-header {
+    font-size: 10px;
+    color: var(--color-ink-3);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.65rem;
+  }
+  .arc-data-items {
+    display: flex;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .arc-data-item {
+    font-size: 12.5px;
+    color: var(--color-body);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .arc-data-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #1e3a5f;
+  }
+
+  /* LEGEND */
+  .arc-legend {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 11px;
+    color: var(--color-ink-3);
+  }
+  .arc-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .arc-legend-label {
+    font-size: 9px;
+    color: var(--color-amber);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* ============================== TAB 1 — REFLEXIONEN ============================== */
+  .refl-head {
+    margin-bottom: 2rem;
+    max-width: 760px;
+  }
+  .refl-eyebrow {
+    font-size: 12px;
+    color: var(--color-amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .refl-h2 {
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    margin: 0 0 1rem;
+    line-height: 1.15;
+  }
+  .refl-lead {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-ink-2);
+    margin: 0;
+  }
+  /* 4+3 Grid: 4 Cards in Reihe 1, 3 Cards in Reihe 2 (Cards 5–7 spannen
+     den Platz, der vorher von Card 8 wäre — sieht ausbalanciert aus).   */
+  .refl-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .refl-card {
+    grid-column: span 3;
+    position: relative;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(30, 60, 100, 0.16);
+    border-radius: 10px;
+    padding: 1.5rem 1.25rem 1.25rem;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .refl-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -8px rgba(30, 60, 100, 0.18);
+    border-color: rgba(180, 83, 9, 0.35);
+  }
+  /* Reihe 2: 3 Cards spannen je 4 Spalten — alle 12 Cols voll ausgenutzt */
+  .refl-card:nth-child(n + 5) {
+    grid-column: span 4;
+  }
+  .refl-num {
+    font-size: 11px;
+    color: var(--color-amber);
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    margin-bottom: 0.65rem;
+  }
+  .refl-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-ink);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    margin: 0 0 0.6rem;
+  }
+  .refl-body {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-ink-2);
+    margin: 0;
+  }
+  .refl-cta-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  .refl-cta {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.55rem;
+    padding: 0.75rem 1.4rem;
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(30, 60, 100, 0.16);
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-ink);
+    text-decoration: none;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.2s ease;
+  }
+  .refl-cta:hover {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(180, 83, 9, 0.4);
+    transform: translateY(-1px);
+  }
+  .refl-cta-icon {
+    color: var(--color-amber);
+    font-weight: 600;
+  }
+  .refl-cta-meta {
+    color: var(--color-ink-3);
+    font-size: 12.5px;
+    font-weight: 400;
+  }
+
+  /* Tablet: 2-Spalten für die Reflexions-Cards */
+  @media (max-width: 1024px) {
+    .refl-card,
+    .refl-card:nth-child(n + 5) {
+      grid-column: span 6;
+    }
+  }
+
+  /* ============================== TAB 4 — PDF BLUEPRINT VIEWER ============================== */
+  .pdf-viewer {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 12px;
+    padding: 0.85rem;
+    box-shadow: 0 4px 14px rgba(30, 60, 100, 0.06);
+  }
+  .pdf-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+    justify-content: space-between;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+  .pdf-toolbar-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .pdf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 0.55rem;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-ink-2);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+      background 0.15s ease,
+      border-color 0.15s ease,
+      color 0.15s ease;
+  }
+  .pdf-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    border-color: var(--color-border);
+    color: var(--color-ink);
+  }
+  .pdf-btn-text {
+    font-size: 12.5px;
+    padding: 0 0.7rem;
+  }
+  .pdf-pagecount,
+  .pdf-zoom {
+    font-size: 12.5px;
+    color: var(--color-ink-2);
+    min-width: 90px;
+    text-align: center;
+  }
+  .pdf-zoom {
+    min-width: 60px;
+  }
+  .pdf-pagecount span {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+  .pdf-canvas-wrap {
+    position: relative;
+    background: rgba(30, 60, 100, 0.04);
+    border-radius: 8px;
+    padding: 0.85rem;
+    min-height: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: auto;
+    max-height: 80vh;
+  }
+  .pdf-canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    background: white;
+    box-shadow: 0 6px 20px rgba(30, 60, 100, 0.12);
+    border-radius: 2px;
+  }
+  .pdf-status {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 13px;
+    color: var(--color-ink-2);
+    font-style: italic;
+    text-align: center;
+    padding: 0.5rem 1rem;
+  }
+
+  /* ============================== Mobile ============================== */
+  @media (max-width: 768px) {
+    .map-grid {
+      grid-template-columns: 1fr;
+    }
+    .duo-grid {
+      grid-template-columns: 1fr;
+    }
+    .pillar-items {
+      grid-template-columns: 1fr;
+    }
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+    .aug-core-grid {
+      grid-template-columns: 1fr;
+    }
+    .aug-split-num {
+      flex-direction: row;
+      gap: 1rem;
+      min-width: 0;
+      justify-content: center;
+    }
+    .aug-vs {
+      margin: 0 0.4rem;
+    }
+    .aug-foot {
+      grid-template-columns: 1fr;
+    }
+    .aug-h1 {
+      font-size: 26px;
+    }
+    /* Multi-Agent Architektur Mobile */
+    .arc-mode-switch {
+      position: static;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .arc-agent-grid {
+      grid-template-columns: 1fr;
+      gap: 0.7rem;
+    }
+    .arc-data-items {
+      gap: 0.85rem;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .arc-h1 {
+      font-size: 22px;
+    }
+    /* PDF viewer mobile */
+    .pdf-toolbar {
+      justify-content: center;
+    }
+    .pdf-toolbar-group {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .pdf-canvas-wrap {
+      padding: 0.5rem;
+      max-height: 70vh;
+    }
+    /* Reflexionen mobile */
+    .refl-card,
+    .refl-card:nth-child(n + 5) {
+      grid-column: span 12;
+    }
+    .refl-h2 {
+      font-size: 24px;
+    }
+    .refl-title br {
+      display: none;
+    }
+  }
+
+  /* Redaktionelle Oberflaeche: offene Flaechen statt Dashboard-Kartenraster. */
+  .dash-figure,
+  .panel,
+  .feature,
+  .aug-band,
+  .aug-core,
+  .aug-foot-card,
+  .arc-agent-card,
+  .arc-coordinator,
+  .arc-data-layer,
+  .pdf-viewer {
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .dash-figure,
+  .panel,
+  .aug-band,
+  .aug-core,
+  .aug-foot-card,
+  .arc-agent-card,
+  .pdf-viewer {
+    background: rgba(255, 255, 255, .42);
+  }
+  .dash-figure {
+    padding: 1rem;
+    border-top: 2px solid rgba(30, 60, 100, .34);
+  }
+  .dash-figure img { border-radius: 0; }
+  .features {
+    margin-top: 3rem;
+    padding-top: 3rem;
+  }
+  .feature {
+    min-height: 9rem;
+    padding: 1.1rem 1.2rem;
+    border-left-width: 2px;
+  }
+  .feature-title { font-size: 14px; }
+  .feature-body { font-size: 12.5px; line-height: 1.6; }
+  .arc-agent-grid { gap: 1rem; }
+  .arc-agent-card {
+    padding: 1.2rem 1rem 1rem;
+    border-top: 2px solid rgba(30, 60, 100, .34);
+  }
+  .arc-agent-number {
+    top: 0;
+    left: 0;
+    border-radius: 0;
+    background: var(--color-ink-2);
+  }
+  .arc-coordinator {
+    border-left: 3px solid var(--color-amber);
+  }
+  .arc-coord-icon,
+  .arc-mode-toggle,
+  .arc-mode-toggle span,
+  .arc-coord-pill,
+  .arc-output-box,
+  .arc-input-box {
+    border-radius: 2px;
+  }
+</style>

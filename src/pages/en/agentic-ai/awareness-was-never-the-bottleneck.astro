@@ -1,0 +1,49 @@
+---
+import SubPageLayout from "../../../layouts/SubPageLayout.astro";
+import NoteArticle from "../../../components/NoteArticle.astro";
+
+const title = "Awareness was never the bottleneck";
+const excerpt = "Agentic AI feels like the early days of the internet. No one can yet say with confidence what these systems will ultimately become. One question remains the same across every wave: how to get the show on the road.";
+---
+
+<SubPageLayout
+  title={`${title} | Karsten Uhlig`}
+  description={excerpt}
+  language="en"
+>
+  <NoteArticle
+    title={title}
+    excerpt={excerpt}
+    date={new Date("2026-06-10")}
+    eyebrow="Agentic AI"
+    backHref="/en/agentic-ai"
+    backLabel="Agentic AI"
+    language="en"
+  >
+    <p>
+      To me, agentic AI feels like the early days of the internet. New technologies first imitate the familiar form of their predecessors before finding their own. Product catalogues were burned onto CD-ROMs before anyone had fully thought through the online shop. Early e-book readers imitated turning paper pages. No one can yet say with confidence what agentic AI will ultimately become.
+    </p>
+    <p>
+      One question remains the same across every technology wave: how to get the show on the road. How do you bring it into operation?
+    </p>
+    <p>
+      This is not a new pattern, only a new subject. Awareness was never the bottleneck. Every organisation has known for years that it needs AI. What remains scarce is the ability to move from insight to measurable impact.
+    </p>
+
+    <h2>From what to how</h2>
+    <p>
+      I have closed this gap before, repeatedly, in an operation with €1.6 billion in revenue. The convictions were already there: “Data is the next oil”, “Mobile First”. Awareness in abundance. That did not deliver anything by itself. Delivery came through a multi-year build: a data platform, an app, a digital marketing setup that reached positive ROI through consistent testing and rollout, and an organisation that was able to carry it afterwards.
+    </p>
+    <p>
+      The point is not the tool from back then. The point is the pattern. The actual work lies between “we should use this” and “it delivers”. The people who can do that work, rather than merely describe it, will shape this phase.
+    </p>
+
+    <h2>What AI engineering teaches about implementation</h2>
+    <p>
+      Anyone who has developed agentic AI systems knows how wide the gap is between a demo and operation. Impressing with a demo is easy. Bringing an agentic system into operation requires something unspectacular: reliability. The demo runs because it works once. Operation requires the same result to arrive tomorrow, the ability to measure whether it is getting worse, and a person who did not develop the system to be able to use it and take responsibility for it.
+    </p>
+    <p>
+      That is the work between demo and impact. Across every technology wave, this is where the outcome is decided.
+    </p>
+  </NoteArticle>
+</SubPageLayout>

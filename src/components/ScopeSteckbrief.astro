@@ -17,6 +17,7 @@ interface Props {
   };
   titleAs?: "h1" | "h2"; // Heading-Level des Titels (Default h2)
   editorial?: boolean;
+  language?: "de" | "en";
 }
 
 const {
@@ -27,16 +28,32 @@ const {
   geltungsbereich,
   titleAs = "h2",
   editorial = false,
+  language = "de",
 } = Astro.props;
 const TitleTag = titleAs;
 const { belegt, nichtBelegt } = geltungsbereich;
 const hasVisual = Astro.slots.has("visual");
+const labels = language === "en"
+  ? {
+      aria: "Scope summary",
+      proven: "Evidence-backed",
+      notProven: "Not evidenced · out of scope",
+      provenSentence: "Evidence-backed:",
+      notProvenSentence: "Not evidenced:",
+    }
+  : {
+      aria: "Scope-Steckbrief",
+      proven: "Belegt",
+      notProven: "Nicht belegt · ausgeklammert",
+      provenSentence: "Belegt ist:",
+      notProvenSentence: "Nicht belegt ist:",
+    };
 ---
 
-<section class:list={["scope", { "scope--editorial": editorial }]} aria-label="Scope-Steckbrief">
+<section class:list={["scope", { "scope--editorial": editorial }]} aria-label={labels.aria}>
   <p class="sr-only">
-    Scope-Steckbrief {title}. {thesis} Belegt ist: {belegt.join(". ")}.
-    Nicht belegt ist: {nichtBelegt.join(". ")}.
+    {labels.aria} {title}. {thesis} {labels.provenSentence} {belegt.join(". ")}.
+    {labels.notProvenSentence} {nichtBelegt.join(". ")}.
   </p>
 
   <header class:list={["scope-head", { "has-visual": hasVisual }]}>
@@ -70,7 +87,7 @@ const hasVisual = Astro.slots.has("visual");
 
   <div class="scope-geltung">
     <div class="geltung-col">
-      <h3 class="geltung-head">Belegt</h3>
+      <h3 class="geltung-head">{labels.proven}</h3>
       <ul class="geltung-list">
         {
           belegt.map((x) => (
@@ -83,7 +100,7 @@ const hasVisual = Astro.slots.has("visual");
       </ul>
     </div>
     <div class="geltung-col">
-      <h3 class="geltung-head">Nicht belegt · ausgeklammert</h3>
+      <h3 class="geltung-head">{labels.notProven}</h3>
       <ul class="geltung-list">
         {
           nichtBelegt.map((x) => (

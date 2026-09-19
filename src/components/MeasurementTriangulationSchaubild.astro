@@ -2,6 +2,42 @@
 // signal-steering Übersicht: synthetische Daten → 3 Methoden (sie widersprechen
 // sich) → ein belastbares Signal → Budget-Steuerung.
 // Grün = selbst entwickelt · Grau = Marktlösungen & Rohdaten.
+interface Props {
+  language?: "de" | "en";
+}
+
+const { language = "de" } = Astro.props;
+const copy = language === "en"
+  ? {
+      data: "Data (synthetic)",
+      steering: "Budget steering",
+      nextEuro: "allocates the next euro",
+      methods: "Three methods measure the same data",
+      platform: "Platform (last click)",
+      fast: "fast, overestimates",
+      geo: "Geo experiment",
+      lift: "true lift, robust",
+      mmm: "Marketing mix model (MMM)",
+      longTerm: "long-term impact",
+      result: "Result",
+      contradiction: "They contradict each other. The robust signal comes from geo experiments plus the model.",
+      marketHeading: "Market solutions cover only one method each",
+      bidding: "Platform & bidding",
+      geoPlural: "Geo experiments",
+      tools: "MMM tools",
+      blended: "Blended SaaS (Northbeam, Triple Whale) combines two methods but remains a black box: no access to your own steering logic.",
+      built: "Green = developed in-house",
+      market: "Grey = market solutions & raw data",
+    }
+  : {
+      data: "Daten (synthetisch)", steering: "Budget-Steuerung", nextEuro: "lenkt den nächsten Euro",
+      methods: "Drei Methoden messen dieselben Daten", platform: "Plattform (Last-Click)", fast: "schnell, überschätzt",
+      geo: "Geo-Experiment", lift: "echter Lift, belastbar", mmm: "Mix-Modell (MMM)", longTerm: "Langzeit-Wirkung",
+      result: "Ergebnis", contradiction: "Sie widersprechen sich. Das belastbare Signal kommt aus Geo-Experiment + Modell.",
+      marketHeading: "Marktlösungen decken je nur eine Methode", bidding: "Plattform & Bidding", geoPlural: "Geo-Experimente",
+      tools: "MMM-Tools", blended: "Blended-SaaS (Northbeam, Triple Whale) mischt zwei Methoden, ist aber selbst Blackbox: kein Zugriff auf das eigene Steering.",
+      built: "Grün = selbst entwickelt", market: "Grau = Marktlösungen & Rohdaten",
+    };
 ---
 
 <div class="mts-wrap">
@@ -9,31 +45,31 @@
     <!-- TOP: Daten → Budget-Steuerung (Lernschleife) -->
     <div class="mts-top">
       <div class="mts-box built">
-        <div class="mts-box-t">Daten (synthetisch)</div>
+        <div class="mts-box-t">{copy.data}</div>
         <div class="mts-box-s">PMax + Meta · BigQuery</div>
       </div>
       <div class="mts-conn" aria-hidden="true">→</div>
       <div class="mts-box built">
-        <div class="mts-box-t">Budget-Steuerung</div>
-        <div class="mts-box-s">lenkt den nächsten Euro</div>
+        <div class="mts-box-t">{copy.steering}</div>
+        <div class="mts-box-s">{copy.nextEuro}</div>
       </div>
     </div>
 
     <!-- TRIANGULATION -->
     <div class="mts-panel">
-      <div class="mts-panel-h">Drei Methoden messen dieselben Daten</div>
+      <div class="mts-panel-h">{copy.methods}</div>
       <div class="mts-lenses">
         <div class="mts-lens built">
-          <div class="ml-t">Plattform (Last-Click)</div>
-          <div class="ml-s">schnell, überschätzt</div>
+          <div class="ml-t">{copy.platform}</div>
+          <div class="ml-s">{copy.fast}</div>
         </div>
         <div class="mts-lens built">
-          <div class="ml-t">Geo-Experiment</div>
-          <div class="ml-s">echter Lift, belastbar</div>
+          <div class="ml-t">{copy.geo}</div>
+          <div class="ml-s">{copy.lift}</div>
         </div>
         <div class="mts-lens built">
-          <div class="ml-t">Mix-Modell (MMM)</div>
-          <div class="ml-s">Langzeit-Wirkung</div>
+          <div class="ml-t">{copy.mmm}</div>
+          <div class="ml-s">{copy.longTerm}</div>
         </div>
       </div>
     </div>
@@ -41,42 +77,38 @@
     <!-- ERGEBNIS der drei Methoden (kein gebautes Element) -->
     <div class="mts-down" aria-hidden="true">↓</div>
     <div class="mts-result">
-      <span class="mts-result-tag">Ergebnis</span>
+      <span class="mts-result-tag">{copy.result}</span>
       <span class="mts-result-text">
-        Sie widersprechen sich. Das belastbare Signal kommt aus Geo-Experiment +
-        Modell.
+        {copy.contradiction}
       </span>
     </div>
 
     <!-- MARKT -->
     <div class="mts-market">
-      <div class="mts-market-h">Marktlösungen decken je nur eine Methode</div>
+      <div class="mts-market-h">{copy.marketHeading}</div>
       <div class="mts-market-grid">
         <div class="mts-mcard">
-          <div class="mm-t">Plattform &amp; Bidding</div>
+          <div class="mm-t">{copy.bidding}</div>
           <div class="mm-s">Smart Bidding · PMax<br />Meta · Skai · Marin</div>
         </div>
         <div class="mts-mcard">
-          <div class="mm-t">Geo-Experimente</div>
+          <div class="mm-t">{copy.geoPlural}</div>
           <div class="mm-s">GeoLift · Measured<br />Haus · INCRMNTAL</div>
         </div>
         <div class="mts-mcard">
-          <div class="mm-t">MMM-Tools</div>
+          <div class="mm-t">{copy.tools}</div>
           <div class="mm-s">Meridian · Robyn<br />Recast · Mutinex</div>
         </div>
       </div>
       <div class="mts-blended">
-        Blended-SaaS (Northbeam, Triple Whale) mischt zwei Methoden, ist aber
-        selbst Blackbox: kein Zugriff auf das eigene Steering.
+        {copy.blended}
       </div>
     </div>
 
     <div class="mts-legend">
-      <span class="lg-swatch lg-built" aria-hidden="true"></span> Grün = selbst
-      entwickelt
+      <span class="lg-swatch lg-built" aria-hidden="true"></span> {copy.built}
       <span class="lg-sep" aria-hidden="true"></span>
-      <span class="lg-swatch lg-grey" aria-hidden="true"></span> Grau =
-      Marktlösungen &amp; Rohdaten
+      <span class="lg-swatch lg-grey" aria-hidden="true"></span> {copy.market}
     </div>
   </div>
 </div>

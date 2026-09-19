@@ -2,6 +2,34 @@
 // Augur-Schaubild: Google SEM Workflow in 5 Schritten + AI-Layer.
 // Übernommen 1:1 aus dem ursprünglichen SemAgenticTeaser-Schaubild,
 // jetzt eigenständig nutzbar auf der sem-agentic-Detailseite.
+interface Props {
+  language?: "de" | "en";
+}
+
+const { language = "de" } = Astro.props;
+const copy = language === "en"
+  ? {
+      label: "Google SEM · workflow in 5 steps",
+      steps: [
+        "1. Keyword research",
+        "2. Campaign structure",
+        "3. Ad copy",
+        "4. Bidding strategy",
+        "5. Optimisation & analysis",
+      ],
+      description: "An agentic system that analyses this workflow and recommends optimisations.",
+    }
+  : {
+      label: "Google SEM · Workflow in 5 Schritten",
+      steps: [
+        "1. Keyword-Recherche",
+        "2. Kampagnenstruktur",
+        "3. Anzeigentexte",
+        "4. Gebotsstrategie",
+        "5. Optimierung & Analyse",
+      ],
+      description: "Ein agentisches System, das in diesem Workflow analysiert und Optimierungen vorschlägt.",
+    };
 ---
 
 <div class="awf-wrap">
@@ -17,24 +45,24 @@
         <circle cx="11" cy="11" r="7"></circle>
         <line x1="16" y1="16" x2="21" y2="21"></line>
       </svg>
-      Google SEM · Workflow in 5 Schritten
+      {copy.label}
     </div>
 
     <div class="awf-steps">
       <div class="awf-step">
-        <div class="awf-step-label">1. Keyword-<br />Recherche</div>
+        <div class="awf-step-label">{copy.steps[0]}</div>
       </div>
       <div class="awf-step">
-        <div class="awf-step-label">2. Kampagnen-<br />struktur</div>
+        <div class="awf-step-label">{copy.steps[1]}</div>
       </div>
       <div class="awf-step">
-        <div class="awf-step-label">3. Anzeigen-<br />texte</div>
+        <div class="awf-step-label">{copy.steps[2]}</div>
       </div>
       <div class="awf-step">
-        <div class="awf-step-label">4. Gebots-<br />strategie</div>
+        <div class="awf-step-label">{copy.steps[3]}</div>
       </div>
       <div class="awf-step">
-        <div class="awf-step-label">5. Optimierung<br />&amp; Analyse</div>
+        <div class="awf-step-label">{copy.steps[4]}</div>
       </div>
     </div>
 
@@ -69,8 +97,7 @@
       </div>
       <div class="awf-ai-body">
         <div class="awf-ai-text-sub">
-          Ein agentisches System, das in diesem Workflow analysiert und
-          Optimierungen vorschlägt.
+          {copy.description}
         </div>
         <div class="awf-ai-badges">
           <span class="awf-badge">Scale</span>

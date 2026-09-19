@@ -1,0 +1,520 @@
+---
+import SubPageLayout from "../../../layouts/SubPageLayout.astro";
+import ScopeSteckbrief from "../../../components/ScopeSteckbrief.astro";
+import MeasurementTriangulationSchaubild from "../../../components/MeasurementTriangulationSchaubild.astro";
+
+// PMax — iROAS je Messmethode. Wahrheit (2,50) ist die Referenzlinie, kein Balken.
+const SCALE = 5.5;
+const TRUTH = 2.5;
+const bars = [
+  {
+    label: "Last-Click",
+    sub: "+101%",
+    value: 5.02,
+    tone: "warn",
+    tip: "The advertising platform's figure. It attributes revenue to the preceding last click, including revenue that would have happened anyway.",
+  },
+  {
+    label: "Geo experiment",
+    sub: "true lift",
+    value: 2.35,
+    tone: "ok",
+    tip: "Advertising is switched on in test regions and off in comparable regions. The difference is the true incremental revenue.",
+  },
+  {
+    label: "MMM",
+    sub: "R̂ ≈ 1.01 ✓",
+    value: 2.33,
+    tone: "ok",
+    tip: "Marketing mix model: infers each channel's contribution from the longer-term pattern of spend and revenue. Calibrated here against the geo test.",
+  },
+];
+
+// Scope-Steckbrief — Inhalte (am Kanon ausgerichtet: keine Em-Dashes, kein „Bau")
+const scopeFelder = [
+  {
+    label: "Objective",
+    essence:
+      "Which figure do you trust for a Google Ads budget decision when three methods contradict each other?",
+    detail:
+      "The test case became a triangulated measurement and steering system: platform attribution, geo incrementality and marketing mix modelling applied to the same data. The objective was not a finished product, but a robust answer to a real budget-steering question.",
+  },
+  {
+    label: "Approach",
+    essence:
+      "Triangulating measurement on synthetic data with known, fixed ground truth.",
+    detail:
+      "A representative measurement and steering problem was reconstructed: platform attribution, geo incrementality and MMM on the same data; steering against incremental value rather than the platform figure; plus detection of faulty signals. The synthetic dataset is methodologically necessary. Only a known true value makes it possible to test whether the methods capture it. No real, third-party or live spend data.",
+  },
+  {
+    label: "Why build a prototype",
+    essence:
+      "A domain expert can now go much further than only a few years ago — as a means to an end, not an end in itself.",
+    detail:
+      "Developed with agentic AI: data generation, MMM (PyMC-Marketing), geo incrementality (DiD/GeoLift), allocation logic and interface were created within weeks, without a development team. Not a production-ready system, but far enough to test the steering question on a running model. The decision about which methods to triangulate and how to read the signal remained with the human.",
+  },
+];
+const scopeGeltung = {
+  belegt: [
+    "Triangulated measurement and steering system developed as a prototype",
+    "Testable against known ground truth (whether the methods capture the value)",
+    "Use cases: assembling methods, hypothesis tests and anomaly detection",
+  ],
+  nichtBelegt: [
+    "Production readiness",
+    "Functioning at scale on real data",
+    "Validation on real spend (deliberately out of scope)",
+  ],
+};
+---
+
+<SubPageLayout
+  editorial
+  variant="agentic"
+  title="signal-steering · Karsten Uhlig"
+  description="Three established methods measure the same advertising channel and produce three answers. A prototype that uses known ground truth to test which one can be trusted."
+  language="en"
+>
+  <!-- SCOPE-STECKBRIEF (Header; Projektziel + Scope gehen hier auf) -->
+  <ScopeSteckbrief
+    editorial
+    language="en"
+    eyebrow="Commercial · Marketing Measurement"
+    title="signal-steering"
+    titleAs="h1"
+    thesis="When three measurement methods assess the same Google Ads channel differently, that is a steering question, not a numbers question."
+    felder={scopeFelder}
+    geltungsbereich={scopeGeltung}
+  />
+
+  <div class="signal-story">
+  <!-- ÜBERSICHT ZUM START -->
+  <section class="overview">
+    <MeasurementTriangulationSchaubild language="en" />
+    <p class="overview-cap">
+      The entire system in one view. Below it, the decisive points step by step.
+    </p>
+  </section>
+
+  <!-- 1 · DAS PROBLEM -->
+  <section class="sec">
+    <div class="sec-eyebrow">The problem</div>
+    <h2 class="sec-h2">The most common figure lies</h2>
+    <p class="sec-lead">
+      Every budget decision depends on one figure: what did this channel truly add?
+      The platform's standard answer is <span
+        class="term"
+        tabindex="0"
+        data-tip="The advertising platform's figure. It attributes revenue to the preceding last click, including revenue that would have happened anyway."
+        >Last-Click</span
+      >. For PMax, it reports an <span
+        class="term"
+        tabindex="0"
+        data-tip="Incremental return on ad spend: euros of revenue per euro of spend that were genuinely incremental."
+        >iROAS</span
+      > of <strong>5.02</strong>. The true figure is <strong>2.50</strong>. The
+      platform claims revenue that would have arrived without it. Following that
+      figure doubles down on a channel worth half as much.
+    </p>
+  </section>
+
+  <!-- 2 · DER BEWEIS (Balken) -->
+  <section class="chart-block">
+    <div class="chart-title">PMax · the same channel, three measurements</div>
+    <div class="chart-sub">
+      The dashed line is the fixed ground truth. Last click reaches far above it;
+      the experimentally grounded methods capture it.
+    </div>
+
+    <div
+      class="bars"
+      role="img"
+      aria-label="PMax iROAS: ground truth 2.50. Last click 5.02, geo experiment 2.35, MMM 2.33."
+    >
+      <div class="truth-line" style={`bottom:${(TRUTH / SCALE) * 100}%;`}>
+        <span class="truth-tag">Ground truth 2.50</span>
+      </div>
+      {
+        bars.map((b) => (
+          <div class="bar-col">
+            <div class="bar-val">{b.value.toFixed(2)}</div>
+            <div
+              class={`bar bar-${b.tone}`}
+              style={`height:${(b.value / SCALE) * 100}%;`}
+            />
+            <div class="bar-label">
+              <span class="term" tabindex="0" data-tip={b.tip}>
+                {b.label}
+              </span>
+              <span class="bar-sub">{b.sub}</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- 3 · DER CLOU -->
+  <section class="sec">
+    <div class="sec-eyebrow">The actual point</div>
+    <h2 class="sec-h2">How can 2.50 be “ground truth”?</h2>
+    <p class="sec-body">
+      In reality, no one knows the true value. What a channel added is a counterfactual
+      that never took place. Measurement therefore always happens in the dark. The
+      prototype creates a world in which the truth is fixed: synthetic data with a
+      deliberately defined effect. This makes measurement testable for the first time.
+    </p>
+    <p class="sec-kicker">
+      This is not circular. The methods are not given the answer; they must infer it
+      blindly from the data. The world is fixed, not the result. As in a flight
+      simulator: the physics are fixed, but the pilot still has to fly. A method that
+      misses 2.50 here will miss it in reality as well, only without anyone noticing.
+    </p>
+  </section>
+
+  <!-- 4 · REIFE / URTEIL -->
+  <section class="sec">
+    <div class="sec-eyebrow">Maturity instead of a polished pass</div>
+    <h2 class="sec-h2">A good system knows when it does not know</h2>
+    <p class="sec-body">
+      There was no experiment for calibrating Meta. The model then estimates 10.05,
+      clearly wide of the mark. Rather than concealing this, it reports the blind spot
+      itself through its own convergence diagnostic (<span
+        class="term"
+        tabindex="0"
+        data-tip="The model's convergence diagnostic. Close to 1.0 means a reliable estimate; clearly above it means the value could not be determined cleanly."
+        >R-hat</span
+      > ✗). The steering implication is concrete: the next geo test belongs on Meta.
+    </p>
+  </section>
+
+  <!-- FUSSZEILE: Stack + Logos -->
+  <section class="footer-block">
+    <div class="stack-tech">
+      Modelled channels: Google PMax · Meta. Stack: Python · PyMC-Marketing + nutpie
+      · Geo incrementality (DiD / GeoLift methodology) · BigQuery Sandbox ·
+      Streamlit interface <em>(work in progress)</em>.
+    </div>
+  </section>
+
+  <div class="tieback">
+    <p>
+      The point is not the model. It is the decision behind it: which figure do you
+      trust when three methods contradict each other, and where should the next budget
+      go? The prototype makes this decision visible and testable before real money depends on it.
+    </p>
+    <p class="tieback-link">The corresponding steering case: <a href="/en/agentic-ai/sem-agentic">sem-agentic — Google Ads SEM campaign steering →</a></p>
+  </div>
+  </div>
+</SubPageLayout>
+
+<!-- Robuster JS-Tooltip (CSS-Pseudo wurde geclippt) -->
+<script is:inline>
+  (function () {
+    var tip = document.createElement("div");
+    tip.className = "js-tooltip";
+    tip.setAttribute("role", "tooltip");
+    document.body.appendChild(tip);
+
+    function show(el) {
+      var txt = el.getAttribute("data-tip");
+      if (!txt) return;
+      tip.textContent = txt;
+      tip.classList.add("visible");
+      var r = el.getBoundingClientRect();
+      var tr = tip.getBoundingClientRect();
+      var left = r.left + r.width / 2 - tr.width / 2;
+      left = Math.max(8, Math.min(left, window.innerWidth - tr.width - 8));
+      var top = r.top - tr.height - 10;
+      if (top < 8) top = r.bottom + 10;
+      tip.style.left = left + "px";
+      tip.style.top = top + "px";
+    }
+    function hide() {
+      tip.classList.remove("visible");
+    }
+
+    document.querySelectorAll("[data-tip]").forEach(function (el) {
+      el.addEventListener("mouseenter", function () {
+        show(el);
+      });
+      el.addEventListener("mouseleave", hide);
+      el.addEventListener("focus", function () {
+        show(el);
+      });
+      el.addEventListener("blur", hide);
+    });
+    window.addEventListener("scroll", hide, true);
+  })();
+</script>
+
+<style is:global>
+  .js-tooltip {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    max-width: 260px;
+    background: #0f1729;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 0.55rem 0.7rem;
+    border-radius: 7px;
+    box-shadow: 0 6px 20px rgba(15, 23, 41, 0.28);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.12s ease;
+  }
+  .js-tooltip.visible {
+    opacity: 1;
+  }
+</style>
+
+<style>
+  .signal-story {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 4rem clamp(1.5rem, 3.2vw, 3.5rem);
+    align-items: start;
+  }
+  /* ---------- Übersicht ---------- */
+  .overview {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 0 0 4rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .overview-cap {
+    max-width: 760px;
+    margin: 1rem 0 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-ink-3);
+    text-align: left;
+    font-style: italic;
+  }
+
+  /* ---------- Generische Sektion ---------- */
+  .sec {
+    max-width: none;
+    margin: 0;
+  }
+  .signal-story > .sec:nth-of-type(2) { grid-column: 1 / 6; }
+  .signal-story > .sec:nth-of-type(4) { grid-column: 1 / 7; }
+  .signal-story > .sec:nth-of-type(5) { grid-column: 7 / 13; }
+  .sec-eyebrow {
+    font-size: 12px;
+    color: var(--color-amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.7rem;
+  }
+  .sec-h2 {
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    margin: 0 0 1rem;
+  }
+  .sec-lead {
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: var(--color-ink);
+    margin: 0;
+  }
+  .sec-body {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-body);
+    margin: 0 0 1rem;
+  }
+  .sec-lead strong,
+  .sec-body strong {
+    font-weight: 600;
+  }
+  .sec-kicker {
+    background: rgba(180, 83, 9, 0.06);
+    border-left: 3px solid var(--color-amber);
+    border-radius: 0;
+    padding: 0.95rem 1.15rem;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  /* ---------- Jargon-Term (Unterstreichung; Tooltip via JS) ---------- */
+  .term {
+    border-bottom: 1px dotted var(--color-ink-3);
+    cursor: help;
+    outline: none;
+  }
+  .term:focus {
+    border-bottom-color: var(--color-amber);
+  }
+
+  /* ---------- Balken ---------- */
+  .chart-block {
+    grid-column: 7 / 13;
+    max-width: none;
+    margin: 0;
+    padding: 1.5rem 1.75rem 1.75rem;
+    background: rgba(255, 255, 255, .38);
+    border: 1px solid var(--color-border-soft);
+    border-top: 2px solid rgba(30, 60, 100, .34);
+  }
+  .chart-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: 0.3rem;
+  }
+  .chart-sub {
+    font-size: 13px;
+    color: var(--color-ink-3);
+    line-height: 1.55;
+    margin-bottom: 1.75rem;
+  }
+  .bars {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: end;
+    height: 240px;
+    padding: 0 1rem;
+    border-bottom: 2px solid var(--color-border);
+  }
+  .truth-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 1px dashed rgba(15, 23, 41, 0.5);
+    pointer-events: none;
+  }
+  .truth-tag {
+    position: absolute;
+    right: 0;
+    top: -9px;
+    background: var(--color-ink);
+    color: #fff;
+    font-size: 9.5px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+  .bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+  }
+  .bar-val {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: 0.3rem;
+  }
+  .bar {
+    width: 100%;
+    max-width: 96px;
+    border-radius: 0;
+  }
+  .bar-warn {
+    background: linear-gradient(180deg, #d98a3d, #c5742a);
+  }
+  .bar-ok {
+    background: linear-gradient(180deg, #38a06a, #2e8b57);
+  }
+  .bar-label {
+    margin-top: 0.55rem;
+    font-size: 11.5px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-ink-2);
+    line-height: 1.3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .bar-sub {
+    font-size: 10px;
+    color: var(--color-ink-3);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  /* ---------- Fußzeile / Stack ---------- */
+  .footer-block {
+    grid-column: 1 / -1;
+    max-width: none;
+    margin: 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .stack-tech {
+    font-size: 13px;
+    color: var(--color-ink-3);
+    line-height: 1.6;
+  }
+  .stack-tech em {
+    font-style: italic;
+    opacity: 0.85;
+  }
+
+  /* ---------- Tie-back ---------- */
+  .tieback {
+    grid-column: 1 / -1;
+    max-width: none;
+    margin: 0 0 1.5rem;
+    padding: 2rem 0 0 2rem;
+    border-top: 1px solid var(--color-border);
+    border-left: 2px solid var(--color-amber);
+  }
+  .tieback p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+    margin: 0;
+  }
+  .tieback-link {
+    font-size: 0.95rem !important;
+    margin-top: 0.75rem !important;
+  }
+  .tieback-link a {
+    color: var(--color-amber);
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+  }
+  .tieback-link a:hover {
+    border-bottom-style: solid;
+  }
+
+  @media (max-width: 600px) {
+    .signal-story {
+      display: block;
+    }
+    .overview,
+    .sec,
+    .chart-block,
+    .footer-block,
+    .tieback {
+      margin-bottom: 2.75rem;
+    }
+    .overview { padding-bottom: 2.75rem; }
+    .chart-block { padding: 1.2rem 1rem 1.4rem; }
+    .tieback { padding-left: 1.25rem; }
+    .sec-h2 {
+      font-size: 22px;
+    }
+    .bars {
+      height: 200px;
+      gap: 0.75rem;
+      padding: 0 0.25rem;
+    }
+  }
+</style>

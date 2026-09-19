@@ -29,6 +29,9 @@ const landingTensions = [
     relevant: "06 · 07 · 08",
   },
 ];
+
+// Enable only after the approved compact English master is present.
+const hasEnglishCompactSteeringVisual = false;
 ---
 
 <SubPageLayout
@@ -38,11 +41,24 @@ const landingTensions = [
   description="Commercial Management and Digital Commerce: steering growth, Customer Value and profitability as one coherent system."
 >
   <article class="commercial-landing">
-    <header class="landing-hero">
-      <div class="hero-eyebrow">Commercial Management / Digital Commerce</div>
-      <h1>Commercial Management</h1>
-      <p class="hero-subheadline">Steering growth, Customer Value and profitability as one coherent system.</p>
-      <p class="hero-copy">Sustainable growth does not come from individual channels or interventions. It depends on how offer, demand, customer base, Customer Journey, markets, resources and organisation work together. For me, Commercial Management means understanding these mechanics, setting priorities and bringing them into the business across functional boundaries.</p>
+    <header class:list={["landing-hero", { "landing-hero--with-visual": hasEnglishCompactSteeringVisual }]}>
+      <div class="hero-copy-column">
+        <div class="hero-eyebrow">Commercial Management / Digital Commerce</div>
+        <h1>Commercial Management</h1>
+        <p class="hero-subheadline">Steering growth, Customer Value and profitability as one coherent system.</p>
+        <p class="hero-copy">Sustainable growth does not come from individual channels or interventions. It depends on how offer, demand, customer base, Customer Journey, markets, resources and organisation work together. For me, Commercial Management means understanding these mechanics, setting priorities and bringing them into the business across functional boundaries.</p>
+      </div>
+      {hasEnglishCompactSteeringVisual && (
+        <figure class="hero-visual">
+          <img
+            src="/images/commercial-management/steering-digital-commerce-effectively-compact.png"
+            alt="Compact model for steering digital commerce effectively: from commercial ambition through economic logic and commercial mechanics to execution, learning and impact."
+            width="1536"
+            height="1024"
+            decoding="async"
+          />
+        </figure>
+      )}
     </header>
 
     <CommercialFieldExplorer language="en" />
@@ -61,11 +77,22 @@ const landingTensions = [
 <style>
   .commercial-landing { min-width: 0; }
   .landing-hero { position: relative; padding: 2rem 0 4rem; border-bottom: 1px solid var(--color-border-soft); }
+  .landing-hero--with-visual { display: grid; grid-template-columns: minmax(0, .78fr) minmax(420px, 1.22fr); gap: clamp(2.5rem, 5vw, 6rem); align-items: center; }
   .hero-eyebrow { display: flex; gap: .85rem; align-items: center; margin-bottom: 1.1rem; color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
   .hero-eyebrow::before { content: ""; width: 2.25rem; height: 2px; flex: 0 0 auto; background: var(--color-amber); }
   h1 { max-width: 800px; margin: 0; color: var(--color-ink); font-size: clamp(46px, 5.4vw, 64px); font-weight: 500; letter-spacing: -.045em; line-height: 1; }
   .hero-subheadline { max-width: 800px; margin: 1.35rem 0 0; color: var(--color-ink); font-size: clamp(22px, 2.35vw, 30px); font-weight: 500; letter-spacing: -.025em; line-height: 1.25; }
   .hero-copy { max-width: 800px; margin: 1.35rem 0 0; color: var(--color-body); font-size: 15.5px; line-height: 1.72; }
+  .landing-hero--with-visual .hero-subheadline { max-width: 540px; }
+  .landing-hero--with-visual .hero-copy { max-width: 535px; }
+  .hero-visual { min-width: 0; margin: 0; }
+  .hero-visual img { display: block; width: 100%; height: auto; max-height: 610px; object-fit: contain; object-position: center; }
+
+  @media (max-width: 980px) {
+    .landing-hero--with-visual { grid-template-columns: 1fr; gap: 2.25rem; }
+    .hero-copy-column { max-width: 720px; }
+    .hero-visual { width: min(100%, 760px); margin: 0 auto; }
+  }
 
   @media (max-width: 760px) {
     .landing-hero { padding: 1rem 0 3rem; }

@@ -9,7 +9,7 @@ export default defineConfig({
   site: "https://karstenuhlig.de",
   integrations: [
     sitemap({
-      // Geprüfte veröffentlichte Seiten, Stand 07.09.2026 (Seitenbestand-Bereinigung: /ueber-mich entfernt).
+      // Geprüfte veröffentlichte Seiten, Stand 19.09.2026 (Seitenbestand-Bereinigung: /ueber-mich entfernt).
       // Neue Seiten erst nach Inhaltsprüfung ergänzen; Stubs bleiben ausgeschlossen.
       // Collection-Entwürfe (draft: true) erzeugen bereits keine Detailroute.
       filter: (page) => {
@@ -40,6 +40,12 @@ export default defineConfig({
           "/en/digital-product-customer-experience",
           "/en/data-ai-digital-product",
           "/en/leadership",
+          "/en/performance-marketing-steering",
+          "/en/agentic-ai",
+          "/en/agentic-ai/awareness-was-never-the-bottleneck",
+          "/en/agentic-ai/sem-agentic",
+          "/en/agentic-ai/signal-steering",
+          "/en/agentic-ai/how-i-work-with-ai",
         ].includes(path);
       },
     }),

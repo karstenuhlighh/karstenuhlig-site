@@ -1,0 +1,886 @@
+---
+const visuals = [
+  {
+    id: "case-transition",
+    eyebrow: "Starting Point → Target State",
+    title: "From fragmented steering to an integrated commercial system.",
+    description: "The starting point was separated data, channel-specific processes and historically evolved planning logic. The objective was not an isolated data project, but a shared decision foundation for marketing, CRM, analytics and activation.",
+    src: "/images/data-ai-decisioning-case/en/01-system-impact-diagram.png",
+    alt: "Marketing decisioning transformation: from fragmented steering through an integrated commercial system to measurable impact.",
+    width: 1774,
+    height: 887,
+  },
+  {
+    id: "case-foundation",
+    eyebrow: "DATA FOUNDATION",
+    title: "From separated signals to a shared decision foundation.",
+    description: "The foundation was a platform logic that brought together customer signals, responses, transactions and behavioural data. The objective was not better transparency alone, but a robust foundation for operational marketing decisions.",
+    src: "/images/data-ai-decisioning-case/en/02-data-foundation-core.png",
+    alt: "Data foundation: sources from the online shop, app, stores, CRM, marketing and other systems feed a central customer data platform and become usable for marketing, CRM, offers, analytics and operational systems.",
+    width: 1672,
+    height: 941,
+  },
+  {
+    id: "case-scale",
+    eyebrow: "ORGANISATION + SCALE",
+    title: "Develop scalable capability from use cases.",
+    description: "Individual use cases gradually became a robust marketing decisioning capability: with clear roles, shared governance, an integrated data and technology foundation and repeatable mechanisms for international scaling.",
+    src: "/images/data-ai-decisioning-case/en/03-organisation-scale.png",
+    alt: "Organisation and scale: use cases and experience are combined in a scaling marketing organisation with governance, marketing operations, data and BI, CRM and personalisation, plus MarTech and engineering, then rolled out internationally.",
+    width: 1774,
+    height: 887,
+  },
+  {
+    id: "case-integrated-decisioning",
+    eyebrow: "Integrated Decisioning",
+    title: "Connect data, decision logic and activation along the journey.",
+    description: "Data and models become concrete decision support for marketing, CRM, media steering and offer logic. The decisive factor is the seamless connection of insight, decision and activation in a closed learning loop.",
+    src: "/images/data-ai-decisioning-case/en/04-integrated-decisioning.png",
+    alt: "Integrated decisioning: data, marketing, product management and engineering connect with predictive models and activation channels along the customer journey.",
+    width: 1672,
+    height: 941,
+  },
+  {
+    id: "case-impact",
+    eyebrow: "Commercial Impact · Selection",
+    title: "Examples of measurable business impact.",
+    description: "The capability operated across different decision areas. The following examples illustrate how data, decisioning and operational activation produced concrete economic contribution.",
+    src: "/images/data-ai-decisioning-case/en/05-commercial-impact.png",
+    alt: "Selection of measurable business impact: a double-digit million reduction in advertising costs at stable revenue, more than 40 per cent fewer untargeted voucher displays, measurable demand contribution and evidenced advertising cost savings.",
+    width: 1536,
+    height: 1024,
+  },
+  {
+    id: "case-learning",
+    eyebrow: "REALITY & LEARNING",
+    title: "What made the difference.",
+    description: "The real leverage emerged where data, decision logic, organisation and activation were designed together. Individual use cases became an effective, scalable capability.",
+    src: "/images/data-ai-decisioning-case/en/06-reality-learning.png",
+    alt: "Reality and learning: use cases create traction; people, skills, ownership and a scalable platform connect insight, action, measurement and learning.",
+    width: 1536,
+    height: 1024,
+  },
+];
+---
+
+<section class="case-study" aria-labelledby="marketing-decisioning-case-title">
+  <header class="case-opening">
+    <div class="case-kicker">Building the Marketing Decisioning Capability at bonprix</div>
+    <h2 id="marketing-decisioning-case-title">From fragmented marketing steering to a marketing decisioning capability</h2>
+    <p>The transformation connected data, measurement, decision logic and organisation so that marketing could be steered as an integrated commercial system.</p>
+    <div class="case-story-entry">
+      <button
+        class="case-story-trigger"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="marketing-decisioning-story-dialog"
+        aria-expanded="false"
+      >
+        Read the full case story <span aria-hidden="true">→</span>
+      </button>
+      <span class="case-story-meta">7 chapters · approx. 6 min read</span>
+    </div>
+  </header>
+
+  <div class="case-transition-viewport" tabindex="0" aria-label="Transition from starting point to target state — horizontally scrollable on small screens">
+    <div class="case-transition-crop">
+      <img
+        src="/images/data-ai-decisioning-case/en/marketing-decisioning-transition.png"
+        alt="Transition from fragmented data, channel-specific processes and historically evolved planning to a shared data foundation, measurement, decision logic and integrated commercial steering."
+        width="2172"
+        height="724"
+        decoding="async"
+      />
+    </div>
+  </div>
+
+  <div class="case-bridge" aria-labelledby="case-bridge-title">
+    <div class="case-kicker">From target state to implementation</div>
+    <h3 id="case-bridge-title">Three building blocks turned it into a scalable marketing decisioning capability.</h3>
+    <p><a href="#case-foundation-title">Foundation, scale and decisioning in detail <span aria-hidden="true">↓</span></a></p>
+  </div>
+
+  <div class="case-overview-viewport" tabindex="0" aria-label="Overview of the marketing decisioning transformation — horizontally scrollable on small screens">
+    <img
+      src="/images/data-ai-decisioning-case/en/marketing-decisioning-journey.png"
+      alt="Marketing decisioning transformation overview: from a fragmented starting point through data foundation, organisation and scale, and integrated decisioning to selected business impact."
+      width="1448"
+      height="1086"
+      decoding="async"
+    />
+  </div>
+
+  <div class="case-sequence">
+    {visuals.map((visual) => (
+      <section class="case-section" aria-labelledby={`${visual.id}-title`}>
+        <header class="case-section-heading">
+          <div class="case-kicker">{visual.eyebrow}</div>
+          {visual.description ? (
+            <div class="case-section-copy">
+              <h3 id={`${visual.id}-title`}>{visual.title}</h3>
+              <p>{visual.description}</p>
+            </div>
+          ) : (
+            <h3 id={`${visual.id}-title`}>{visual.title}</h3>
+          )}
+        </header>
+
+        <p class="mobile-zoom-hint">Scroll horizontally or tap to open the visual at full size.</p>
+        <div class="visual-viewport" tabindex="0" aria-label={`${visual.title} — horizontally scrollable on small screens`}>
+          <a class:list={[
+            "visual-link",
+            visual.id === "case-foundation" && "visual-link--foundation-trimmed",
+            visual.id === "case-scale" && "visual-link--scale-trimmed",
+            visual.id === "case-integrated-decisioning" && "visual-link--decisioning-trimmed",
+            visual.id === "case-impact" && "visual-link--impact-trimmed",
+            visual.id === "case-learning" && "visual-link--trimmed",
+          ]} href={visual.src} target="_blank" rel="noopener" aria-label={`${visual.title} Open at full size`}>
+            <img
+              src={visual.src}
+              alt={visual.alt}
+              width={visual.width}
+              height={visual.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+        </div>
+      </section>
+    ))}
+  </div>
+</section>
+
+<dialog
+  class="story-dialog"
+  id="marketing-decisioning-story-dialog"
+  aria-labelledby="marketing-decisioning-story-title"
+  aria-describedby="marketing-decisioning-story-subtitle"
+>
+  <article class="story-layer">
+    <header class="story-layer-topline">
+      <span>FULL CASE STORY · MARKETING DECISIONING</span>
+      <button class="story-close" type="button" aria-label="Close full case story">×</button>
+    </header>
+
+    <div class="story-content">
+      <header class="story-masthead">
+        <h2 id="marketing-decisioning-story-title">Building the Marketing Decisioning Capability</h2>
+        <p id="marketing-decisioning-story-subtitle">From fragmented, historically evolved marketing steering to integrated, data- and AI-enabled steering</p>
+      </header>
+
+      <div class="story-intro">
+        <p>Starting point: marketing decisions were constrained by fragmented data, channel-specific processes and historically evolved planning. Customer-level steering, cross-channel optimisation and systematic impact measurement were therefore possible only to a limited extent.</p>
+        <p>The objective was not another analytics tool, but to build the data, decisioning and organisational capabilities required to steer marketing as an integrated commercial system.</p>
+      </div>
+
+      <section class="story-chapter" aria-labelledby="story-chapter-1">
+        <h3 id="story-chapter-1"><span>1.</span> From separated data to operational decisions | 2015</h3>
+        <p>I first initiated a structured maturity assessment to bring fragmented initiatives into a shared target state for data-driven marketing, set the direction for a common marketing data foundation and prioritise the first use cases.</p>
+        <p>We then established a central platform that brought together customer master and transaction data, email response data and web clickstream behaviour for the first time. Daily integration routines replaced separated data views.</p>
+        <p>On this foundation, data fed directly into operational steering:</p>
+        <ul>
+          <li>automated, more granular CRM segmentation;</li>
+          <li>real-time scoring for use cases such as basket abandonment;</li>
+          <li>dynamic customer journey attribution to improve channel steering;</li>
+          <li>use of online engagement signals in offline customer scoring, improving catalogue allocation and reducing inefficient print spend.</li>
+        </ul>
+        <p>The decisive shift was that customer data increasingly changed operational marketing decisions instead of merely explaining past performance.</p>
+      </section>
+
+      <section class="story-chapter" aria-labelledby="story-chapter-2">
+        <h3 id="story-chapter-2"><span>2.</span> Organisational anchoring and international scaling | 2016–2017</h3>
+        <p>I established the organisational conditions for anchoring data-driven marketing as a sustainable capability rather than a series of isolated projects.</p>
+        <p>This included specialised roles such as campaign interaction managers, data managers and BI analysts, plus a BI capability setup connecting business, analytics and technology.</p>
+        <p>At the same time, I drove international scaling:</p>
+        <ul>
+          <li>rollout of the marketing platform and campaign management capabilities to further markets;</li>
+          <li>direct API connections between the data foundation and performance marketing tools for bidding, retargeting and keyword management;</li>
+          <li>extension of customer data capture to mobile and app interactions.</li>
+        </ul>
+        <p>The programme thus developed from local use cases into a repeatable international marketing capability.</p>
+      </section>
+
+      <section class="story-chapter" aria-labelledby="story-chapter-3">
+        <h3 id="story-chapter-3"><span>3.</span> Real-time marketing and predictive decisioning | from 2018/2019</h3>
+        <p>As VP, I drove the next stage: from data-driven marketing towards increasingly predictive, automated and near-real-time customer steering.</p>
+        <p>We migrated the marketing data platform to the cloud to enable larger data volumes, faster experiments and machine learning at industrial scale.</p>
+        <p>Among other things, we operationalised:</p>
+        <ul>
+          <li>predictive models for recommendations, purchase propensity, customer lifetime value and churn;</li>
+          <li>integration of customer and situation scores into CRM, push, performance marketing audiences and onsite personalisation;</li>
+          <li>systematic testing, incrementality measurement and model retraining.</li>
+        </ul>
+        <p>In parallel, I brought data-driven marketing, product management and engineering together organisationally and combined the teams along the digital customer journey under shared responsibility.</p>
+        <p>The transformation therefore progressed from data-supported marketing to an integrated customer decisioning system.</p>
+      </section>
+
+      <section class="story-chapter" aria-labelledby="story-chapter-4">
+        <h3 id="story-chapter-4"><span>4.</span> Commercial impact</h3>
+        <p>Annual advertising spend was reduced by a double-digit million amount while revenue remained stable. This materially improved the cost-to-revenue ratio.</p>
+        <p>The effect became visible 18 to 24 months after the programme began and then recurred annually.</p>
+        <p>Underlying effects included:</p>
+        <ul>
+          <li>more than 40% fewer untargeted voucher displays through more precise customer targeting;</li>
+          <li>measurable incremental demand contribution from behavioural email segmentation;</li>
+          <li>evidenced advertising cost savings by deliberately excluding already engaged email customers from unnecessary paid retargeting.</li>
+        </ul>
+      </section>
+
+      <section class="story-chapter" aria-labelledby="story-chapter-5">
+        <h3 id="story-chapter-5"><span>5.</span> Balancing incremental performance and brand effects in marketing steering</h3>
+        <p>One principle I had already pursued in my earlier digital marketing responsibility was moving away from evaluating channels primarily on short-term attributed revenue.</p>
+        <p>As our measurement capability matured, we increasingly complemented attribution with experiments, control groups and incrementality-led measurement. The objective was to distinguish true causal uplift from demand that would have occurred anyway.</p>
+        <p>This created a more robust foundation for marketing investment decisions and the ability to reduce inefficient contacts and unwanted promotional effects.</p>
+        <p>At the same time, I advocated considering longer-term brand effects alongside direct response, conversion and customer value.</p>
+        <p>The objective was not to force every brand investment into a short-term ROAS logic, but to understand how brand building, demand generation and performance marketing interact across the customer journey.</p>
+        <p class="story-principle">Allocate investment according to its incremental commercial contribution while balancing short-term performance with long-term brand impact.</p>
+      </section>
+
+      <section class="story-chapter" aria-labelledby="story-chapter-6">
+        <h3 id="story-chapter-6"><span>6.</span> What made the transformation difficult</h3>
+
+        <section class="story-subsection" aria-labelledby="story-chapter-6-identity">
+          <h4 id="story-chapter-6-identity">Customer identity and data quality</h4>
+          <p>Web, app and CRM used different identifiers. Cookie limitations reduced observability, while privacy requirements constrained how signals could be connected.</p>
+          <p>This directly affected model quality and consistent customer orchestration.</p>
+        </section>
+
+        <section class="story-subsection" aria-labelledby="story-chapter-6-models">
+          <h4 id="story-chapter-6-models">Bringing models into real marketing processes</h4>
+          <p>Batch versus real-time scoring, latency requirements, interfaces between data and activation systems, and reliable model operations were central challenges.</p>
+          <p>The difficulty lay less in the model itself than in making it genuinely usable in daily marketing.</p>
+        </section>
+
+        <section class="story-subsection" aria-labelledby="story-chapter-6-organisation">
+          <h4 id="story-chapter-6-organisation">Changing decision behaviour and organisation</h4>
+          <p>Marketing teams were accustomed to steering campaigns manually.</p>
+          <p>Predictive decisioning required trust in algorithmic recommendations, a willingness to relinquish parts of manual control, and systematic learning through experiments.</p>
+          <p>I therefore treated change management, transparency and organisational adoption as integral parts of the transformation.</p>
+        </section>
+      </section>
+
+      <section class="story-chapter story-learning" aria-labelledby="story-chapter-7">
+        <h3 id="story-chapter-7"><span>7.</span> Central learning</h3>
+        <blockquote>
+          <p>The most difficult part of an AI transformation was not the machine learning model.</p>
+          <p>It was changing the data foundation, marketing systems and surrounding decision processes so that AI could reliably influence real commercial decisions.</p>
+        </blockquote>
+      </section>
+    </div>
+  </article>
+</dialog>
+
+<script>
+  const storyDialog = document.querySelector<HTMLDialogElement>("#marketing-decisioning-story-dialog");
+  const storyTrigger = document.querySelector<HTMLButtonElement>(".case-story-trigger");
+  const storyClose = storyDialog?.querySelector<HTMLButtonElement>(".story-close");
+  let activeStoryTrigger: HTMLButtonElement | null = null;
+
+  storyTrigger?.addEventListener("click", () => {
+    if (!storyDialog) return;
+    activeStoryTrigger = storyTrigger;
+    storyTrigger.setAttribute("aria-expanded", "true");
+    storyDialog.showModal();
+    document.body.classList.add("story-dialog-open");
+    storyClose?.focus();
+  });
+
+  storyClose?.addEventListener("click", () => storyDialog?.close());
+
+  storyDialog?.addEventListener("click", (event) => {
+    if (event.target === storyDialog) storyDialog.close();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && storyDialog?.open) {
+      event.preventDefault();
+      storyDialog.close();
+    }
+  });
+
+  storyDialog?.addEventListener("close", () => {
+    document.body.classList.remove("story-dialog-open");
+    storyTrigger?.setAttribute("aria-expanded", "false");
+    activeStoryTrigger?.focus();
+    activeStoryTrigger = null;
+  });
+</script>
+
+<style>
+  .case-study {
+    min-width: 0;
+    padding-bottom: 1rem;
+  }
+
+  .case-opening {
+    max-width: 970px;
+    padding: 4rem 0 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .case-kicker {
+    color: var(--color-amber);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  .case-opening h2 {
+    margin: 1.15rem 0 0;
+    color: var(--color-ink);
+    font-size: clamp(36px, 4.6vw, 58px);
+    font-weight: 500;
+    letter-spacing: -.045em;
+    line-height: 1.06;
+  }
+
+  .case-opening p {
+    max-width: 850px;
+    margin: 1.5rem 0 0;
+    color: var(--color-ink-2);
+    font-size: 18px;
+    line-height: 1.65;
+  }
+
+  .case-story-entry {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .65rem 1.1rem;
+    align-items: baseline;
+    margin-top: 1.4rem;
+  }
+
+  .case-story-trigger {
+    display: inline-flex;
+    gap: .5rem;
+    align-items: center;
+    padding: 0 0 .2rem;
+    color: var(--color-amber);
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(180,83,9,.35);
+    transition: color .18s ease, border-color .18s ease;
+  }
+
+  .case-story-trigger:hover { color: var(--color-ink); border-color: currentColor; }
+  .case-story-trigger:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 4px; }
+  .case-story-meta { color: var(--color-muted); font-size: 12px; letter-spacing: .01em; }
+
+  .story-dialog {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: clamp(720px, 68vw, 1180px);
+    max-width: 100vw;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: var(--color-ink);
+    background: transparent;
+    border: 0;
+  }
+
+  .story-dialog::backdrop {
+    background: rgba(15,23,41,.38);
+    backdrop-filter: blur(3px);
+  }
+
+  .story-layer {
+    height: 100%;
+    padding: 2.25rem clamp(2rem, 3.5vw, 4rem) 3rem;
+    overflow-y: auto;
+    background: linear-gradient(180deg, #f9fbfd 0%, #eef3f8 100%);
+    border-left: 1px solid rgba(30,60,100,.2);
+    box-shadow: -18px 0 50px rgba(15,23,41,.14);
+  }
+
+  .story-dialog[open] .story-layer { animation: story-drawer-in .24s ease-out both; }
+
+  .story-layer-topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .story-layer-topline > span {
+    color: var(--color-amber);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .story-close {
+    display: inline-grid;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 auto;
+    place-items: center;
+    padding: 0;
+    color: var(--color-ink-2);
+    font: inherit;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+    background: rgba(255,255,255,.7);
+    border: 1px solid var(--color-border-soft);
+    transition: color .2s ease, border-color .2s ease;
+  }
+
+  .story-close:hover { color: var(--color-amber); border-color: rgba(180,83,9,.35); }
+  .story-close:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 3px; }
+  .story-content { width: 100%; min-width: 0; }
+
+  .story-masthead {
+    padding-bottom: 1.8rem;
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+
+  .story-masthead h2 {
+    width: 100%;
+    margin: 0;
+    color: var(--color-ink);
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 500;
+    letter-spacing: -.04em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  .story-masthead p {
+    width: 100%;
+    margin: 1rem 0 0;
+    color: var(--color-ink-2);
+    font-size: clamp(18px, 2vw, 25px);
+    font-weight: 400;
+    letter-spacing: -.02em;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+
+  .story-intro { padding: 1.8rem 0 .2rem; }
+
+  .story-intro p,
+  .story-chapter > p,
+  .story-subsection p {
+    max-width: 72ch;
+    margin: 0;
+    color: var(--color-body);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .story-intro p:first-child { color: var(--color-ink); }
+  .story-intro p + p,
+  .story-chapter > p + p,
+  .story-subsection p + p { margin-top: 1rem; }
+
+  .story-chapter {
+    padding: 2.5rem 0 0;
+    margin-top: 2.35rem;
+    border-top: 1px solid var(--color-border-soft);
+  }
+
+  .story-chapter h3 {
+    width: 100%;
+    margin: 0 0 1.5rem;
+    color: var(--color-ink);
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -.025em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .story-chapter h3 span { display: contents; color: var(--color-amber); }
+
+  .story-chapter ul {
+    display: grid;
+    gap: .72rem;
+    max-width: 72ch;
+    margin: 1rem 0 1.15rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .story-chapter li {
+    position: relative;
+    padding-left: 1.25rem;
+    color: var(--color-body);
+    font-size: 15.5px;
+    line-height: 1.65;
+  }
+
+  .story-chapter li::before {
+    position: absolute;
+    top: .69rem;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    content: "";
+    background: var(--color-amber);
+  }
+
+  .story-principle {
+    padding: 1.3rem 0 0 1.35rem;
+    margin-top: 1.75rem !important;
+    color: var(--color-ink) !important;
+    font-size: 19px !important;
+    font-weight: 500;
+    line-height: 1.5 !important;
+    border-top: 1px solid rgba(180,83,9,.28);
+    border-left: 2px solid var(--color-amber);
+  }
+
+  .story-subsection + .story-subsection { margin-top: 2rem; }
+
+  .story-subsection h4 {
+    width: 100%;
+    margin: 0 0 .65rem;
+    color: var(--color-ink-3);
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -.015em;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .story-learning { padding-bottom: 1rem; }
+
+  .story-learning blockquote {
+    max-width: 70ch;
+    margin: 0;
+    padding: 1.55rem 0 1.5rem 1.5rem;
+    border-top: 1px solid rgba(180,83,9,.28);
+    border-bottom: 1px solid rgba(180,83,9,.28);
+    border-left: 2px solid var(--color-amber);
+  }
+
+  .story-learning blockquote p {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -.015em;
+    line-height: 1.5;
+  }
+
+  .story-learning blockquote p + p {
+    margin-top: 1rem;
+    color: var(--color-ink-2);
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  :global(body.story-dialog-open) { overflow: hidden; }
+
+  @keyframes story-drawer-in {
+    from { opacity: .65; transform: translateX(36px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .case-transition-viewport {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .case-transition-viewport:focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 6px;
+  }
+
+  .case-transition-crop {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1974 / 416;
+    overflow: hidden;
+  }
+
+  .case-transition-crop img {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    transform: translateY(-50%);
+  }
+
+  .case-bridge {
+    position: relative;
+    z-index: 1;
+    max-width: 850px;
+    margin: 1.5rem 0 .5rem;
+  }
+
+  .case-bridge h3 {
+    margin: 1rem 0 0;
+    color: var(--color-ink);
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: -.03em;
+    line-height: 1.2;
+  }
+
+  .case-bridge p {
+    margin: 1rem 0 0;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .case-bridge a {
+    color: var(--color-ink-2);
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: .28em;
+    transition: color .18s ease, text-decoration-color .18s ease;
+  }
+
+  .case-bridge a:hover {
+    color: var(--color-amber);
+    text-decoration-color: currentColor;
+  }
+
+  .case-bridge a:focus-visible {
+    outline: 3px solid rgba(180,83,9,.4);
+    outline-offset: 4px;
+  }
+
+  .case-overview-viewport {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .case-overview-viewport:focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 6px;
+  }
+
+  .case-overview-viewport img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: -3.73%;
+  }
+
+  .case-sequence { padding-top: 1rem; }
+
+  .case-section {
+    min-width: 0;
+    padding: 3rem 0 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .case-section + .case-section { margin-top: 1rem; }
+
+  .case-section-heading {
+    display: grid;
+    grid-template-columns: minmax(170px, .34fr) minmax(0, 1fr);
+    gap: 4rem;
+    align-items: start;
+    margin-bottom: 2rem;
+  }
+
+  .case-section-heading h3 {
+    max-width: 850px;
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: -.03em;
+    line-height: 1.2;
+  }
+
+  .case-section-copy p {
+    max-width: 850px;
+    margin: 1.25rem 0 0;
+    color: var(--color-ink-2);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .visual-viewport { width: 100%; min-width: 0; }
+
+  .visual-viewport:focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 6px;
+  }
+
+  .visual-link,
+  .visual-link img {
+    display: block;
+    width: 100%;
+  }
+
+  .visual-link { color: inherit; }
+  .visual-link img { height: auto; }
+  .visual-link--foundation-trimmed {
+    position: relative;
+    aspect-ratio: 1672 / 632;
+    overflow: hidden;
+  }
+  .visual-link--foundation-trimmed img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-15.4091392136%);
+  }
+  .visual-link--scale-trimmed {
+    position: relative;
+    aspect-ratio: 1774 / 670;
+    overflow: hidden;
+  }
+  .visual-link--scale-trimmed img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-15.78354002%);
+  }
+  .visual-link--decisioning-trimmed {
+    position: relative;
+    aspect-ratio: 1672 / 808;
+    overflow: hidden;
+  }
+  .visual-link--decisioning-trimmed img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-14.13%);
+  }
+  .visual-link--impact-trimmed {
+    position: relative;
+    aspect-ratio: 1536 / 879;
+    overflow: hidden;
+  }
+  .visual-link--impact-trimmed img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-14.16015625%);
+  }
+  .visual-link--trimmed {
+    position: relative;
+    aspect-ratio: 1536 / 830;
+    overflow: hidden;
+  }
+  .visual-link--trimmed img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-12.20703125%);
+  }
+  .mobile-zoom-hint { display: none; }
+
+  @media (max-width: 760px) {
+    .case-study { padding-bottom: .75rem; }
+    .case-opening { padding: 3rem 0 2rem; }
+    .case-sequence { padding-top: .75rem; }
+    .case-section { padding-top: 2.25rem; }
+    .case-section + .case-section { margin-top: .75rem; }
+
+    .case-overview-viewport {
+      margin-bottom: 0;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .case-transition-viewport {
+      margin-bottom: 0;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .case-bridge {
+      margin: 1.25rem 0 .5rem;
+    }
+
+    .case-bridge h3 { font-size: 26px; }
+
+    .case-transition-crop {
+      width: 960px;
+    }
+
+    .case-overview-viewport img {
+      width: 960px;
+      max-width: none;
+      margin-top: -36px;
+    }
+
+    .case-opening h2 { font-size: 36px; }
+    .case-opening p { font-size: 16px; }
+
+    .case-story-entry { display: grid; justify-items: start; }
+
+    .story-dialog { inset: 0; width: 100vw; height: 100dvh; }
+    .story-layer { padding: 1.25rem 1.4rem 2.25rem; border-left: 0; }
+    .story-layer-topline { margin-bottom: 1.4rem; }
+    .story-layer-topline > span { max-width: calc(100% - 58px); font-size: 10px; line-height: 1.35; }
+    .story-masthead { padding-bottom: 1.5rem; }
+    .story-masthead h2 { font-size: 32px; line-height: 1.08; }
+    .story-masthead p { font-size: 16px; line-height: 1.45; }
+    .story-intro { padding-top: 1.6rem; }
+    .story-intro p,
+    .story-chapter > p,
+    .story-subsection p { font-size: 15.5px; }
+    .story-chapter { padding-top: 2.2rem; margin-top: 2.1rem; }
+    .story-chapter h3 { font-size: 23px; line-height: 1.18; }
+    .story-subsection h4 { font-size: 20px; }
+    .story-principle { font-size: 18px !important; }
+    .story-learning blockquote { padding-left: 1.15rem; }
+    .story-learning blockquote p { font-size: 19px; }
+    .story-learning blockquote p + p { font-size: 17px; }
+
+    .case-section-heading {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .case-section-heading h3 { font-size: 26px; }
+
+    .mobile-zoom-hint {
+      display: block;
+      margin: 0 0 .75rem;
+      color: var(--color-muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .visual-viewport {
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .visual-link {
+      width: 960px;
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .case-opening h2 { font-size: 32px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .case-bridge a,
+    .case-story-trigger,
+    .story-close { transition: none; }
+    .story-dialog[open] .story-layer { animation: none; }
+  }
+</style>

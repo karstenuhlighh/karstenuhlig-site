@@ -12,6 +12,18 @@ export const coreRoutePairs: RoutePair[] = [
   { de: "/digital-product-customer-experience", en: "/en/digital-product-customer-experience" },
   { de: "/leadership", en: "/en/leadership" },
   { de: "/track-record", en: "/en/track-record" },
+  { de: "/performance-marketing-steering", en: "/en/performance-marketing-steering" },
+  { de: "/agentic-ai", en: "/en/agentic-ai" },
+  {
+    de: "/agentic-ai/awareness-war-nie-der-engpass",
+    en: "/en/agentic-ai/awareness-was-never-the-bottleneck",
+  },
+  { de: "/agentic-ai/sem-agentic", en: "/en/agentic-ai/sem-agentic" },
+  { de: "/agentic-ai/signal-steering", en: "/en/agentic-ai/signal-steering" },
+  {
+    de: "/agentic-ai/ai-engineering-praxis",
+    en: "/en/agentic-ai/how-i-work-with-ai",
+  },
 ];
 
 export function normalisePath(pathname: string): string {

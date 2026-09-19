@@ -2,10 +2,13 @@
 import SubPageLayout from "../layouts/SubPageLayout.astro";
 import DataAiCapabilityGrid from "../components/DataAiCapabilityGrid.astro";
 import MarketingDecisioningCase from "../components/MarketingDecisioningCase.astro";
+import MarketingDecisioningCaseEn from "../components/MarketingDecisioningCaseEn.astro";
 import { getLanguage } from "../i18n/routes";
 
 const language = getLanguage(Astro.url.pathname);
 const isEnglish = language === "en";
+// Enable only after all eight approved English visual masters are present.
+const hasEnglishDecisioningVisuals = false;
 
 const principles = isEnglish ? [
   "Start with the decision, not the technology.",
@@ -70,13 +73,13 @@ const explorations = isEnglish ? [
     title: "Augur / sem-agentic",
     status: "Prototype",
     body: "AI-assisted SEM decisioning with LLMs, rules, tools, evals and human approval. Architecture and evaluation are evidenced; autonomous production impact is not.",
-    href: undefined,
+    href: "/en/agentic-ai/sem-agentic",
   },
   {
     title: "Signal Steering",
     status: "Prototype · synthetic data",
     body: "Measurement and Decision Intelligence through triangulation of attribution, geo-incrementality and MMM. Signal Steering is explicitly not an agentic system.",
-    href: undefined,
+    href: "/en/agentic-ai/signal-steering",
   },
   {
     title: "KA-OS",
@@ -121,19 +124,20 @@ const explorations = isEnglish ? [
         <p class="hero-copy">{isEnglish ? "I connect Measurement, Customer Data, Analytics, Data Science and AI with the decision systems and digital products that turn them into concrete customer and business impact. Commercial Management remains the starting point: which customer, growth or resource decision needs to improve?" : "Ich verbinde Measurement, Customer Data, Analytics, Data Science und AI mit den Entscheidungssystemen und digitalen Produkten, die daraus konkrete Kunden- und Geschäftswirkung erzeugen. Der Ausgangspunkt bleibt dabei Commercial Management: Welche Kunden-, Wachstums- oder Ressourcenentscheidung muss besser werden?"}</p>
       </div>
 
-      {!isEnglish && (
-        <nav class="page-jump-nav" aria-label="Auf dieser Seite">
-          <div class="jump-nav-title">Auf dieser Seite</div>
-          <a href="#marketing-decisioning-case-title"><span aria-hidden="true">01</span>Marketing Decisioning Capability bei bonprix</a>
-          <a href="#current-proof-title"><span aria-hidden="true">02</span>Aktuelle AI-Explorationen</a>
-          <a href="#data-ai-fields"><span aria-hidden="true">03</span>8 Capability-Felder</a>
-          <a href="#principles-title"><span aria-hidden="true">04</span>Prinzipien</a>
-          <a href="#enterprise-proof-title"><span aria-hidden="true">05</span>Auf Enterprise-Level aufgebaut und skaliert</a>
+      {(!isEnglish || hasEnglishDecisioningVisuals) && (
+        <nav class="page-jump-nav" aria-label={isEnglish ? "On this page" : "Auf dieser Seite"}>
+          <div class="jump-nav-title">{isEnglish ? "On this page" : "Auf dieser Seite"}</div>
+          <a href="#marketing-decisioning-case-title"><span aria-hidden="true">01</span>{isEnglish ? "Marketing Decisioning Capability at bonprix" : "Marketing Decisioning Capability bei bonprix"}</a>
+          <a href="#current-proof-title"><span aria-hidden="true">02</span>{isEnglish ? "Current AI explorations" : "Aktuelle AI-Explorationen"}</a>
+          <a href="#data-ai-fields"><span aria-hidden="true">03</span>{isEnglish ? "8 capability areas" : "8 Capability-Felder"}</a>
+          <a href="#principles-title"><span aria-hidden="true">04</span>{isEnglish ? "Principles" : "Prinzipien"}</a>
+          <a href="#enterprise-proof-title"><span aria-hidden="true">05</span>{isEnglish ? "Built and scaled at enterprise level" : "Auf Enterprise-Level aufgebaut und skaliert"}</a>
         </nav>
       )}
     </header>
 
     {!isEnglish && <MarketingDecisioningCase />}
+    {isEnglish && hasEnglishDecisioningVisuals && <MarketingDecisioningCaseEn />}
 
     <section class="proof-section current-section" aria-labelledby="current-proof-title">
       <div class="section-heading">
