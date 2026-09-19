@@ -528,7 +528,10 @@ const enablerVisuals = {
   }
   @media (min-width: 1161px) {
     .proof-column {
-      grid-template-rows: auto 440px 370px;
+      grid-template-rows: auto 440px auto;
+    }
+    .practice-exploration {
+      min-height: 370px;
     }
   }
   @media (max-width: 1160px) {
@@ -561,7 +564,7 @@ const enablerVisuals = {
       height: 180px;
     }
   }
-  @media (max-width: 1400px) {
+  @media (max-width: 1100px) {
     .showcase-grid {
       display: flex;
       flex-direction: column;
