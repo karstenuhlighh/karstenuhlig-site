@@ -535,35 +535,33 @@ const enablerVisuals = {
     .proof-column {
       grid-template-rows: auto 440px minmax(0, 1fr);
     }
-    #data-ai-digital-product .enabler-copy > p {
-      max-width: 64%;
-      font-size: 12px;
-      line-height: 1.45;
-    }
     #data-ai-digital-product .enabler-visual {
-      width: 34%;
-      height: 140px;
+      width: 40%;
+      height: 130px;
     }
     .practice-exploration {
-      grid-template-columns: minmax(0, 1.5fr) minmax(120px, .5fr);
-      gap: .5rem;
-      padding: 1.2rem;
+      position: relative;
+      display: block;
+      padding: 1.35rem;
     }
-    .practice-exploration .exploration-copy h3 {
-      font-size: 21px;
-      line-height: 1.13;
+    .practice-exploration .exploration-copy {
+      height: 100%;
+    }
+    .practice-exploration .exploration-copy h3,
+    .practice-exploration .exploration-copy p {
+      max-width: 58%;
     }
     .practice-exploration .exploration-copy p {
-      margin-top: .6rem;
-      font-size: 12px;
-      line-height: 1.48;
+      font-size: 13.5px;
+      line-height: 1.55;
     }
     .practice-exploration .exploration-visual {
-      height: 160px;
-    }
-    .proof-column .practice-exploration .text-link {
-      padding-top: .6rem;
-      font-size: 11.5px;
+      position: absolute;
+      top: 50%;
+      right: 1.35rem;
+      width: 36%;
+      height: 200px;
+      transform: translateY(-50%);
     }
   }
   @media (max-width: 1160px) {
