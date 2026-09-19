@@ -528,10 +528,42 @@ const enablerVisuals = {
   }
   @media (min-width: 1161px) {
     .proof-column {
-      grid-template-rows: auto 440px auto;
+      grid-template-rows: auto 440px 370px;
+    }
+  }
+  @media (min-width: 1161px) and (max-width: 1400px) {
+    .proof-column {
+      grid-template-rows: auto 440px minmax(0, 1fr);
+    }
+    #data-ai-digital-product .enabler-copy > p {
+      max-width: 64%;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    #data-ai-digital-product .enabler-visual {
+      width: 34%;
+      height: 140px;
     }
     .practice-exploration {
-      min-height: 370px;
+      grid-template-columns: minmax(0, 1.5fr) minmax(120px, .5fr);
+      gap: .5rem;
+      padding: 1.2rem;
+    }
+    .practice-exploration .exploration-copy h3 {
+      font-size: 21px;
+      line-height: 1.13;
+    }
+    .practice-exploration .exploration-copy p {
+      margin-top: .6rem;
+      font-size: 12px;
+      line-height: 1.48;
+    }
+    .practice-exploration .exploration-visual {
+      height: 160px;
+    }
+    .proof-column .practice-exploration .text-link {
+      padding-top: .6rem;
+      font-size: 11.5px;
     }
   }
   @media (max-width: 1160px) {
