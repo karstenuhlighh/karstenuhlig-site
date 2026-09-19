@@ -83,18 +83,15 @@
 
 <style>
   .mts-wrap {
-    max-width: 760px;
+    max-width: 1100px;
     margin: 0;
   }
   .mts {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.6),
-      rgba(255, 255, 255, 0.4)
-    );
-    border: 1px solid var(--color-border-soft);
-    border-radius: 14px;
-    padding: 1.4rem 1.5rem;
+    background: transparent;
+    border-top: 1px solid var(--color-border-soft);
+    border-bottom: 1px solid var(--color-border-soft);
+    border-radius: 0;
+    padding: 1.75rem 0;
   }
 
   /* one build colour: green */
@@ -116,7 +113,7 @@
   }
   .mts-box {
     flex: 1;
-    border-radius: 10px;
+    border-radius: 0;
     padding: 0.7rem 0.95rem;
     position: relative;
   }
@@ -138,7 +135,7 @@
   /* ---- Triangulation panel ---- */
   .mts-panel {
     border: 1px dashed var(--color-border);
-    border-radius: 11px;
+    border-radius: 0;
     padding: 0.85rem 0.95rem 1rem;
     margin-bottom: 1.1rem;
   }
@@ -155,7 +152,7 @@
     margin-bottom: 0.7rem;
   }
   .mts-lens {
-    border-radius: 8px;
+    border-radius: 0;
     padding: 0.6rem 0.7rem;
     text-align: center;
   }
@@ -182,7 +179,7 @@
     gap: 0.7rem;
     background: rgba(180, 83, 9, 0.08);
     border: 1px solid rgba(180, 83, 9, 0.4);
-    border-radius: 9px;
+    border-radius: 0;
     padding: 0.7rem 0.9rem;
     margin-bottom: 1.1rem;
   }
@@ -195,7 +192,7 @@
     color: #fff;
     background: var(--color-amber);
     padding: 3px 9px;
-    border-radius: 999px;
+    border-radius: 2px;
   }
   .mts-result-text {
     font-size: 13px;
@@ -220,7 +217,7 @@
   .mts-mcard {
     background: rgba(84, 99, 122, 0.06);
     border: 1px solid rgba(84, 99, 122, 0.22);
-    border-radius: 8px;
+    border-radius: 0;
     padding: 0.55rem 0.7rem;
   }
   .mm-t {
@@ -237,7 +234,7 @@
   .mts-blended {
     background: rgba(84, 99, 122, 0.05);
     border: 1px dashed rgba(84, 99, 122, 0.32);
-    border-radius: 8px;
+    border-radius: 0;
     padding: 0.55rem 0.8rem;
     font-size: 11.5px;
     color: var(--color-ink-3);
@@ -260,7 +257,7 @@
     display: inline-block;
     width: 11px;
     height: 11px;
-    border-radius: 3px;
+    border-radius: 0;
     vertical-align: -1px;
   }
   .lg-built {

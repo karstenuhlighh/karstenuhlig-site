@@ -175,11 +175,14 @@ const features = [
 ---
 
 <SubPageLayout
+  editorial
+  variant="agentic"
   title="AI-Engineering-Praxis · Karsten Uhlig"
   description="Wie ich als Führungskraft selbst mit AI-Tools arbeite: Claude Chat und Claude Code im Duo, ein ehrlicher Reifegrad-Tracker, Engineering-Patterns aus dem Augur-Projekt."
 >
   <!-- ============================ SCOPE-STECKBRIEF ============================ -->
   <ScopeSteckbrief
+    editorial
     eyebrow="AI-Engineering-Praxis"
     title="Wie ich mit AI arbeite"
     titleAs="h1"
@@ -2127,5 +2130,54 @@ const features = [
     .refl-title br {
       display: none;
     }
+  }
+
+  /* Redaktionelle Oberflaeche: klare Linien, geringe Radien, kein Karten-Teppich. */
+  .panel,
+  .role-card,
+  .maturity,
+  .block,
+  .feature,
+  .refl-card,
+  .refl-cta,
+  .pdf-viewer {
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .panel,
+  .maturity,
+  .refl-card,
+  .pdf-viewer {
+    background: rgba(255, 255, 255, .42);
+  }
+  .map { margin-bottom: 4rem; }
+  .panel {
+    padding: 1.35rem;
+    border-top: 2px solid rgba(30, 60, 100, .34);
+  }
+  .role-card,
+  .block {
+    background: rgba(255, 255, 255, .58);
+  }
+  .features {
+    margin-top: 3rem;
+    padding-top: 3rem;
+  }
+  .feature {
+    min-height: 9rem;
+    padding: 1.1rem 1.2rem;
+    border-left-width: 2px;
+  }
+  .refl-grid { gap: 1px; background: var(--color-border-soft); }
+  .refl-card {
+    min-height: 16rem;
+    border: 0;
+    border-top: 2px solid transparent;
+  }
+  .refl-card:hover {
+    transform: none;
+    box-shadow: none;
+    border-top-color: var(--color-amber);
+    background: rgba(255, 255, 255, .58);
   }
 </style>

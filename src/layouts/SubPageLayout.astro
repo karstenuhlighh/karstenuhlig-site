@@ -8,12 +8,16 @@ interface Props {
   description?: string;
   language?: Language;
   editorial?: boolean;
+  variant?: "default" | "agentic";
 }
 
-const { title, description, language = getLanguage(Astro.url.pathname), editorial = false } = Astro.props;
+const { title, description, language = getLanguage(Astro.url.pathname), editorial = false, variant = "default" } = Astro.props;
+const bodyClass = editorial
+  ? `is-editorial-subpage${variant === "agentic" ? " is-agentic-editorial" : ""}`
+  : undefined;
 ---
 
-<Layout title={title} description={description} language={language} bodyClass={editorial ? "is-editorial-subpage" : undefined}>
+<Layout title={title} description={description} language={language} bodyClass={bodyClass}>
   <div class:list={["subpage-surface", { "subpage-surface--editorial": editorial }]}>
     <div class="page-shell">
       <header class="page-header">
@@ -47,6 +51,64 @@ const { title, description, language = getLanguage(Astro.url.pathname), editoria
   .page-main {
     min-width: 0;
   }
+  :global(.is-agentic-editorial .tabs) {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0;
+    max-width: none;
+    margin: 0 0 3.5rem;
+    overflow-x: auto;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    scrollbar-width: thin;
+  }
+  :global(.is-agentic-editorial .tab) {
+    flex: 1 0 auto;
+    min-height: 3.6rem;
+    margin: 0;
+    padding: 1rem 1.35rem;
+    color: var(--color-ink-3);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .11em;
+    text-align: left;
+    text-transform: uppercase;
+    border: 0;
+    border-right: 1px solid var(--color-border-soft);
+    border-bottom: 2px solid transparent;
+    background: rgba(255, 255, 255, .18);
+  }
+  :global(.is-agentic-editorial .tab:last-child) {
+    border-right: 0;
+  }
+  :global(.is-agentic-editorial .tab:hover) {
+    color: var(--color-ink);
+    background: rgba(255, 255, 255, .36);
+  }
+  :global(.is-agentic-editorial .tab:focus-visible) {
+    position: relative;
+    z-index: 1;
+    outline: 3px solid rgba(180, 83, 9, .4);
+    outline-offset: -3px;
+  }
+  :global(.is-agentic-editorial .tab.tab-active) {
+    color: var(--color-ink);
+    border-bottom-color: var(--color-amber);
+    background: rgba(255, 255, 255, .48);
+  }
+  :global(.is-agentic-editorial [data-panel]) {
+    max-width: 1180px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  :global(.is-agentic-editorial .tab-sub) {
+    max-width: 820px;
+    margin-bottom: 2rem;
+    color: var(--color-ink-2);
+    font-size: 13px;
+    font-style: normal;
+    line-height: 1.65;
+  }
   @media (max-width: 1100px) {
     .subpage-surface--editorial .page-shell {
       padding-inline: 2.5rem;
@@ -61,6 +123,15 @@ const { title, description, language = getLanguage(Astro.url.pathname), editoria
     .page-shell,
     .subpage-surface--editorial .page-shell {
       padding: 2rem 1.5rem 3rem;
+    }
+    :global(.is-agentic-editorial .tabs) {
+      margin-bottom: 2.5rem;
+    }
+    :global(.is-agentic-editorial .tab) {
+      min-width: max-content;
+      min-height: 3.25rem;
+      padding: .9rem 1rem;
+      font-size: 10px;
     }
   }
 </style>
