@@ -12,15 +12,15 @@ const isEnglish = language === "en";
   editorial
   language={language}
   title="Leadership & Transformation | Karsten Uhlig"
-  description={isEnglish ? "Leadership as a discipline of diagnosis and decision-making: seven recurring leadership problems and the models I use to address them." : "Leadership als Diagnose- und Entscheidungshandwerk: sieben wiederkehrende Führungsprobleme und die Modelle, mit denen ich sie löse."}
+  description={isEnglish ? "Leadership as a discipline of diagnosis and decision-making: seven recurring leadership problems and the models I use to address them." : "Für mich beginnt Führung mit Klarheit, Vertrauen und Verantwortung und mit dem Verständnis dafür, was Menschen und Organisationen in einer konkreten Situation brauchen."}
 >
   <article class="leadership-landing">
     <div class="leadership-intro">
       <header class="landing-hero">
         <div class="hero-eyebrow">Leadership & Transformation</div>
-        <h1>Leadership & Transformation</h1>
-        <p class="hero-subheadline">{isEnglish ? "Turning strategy into organisation and execution." : "Strategie in Organisation und Umsetzung übersetzen."}</p>
-        <p class="hero-copy">{isEnglish ? "For me, leadership is not reducible to style or intuition. Leadership shows up in recurring situations: clarifying accountability, developing performance, resolving conflicts, enabling decisions and getting change moving. That requires diagnosis before intervention. Understand the actual cause first, then choose the appropriate leadership instrument." : "Führung reduziert sich für mich nicht auf Stil oder Intuition. Führung zeigt sich in wiederkehrenden Situationen: Verantwortung klären, Performance entwickeln, Konflikte lösen, Entscheidungen ermöglichen und Veränderung in Bewegung bringen. Dafür braucht es Diagnose vor Intervention. Erst die tatsächliche Ursache verstehen, dann das passende Führungsinstrument wählen."}</p>
+        <h1>{isEnglish ? "Leadership & Transformation" : "Führung braucht Haltung und Handwerk."}</h1>
+        {isEnglish && <p class="hero-subheadline">Turning strategy into organisation and execution.</p>}
+        <p class="hero-copy">{isEnglish ? "For me, leadership is not reducible to style or intuition. Leadership shows up in recurring situations: clarifying accountability, developing performance, resolving conflicts, enabling decisions and getting change moving. That requires diagnosis before intervention. Understand the actual cause first, then choose the appropriate leadership instrument." : "Für mich beginnt Führung mit Klarheit, Vertrauen und Verantwortung und mit dem Verständnis dafür, was Menschen und Organisationen in einer konkreten Situation brauchen. Gute Führung gibt Orientierung, schafft Entscheidungsräume, bringt unterschiedliche Perspektiven zusammen und ermöglicht eigenständiges Handeln. Mein Prinzip dabei: erst verstehen, dann handeln."}</p>
       </header>
 
       <EditorialImage

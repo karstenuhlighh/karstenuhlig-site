@@ -1,12 +1,7 @@
-// Single source of truth für die sieben Leadership-Problemklassen.
-//
-// Fachliche Quelle: KA-OS capabilities/leadership-transformation/. Modell,
-// Principles und Handlungsrepertoire sind dort ausdrücklich personen- und
-// organisationsneutral formuliert und extern nutzbar. Cases/Evidence sind
-// dort PRIVATE (bonprix-interne Namen, Projekte, Zahlen) und wurden hier
-// NICHT übernommen. Die Beispiele in "about" sind bewusst generische,
-// nicht an einen realen Einzelfall gebundene Illustrationen des Modells,
-// keine Wiedergabe eines echten Falls.
+export interface LeadershipLayer {
+  title: string;
+  text: string;
+}
 
 export interface LeadershipClass {
   number: string;
@@ -20,154 +15,142 @@ export interface LeadershipClass {
   about: string;
   focus: string[];
   tensions: string;
+  layers?: LeadershipLayer[];
+  personalNote?: string;
 }
 
 export const leadershipClasses: LeadershipClass[] = [
   {
     number: "01",
-    title: "Autonomie & Delegation",
-    shortTitle: "Autonomie & Delegation",
-    description: "Autonomie als Führungsinstrument einsetzen, nicht als Rückzug.",
-    managementQuestion:
-      "Wie führe ich fachlich starke, autonome Führungskräfte, ohne ihnen das Mandat zu nehmen oder die Gesamtverantwortung zu verlieren?",
-    image: "/images/leadership-transformation/01-autonomie-delegation.png",
-    alt: "Zwei Personen mit einem Dokument, verbunden durch einen Kreislauf aus Übergabe und Rückgabe",
-    tags: ["Delegation", "Vertrauen", "Entwicklung"],
-    about:
-      "Innerhalb des vereinbarten Mandats entscheidet die geführte Führungskraft selbst. Die Ebene darüber übernimmt, was auf dieser Ebene nicht sinnvoll entschieden werden kann: übergreifende Ziele, Ressourcenkonflikte zwischen Bereichen, gemeinsame Führungsstandards. Bei einer Abweichung wird die Führung temporär enger, Verantwortung geht zurück, sobald sich das Verhalten sichtbar und stabil geändert hat. In einem Fall forderte eine Führungskraft volle Autonomie in einem Grenzprojekt: Die tatsächliche Grenze lag im organisatorischen Mandat, nicht in der fachlichen Kompetenz.",
-    focus: [
-      "Mandat und Entscheidungsraum explizit benennen",
-      "Gemeinsames Führungsverständnis als Rahmen setzen, unabhängig von der individuellen Arbeitsmethode",
-      "Bei Abweichung: Feedback geben, temporär enger begleiten, Verantwortung zurückgeben",
-      "Entwicklung entlang der Wirkung führen, nicht entlang der Hierarchiestufe",
+    title: "Verantwortung & Handlungsspielraum",
+    shortTitle: "Verantwortung & Handlungsspielraum",
+    description: "Klare Richtung schafft Raum für eigenständige Entscheidungen und echte Verantwortung.",
+    managementQuestion: "Wenn Ziele und Prioritäten verständlich sind, kann Verantwortung dort liegen, wo die fachliche Expertise ist.",
+    image: "/images/leadership-transformation/01-verantwortung-handlungsspielraum.png",
+    alt: "Mehrere Pfade innerhalb eines gemeinsamen Feldes für Verantwortung und Handlungsspielraum",
+    tags: ["Richtung", "Entscheidungsraum", "Verbindlichkeit"],
+    about: "Verantwortung gehört für mich dorthin, wo Kompetenz und Nähe zum Thema liegen. Entscheidend sind ein klares Mandat, verständliche Prioritäten und Transparenz über Risiken und Abhängigkeiten. Wenn eine Situation zusätzlichen Kontext oder eine Entscheidung auf anderer Ebene braucht, werde ich enger beteiligt. Ziel bleibt dabei, Verantwortung so schnell wie sinnvoll wieder dort zu verankern, wo sie im Alltag wirksam werden kann.",
+    focus: [],
+    tensions: "",
+    layers: [
+      { title: "Richtung", text: "Ziel, Prioritäten und relevante Rahmenbedingungen müssen so klar sein, dass Entscheidungen daran ausgerichtet werden können." },
+      { title: "Entscheidungsraum", text: "Verantwortung umfasst für mich auch den Spielraum, Entscheidungen eigenständig zu treffen und die eigene Expertise einzubringen." },
+      { title: "Verbindlichkeit", text: "Zu Verantwortung gehört, Entscheidungen nachvollziehbar zu machen, ihre Wirkung im Blick zu behalten und bei Bedarf nachzusteuern." },
     ],
-    tensions:
-      "Nicht jede Führungskraft will oder soll auf die nächste Ebene entwickelt werden, und wiederholte Korrektur ohne stabile Verhaltensänderung ist ein Signal für eine strukturelle statt eine punktuelle Konsequenz.",
+    personalNote: "Verantwortung gehört für mich dorthin, wo Kompetenz und Nähe zum Thema liegen. Entscheidend sind ein klares Mandat, verständliche Prioritäten und Transparenz über Risiken und Abhängigkeiten. Wenn eine Situation zusätzlichen Kontext oder eine Entscheidung auf anderer Ebene braucht, werde ich enger beteiligt. Ziel bleibt dabei, Verantwortung so schnell wie sinnvoll wieder dort zu verankern, wo sie im Alltag wirksam werden kann.",
   },
   {
     number: "02",
-    title: "Performance & Entwicklung",
-    shortTitle: "Performance & Entwicklung",
-    description: "Erst die Ursache diagnostizieren, dann das Instrument wählen.",
-    managementQuestion:
-      "Wie gehe ich mit ausbleibender Wirkung, schwierigen Mitarbeitenden und Fehlern um, ohne in Druck oder Kontrolle zu verfallen?",
-    image: "/images/leadership-transformation/02-performance-entwicklung.png",
-    alt: "Person mit Diagramm-Symbolen für Diagnose und Entwicklung",
-    tags: ["Diagnose", "Verbindlichkeit", "Fehlerkultur"],
-    about:
-      "Bevor ich ein Führungsinstrument wähle, kläre ich, wo die Ursache tatsächlich liegt: bei Erfahrung oder Verhalten, in der Rolle, den Erwartungen oder im System. Entscheidend ist, Wirkung oder Abweichung konkret zu machen und nicht vorschnell ein Gesamturteil über die Person zu fällen. Fehlerfreiheit ist dabei kein Maßstab. Wichtiger sind Sorgfalt vor der Entscheidung und Verantwortungsübernahme danach. Ein Erstfehler kann ein Lernfehler sein; ein strukturgleicher Wiederholungsfehler ist ein anderes Signal.",
-    focus: [
-      "Wirkung oder Abweichung konkret machen, dann Person, Rolle und System trennen",
-      "Ursache dort suchen, wo sie tatsächlich entsteht – bei Person, Rolle oder System",
-      "Verhalten über Zeit beobachten, dann Verantwortung zurückgeben oder Rolle und Struktur ändern",
-      "Wiederholtes, unabhängiges Feedback zum selben Muster als eigenständiges Signal werten",
+    title: "Entwicklung & Feedback",
+    shortTitle: "Entwicklung & Feedback",
+    description: "Anspruch, Feedback und Entwicklung gehören für mich zusammen.",
+    managementQuestion: "Mir ist wichtig, Erwartungen offen zu machen, Rückmeldung früh zu geben und Entwicklung als gemeinsamen Prozess zu verstehen.",
+    image: "/images/leadership-transformation/02-entwicklung-feedback.png",
+    alt: "Feedback und Entwicklung als Kreislauf mit Sprechblasen und sichtbarem Fortschritt",
+    tags: ["Erwartungen", "Feedback", "Entwicklung"],
+    about: "Mir ist wichtig, früh und konkret über Wirkung zu sprechen, in beide Richtungen. Gute Gespräche über Leistung und Entwicklung brauchen für mich Offenheit, Klarheit und gegenseitiges Vertrauen. Entwicklung entsteht vor allem durch echte Verantwortung, anspruchsvolle Aufgaben, ehrliche Rückmeldung und die Möglichkeit, aus Erfahrungen zu lernen.",
+    focus: [],
+    tensions: "",
+    layers: [
+      { title: "Erwartungen", text: "Klarheit darüber, was gute Wirkung ausmacht, welche Ergebnisse zählen und woran Fortschritt erkennbar wird." },
+      { title: "Feedback", text: "Beobachtungen früh, konkret und im direkten Austausch ansprechen und genauso offen für Rückmeldung zur eigenen Führung sein." },
+      { title: "Entwicklung", text: "Stärken weiter ausbauen, neue Verantwortung übernehmen und Erfahrungen bewusst nutzen, um sich fachlich wie persönlich weiterzuentwickeln." },
     ],
-    tensions:
-      "Eine Leistungsgrenze beschädigt Vertrauen nicht automatisch, fehlende Verantwortung für die eigene Leistungsgrenze tut es, und eine Verbesserung, die nur unter dauerhafter Kontrolle besteht, ist keine belastbare Entwicklung.",
+    personalNote: "Mir ist wichtig, früh und konkret über Wirkung zu sprechen, in beide Richtungen. Gute Gespräche über Leistung und Entwicklung brauchen für mich Offenheit, Klarheit und gegenseitiges Vertrauen. Entwicklung entsteht vor allem durch echte Verantwortung, anspruchsvolle Aufgaben, ehrliche Rückmeldung und die Möglichkeit, aus Erfahrungen zu lernen.",
   },
   {
     number: "03",
-    title: "Richtung, Priorisierung & Umsetzung",
-    shortTitle: "Richtung & Umsetzung",
-    description: "Die Wahl des Vorgehens folgt der Diagnose, nicht einem Standardwerkzeug.",
-    managementQuestion:
-      "Wie wird aus einem für richtig gehaltenen Ziel tatsächliche Umsetzung, wenn andere Bereiche andere Prioritäten haben, skeptisch sind oder Ressourcen fehlen?",
-    image: "/images/leadership-transformation/03-richtung-priorisierung-umsetzung.png",
-    alt: "Kompass-Symbol für Richtung und Priorisierung",
-    tags: ["Priorisierung", "Umsetzung", "Eskalation"],
-    about:
-      "Vor jedem Werkzeug steht die Diagnose, was die Umsetzung tatsächlich blockiert: fehlende gemeinsame Faktenbasis, fachliche Skepsis, ein akzeptiertes Ziel bei nicht tragbarem Aufwand oder ein echter Zuständigkeitskonflikt. Eskalation ist ein legitimes Grenzwerkzeug für einen auf der aktuellen Ebene nicht lösbaren Konflikt, nicht der Normalmodus der Zieldurchsetzung. In einem Fall entstand aus einem skeptischen Bereich über zwei Jahre gemeinsamer Modellentwicklung, inklusive Offenlegung ungünstiger eigener Zahlen, ein aktiver Mitgestalter.",
-    focus: [
-      "Gemeinsame Faktenbasis schaffen, auch gegen die eigene Position, wenn die Fakten so liegen",
-      "Verantwortung nahe an die Sache bringen, statt über Hierarchie zu entscheiden",
-      "Mehrfach-„Priorität 1“ zurückweisen und eine echte Reihenfolge herstellen",
-      "Bei neuen Fakten die eigene Position ändern, nicht die Kriterien nachträglich anpassen",
+    title: "Richtung & Fokus",
+    shortTitle: "Richtung & Fokus",
+    description: "Gute Orientierung entsteht für mich aus einem gemeinsamen Verständnis von Ziel, Prioritäten und Entscheidungen.",
+    managementQuestion: "Unterschiedliche Wege und Perspektiven gehören dabei selbstverständlich dazu.",
+    image: "/images/leadership-transformation/03-richtung-fokus.png",
+    alt: "Mehrere Ausgangspunkte und Wege führen zu einem gemeinsamen Ziel",
+    tags: ["Zielbild", "Prioritäten", "Entscheidungen"],
+    about: "Mir ist wichtig, dass nicht nur klar ist, was Priorität hat, sondern auch warum. In größeren Organisationen konkurrieren immer mehrere sinnvolle Themen um Aufmerksamkeit. Dann braucht es nachvollziehbare Prioritäten und klare Entscheidungen darüber, was jetzt zählt. Unterschiedliche Wege in der Umsetzung gehören dabei selbstverständlich dazu.",
+    focus: [],
+    tensions: "",
+    layers: [
+      { title: "Zielbild", text: "Verständlich machen, worauf wir hinarbeiten und welchen Beitrag ein Thema zum Ganzen leistet." },
+      { title: "Prioritäten", text: "Wenige Dinge wirklich wichtig machen und transparent sein, wenn nicht alles gleichzeitig verfolgt werden kann." },
+      { title: "Entscheidungen", text: "Klarheit darüber schaffen, was entschieden ist, was noch offen ist und wo weiterer Austausch sinnvoll ist." },
     ],
-    tensions:
-      "Manche Zielkonflikte sind struktureller Natur, weil Zielsystem und Machtverteilung gegeneinander stehen, und lassen sich nicht durch bessere Argumentation auf Peer-Ebene lösen.",
+    personalNote: "Mir ist wichtig, dass nicht nur klar ist, was Priorität hat, sondern auch warum. In größeren Organisationen konkurrieren immer mehrere sinnvolle Themen um Aufmerksamkeit. Dann braucht es nachvollziehbare Prioritäten und klare Entscheidungen darüber, was jetzt zählt. Unterschiedliche Wege in der Umsetzung gehören dabei selbstverständlich dazu.",
   },
   {
     number: "04",
-    title: "Konflikt & Entscheiden",
-    shortTitle: "Konflikt & Entscheiden",
-    description: "Verstehen vor Verhandeln, Consent statt Konsens.",
-    managementQuestion:
-      "Wie werden Sachkonflikte geklärt und Entscheidungen unter echtem Dissens getroffen, ohne dass Beziehungen dauerhaft beschädigt werden?",
-    image: "/images/leadership-transformation/04-konflikt-entscheiden.png",
-    alt: "Zwei Personen im Dialog mit einem Spannungssymbol, das sich in eine Übereinkunft löst",
-    tags: ["Konflikt", "Entscheidung", "Vertrauen"],
-    about:
-      "Ziel, Interessen und der eigentliche Engpass werden geklärt, bevor über Lösungen gestritten wird, Problem und vorgeschlagene Lösung bleiben dabei getrennt. Eine Entscheidung wird vollständig mitgetragen, auch wenn man selbst weiterhin eine andere Lösung für besser hält, solange sie legitim getroffen wurde: Consent statt Konsens. Entscheidungshoheit und Risk Ownership sind zwei getrennte Fragen und werden explizit geklärt, nicht automatisch derselben Instanz zugeschrieben.",
-    focus: [
-      "Problem und vorgeschlagene Lösung entkoppeln",
-      "Verständnis aktiv spiegeln, nicht nur innerlich herstellen",
-      "Entscheidungshoheit und Risk Ownership getrennt benennen",
-      "Bei beschädigtem Vertrauen stärker verifizieren statt automatisch abzulehnen",
+    title: "Offenheit & Konflikt",
+    shortTitle: "Offenheit & Konflikt",
+    description: "Unterschiedliche Sichtweisen gehören für mich zu guter Zusammenarbeit.",
+    managementQuestion: "Mir ist wichtig, dass sie früh ausgesprochen, ernst genommen und offen gegeneinander abgewogen werden, auch wenn am Ende eine klare Entscheidung notwendig ist.",
+    image: "/images/leadership-transformation/04-offenheit-konflikt.png",
+    alt: "Vier unterschiedliche Perspektiven überlagern sich und führen zu einer Entscheidung",
+    tags: ["Perspektiven", "Austausch", "Entscheidung"],
+    about: "Mir ist wichtig, dass unterschiedliche Meinungen wirklich auf den Tisch kommen. Ich versuche, zuerst die Argumente und Interessen hinter einer Position zu verstehen. Nicht jede Diskussion muss in Konsens enden. Entscheidend ist für mich, dass die relevanten Perspektiven gehört wurden, eine Entscheidung nachvollziehbar ist und wir danach gemeinsam weiterarbeiten können.",
+    focus: [],
+    tensions: "",
+    layers: [
+      { title: "Perspektiven", text: "Unterschiedliche Sichtweisen früh sichtbar machen und die fachlichen Argumente dahinter verstehen." },
+      { title: "Austausch", text: "Kontrovers diskutieren können, ohne dass aus einem Sachkonflikt ein Beziehungskonflikt wird." },
+      { title: "Entscheidung", text: "Argumente abwägen, Verantwortung für die Entscheidung klären und danach gemeinsam handlungsfähig sein." },
     ],
-    tensions:
-      "Eine gesichtswahrende, saubere Konfliktführung zwischen Peers neutralisiert eine übergeordnete Machtkonstellation nicht zwingend, und argumentative Stärke bringt zusätzliche Verantwortung dafür mit, wie das Gegenüber aus dem Konflikt herauskommt.",
+    personalNote: "Mir ist wichtig, dass unterschiedliche Meinungen wirklich auf den Tisch kommen. Ich versuche, zuerst die Argumente und Interessen hinter einer Position zu verstehen. Nicht jede Diskussion muss in Konsens enden. Entscheidend ist für mich, dass die relevanten Perspektiven gehört wurden, eine Entscheidung nachvollziehbar ist und wir danach gemeinsam weiterarbeiten können.",
   },
   {
     number: "05",
-    title: "Matrix & Stakeholder Leadership",
-    shortTitle: "Matrix & Stakeholder",
-    description: "Gemeinsame Realität herstellen, Ownership durch echte Beteiligung erzeugen.",
-    managementQuestion:
-      "Wie führe ich wirksam über Bereichsgrenzen hinweg, wenn Ziele, Ressourcen und Entscheidungshoheiten verteilt sind und keine direkte Weisungsbefugnis besteht?",
-    image: "/images/leadership-transformation/05-matrix-stakeholder.png",
-    alt: "Mehrere verbundene Personen-Symbole für Matrix- und Stakeholder-Führung",
-    tags: ["Matrix", "Stakeholder", "Governance"],
-    about:
-      "Matrix-Führung beginnt mit einer gemeinsamen Realität: Ziele, Interessen, Zwänge und Abhängigkeiten verstehen und daraus ein gemeinsames Problem-Framing herstellen. Ownership entsteht eher durch echte Beteiligung und konkrete gemeinsame Arbeit als durch abstrakte Abstimmung, Governance schafft Klarheit über Rollen und Entscheidungen, ersetzt aber keine tragfähige Beziehung. Eine besondere Konstellation entsteht, wenn eine Rolle knappe, von mehreren Bereichen benötigte Ressourcen verteilen muss: Die dabei entstehende Wahrnehmung von Bevorzugung ist eine strukturelle Folge der Rolle, kein automatischer Beleg für tatsächliches Fehlverhalten.",
-    focus: [
-      "Perspektive des anderen Bereichs systematisch mitdenken",
-      "Verantwortung nah an die Sache bringen statt hierarchisch zu entscheiden",
-      "Integrator- statt Lobbyist-Rolle einnehmen",
-      "Verteilungsentscheidungen bei struktureller Knappheit transparent machen",
+    title: "Zusammenarbeit über Grenzen hinweg",
+    shortTitle: "Zusammenarbeit über Grenzen hinweg",
+    description: "Viele Entscheidungen betreffen mehrere Funktionen gleichzeitig.",
+    managementQuestion: "Mir ist wichtig, die relevanten Perspektiven früh zusammenzubringen und Verantwortung für das Ergebnis gemeinsam zu tragen.",
+    image: "/images/leadership-transformation/05-zusammenarbeit-grenzen.png",
+    alt: "Dezentrales Netzwerk aus gleichwertigen Perspektiven und Beiträgen",
+    tags: ["Perspektiven", "Zusammenspiel", "Verantwortung"],
+    about: "Zusammenarbeit sollte früh beginnen und nicht erst an den Schnittstellen. Unterschiedliche Funktionen bringen ihre Perspektiven und Abhängigkeiten rechtzeitig ein. Gleichzeitig braucht es Klarheit darüber, wer welche Entscheidung trifft und wer welchen Beitrag zur Umsetzung übernimmt. Gemeinsame Verantwortung heißt für mich, Entscheidungen im Gesamtzusammenhang zu treffen und Zuständigkeiten klar zu halten.",
+    focus: [],
+    tensions: "",
+    layers: [
+      { title: "Perspektiven", text: "Unterschiedliche fachliche Sichtweisen und Abhängigkeiten früh sichtbar machen." },
+      { title: "Zusammenspiel", text: "Beiträge aus Marketing, Product, Data, Tech und Märkten so verbinden, dass ein gemeinsames Verständnis der Aufgabe entsteht." },
+      { title: "Verantwortung", text: "Klarheit darüber schaffen, wer welchen Beitrag leistet, wo Entscheidungen liegen und wie die Umsetzung zusammenwirkt." },
     ],
-    tensions:
-      "Governance ersetzt keine funktionierende Beziehung, sie kompensiert ihr Fehlen nur teilweise, und eine transparente Verteilungslogik mildert die Wahrnehmungsasymmetrie bei knappen Ressourcen, löst sie aber nicht vollständig auf.",
+    personalNote: "Zusammenarbeit sollte früh beginnen und nicht erst an den Schnittstellen. Unterschiedliche Funktionen bringen ihre Perspektiven und Abhängigkeiten rechtzeitig ein. Gleichzeitig braucht es Klarheit darüber, wer welche Entscheidung trifft und wer welchen Beitrag zur Umsetzung übernimmt. Gemeinsame Verantwortung heißt für mich, Entscheidungen im Gesamtzusammenhang zu treffen und Zuständigkeiten klar zu halten.",
   },
   {
     number: "06",
-    title: "Transformation & Change",
-    shortTitle: "Transformation & Change",
-    description: "Bedingungen für Veränderung schaffen, nicht stärker überzeugen.",
-    managementQuestion:
-      "Wie werden andere Bereiche zu Veränderungen bewegt, von denen sie selbst zunächst nicht überzeugt sind?",
-    image: "/images/leadership-transformation/06-transformation-change.png",
-    alt: "Personen-Symbol mit verzweigten Wegen für Veränderung und Adoption",
-    tags: ["Change", "Transformation", "Adoption"],
-    about:
-      "Andere Bereiche werden selten dadurch verändert, dass man sie stärker überzeugt. Wirksamer ist, Bedingungen zu schaffen, unter denen Veränderung relevant, erlebbar, glaubwürdig, gestaltbar und schließlich organisatorisch selbstverständlich wird: Relevanz schaffen, Veränderung erlebbar machen statt nur zu erklären, mit den Veränderungsbereitesten beginnen und daraus Pull erzeugen, Ownership entstehen lassen, strukturell verankern. In einem Fall entstand aus der Zusammenarbeit mit der veränderungsbereitesten Partnerin eines Bereichs Pull aus mehreren weiteren, ursprünglich distanzierten Bereichen.",
-    focus: [
-      "Relevanz über Markttrends, Frühindikatoren oder externe Beispiele herstellen",
-      "Erlebbarkeit durch Prototypen und Demos am realen Problem schaffen, statt nur zu kommunizieren",
-      "Mit dem veränderungsbereitesten Partner beginnen und Erfolg sichtbar machen",
-      "Veränderung strukturell verankern, damit keine Parallelorganisation entsteht",
+    title: "Veränderung & Lernen",
+    shortTitle: "Veränderung & Lernen",
+    description: "Veränderung ist für mich ein gemeinsamer Lernprozess.",
+    managementQuestion: "Dazu gehört, Erfahrungen aus der Umsetzung ernst zu nehmen, unterschiedliche Perspektiven einzubeziehen und die nächsten Schritte daraus weiterzuentwickeln.",
+    image: "/images/leadership-transformation/06-veraenderung-lernen.png",
+    alt: "Pflanzenwachstum in mehreren Entwicklungsstadien für Veränderung und Lernen",
+    tags: ["Ziel und Sinn", "Erfahrung", "Weiterentwicklung"],
+    about: "In Veränderungssituationen interessiert mich besonders, was Teams in der Praxis erleben. Dort zeigt sich, welche Annahmen tragen, wo neue Fragen entstehen und was angepasst werden sollte. Veränderung bleibt für mich deshalb ein Prozess, in dem Erfahrungen und neue Erkenntnisse immer wieder in die weitere Entwicklung einfließen.",
+    focus: [],
+    tensions: "",
+    layers: [
+      { title: "Ziel und Sinn", text: "Verständlich machen, was sich verändern soll, warum es relevant ist und woran Fortschritt erkennbar wird." },
+      { title: "Erfahrung", text: "Wissen aus Teams, Funktionen und Märkten früh einbeziehen und sichtbar machen, was sich in der Praxis zeigt." },
+      { title: "Weiterentwicklung", text: "Neue Erkenntnisse aufnehmen, Annahmen überprüfen und den weiteren Weg daran ausrichten." },
     ],
-    tensions:
-      "Bedingungen für Veränderungsbereitschaft lassen sich schaffen, Veränderungsenergie selbst lässt sich in einer Person nicht beliebig erzeugen, und ein schlecht aufgesetzter Pilot ist bei hohen, kaum reversiblen Kosten kein sinnvoller Lernschritt.",
+    personalNote: "In Veränderungssituationen interessiert mich besonders, was Teams in der Praxis erleben. Dort zeigt sich, welche Annahmen tragen, wo neue Fragen entstehen und was angepasst werden sollte. Veränderung bleibt für mich deshalb ein Prozess, in dem Erfahrungen und neue Erkenntnisse immer wieder in die weitere Entwicklung einfließen.",
   },
   {
     number: "07",
-    title: "Leadership Style / persönliche Haltung",
-    shortTitle: "Leadership Style",
-    description: "Die Synthese aus den sechs Problemklassen: eine durchgängige Führungslogik.",
-    managementQuestion:
-      "Wie führe ich grundsätzlich, und welche persönliche Logik verbindet die sechs konkreten Führungsprobleme?",
-    image: "/images/leadership-transformation/07-leadership-style.png",
-    alt: "Kompass im Zentrum eines Kreises aus sechs Führungssymbolen",
-    tags: ["Haltung", "Synthese", "Diagnose vor Intervention"],
-    about:
-      "Die Grundhaltung ist klar, besonnen und ergebnisorientiert, mit Vertrauen und Wertschätzung bei hoher Verbindlichkeit als übergreifender Klammer: viel Verantwortung abgeben, aber sehr klar sein, wenn die Wirkung nicht stimmt. Über alle sechs Problemklassen hinweg wiederholt sich dieselbe Logik: Richtung schaffen, Verantwortung geben, Wirkung beobachten, Ursache verstehen, passend intervenieren, lernen und Verantwortung möglichst weit zurückgeben. Diagnose vor Intervention ist dabei das Meta-Prinzip über allen sieben Problemklassen: Bevor ein Führungsinstrument gewählt wird, wird die tatsächliche Ursache lokalisiert, nicht der bevorzugte Stil angewendet.",
-    focus: [
-      "Vor jeder Verhaltenserwartung an andere die eigene Vorbildwirkung prüfen",
-      "Bei jedem Führungsthema zuerst Richtung und Kriterien klären, dann Verantwortung geben",
-      "Bei ausbleibender Wirkung zuerst die Ursache diagnostizieren, dann das Instrument wählen",
-      "Verantwortung möglichst weit zurückgeben, sobald Wirkung und Verhalten stabil sind",
+    title: "Führung & Haltung",
+    shortTitle: "Führung & Haltung",
+    description: "Führung heißt für mich, Orientierung zu geben, Verantwortung zu übertragen und unterschiedliche Perspektiven einzubeziehen.",
+    managementQuestion: "Entscheidungen sollen auf relevanter Expertise, klarem Kontext und nachvollziehbarer Verantwortung beruhen.",
+    image: "/images/leadership-transformation/07-fuehrung-haltung.png",
+    alt: "Mehrere gleichwertige Perspektiven bilden eine gemeinsame Orientierungsfläche",
+    tags: ["Orientierung", "Perspektiven", "Verantwortung"],
+    about: "In fachlich vielfältigen Organisationen liegt relevante Expertise an vielen Stellen. Für mich gehört zu Führung, diese Perspektiven zusammenzubringen, Orientierung zu geben und Verantwortung klar zu verankern. Wenn eine Entscheidung auf meiner Ebene liegt, treffe ich sie und übernehme dafür die Verantwortung.",
+    focus: [],
+    tensions: "",
+    layers: [
+      { title: "Orientierung", text: "Richtung und Erwartungen klar machen und auch in anspruchsvollen Situationen verlässlich bleiben." },
+      { title: "Perspektiven", text: "Unterschiedliche Sichtweisen einbeziehen und fachliche Expertise dort nutzen, wo sie liegt." },
+      { title: "Verantwortung", text: "Entscheidungen dort verankern, wo Wissen und Verantwortung zusammenkommen, und Zuständigkeiten klar halten." },
     ],
-    tensions:
-      "Viel Handlungsspielraum zu geben und gleichzeitig hohe Verbindlichkeit einzufordern ist ein produktives Spannungsfeld, kein einmalig lösbarer Widerspruch, und die eigene Erinnerung an frühere Führungssituationen ist kein neutraler Datensatz, weil emotional intensive Fälle stärker haften bleiben als die größere Zahl unauffälliger, gut funktionierender Situationen.",
+    personalNote: "In fachlich vielfältigen Organisationen liegt relevante Expertise an vielen Stellen. Für mich gehört zu Führung, diese Perspektiven zusammenzubringen, Orientierung zu geben und Verantwortung klar zu verankern. Wenn eine Entscheidung auf meiner Ebene liegt, treffe ich sie und übernehme dafür die Verantwortung.",
   },
 ];
