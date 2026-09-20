@@ -37,17 +37,16 @@ const isEnglish = language === "en";
       </div>
     ) : (
       <>
-        <header class="landing-hero leadership-hero">
-          <div class="hero-eyebrow">Leadership & Transformation</div>
-          <h1>Führung braucht Haltung und Handwerk.</h1>
-          <p class="hero-copy">Für mich beginnt Führung mit Klarheit über Ziele, Erwartungen und Verantwortung. Dazu gehören verlässliche Entscheidungsräume, hohe Ansprüche an Ergebnisse und ein Umgang, in dem unterschiedliche Perspektiven offen eingebracht werden können. Führung zeigt sich für mich darin, Entscheidungen nachvollziehbar zu machen, Verantwortung klar zu verankern und in der Umsetzung verbindlich zu bleiben.</p>
-        </header>
-
-        <section class="leadership-communication" aria-labelledby="communication-principle-title">
-          <div class="communication-principle">
-            <h2 id="communication-principle-title">Komplexität in Klarheit verwandeln.</h2>
-            <p>In komplexen Organisationen gehört es für mich zu Führung, Zusammenhänge so zu verdichten, dass Entscheidungen möglich werden. Oft heißt das ganz konkret, eine unübersichtliche Lage auf eine Seite zu bringen: Ausgangslage, Optionen, Empfehlung und nächste Schritte.</p>
-          </div>
+        <div class="leadership-intro">
+          <header class="landing-hero">
+            <div class="hero-eyebrow">Leadership & Transformation</div>
+            <h1>Führung braucht Haltung und Handwerk.</h1>
+            <p class="hero-copy">Für mich beginnt Führung mit Klarheit über Ziele, Erwartungen und Verantwortung. Dazu gehören verlässliche Entscheidungsräume, hohe Ansprüche an Ergebnisse und ein Umgang, in dem unterschiedliche Perspektiven offen eingebracht werden können. Führung zeigt sich für mich darin, Entscheidungen nachvollziehbar zu machen, Verantwortung klar zu verankern und in der Umsetzung verbindlich zu bleiben.</p>
+            <div class="communication-principle">
+              <h2>Komplexität in Klarheit verwandeln.</h2>
+              <p>In komplexen Organisationen gehört es für mich zu Führung, Zusammenhänge so zu verdichten, dass Entscheidungen möglich werden. Oft heißt das ganz konkret, eine unübersichtliche Lage auf eine Seite zu bringen: Ausgangslage, Optionen, Empfehlung und nächste Schritte.</p>
+            </div>
+          </header>
 
           <EditorialImage
             class="leadership-context"
@@ -56,7 +55,7 @@ const isEnglish = language === "en";
             width={1536}
             height={1024}
           />
-        </section>
+        </div>
 
         <section class="practice-evidence" aria-labelledby="practice-evidence-title">
           <h2 id="practice-evidence-title">Aus der Praxis</h2>
@@ -86,7 +85,6 @@ const isEnglish = language === "en";
   .leadership-landing { min-width: 0; }
   .leadership-intro { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(300px, 1fr); gap: clamp(2.5rem, 4vw, 4rem); align-items: start; padding: 2rem 0 4rem; border-bottom: 1px solid var(--color-border-soft); }
   .landing-hero { min-width: 0; }
-  .leadership-hero { padding: 2rem 0 3.25rem; border-bottom: 1px solid var(--color-border-soft); }
   .hero-eyebrow { display: flex; gap: .85rem; align-items: center; margin-bottom: 1.1rem; color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
   .hero-eyebrow::before { content: ""; width: 2.25rem; height: 2px; flex: 0 0 auto; background: var(--color-amber); }
   h1 { max-width: 720px; margin: 0; color: var(--color-ink); font-size: clamp(46px, 5.2vw, 64px); font-weight: 500; letter-spacing: -.045em; line-height: 1; }
@@ -99,7 +97,6 @@ const isEnglish = language === "en";
   .practice-evidence-item + .practice-evidence-item { border-left: 1px solid var(--color-border-soft); }
   .practice-evidence-item h3 { margin: 0; color: var(--color-ink); font-size: 15px; font-weight: 600; letter-spacing: -.01em; line-height: 1.4; }
   .practice-evidence-item p { margin: .55rem 0 0; color: var(--color-body); font-size: 14px; line-height: 1.62; }
-  .leadership-communication { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(300px, 1fr); gap: clamp(2.5rem, 4vw, 4rem); align-items: start; padding: 3.5rem 0 4rem; }
   :global(.leadership-context) { --editorial-image-margin: 0; width: 100%; max-width: 400px; justify-self: end; }
   :global(.leadership-context .editorial-image__media) { aspect-ratio: 4 / 5; }
   :global(.leadership-context img) {
@@ -110,14 +107,12 @@ const isEnglish = language === "en";
     filter: saturate(.82) contrast(.96) brightness(.98);
   }
   .communication-principle { max-width: 640px; margin-top: 2.15rem; }
-  .leadership-communication .communication-principle { margin-top: 0; }
   .communication-principle h2 { margin: 0; color: var(--color-ink); font-size: 21px; font-weight: 500; letter-spacing: -.02em; line-height: 1.25; }
   .communication-principle p { margin: .65rem 0 0; color: var(--color-body); font-size: 15px; line-height: 1.68; }
   .leadership-intro + :global(.field-section) { padding-top: 4rem; }
 
   @media (max-width: 900px) {
     .leadership-intro { grid-template-columns: 1fr; gap: 2rem; padding: 1rem 0 3rem; }
-    .leadership-communication { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 0; }
     :global(.leadership-context) { width: min(100%, 520px); max-width: none; justify-self: start; }
     :global(.leadership-context .editorial-image__media) { aspect-ratio: 5 / 4; }
   }
@@ -125,7 +120,6 @@ const isEnglish = language === "en";
   @media (max-width: 760px) {
     h1 { font-size: 42px; }
     .hero-copy { font-size: 15px; }
-    .leadership-hero { padding: 1rem 0 2.5rem; }
     .practice-evidence { padding: 2.35rem 0 2.6rem; }
     .practice-evidence > h2 { font-size: 23px; }
     .practice-evidence-list { grid-template-columns: 1fr; }
