@@ -16,25 +16,66 @@ const isEnglish = language === "en";
 >
   <article class="leadership-landing">
     {isEnglish ? (
-      <div class="leadership-intro">
-        <header class="landing-hero">
-          <div class="hero-eyebrow">Leadership & Transformation</div>
-          <h1>Leadership takes both principles and practice.</h1>
-          <p class="hero-copy">For me, leadership begins with clarity, trust and accountability, and with an understanding of what people and organisations need in a specific situation. Good leadership provides direction, creates room for decisions, brings different perspectives together and enables people to act independently. My principle: understand first, then act.</p>
-          <div class="communication-principle">
-            <h2>Turn complexity into clarity.</h2>
-            <p>In complex organisations, I see it as part of leadership to distil complex relationships so that direction emerges and decisions become possible. This does not mean oversimplifying complexity, but making what matters visible.</p>
-          </div>
-        </header>
+      <>
+        <div class="leadership-intro">
+          <header class="landing-hero">
+            <div class="hero-eyebrow">Leadership & Transformation</div>
+            <h1>Leadership takes both principles and practice.</h1>
+            <p class="hero-copy">For me, leadership begins with clarity, trust and accountability, and with an understanding of what people and organisations need in a specific situation. Good leadership provides direction, creates room for decisions, brings different perspectives together and enables people to act independently. My principle: understand first, then act.</p>
+            <div class="communication-principle">
+              <h2>Turn complexity into clarity.</h2>
+              <p>In complex organisations, I see it as part of leadership to distil complex relationships so that direction emerges and decisions become possible. This does not mean oversimplifying complexity, but making what matters visible.</p>
+            </div>
+          </header>
 
-        <EditorialImage
-          class="leadership-context"
-          src="/images/karsten-uhlig-leadership-stage.png"
-          alt="Karsten Uhlig speaking on stage"
-          width={1536}
-          height={1024}
-        />
-      </div>
+          <EditorialImage
+            class="leadership-context"
+            src="/images/karsten-uhlig-leadership-stage.png"
+            alt="Karsten Uhlig speaking on stage"
+            width={1536}
+            height={1024}
+          />
+        </div>
+
+        <section class="practice-evidence" aria-labelledby="practice-evidence-title">
+          <h2 id="practice-evidence-title">Leadership in practice</h2>
+          <div class="practice-evidence-list">
+            <div class="practice-evidence-item">
+              <h3>100+ employees · 8 leaders · 20+ teams</h3>
+              <p>Leadership across several levels in an international digital organisation.</p>
+            </div>
+            <div class="practice-evidence-item">
+              <h3>Product organisation</h3>
+              <p>Built cross-functional teams with end-to-end accountability and established shared prioritisation across Product, Tech, Data and Business.</p>
+            </div>
+            <div class="practice-evidence-item">
+              <h3>International matrix · 20+ markets</h3>
+              <p>Steered priorities and digital initiatives jointly with market and functional leaders.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="featured-proof" aria-labelledby="featured-proof-title">
+          <a class="featured-proof-link" href="/en/transformation/product-organisation">
+            <div class="featured-proof-copy">
+              <div class="featured-proof-eyebrow">Leadership Case</div>
+              <h2 id="featured-proof-title">From projects to product teams with end-to-end accountability</h2>
+              <p>Evolved a functionally and project-oriented e-commerce organisation into cross-functional product teams with clear end-to-end accountability.</p>
+              <span class="featured-proof-cta">View case <span aria-hidden="true">→</span></span>
+            </div>
+            <figure class="featured-proof-visual">
+              <img
+                src="/images/homepage/06-product-organisation-transformation.png"
+                alt="Transformation from functional projects to cross-functional product teams"
+                width="1254"
+                height="1254"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </a>
+        </section>
+      </>
     ) : (
       <>
         <div class="leadership-intro">
