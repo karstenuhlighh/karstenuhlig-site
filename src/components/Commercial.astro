@@ -89,7 +89,14 @@ const selectedPractice = isEnglish ? {
   explorationHref: "/performance-marketing-steering",
 };
 
-const productTransformationCase = {
+const productTransformationCase = isEnglish ? {
+  caseLabel: "Transformation Case",
+  caseTitle: "From projects to product teams with end-to-end accountability",
+  caseBody: "Evolved a functionally and project-oriented e-commerce organisation into cross-functional product teams with clear end-to-end accountability.",
+  outcome: "Delivery capability increased tenfold.",
+  caseAction: "View case",
+  caseHref: "/en/transformation/product-organisation",
+} : {
   caseLabel: "Transformation Case",
   caseTitle: "Von Projekten zu Produktteams mit Ergebnisverantwortung",
   caseBody: "Eine funktional und projektorientiert arbeitende E-Commerce-Organisation zu crossfunktionalen Produktteams mit klarer End-to-End-Verantwortung weiterentwickelt.",
@@ -197,25 +204,28 @@ const enablerVisuals = {
         <span class="text-link case-link">{selectedPractice.caseAction} <span aria-hidden="true">→</span></span>
       </a>
 
-      {!isEnglish && (
-        <a class="selected-practice product-transformation" href={productTransformationCase.caseHref}>
+      <a class="selected-practice product-transformation" href={productTransformationCase.caseHref}>
           <div class="practice-copy">
             <div class="card-eyebrow">{productTransformationCase.caseLabel}</div>
             <h2>{productTransformationCase.caseTitle}</h2>
             <p>{productTransformationCase.caseBody}</p>
           </div>
-          <div class="transformation-visual" aria-hidden="true">
-            <span class="functional-shape"><i></i><i></i><i></i></span>
-            <b>→</b>
-            <span class="product-shape"><i></i><i></i><i></i></span>
-          </div>
+          <figure class="transformation-visual" aria-hidden="true">
+            <img
+              src="/images/homepage/06-product-organisation-transformation.png"
+              alt=""
+              width="1254"
+              height="1254"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
           <div class="outcome-strip">
             <span class="outcome-icon" aria-hidden="true">↗</span>
             <strong>{productTransformationCase.outcome}</strong>
           </div>
           <span class="text-link case-link">{productTransformationCase.caseAction} <span aria-hidden="true">→</span></span>
-        </a>
-      )}
+      </a>
 
       <a class="practice-exploration" href={selectedPractice.explorationHref}>
         <div class="exploration-copy">
@@ -362,6 +372,7 @@ const enablerVisuals = {
   .commercial-visual,
   .enabler-visual,
   .practice-visual,
+  .transformation-visual,
   .exploration-visual {
     margin: 0;
   }
@@ -372,6 +383,7 @@ const enablerVisuals = {
   .commercial-visual img,
   .enabler-visual img,
   .practice-visual img,
+  .transformation-visual img,
   .exploration-visual img {
     display: block;
     width: 100%;
@@ -507,29 +519,13 @@ const enablerVisuals = {
     min-height: 190px;
   }
   .product-transformation {
-    grid-template-columns: minmax(0, 1.35fr) minmax(110px, .65fr);
+    grid-template-columns: minmax(0, 1fr) minmax(170px, .95fr);
   }
   .transformation-visual {
     grid-area: visual;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: .55rem;
-    align-items: center;
     min-width: 0;
+    min-height: 190px;
   }
-  .transformation-visual > span {
-    display: grid;
-    gap: .45rem;
-  }
-  .transformation-visual i {
-    display: block;
-    height: 1.5rem;
-    border: 1px solid rgba(30,60,100,.28);
-    border-radius: 999px;
-  }
-  .functional-shape i { background: rgba(30,60,100,.06); }
-  .product-shape i { background: rgba(180,83,9,.11); border-color: rgba(180,83,9,.38); }
-  .transformation-visual b { color: var(--color-amber); font-size: 18px; font-weight: 500; }
   .outcome-strip {
     grid-area: outcome;
     display: grid;
@@ -585,7 +581,8 @@ const enablerVisuals = {
     }
     .proof-column .selected-practice,
     .proof-column .practice-exploration { padding: 1.15rem; }
-    .proof-column .practice-visual { min-height: 140px; }
+    .proof-column .practice-visual,
+    .proof-column .transformation-visual { min-height: 140px; }
     .proof-column .exploration-visual { height: 150px; }
   }
   @media (min-width: 1161px) and (max-width: 1400px) {
@@ -654,10 +651,10 @@ const enablerVisuals = {
       grid-template-columns: minmax(0, 1.2fr) minmax(240px, .8fr);
     }
     .practice-visual,
+    .transformation-visual,
     .exploration-visual {
       height: 220px;
     }
-    .transformation-visual { min-height: 150px; padding: 0 7%; }
   }
   @media (max-width: 768px) {
     .commercial-pillar { padding-top: 2.5rem; }
@@ -688,10 +685,10 @@ const enablerVisuals = {
         "cta";
     }
     .practice-visual,
+    .transformation-visual,
     .exploration-visual {
       height: 210px;
     }
-    .transformation-visual { min-height: 130px; padding: 0; }
     .enablers {
       grid-template-columns: 1fr;
       gap: 1rem;
