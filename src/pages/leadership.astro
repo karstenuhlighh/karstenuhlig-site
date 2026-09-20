@@ -12,28 +12,71 @@ const isEnglish = language === "en";
   editorial
   language={language}
   title="Leadership & Transformation | Karsten Uhlig"
-  description={isEnglish ? "For me, leadership begins with clarity, trust and accountability, and with an understanding of what people and organisations need in a specific situation." : "Für mich beginnt Führung mit Klarheit, Vertrauen und Verantwortung und mit dem Verständnis dafür, was Menschen und Organisationen in einer konkreten Situation brauchen."}
+  description={isEnglish ? "For me, leadership begins with clarity, trust and accountability, and with an understanding of what people and organisations need in a specific situation." : "Führung mit klaren Erwartungen, echtem Handlungsspielraum und hohem Anspruch an Ergebnisse. Aus der Führung einer Digitalorganisation mit mehr als 100 Mitarbeitenden."}
 >
   <article class="leadership-landing">
-    <div class="leadership-intro">
-      <header class="landing-hero">
-        <div class="hero-eyebrow">Leadership & Transformation</div>
-        <h1>{isEnglish ? "Leadership takes both principles and practice." : "Führung braucht Haltung und Handwerk."}</h1>
-        <p class="hero-copy">{isEnglish ? "For me, leadership begins with clarity, trust and accountability, and with an understanding of what people and organisations need in a specific situation. Good leadership provides direction, creates room for decisions, brings different perspectives together and enables people to act independently. My principle: understand first, then act." : "Für mich beginnt Führung mit Klarheit, Vertrauen und Verantwortung und mit dem Verständnis dafür, was Menschen und Organisationen in einer konkreten Situation brauchen. Gute Führung gibt Orientierung, schafft Entscheidungsräume, bringt unterschiedliche Perspektiven zusammen und ermöglicht eigenständiges Handeln. Mein Prinzip dabei: erst verstehen, dann handeln."}</p>
-        <div class="communication-principle">
-          <h2>{isEnglish ? "Turn complexity into clarity." : "Komplexität in Klarheit verwandeln."}</h2>
-          <p>{isEnglish ? "In complex organisations, I see it as part of leadership to distil complex relationships so that direction emerges and decisions become possible. This does not mean oversimplifying complexity, but making what matters visible." : "In komplexen Organisationen gehört es für mich zu Führung, Zusammenhänge so zu verdichten, dass Orientierung entsteht und Entscheidungen möglich werden. Das heißt nicht, Komplexität zu vereinfachen, sondern das Wesentliche sichtbar zu machen."}</p>
-        </div>
-      </header>
+    {isEnglish ? (
+      <div class="leadership-intro">
+        <header class="landing-hero">
+          <div class="hero-eyebrow">Leadership & Transformation</div>
+          <h1>Leadership takes both principles and practice.</h1>
+          <p class="hero-copy">For me, leadership begins with clarity, trust and accountability, and with an understanding of what people and organisations need in a specific situation. Good leadership provides direction, creates room for decisions, brings different perspectives together and enables people to act independently. My principle: understand first, then act.</p>
+          <div class="communication-principle">
+            <h2>Turn complexity into clarity.</h2>
+            <p>In complex organisations, I see it as part of leadership to distil complex relationships so that direction emerges and decisions become possible. This does not mean oversimplifying complexity, but making what matters visible.</p>
+          </div>
+        </header>
 
-      <EditorialImage
-        class="leadership-context"
-        src="/images/karsten-uhlig-leadership-stage.png"
-        alt={isEnglish ? "Karsten Uhlig speaking on stage" : "Karsten Uhlig bei einem Vortrag"}
-        width={1536}
-        height={1024}
-      />
-    </div>
+        <EditorialImage
+          class="leadership-context"
+          src="/images/karsten-uhlig-leadership-stage.png"
+          alt="Karsten Uhlig speaking on stage"
+          width={1536}
+          height={1024}
+        />
+      </div>
+    ) : (
+      <>
+        <header class="landing-hero leadership-hero">
+          <div class="hero-eyebrow">Leadership & Transformation</div>
+          <h1>Führung braucht Haltung und Handwerk.</h1>
+          <p class="hero-copy">Für mich beginnt Führung mit Klarheit über Ziele, Erwartungen und Verantwortung. Dazu gehören verlässliche Entscheidungsräume, hohe Ansprüche an Ergebnisse und ein Umgang, in dem unterschiedliche Perspektiven offen eingebracht werden können. Führung zeigt sich für mich darin, Entscheidungen nachvollziehbar zu machen, Verantwortung klar zu verankern und in der Umsetzung verbindlich zu bleiben.</p>
+        </header>
+
+        <section class="practice-evidence" aria-labelledby="practice-evidence-title">
+          <h2 id="practice-evidence-title">Aus der Praxis</h2>
+          <div class="practice-evidence-list">
+            <div class="practice-evidence-item">
+              <h3>100+ Mitarbeitende · 8 Führungskräfte · 20+ Teams</h3>
+              <p>Führung über mehrere Ebenen in einer internationalen Digitalorganisation.</p>
+            </div>
+            <div class="practice-evidence-item">
+              <h3>Produktorganisation</h3>
+              <p>Crossfunktionale Teams mit End-to-End-Verantwortung aufgebaut und gemeinsame Priorisierung über Product, Tech, Data und Business etabliert.</p>
+            </div>
+            <div class="practice-evidence-item">
+              <h3>Internationale Matrix · 20+ Märkte</h3>
+              <p>Prioritäten und digitale Initiativen gemeinsam mit Markt- und Funktionsverantwortlichen gesteuert.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="leadership-communication" aria-labelledby="communication-principle-title">
+          <div class="communication-principle">
+            <h2 id="communication-principle-title">Komplexität in Klarheit verwandeln.</h2>
+            <p>In komplexen Organisationen gehört es für mich zu Führung, Zusammenhänge so zu verdichten, dass Entscheidungen möglich werden. Oft heißt das ganz konkret, eine unübersichtliche Lage auf eine Seite zu bringen: Ausgangslage, Optionen, Empfehlung und nächste Schritte.</p>
+          </div>
+
+          <EditorialImage
+            class="leadership-context"
+            src="/images/karsten-uhlig-leadership-stage.png"
+            alt="Karsten Uhlig bei einem Vortrag"
+            width={1536}
+            height={1024}
+          />
+        </section>
+      </>
+    )}
 
     <LeadershipFieldExplorer language={language} />
   </article>
@@ -43,10 +86,20 @@ const isEnglish = language === "en";
   .leadership-landing { min-width: 0; }
   .leadership-intro { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(300px, 1fr); gap: clamp(2.5rem, 4vw, 4rem); align-items: start; padding: 2rem 0 4rem; border-bottom: 1px solid var(--color-border-soft); }
   .landing-hero { min-width: 0; }
+  .leadership-hero { padding: 2rem 0 3.25rem; border-bottom: 1px solid var(--color-border-soft); }
   .hero-eyebrow { display: flex; gap: .85rem; align-items: center; margin-bottom: 1.1rem; color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
   .hero-eyebrow::before { content: ""; width: 2.25rem; height: 2px; flex: 0 0 auto; background: var(--color-amber); }
   h1 { max-width: 720px; margin: 0; color: var(--color-ink); font-size: clamp(46px, 5.2vw, 64px); font-weight: 500; letter-spacing: -.045em; line-height: 1; }
   .hero-copy { max-width: 640px; margin: 1.35rem 0 0; color: var(--color-body); font-size: 15.5px; line-height: 1.72; }
+  .practice-evidence { padding: 2.7rem 0 3rem; border-bottom: 1px solid var(--color-border-soft); }
+  .practice-evidence > h2 { margin: 0 0 1.65rem; color: var(--color-ink); font-size: 25px; font-weight: 500; letter-spacing: -.025em; line-height: 1.25; }
+  .practice-evidence-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--color-border-soft); border-bottom: 1px solid var(--color-border-soft); }
+  .practice-evidence-item { min-width: 0; padding: 1.35rem 1.5rem 1.45rem; }
+  .practice-evidence-item:first-child { padding-left: 0; }
+  .practice-evidence-item + .practice-evidence-item { border-left: 1px solid var(--color-border-soft); }
+  .practice-evidence-item h3 { margin: 0; color: var(--color-ink); font-size: 15px; font-weight: 600; letter-spacing: -.01em; line-height: 1.4; }
+  .practice-evidence-item p { margin: .55rem 0 0; color: var(--color-body); font-size: 14px; line-height: 1.62; }
+  .leadership-communication { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(300px, 1fr); gap: clamp(2.5rem, 4vw, 4rem); align-items: start; padding: 3.5rem 0 4rem; }
   :global(.leadership-context) { --editorial-image-margin: 0; width: 100%; max-width: 400px; justify-self: end; }
   :global(.leadership-context .editorial-image__media) { aspect-ratio: 4 / 5; }
   :global(.leadership-context img) {
@@ -57,12 +110,14 @@ const isEnglish = language === "en";
     filter: saturate(.82) contrast(.96) brightness(.98);
   }
   .communication-principle { max-width: 640px; margin-top: 2.15rem; }
+  .leadership-communication .communication-principle { margin-top: 0; }
   .communication-principle h2 { margin: 0; color: var(--color-ink); font-size: 21px; font-weight: 500; letter-spacing: -.02em; line-height: 1.25; }
   .communication-principle p { margin: .65rem 0 0; color: var(--color-body); font-size: 15px; line-height: 1.68; }
   .leadership-intro + :global(.field-section) { padding-top: 4rem; }
 
   @media (max-width: 900px) {
     .leadership-intro { grid-template-columns: 1fr; gap: 2rem; padding: 1rem 0 3rem; }
+    .leadership-communication { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 0; }
     :global(.leadership-context) { width: min(100%, 520px); max-width: none; justify-self: start; }
     :global(.leadership-context .editorial-image__media) { aspect-ratio: 5 / 4; }
   }
@@ -70,6 +125,12 @@ const isEnglish = language === "en";
   @media (max-width: 760px) {
     h1 { font-size: 42px; }
     .hero-copy { font-size: 15px; }
+    .leadership-hero { padding: 1rem 0 2.5rem; }
+    .practice-evidence { padding: 2.35rem 0 2.6rem; }
+    .practice-evidence > h2 { font-size: 23px; }
+    .practice-evidence-list { grid-template-columns: 1fr; }
+    .practice-evidence-item { padding: 1.15rem 0 1.25rem; }
+    .practice-evidence-item + .practice-evidence-item { border-top: 1px solid var(--color-border-soft); border-left: 0; }
     .communication-principle h2 { font-size: 20px; }
     .leadership-intro + :global(.field-section) { padding-top: 3.5rem; }
   }
