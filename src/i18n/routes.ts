@@ -13,6 +13,7 @@ export const coreRoutePairs: RoutePair[] = [
   { de: "/leadership", en: "/en/leadership" },
   { de: "/track-record", en: "/en/track-record" },
   { de: "/performance-marketing-steering", en: "/en/performance-marketing-steering" },
+  { de: "/transformation/product-organisation", en: "/en/transformation/product-organisation" },
   { de: "/agentic-ai", en: "/en/agentic-ai" },
   {
     de: "/agentic-ai/awareness-war-nie-der-engpass",

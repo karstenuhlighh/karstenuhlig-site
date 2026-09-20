@@ -2,7 +2,35 @@
 import Layout from "../../layouts/Layout.astro";
 import Nav from "../../components/Nav.astro";
 
-const changes = [
+interface Props {
+  language?: "de" | "en";
+}
+
+const { language = "de" } = Astro.props;
+const isEnglish = language === "en";
+
+const changes = isEnglish ? [
+  {
+    title: "Teams organised around products and customer value.",
+    body: "Established clear product accountability across Product Management, Engineering, UX and the required domain capabilities.",
+  },
+  {
+    title: "Reduced technical dependencies to match the product organisation.",
+    body: "Evolved the platform and accountability boundaries so teams could deliver more independently.",
+  },
+  {
+    title: "Clearly separated strategy, portfolio and product decisions.",
+    body: "Strategic objectives set the direction. The portfolio was prioritised regularly. The accountable teams decided how to achieve a product objective.",
+  },
+  {
+    title: "Established different decision cadences.",
+    body: "Strategy remained stable for longer while the portfolio was reprioritised quarterly. OKRs and Flight Levels made visible what was being worked on and what had to wait. Many objectives were deliberately cross-functional.",
+  },
+  {
+    title: "Prioritised against explicit criteria.",
+    body: "Initiatives were shaped together with the Product Owners. Impact and effort were assessed before they entered planning.",
+  },
+] : [
   {
     title: "Teams entlang von Produkten und Kundenwert geschnitten.",
     body: "Klare Produktverantwortungen mit Product Management, Engineering, UX und den benötigten fachlichen Kompetenzen geschaffen.",
@@ -25,13 +53,22 @@ const changes = [
   },
 ];
 
-const results = [
+const results = isEnglish ? [
+  "Delivery capability increased tenfold, measured through the DORA software-delivery metrics in use.",
+  "Decisions were made closer to the relevant expertise and significantly faster.",
+  "Friction between functions and silo thinking were reduced.",
+] : [
   "Lieferfähigkeit um Faktor 10 gesteigert, gemessen anhand der verwendeten DORA-Kennzahlen für Softwarelieferung.",
   "Entscheidungen fielen näher an der Sachkenntnis und deutlich schneller.",
   "Reibung zwischen Funktionen und Silodenken wurden reduziert.",
 ];
 
-const takeaways = [
+const takeaways = isEnglish ? [
+  "Recurring prioritisation conflicts often reveal a weakness in organisational structure or architecture. Sorting the queue more efficiently does not resolve it.",
+  "The business defines the outcome and priority. The team decides how to achieve it.",
+  "A stable strategy can support a dynamic portfolio.",
+  "Scarce capacity inevitably makes prioritisation contentious. Transparent criteria and regular dialogue make the decisions understandable.",
+] : [
   "Wiederkehrende Priorisierungskonflikte zeigen oft eine Schwäche in Struktur oder Architektur. Besseres Sortieren der Warteschlange löst sie nicht.",
   "Das Geschäft bestimmt Ergebnis und Priorität. Wie ein Team das erreicht, entscheidet das Team.",
   "Eine stabile Strategie verträgt ein bewegliches Portfolio.",
@@ -40,46 +77,47 @@ const takeaways = [
 ---
 
 <Layout
-  title="Transformation Case: Von Projekten zu Produktteams | Karsten Uhlig"
-  description="Wie eine internationale E-Commerce-Organisation zu crossfunktionalen Produktteams mit End-to-End-Verantwortung weiterentwickelt wurde und die Lieferfähigkeit um Faktor 10 stieg."
+  title={isEnglish ? "Transformation Case: From Projects to Product Teams | Karsten Uhlig" : "Transformation Case: Von Projekten zu Produktteams | Karsten Uhlig"}
+  description={isEnglish ? "How an international e-commerce organisation evolved into cross-functional product teams with end-to-end accountability and increased delivery capability tenfold." : "Wie eine internationale E-Commerce-Organisation zu crossfunktionalen Produktteams mit End-to-End-Verantwortung weiterentwickelt wurde und die Lieferfähigkeit um Faktor 10 stieg."}
+  language={language}
 >
   <section class="case-shell">
     <div class="case-inner">
-      <Nav homepage />
+      <Nav language={language} homepage />
 
       <main class="case-page">
         <header class="case-hero">
           <div class="hero-copy">
             <p class="eyebrow">Transformation Case · bonprix (Otto Group)</p>
-            <h1>Von Projekten zu Produktteams mit Ergebnis<wbr />verantwortung</h1>
+            <h1>{isEnglish ? "From Projects to Product Teams with End-to-End Accountability" : <>Von Projekten zu Produktteams mit Ergebnis<wbr />verantwortung</>}</h1>
           </div>
 
-          <aside class="hero-proof" aria-label="Zentrales Ergebnis">
-            <span>Lieferfähigkeit</span>
-            <strong>Faktor 10</strong>
-            <p>durch das Zusammenspiel von Organisation, Priorisierung, Entscheidungsrechten und reduzierten Abhängigkeiten.</p>
+          <aside class="hero-proof" aria-label={isEnglish ? "Key result" : "Zentrales Ergebnis"}>
+            <span>{isEnglish ? "Delivery capability" : "Lieferfähigkeit"}</span>
+            <strong>{isEnglish ? "10×" : "Faktor 10"}</strong>
+            <p>{isEnglish ? "through the interplay of organisation, prioritisation, decision rights and reduced dependencies." : "durch das Zusammenspiel von Organisation, Priorisierung, Entscheidungsrechten und reduzierten Abhängigkeiten."}</p>
           </aside>
         </header>
 
         <section class="in-short" aria-labelledby="in-short-title">
           <p class="section-label" id="in-short-title">In short</p>
-          <p>Das Online-Geschäft war zum Hauptkanal in mehr als 20 Märkten geworden. Die Organisation dahinter arbeitete noch stark in Projekten und Funktionen. Ich habe sie zu einer Produktorganisation mit klarer End-to-End-Verantwortung weiterentwickelt. Prioritäten wurden stärker an Kundenwert und Geschäftswirkung ausgerichtet, und neue Funktionen erreichten die Kundschaft deutlich schneller.</p>
+          <p>{isEnglish ? "The online business had become the primary channel across more than 20 markets. The organisation behind it was still strongly structured around projects and functions. I evolved it into a product organisation with clear end-to-end accountability. Priorities became more closely aligned with customer value and business impact, and new capabilities reached customers significantly faster." : "Das Online-Geschäft war zum Hauptkanal in mehr als 20 Märkten geworden. Die Organisation dahinter arbeitete noch stark in Projekten und Funktionen. Ich habe sie zu einer Produktorganisation mit klarer End-to-End-Verantwortung weiterentwickelt. Prioritäten wurden stärker an Kundenwert und Geschäftswirkung ausgerichtet, und neue Funktionen erreichten die Kundschaft deutlich schneller."}</p>
         </section>
 
         <section class="case-section situation" aria-labelledby="situation-title">
           <div class="section-heading">
-            <p class="section-label">01 · Kontext</p>
-            <h2 id="situation-title">Ausgangslage</h2>
+            <p class="section-label">01 · {isEnglish ? "Context" : "Kontext"}</p>
+            <h2 id="situation-title">{isEnglish ? "Starting point" : "Ausgangslage"}</h2>
           </div>
           <div class="section-body">
-            <p>Die E-Commerce-Organisation war funktional aufgestellt und arbeitete projektbezogen. Anforderungen kamen aus vielen Fachbereichen gleichzeitig. Mehrere Vorhaben warteten auf dieselben zentralen Plattformkomponenten. Priorisierung wurde dadurch zum Dauerkonflikt, und der Weg von der Idee zum Kunden war lang. Zwischen den Funktionen entstanden Reibung und Silodenken.</p>
+            <p>{isEnglish ? "The e-commerce organisation was structured by function and worked through projects. Requirements arrived simultaneously from many business areas. Multiple initiatives depended on the same central platform components. Prioritisation became a constant conflict, and the path from idea to customer was long. Friction and silo thinking emerged between functions." : "Die E-Commerce-Organisation war funktional aufgestellt und arbeitete projektbezogen. Anforderungen kamen aus vielen Fachbereichen gleichzeitig. Mehrere Vorhaben warteten auf dieselben zentralen Plattformkomponenten. Priorisierung wurde dadurch zum Dauerkonflikt, und der Weg von der Idee zum Kunden war lang. Zwischen den Funktionen entstanden Reibung und Silodenken."}</p>
           </div>
         </section>
 
         <section class="case-section change-section" aria-labelledby="change-title">
           <div class="section-heading">
             <p class="section-label">02 · Transformation</p>
-            <h2 id="change-title">Was wir verändert haben</h2>
+            <h2 id="change-title">{isEnglish ? "What we changed" : "Was wir verändert haben"}</h2>
           </div>
           <ol class="change-list">
             {changes.map((change, index) => (
@@ -96,8 +134,8 @@ const takeaways = [
 
         <section class="case-section result-section" aria-labelledby="result-title">
           <div class="section-heading">
-            <p class="section-label">03 · Wirkung</p>
-            <h2 id="result-title">Ergebnis</h2>
+            <p class="section-label">03 · {isEnglish ? "Impact" : "Wirkung"}</p>
+            <h2 id="result-title">{isEnglish ? "Outcome" : "Ergebnis"}</h2>
           </div>
           <div class="result-content">
             <div class="proof-points">
@@ -108,14 +146,14 @@ const takeaways = [
                 </article>
               ))}
             </div>
-            <p class="context-note">Der Effekt entstand nicht durch eine einzelne Engineering-Maßnahme, sondern durch das Zusammenspiel aus Produktzuschnitt, Entscheidungsrechten, Priorisierung und reduzierten technischen Abhängigkeiten.</p>
+            <p class="context-note">{isEnglish ? "The impact did not come from a single engineering measure, but from the interplay of product boundaries, decision rights, prioritisation and reduced technical dependencies." : "Der Effekt entstand nicht durch eine einzelne Engineering-Maßnahme, sondern durch das Zusammenspiel aus Produktzuschnitt, Entscheidungsrechten, Priorisierung und reduzierten technischen Abhängigkeiten."}</p>
           </div>
         </section>
 
         <section class="case-section takeaway-section" aria-labelledby="takeaway-title">
           <div class="section-heading">
-            <p class="section-label">04 · Prinzipien</p>
-            <h2 id="takeaway-title">Was ich daraus mitnehme</h2>
+            <p class="section-label">04 · {isEnglish ? "Principles" : "Prinzipien"}</p>
+            <h2 id="takeaway-title">{isEnglish ? "What I take from it" : "Was ich daraus mitnehme"}</h2>
           </div>
           <div class="takeaway-list">
             {takeaways.map((takeaway) => (
@@ -125,10 +163,10 @@ const takeaways = [
         </section>
 
         <section class="today-section" aria-labelledby="today-title">
-          <p class="section-label">05 · Relevanz</p>
-          <h2 id="today-title">Wofür das heute zählt</h2>
-          <p>Die Logik gilt überall dort, wo Marketing, Vertrieb, Filiale, Product und Technology um dieselben knappen Kapazitäten konkurrieren und digitale Entwicklung über Funktionsgrenzen hinweg priorisiert werden muss.</p>
-          <a href="/#commercial-management">Zurück zu Practice &amp; Proof <span aria-hidden="true">→</span></a>
+          <p class="section-label">05 · {isEnglish ? "Relevance" : "Relevanz"}</p>
+          <h2 id="today-title">{isEnglish ? "Why it matters today" : "Wofür das heute zählt"}</h2>
+          <p>{isEnglish ? "The same logic applies wherever Marketing, Sales, Retail, Product and Technology compete for the same scarce capacity and digital development must be prioritised across functional boundaries." : "Die Logik gilt überall dort, wo Marketing, Vertrieb, Filiale, Product und Technology um dieselben knappen Kapazitäten konkurrieren und digitale Entwicklung über Funktionsgrenzen hinweg priorisiert werden muss."}</p>
+          <a href={isEnglish ? "/en/#commercial-management" : "/#commercial-management"}>{isEnglish ? "Back to Practice & Proof" : "Zurück zu Practice & Proof"} <span aria-hidden="true">→</span></a>
         </section>
       </main>
     </div>
