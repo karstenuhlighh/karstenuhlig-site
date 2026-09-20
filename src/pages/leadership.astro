@@ -12,15 +12,18 @@ const isEnglish = language === "en";
   editorial
   language={language}
   title="Leadership & Transformation | Karsten Uhlig"
-  description={isEnglish ? "Leadership as a discipline of diagnosis and decision-making: seven recurring leadership problems and the models I use to address them." : "Für mich beginnt Führung mit Klarheit, Vertrauen und Verantwortung und mit dem Verständnis dafür, was Menschen und Organisationen in einer konkreten Situation brauchen."}
+  description={isEnglish ? "For me, leadership begins with clarity, trust and accountability, and with an understanding of what people and organisations need in a specific situation." : "Für mich beginnt Führung mit Klarheit, Vertrauen und Verantwortung und mit dem Verständnis dafür, was Menschen und Organisationen in einer konkreten Situation brauchen."}
 >
   <article class="leadership-landing">
     <div class="leadership-intro">
       <header class="landing-hero">
         <div class="hero-eyebrow">Leadership & Transformation</div>
-        <h1>{isEnglish ? "Leadership & Transformation" : "Führung braucht Haltung und Handwerk."}</h1>
-        {isEnglish && <p class="hero-subheadline">Turning strategy into organisation and execution.</p>}
-        <p class="hero-copy">{isEnglish ? "For me, leadership is not reducible to style or intuition. Leadership shows up in recurring situations: clarifying accountability, developing performance, resolving conflicts, enabling decisions and getting change moving. That requires diagnosis before intervention. Understand the actual cause first, then choose the appropriate leadership instrument." : "Für mich beginnt Führung mit Klarheit, Vertrauen und Verantwortung und mit dem Verständnis dafür, was Menschen und Organisationen in einer konkreten Situation brauchen. Gute Führung gibt Orientierung, schafft Entscheidungsräume, bringt unterschiedliche Perspektiven zusammen und ermöglicht eigenständiges Handeln. Mein Prinzip dabei: erst verstehen, dann handeln."}</p>
+        <h1>{isEnglish ? "Leadership takes both principles and practice." : "Führung braucht Haltung und Handwerk."}</h1>
+        <p class="hero-copy">{isEnglish ? "For me, leadership begins with clarity, trust and accountability, and with an understanding of what people and organisations need in a specific situation. Good leadership provides direction, creates room for decisions, brings different perspectives together and enables people to act independently. My principle: understand first, then act." : "Für mich beginnt Führung mit Klarheit, Vertrauen und Verantwortung und mit dem Verständnis dafür, was Menschen und Organisationen in einer konkreten Situation brauchen. Gute Führung gibt Orientierung, schafft Entscheidungsräume, bringt unterschiedliche Perspektiven zusammen und ermöglicht eigenständiges Handeln. Mein Prinzip dabei: erst verstehen, dann handeln."}</p>
+        <div class="communication-principle">
+          <h2>{isEnglish ? "Turn complexity into clarity." : "Komplexität in Klarheit verwandeln."}</h2>
+          <p>{isEnglish ? "In complex organisations, I see it as part of leadership to distil complex relationships so that direction emerges and decisions become possible. This does not mean oversimplifying complexity, but making what matters visible." : "In komplexen Organisationen gehört es für mich zu Führung, Zusammenhänge so zu verdichten, dass Orientierung entsteht und Entscheidungen möglich werden. Das heißt nicht, Komplexität zu vereinfachen, sondern das Wesentliche sichtbar zu machen."}</p>
+        </div>
       </header>
 
       <EditorialImage
@@ -43,7 +46,6 @@ const isEnglish = language === "en";
   .hero-eyebrow { display: flex; gap: .85rem; align-items: center; margin-bottom: 1.1rem; color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
   .hero-eyebrow::before { content: ""; width: 2.25rem; height: 2px; flex: 0 0 auto; background: var(--color-amber); }
   h1 { max-width: 720px; margin: 0; color: var(--color-ink); font-size: clamp(46px, 5.2vw, 64px); font-weight: 500; letter-spacing: -.045em; line-height: 1; }
-  .hero-subheadline { max-width: 640px; margin: 1.35rem 0 0; color: var(--color-ink); font-size: clamp(22px, 2.35vw, 30px); font-weight: 500; letter-spacing: -.025em; line-height: 1.25; }
   .hero-copy { max-width: 640px; margin: 1.35rem 0 0; color: var(--color-body); font-size: 15.5px; line-height: 1.72; }
   :global(.leadership-context) { --editorial-image-margin: 0; width: 100%; max-width: 400px; justify-self: end; }
   :global(.leadership-context .editorial-image__media) { aspect-ratio: 4 / 5; }
@@ -54,6 +56,9 @@ const isEnglish = language === "en";
     object-position: 57% center;
     filter: saturate(.82) contrast(.96) brightness(.98);
   }
+  .communication-principle { max-width: 640px; margin-top: 2.15rem; }
+  .communication-principle h2 { margin: 0; color: var(--color-ink); font-size: 21px; font-weight: 500; letter-spacing: -.02em; line-height: 1.25; }
+  .communication-principle p { margin: .65rem 0 0; color: var(--color-body); font-size: 15px; line-height: 1.68; }
   .leadership-intro + :global(.field-section) { padding-top: 4rem; }
 
   @media (max-width: 900px) {
@@ -64,8 +69,8 @@ const isEnglish = language === "en";
 
   @media (max-width: 760px) {
     h1 { font-size: 42px; }
-    .hero-subheadline { font-size: 23px; }
     .hero-copy { font-size: 15px; }
+    .communication-principle h2 { font-size: 20px; }
     .leadership-intro + :global(.field-section) { padding-top: 3.5rem; }
   }
 

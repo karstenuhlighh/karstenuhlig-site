@@ -117,8 +117,8 @@ export const leadershipClasses: LeadershipClass[] = [
   },
   {
     number: "06",
-    title: "Veränderung & Lernen",
-    shortTitle: "Veränderung & Lernen",
+    title: "Transformation, Veränderung & Lernen",
+    shortTitle: "Transformation, Veränderung & Lernen",
     description: "Veränderung ist für mich ein gemeinsamer Lernprozess.",
     managementQuestion: "Dazu gehört, Erfahrungen aus der Umsetzung ernst zu nehmen, unterschiedliche Perspektiven einzubeziehen und die nächsten Schritte daraus weiterzuentwickeln.",
     image: "/images/leadership-transformation/06-veraenderung-lernen.png",

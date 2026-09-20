@@ -10,12 +10,12 @@ const { language = "de" } = Astro.props;
 const isEnglish = language === "en";
 const classes = isEnglish ? leadershipClassesEn : leadershipClasses;
 const ui = isEnglish ? {
-  kicker: "The 7 leadership questions",
-  heading: "Leadership as a recurring discipline of diagnosis and decision-making, not gut feel.",
+  kicker: "",
+  heading: "What good leadership needs to enable",
   explore: "Explore",
-  question: "Leadership question",
+  question: "What it is about",
   close: "Close details",
-  about: "What it is about",
+  about: "In detail",
   focus: "What I pay attention to",
 } : {
   kicker: "",
@@ -41,15 +41,18 @@ const panelData = classes.map((item) => ({
 
 const serializedPanelData = JSON.stringify(panelData).replace(/</g, "\\u003c");
 const anchorByNumber: Record<string, string> = {
-  "01": "leadership-autonomy-performance",
-  "03": "leadership-direction-decisions",
-  "05": "leadership-matrix-stakeholders",
-  "06": "leadership-transformation-change",
+  "01": "leadership-accountability-autonomy",
+  "02": "leadership-development-feedback",
+  "03": "leadership-direction-focus",
+  "04": "leadership-openness-conflict",
+  "05": "leadership-cross-functional-collaboration",
+  "06": "leadership-transformation-change-learning",
+  "07": "leadership-stance",
 };
 ---
 
 <section class="field-section" id="leadership-classes" aria-labelledby="leadership-classes-title">
-  <div class:list={["section-heading", !isEnglish && "section-heading--single"]}>
+  <div class="section-heading section-heading--single">
     {ui.kicker && <div class="section-kicker">{ui.kicker}</div>}
     <h2 id="leadership-classes-title">{ui.heading}</h2>
   </div>
@@ -59,7 +62,7 @@ const anchorByNumber: Record<string, string> = {
       classes.map((item) => (
         <li id={anchorByNumber[item.number]}>
           <button
-            class:list={["field-card", !isEnglish && "field-card--personal"]}
+            class="field-card field-card--personal"
             type="button"
             data-leadership-field={item.number}
             aria-haspopup="dialog"
@@ -73,7 +76,7 @@ const anchorByNumber: Record<string, string> = {
             <span class="field-content">
               <span class="field-title"><b>{item.number}</b><strong>{item.shortTitle}</strong></span>
               <span class="field-description">{item.description}</span>
-              {!isEnglish && <span class="field-description-detail">{item.managementQuestion}</span>}
+              <span class="field-description-detail">{item.managementQuestion}</span>
               <span class="field-action">{ui.explore} <span aria-hidden="true">→</span></span>
             </span>
             <span class="field-preview" aria-hidden="true">
@@ -90,7 +93,7 @@ const anchorByNumber: Record<string, string> = {
   </ol>
 </section>
 
-<dialog class:list={["field-dialog", !isEnglish && "field-dialog--personal"]} id="leadership-field-dialog" aria-labelledby="field-dialog-title">
+<dialog class="field-dialog field-dialog--personal" id="leadership-field-dialog" aria-labelledby="field-dialog-title">
   <div class="drawer">
     <div class="drawer-topline">
       <span class="drawer-number" id="field-dialog-number"></span>
@@ -98,41 +101,19 @@ const anchorByNumber: Record<string, string> = {
     </div>
     <h2 id="field-dialog-title"></h2>
 
-    {isEnglish ? (
-      <>
-        <section class="drawer-section question-section" aria-labelledby="field-dialog-question-label">
-          <h3 id="field-dialog-question-label">{ui.question}</h3>
-          <p id="field-dialog-question"></p>
-          <div class="drawer-tags" id="field-dialog-tags"></div>
-        </section>
+    <section class="drawer-main" aria-label={ui.question}>
+      <p id="field-dialog-description"></p>
+      <p id="field-dialog-question"></p>
+    </section>
 
-        <section class="drawer-section" aria-labelledby="field-dialog-about-label">
-          <h3 id="field-dialog-about-label">{ui.about}</h3>
-          <p id="field-dialog-about"></p>
-        </section>
+    <section class="drawer-section layer-section" aria-label={ui.about}>
+      <div class="drawer-layers" id="field-dialog-layers"></div>
+    </section>
 
-        <section class="drawer-section" aria-labelledby="field-dialog-focus-label">
-          <h3 id="field-dialog-focus-label">{ui.focus}</h3>
-          <ul id="field-dialog-focus"></ul>
-        </section>
-      </>
-    ) : (
-      <>
-        <section class="drawer-main" aria-label={ui.question}>
-          <p id="field-dialog-description"></p>
-          <p id="field-dialog-question"></p>
-        </section>
-
-        <section class="drawer-section layer-section" aria-label={ui.about}>
-          <div class="drawer-layers" id="field-dialog-layers"></div>
-        </section>
-
-        <section class="drawer-section personal-section" aria-labelledby="field-dialog-focus-label">
-          <h3 id="field-dialog-focus-label">{ui.focus}</h3>
-          <p id="field-dialog-personal-note"></p>
-        </section>
-      </>
-    )}
+    <section class="drawer-section personal-section" aria-labelledby="field-dialog-focus-label">
+      <h3 id="field-dialog-focus-label">{ui.focus}</h3>
+      <p id="field-dialog-personal-note"></p>
+    </section>
 
   </div>
 </dialog>
