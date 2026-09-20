@@ -1,0 +1,251 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+
+const changes = [
+  {
+    title: "Teams entlang von Produkten und Kundenwert geschnitten.",
+    body: "Klare Produktverantwortungen mit Product Management, Engineering, UX und den benötigten fachlichen Kompetenzen geschaffen.",
+  },
+  {
+    title: "Technische Abhängigkeiten passend zur Produktorganisation reduziert.",
+    body: "Plattform und Verantwortungszuschnitte so weiterentwickelt, dass Teams unabhängiger liefern konnten.",
+  },
+  {
+    title: "Strategie, Portfolio und Produktentscheidungen klar getrennt.",
+    body: "Strategische Ziele gaben Richtung. Das Portfolio wurde regelmäßig priorisiert. Wie ein Produktziel erreicht wird, lag bei den verantwortlichen Teams.",
+  },
+  {
+    title: "Steuerung neu getaktet.",
+    body: "Die Strategie blieb länger stabil, das Portfolio wurde quartalsweise neu sortiert. OKR und Flight Levels machten sichtbar, woran gearbeitet wird und was warten muss. Viele Ziele waren bewusst bereichsübergreifend formuliert.",
+  },
+  {
+    title: "Priorisierung mit offenen Kriterien.",
+    body: "Vorhaben wurden gemeinsam mit den Product Ownern beschrieben. Nutzen und Aufwand wurden geprüft, bevor sie in die Planung kamen.",
+  },
+];
+
+const results = [
+  "Lieferfähigkeit um Faktor 10 gesteigert, gemessen anhand der verwendeten DORA-Kennzahlen für Softwarelieferung.",
+  "Entscheidungen fielen näher an der Sachkenntnis und deutlich schneller.",
+  "Reibung zwischen Funktionen und Silodenken wurden reduziert.",
+];
+
+const takeaways = [
+  "Wiederkehrende Priorisierungskonflikte zeigen oft eine Schwäche in Struktur oder Architektur. Besseres Sortieren der Warteschlange löst sie nicht.",
+  "Das Geschäft bestimmt Ergebnis und Priorität. Wie ein Team das erreicht, entscheidet das Team.",
+  "Eine stabile Strategie verträgt ein bewegliches Portfolio.",
+  "Knappe Kapazität macht Priorisierung zwangsläufig konfliktbehaftet. Transparente Kriterien und regelmäßiger Austausch schaffen dabei Nachvollziehbarkeit.",
+];
+---
+
+<Layout
+  title="Transformation Case: Von Projekten zu Produktteams | Karsten Uhlig"
+  description="Wie eine internationale E-Commerce-Organisation zu crossfunktionalen Produktteams mit End-to-End-Verantwortung weiterentwickelt wurde und die Lieferfähigkeit um Faktor 10 stieg."
+>
+  <section class="case-shell">
+    <div class="case-inner">
+      <Nav homepage />
+
+      <main class="case-page">
+        <header class="case-hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Transformation Case · bonprix (Otto Group)</p>
+            <h1>Von Projekten zu Produktteams mit Ergebnis<wbr />verantwortung</h1>
+          </div>
+
+          <aside class="hero-proof" aria-label="Zentrales Ergebnis">
+            <span>Lieferfähigkeit</span>
+            <strong>Faktor 10</strong>
+            <p>durch das Zusammenspiel von Organisation, Priorisierung, Entscheidungsrechten und reduzierten Abhängigkeiten.</p>
+          </aside>
+        </header>
+
+        <section class="in-short" aria-labelledby="in-short-title">
+          <p class="section-label" id="in-short-title">In short</p>
+          <p>Das Online-Geschäft war zum Hauptkanal in mehr als 20 Märkten geworden. Die Organisation dahinter arbeitete noch stark in Projekten und Funktionen. Ich habe sie zu einer Produktorganisation mit klarer End-to-End-Verantwortung weiterentwickelt. Prioritäten wurden stärker an Kundenwert und Geschäftswirkung ausgerichtet, und neue Funktionen erreichten die Kundschaft deutlich schneller.</p>
+        </section>
+
+        <section class="case-section situation" aria-labelledby="situation-title">
+          <div class="section-heading">
+            <p class="section-label">01 · Kontext</p>
+            <h2 id="situation-title">Ausgangslage</h2>
+          </div>
+          <div class="section-body">
+            <p>Die E-Commerce-Organisation war funktional aufgestellt und arbeitete projektbezogen. Anforderungen kamen aus vielen Fachbereichen gleichzeitig. Mehrere Vorhaben warteten auf dieselben zentralen Plattformkomponenten. Priorisierung wurde dadurch zum Dauerkonflikt, und der Weg von der Idee zum Kunden war lang. Zwischen den Funktionen entstanden Reibung und Silodenken.</p>
+          </div>
+        </section>
+
+        <section class="case-section change-section" aria-labelledby="change-title">
+          <div class="section-heading">
+            <p class="section-label">02 · Transformation</p>
+            <h2 id="change-title">Was wir verändert haben</h2>
+          </div>
+          <ol class="change-list">
+            {changes.map((change, index) => (
+              <li>
+                <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3>{change.title}</h3>
+                  <p>{change.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section class="case-section result-section" aria-labelledby="result-title">
+          <div class="section-heading">
+            <p class="section-label">03 · Wirkung</p>
+            <h2 id="result-title">Ergebnis</h2>
+          </div>
+          <div class="result-content">
+            <div class="proof-points">
+              {results.map((result, index) => (
+                <article>
+                  <span aria-hidden="true">{index + 1}</span>
+                  <p>{result}</p>
+                </article>
+              ))}
+            </div>
+            <p class="context-note">Der Effekt entstand nicht durch eine einzelne Engineering-Maßnahme, sondern durch das Zusammenspiel aus Produktzuschnitt, Entscheidungsrechten, Priorisierung und reduzierten technischen Abhängigkeiten.</p>
+          </div>
+        </section>
+
+        <section class="case-section takeaway-section" aria-labelledby="takeaway-title">
+          <div class="section-heading">
+            <p class="section-label">04 · Prinzipien</p>
+            <h2 id="takeaway-title">Was ich daraus mitnehme</h2>
+          </div>
+          <div class="takeaway-list">
+            {takeaways.map((takeaway) => (
+              <p>{takeaway}</p>
+            ))}
+          </div>
+        </section>
+
+        <section class="today-section" aria-labelledby="today-title">
+          <p class="section-label">05 · Relevanz</p>
+          <h2 id="today-title">Wofür das heute zählt</h2>
+          <p>Die Logik gilt überall dort, wo Marketing, Vertrieb, Filiale, Product und Technology um dieselben knappen Kapazitäten konkurrieren und digitale Entwicklung über Funktionsgrenzen hinweg priorisiert werden muss.</p>
+          <a href="/#commercial-management">Zurück zu Practice &amp; Proof <span aria-hidden="true">→</span></a>
+        </section>
+      </main>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :global(body) { background: #eef2f7; }
+  .case-shell {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 82% 9rem, rgba(255,255,255,.82) 0, rgba(255,255,255,0) 29rem),
+      linear-gradient(180deg, #eef2f7 0, #dfe8f1 50rem, #eef2f7 102rem, #eef2f7 100%);
+  }
+  .case-inner { position: relative; max-width: 1440px; margin: 0 auto; padding: 1.25rem 4.25rem 5rem; }
+  .case-page { color: var(--color-ink); }
+  .case-page :where(h1,h2,h3,p,ol) { margin-top: 0; }
+  .eyebrow,
+  .section-label {
+    color: var(--color-amber);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .case-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(270px, .55fr);
+    gap: clamp(2.5rem, 7vw, 8rem);
+    align-items: end;
+    padding: 2rem 0 5.5rem;
+  }
+  .eyebrow { margin-bottom: 1.25rem; }
+  h1 {
+    max-width: 960px;
+    margin-bottom: 0;
+    overflow-wrap: anywhere;
+    font-size: clamp(46px, 5.2vw, 70px);
+    font-weight: 500;
+    letter-spacing: -.055em;
+    line-height: .98;
+  }
+  .hero-proof {
+    padding: 1.5rem 0 0 1.5rem;
+    border-top: 2px solid var(--color-amber);
+    border-left: 1px solid var(--color-border);
+  }
+  .hero-proof span { display: block; color: var(--color-ink-3); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+  .hero-proof strong { display: block; margin: .45rem 0 .55rem; font-size: clamp(36px, 4vw, 54px); font-weight: 500; letter-spacing: -.045em; line-height: 1; }
+  .hero-proof p { margin-bottom: 0; color: var(--color-body); font-size: 13px; line-height: 1.6; }
+  .in-short {
+    display: grid;
+    grid-template-columns: minmax(150px, .32fr) minmax(0, 1fr);
+    gap: 3rem;
+    padding: 2.6rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .in-short .section-label { margin: .35rem 0 0; }
+  .in-short > p:last-child { max-width: 920px; margin-bottom: 0; font-size: clamp(20px, 2.25vw, 29px); letter-spacing: -.02em; line-height: 1.42; }
+  .case-section {
+    display: grid;
+    grid-template-columns: minmax(220px, .38fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 7vw, 8rem);
+    padding: 5.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .section-heading .section-label { margin-bottom: .8rem; }
+  .section-heading h2,
+  .today-section h2 { margin-bottom: 0; font-size: clamp(32px, 3.7vw, 48px); font-weight: 500; letter-spacing: -.045em; line-height: 1.06; }
+  .section-body p { max-width: 800px; margin-bottom: 0; color: var(--color-body); font-size: 18px; line-height: 1.8; }
+  .change-list { display: grid; gap: 0; margin-bottom: 0; padding: 0; list-style: none; border-top: 1px solid var(--color-border-soft); }
+  .change-list li { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); gap: 1.25rem; padding: 1.65rem 0; border-bottom: 1px solid var(--color-border-soft); }
+  .change-list li > span { color: var(--color-amber); font-size: 11px; font-weight: 600; letter-spacing: .12em; }
+  .change-list h3 { margin-bottom: .45rem; font-size: clamp(19px, 2vw, 25px); font-weight: 500; letter-spacing: -.025em; line-height: 1.25; }
+  .change-list p { max-width: 760px; margin-bottom: 0; color: var(--color-body); font-size: 15px; line-height: 1.7; }
+  .result-content { display: grid; gap: 1.5rem; }
+  .proof-points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--color-border-soft); border-bottom: 1px solid var(--color-border-soft); }
+  .proof-points article { padding: 1.75rem 1.5rem 1.9rem 0; }
+  .proof-points article + article { padding-left: 1.5rem; border-left: 1px solid var(--color-border-soft); }
+  .proof-points span { display: block; width: 1.7rem; height: 1.7rem; margin-bottom: 1.1rem; color: var(--color-amber); font-size: 11px; line-height: 1.55rem; text-align: center; border: 1px solid rgba(180,83,9,.35); border-radius: 50%; }
+  .proof-points p { margin-bottom: 0; color: var(--color-ink); font-size: 15px; font-weight: 500; line-height: 1.6; }
+  .context-note { margin-bottom: 0; padding: 1.35rem 1.5rem; color: var(--color-body); font-size: 14px; line-height: 1.7; background: rgba(255,255,255,.42); border-left: 3px solid var(--color-amber); }
+  .takeaway-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--color-border-soft); }
+  .takeaway-list p { margin-bottom: 0; padding: 1.65rem 1.75rem 1.75rem 0; color: var(--color-ink-2); font-size: 16px; line-height: 1.65; border-bottom: 1px solid var(--color-border-soft); }
+  .takeaway-list p:nth-child(even) { padding-right: 0; padding-left: 1.75rem; border-left: 1px solid var(--color-border-soft); }
+  .today-section { max-width: 980px; padding: 5.5rem 0 2rem; }
+  .today-section .section-label { margin-bottom: .8rem; }
+  .today-section h2 { margin-bottom: 1.2rem; }
+  .today-section > p:last-of-type { max-width: 900px; margin-bottom: 1.8rem; color: var(--color-body); font-size: clamp(18px, 2vw, 24px); line-height: 1.55; }
+  .today-section a { display: inline-flex; gap: .5rem; align-items: center; color: var(--color-amber); font-size: 14px; font-weight: 500; text-decoration: none; }
+  .today-section a:hover { opacity: .72; }
+  .today-section a:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 4px; }
+  @media (max-width: 900px) {
+    .case-inner { padding-right: 2rem; padding-left: 2rem; }
+    .case-hero { grid-template-columns: 1fr; gap: 2.5rem; padding-bottom: 4rem; }
+    .hero-proof { max-width: 520px; }
+    .case-section { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 0; }
+    .proof-points { grid-template-columns: 1fr; }
+    .proof-points article,
+    .proof-points article + article { padding: 1.35rem 0; border-left: 0; border-top: 1px solid var(--color-border-soft); }
+    .proof-points article:first-child { border-top: 0; }
+  }
+  @media (max-width: 640px) {
+    .case-inner { padding: 1rem 1.25rem 3.5rem; }
+    .case-hero { padding: 1rem 0 3rem; }
+    h1 { font-size: clamp(38px, 11.2vw, 48px); }
+    .in-short { grid-template-columns: 1fr; gap: 1rem; padding: 2.1rem 0; }
+    .in-short > p:last-child { font-size: 20px; line-height: 1.5; }
+    .case-section { gap: 2rem; padding: 3.25rem 0; }
+    .section-body p { font-size: 16px; line-height: 1.72; }
+    .change-list li { grid-template-columns: 2.5rem minmax(0, 1fr); gap: .8rem; padding: 1.4rem 0; }
+    .takeaway-list { grid-template-columns: 1fr; }
+    .takeaway-list p,
+    .takeaway-list p:nth-child(even) { padding: 1.35rem 0; border-left: 0; }
+    .today-section { padding-top: 3.5rem; }
+  }
+</style>
