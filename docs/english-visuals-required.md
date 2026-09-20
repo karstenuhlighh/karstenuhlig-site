@@ -45,16 +45,19 @@ Core terminology:
 
 Implementation: the English page now mounts the prepared English case component and uses all eight files from the `/en/` asset directory. The supplied files are preserved unchanged.
 
-## 3. Compact Commercial steering model
+## 3. Commercial steering models — complete
 
-Required target file: `public/images/commercial-management/steering-digital-commerce-effectively-compact.png`
+Required target files:
 
-The existing German compact visual is not an editable master. The existing English full model (`steering_digital_commerce_effectively.png`) is a different, denser composition and must not silently replace the compact hero visual.
+- `public/images/commercial-management/steering-digital-commerce-effectively-compact.png`
+- `public/images/commercial-management/steering-digital-commerce-effectively.png`
 
-Requirements: localise the approved compact master with identical geometry and 4:3 composition; no crop; no redesign.
+Status 20 September 2026: the approved compact and full English PNGs were supplied, integrated unchanged and activated on the English Commercial Management page.
 
-## 4. Augur operator dashboard
+Implementation: the supplied 1448×1086 compact file and 1672×941 full overview are preserved unchanged; no crop and no redesign. The full overview retains the existing enlarge interaction.
 
-Required target file: `public/images/augur-dashboard-en.png`
+## 4. Augur operator dashboard — complete by approved reuse
 
-Create a genuine screenshot from the real application in English. Do not translate or reconstruct the current screenshot as an illustration. Match the current viewport and crop so the English and German pages retain visual parity.
+Shared file: `public/images/augur-dashboard.png`
+
+Status 20 September 2026: no separate English dashboard exists. The English Augur page reuses the existing German screenshot as explicitly approved; both language routes reference the same unchanged file.

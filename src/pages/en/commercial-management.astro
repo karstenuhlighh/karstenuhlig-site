@@ -1,7 +1,7 @@
 ---
 import SubPageLayout from "../../layouts/SubPageLayout.astro";
 import CommercialFieldExplorer from "../../components/CommercialFieldExplorer.astro";
-import CommercialSystemMap from "../../components/CommercialSystemMap.astro";
+import CommercialSteeringModel from "../../components/CommercialSteeringModel.astro";
 import CommercialDeepDives from "../../components/CommercialDeepDives.astro";
 import CommercialManagementLoop from "../../components/CommercialManagementLoop.astro";
 import MarketOffers from "../../components/MarketOffers.astro";
@@ -30,8 +30,7 @@ const landingTensions = [
   },
 ];
 
-// Enable only after the approved compact English master is present.
-const hasEnglishCompactSteeringVisual = false;
+const hasEnglishCompactSteeringVisual = true;
 ---
 
 <SubPageLayout
@@ -53,8 +52,8 @@ const hasEnglishCompactSteeringVisual = false;
           <img
             src="/images/commercial-management/steering-digital-commerce-effectively-compact.png"
             alt="Compact model for steering digital commerce effectively: from commercial ambition through economic logic and commercial mechanics to execution, learning and impact."
-            width="1536"
-            height="1024"
+            width="1448"
+            height="1086"
             decoding="async"
           />
         </figure>
@@ -62,7 +61,7 @@ const hasEnglishCompactSteeringVisual = false;
     </header>
 
     <CommercialFieldExplorer language="en" />
-    <CommercialSystemMap language="en" />
+    <CommercialSteeringModel language="en" />
     <CommercialDeepDives language="en" />
     <CommercialManagementLoop
       language="en"
