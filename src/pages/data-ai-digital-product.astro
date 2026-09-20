@@ -8,7 +8,7 @@ import { getLanguage } from "../i18n/routes";
 const language = getLanguage(Astro.url.pathname);
 const isEnglish = language === "en";
 // Enable only after all eight approved English visual masters are present.
-const hasEnglishDecisioningVisuals = false;
+const hasEnglishDecisioningVisuals = true;
 
 const principles = isEnglish ? [
   "Start with the decision, not the technology.",

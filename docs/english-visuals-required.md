@@ -2,22 +2,26 @@
 
 Status: local implementation draft. These assets must be produced from the approved editable masters or recaptured from the real English UI. Do not redraw or regenerate them from screenshots.
 
-## 1. Performance Marketing Steering
+## 1. Performance Marketing Steering — complete
 
 Target directory: `public/images/performance-marketing-steering/en/`
+
+Status 20 September 2026: all four approved English PNGs supplied and integrated without regeneration or cropping.
 
 | Source asset | Target asset | Required text changes |
 | --- | --- | --- |
 | `01-shift.png` | `01-shift.png` | `Operative Steuerung` → `Operational Steering`; `Moderne Steuerung` → `Modern Steering`; `Von Ausführung zu Wirkung` → `From Execution to Impact`; `Taktisch · Kanalbezogen · Reaktiv` → `Tactical · Channel-led · Reactive`; `Strategisch · Datenbasiert · Proaktiv` → `Strategic · Data-driven · Proactive` |
 | `02-steering-model.png` | `02-steering-model.png` | `Wert schaffen` → `Create Value`; `Steuerung integrieren` → `Integrate Steering`; `Wirkung skalieren` → `Scale Impact`; `Daten` → `Data`; `Entscheidungen` → `Decisions`; `Wachstum` → `Growth` |
 | `03-measurement.png` | `03-measurement.png` | `Was wurde zugerechnet?` → `What was attributed?`; `Was wurde zusätzlich erzeugt?` → `What was incremental?`; `Wie wirken Kanäle zusammen?` → `How do channels work together?`; `Wo setzen wir Ressourcen ein?` → `Where do we allocate resources?` |
-| `04-platform-steering.png` | reuse source | Already English. Preserve unchanged. |
+| `04-platform-steering.png` | `04-platform-steering.png` | Approved optimised English asset supplied. |
 
-Requirements: identical canvas, geometry, typography, colours and iconography; no crop; no redrawing. The English page must switch to the `/en/` asset directory only when all three translated masters exist.
+Implementation: the English page now uses the `/en/` asset directory for all four visuals. Files are preserved as supplied; no crop and no redrawing.
 
-## 2. Marketing Decisioning case
+## 2. Marketing Decisioning case — complete
 
 Target directory: `public/images/data-ai-decisioning-case/en/`
+
+Status 20 September 2026: all eight approved English PNGs supplied, integrated and activated without regeneration.
 
 Required target files:
 
@@ -39,7 +43,7 @@ Core terminology:
 - `Messbare Wirkung` → `Measurable Impact`
 - `Wirkung & Lernen` → `Impact & Learning`
 
-Requirements: translate every visible German label from the editable masters; preserve numbers, evidence boundaries, layout, dimensions and cropping. The English case component is prepared but must not be mounted until all eight English assets exist.
+Implementation: the English page now mounts the prepared English case component and uses all eight files from the `/en/` asset directory. The supplied files are preserved unchanged.
 
 ## 3. Compact Commercial steering model
 
