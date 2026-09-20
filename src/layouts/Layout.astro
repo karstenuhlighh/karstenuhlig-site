@@ -24,6 +24,7 @@ const absoluteOgImage = new URL(ogImage, Astro.site).href;
 const siteHome = new URL("/", Astro.site).href;
 const routePair = getRoutePair(Astro.url.pathname);
 const isHomepage = Astro.url.pathname === "/" || Astro.url.pathname === "/en" || Astro.url.pathname === "/en/";
+const isRootHomepage = Astro.url.pathname === "/";
 const deURL = routePair ? new URL(routePair.de, Astro.site).href : undefined;
 const enURL = routePair ? new URL(routePair.en, Astro.site).href : undefined;
 const ogLocale = language === "en" ? "en_GB" : "de_DE";
@@ -60,6 +61,13 @@ const personSchema = {
   ],
   description: description,
 };
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Karsten Uhlig",
+  url: siteHome,
+};
 ---
 
 <!doctype html>
@@ -74,6 +82,9 @@ const personSchema = {
     {enURL && <link rel="alternate" hreflang="en-GB" href={enURL} />}
     {deURL && <link rel="alternate" hreflang="x-default" href={deURL} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260913-k-dot" />
+    <link rel="icon" type="image/x-icon" sizes="48x48" href="/favicon.ico?v=20260913-k-dot" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=20260913-k-dot" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/favicon.png?v=20260913-k-dot" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Open Graph (LinkedIn / Facebook etc.) -->
@@ -82,16 +93,19 @@ const personSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={absoluteOgImage} />
+    <meta property="og:site_name" content="Karsten Uhlig" />
     <meta property="og:locale" content={ogLocale} />
     {routePair && <meta property="og:locale:alternate" content={alternateOgLocale} />}
 
-    <!-- Twitter Card (nutzt og:* automatisch, hier nur Format-Hint) -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
 
     <title>{title}</title>
 
     <!-- Entity-SEO: Schema.org Person (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    {isRootHomepage && <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />}
   </head>
   <body class:list={[bodyClass, { "is-homepage": isHomepage }]}>
     <slot />

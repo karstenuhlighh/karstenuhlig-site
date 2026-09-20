@@ -2,6 +2,16 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/schwerpunkte",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/schwerpunkte/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
       "source": "/commercial-growth/:path*",
       "destination": "/commercial-management",
       "statusCode": 301

@@ -22,7 +22,6 @@ export default defineConfig({
           "/digital-product-customer-experience",
           "/data-ai-digital-product",
           "/leadership",
-          "/schwerpunkte",
           "/e-commerce-marketing",
           "/e-commerce-marketing/conversion-insights",
           "/e-commerce-marketing/organisatorische-schwerkraft",
