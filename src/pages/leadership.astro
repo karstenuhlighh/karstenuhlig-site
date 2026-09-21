@@ -44,36 +44,30 @@ const isEnglish = language === "en";
               <h3>100+ employees · 8 leaders · 20+ teams</h3>
               <p>Leadership across several levels in an international digital organisation.</p>
             </div>
-            <div class="practice-evidence-item">
-              <h3>Product organisation</h3>
-              <p>Built cross-functional teams with end-to-end accountability and established shared prioritisation across Product, Tech, Data and Business.</p>
-            </div>
+            <a class="practice-evidence-item practice-evidence-item--case" href="/en/transformation/product-organisation">
+              <span class="case-eyebrow">Leadership Case</span>
+              <div class="case-body">
+                <div class="case-text">
+                  <h3>From projects to product teams with end-to-end accountability</h3>
+                  <p>Cross-functional teams with clear end-to-end accountability.</p>
+                  <span class="case-cta">View case <span aria-hidden="true">→</span></span>
+                </div>
+                <img
+                  class="case-thumb"
+                  src="/images/homepage/06-product-organisation-transformation.png"
+                  alt=""
+                  width="1254"
+                  height="1254"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </a>
             <div class="practice-evidence-item">
               <h3>International matrix · 20+ markets</h3>
               <p>Steered priorities and digital initiatives jointly with market and functional leaders.</p>
             </div>
           </div>
-        </section>
-
-        <section class="featured-proof" aria-labelledby="featured-proof-title">
-          <a class="featured-proof-link" href="/en/transformation/product-organisation">
-            <div class="featured-proof-copy">
-              <div class="featured-proof-eyebrow">Leadership Case</div>
-              <h2 id="featured-proof-title">From projects to product teams with end-to-end accountability</h2>
-              <p>Evolved a functionally and project-oriented e-commerce organisation into cross-functional product teams with clear end-to-end accountability.</p>
-              <span class="featured-proof-cta">View case <span aria-hidden="true">→</span></span>
-            </div>
-            <figure class="featured-proof-visual">
-              <img
-                src="/images/homepage/06-product-organisation-transformation.png"
-                alt="Transformation from functional projects to cross-functional product teams"
-                width="1254"
-                height="1254"
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-          </a>
         </section>
       </>
     ) : (
@@ -105,36 +99,30 @@ const isEnglish = language === "en";
               <h3>100+ Mitarbeitende · 8 Führungskräfte · 20+ Teams</h3>
               <p>Führung über mehrere Ebenen in einer internationalen Digitalorganisation.</p>
             </div>
-            <div class="practice-evidence-item">
-              <h3>Produktorganisation</h3>
-              <p>Crossfunktionale Teams mit End-to-End-Verantwortung aufgebaut und gemeinsame Priorisierung über Product, Tech, Data und Business etabliert.</p>
-            </div>
+            <a class="practice-evidence-item practice-evidence-item--case" href="/transformation/product-organisation">
+              <span class="case-eyebrow">Leadership Case</span>
+              <div class="case-body">
+                <div class="case-text">
+                  <h3>Von Projekten zu Produktteams mit Ergebnisverantwortung</h3>
+                  <p>Crossfunktionale Teams mit klarer End-to-End-Verantwortung.</p>
+                  <span class="case-cta">Case ansehen <span aria-hidden="true">→</span></span>
+                </div>
+                <img
+                  class="case-thumb"
+                  src="/images/homepage/06-product-organisation-transformation.png"
+                  alt=""
+                  width="1254"
+                  height="1254"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </a>
             <div class="practice-evidence-item">
               <h3>Internationale Matrix · 20+ Märkte</h3>
               <p>Prioritäten und digitale Initiativen gemeinsam mit Markt- und Funktionsverantwortlichen gesteuert.</p>
             </div>
           </div>
-        </section>
-
-        <section class="featured-proof" aria-labelledby="featured-proof-title">
-          <a class="featured-proof-link" href="/transformation/product-organisation">
-            <div class="featured-proof-copy">
-              <div class="featured-proof-eyebrow">Leadership Case</div>
-              <h2 id="featured-proof-title">Von Projekten zu Produktteams mit Ergebnisverantwortung</h2>
-              <p>Eine internationale E-Commerce-Organisation zu crossfunktionalen Produktteams mit klarer End-to-End-Verantwortung weiterentwickelt.</p>
-              <span class="featured-proof-cta">Transformation Case ansehen <span aria-hidden="true">→</span></span>
-            </div>
-            <figure class="featured-proof-visual">
-              <img
-                src="/images/homepage/06-product-organisation-transformation.png"
-                alt="Transformation von funktionalen Projekten zu crossfunktionalen Produktteams"
-                width="1254"
-                height="1254"
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-          </a>
         </section>
       </>
     )}
@@ -159,16 +147,15 @@ const isEnglish = language === "en";
   .practice-evidence-item + .practice-evidence-item { border-left: 1px solid var(--color-border-soft); }
   .practice-evidence-item h3 { margin: 0; color: var(--color-ink); font-size: 15px; font-weight: 600; letter-spacing: -.01em; line-height: 1.4; }
   .practice-evidence-item p { margin: .55rem 0 0; color: var(--color-body); font-size: 14px; line-height: 1.62; }
-  .featured-proof { padding: 2rem 0; }
-  .featured-proof-link { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(220px, .65fr); gap: clamp(1.5rem, 3vw, 3rem); align-items: center; min-width: 0; padding: clamp(1.35rem, 2vw, 1.75rem); color: inherit; text-decoration: none; background: rgba(255,255,255,.62); border: 1px solid var(--color-border-soft); border-top: 2px solid var(--color-amber); }
-  .featured-proof-link:focus-visible { outline: 2px solid var(--color-amber); outline-offset: 4px; }
-  .featured-proof-copy { min-width: 0; }
-  .featured-proof-eyebrow { margin-bottom: .65rem; color: var(--color-amber); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
-  .featured-proof h2 { max-width: 720px; margin: 0; color: var(--color-ink); font-size: clamp(28px, 3.2vw, 40px); font-weight: 500; letter-spacing: -.035em; line-height: 1.08; }
-  .featured-proof-copy > p { max-width: 680px; margin: .75rem 0 0; color: var(--color-body); font-size: 15px; line-height: 1.7; }
-  .featured-proof-cta { display: inline-flex; gap: .45rem; align-items: center; margin-top: 1rem; padding-bottom: .25rem; color: var(--color-amber); font-size: 13px; font-weight: 600; border-bottom: 1px solid rgba(180,83,9,.38); }
-  .featured-proof-visual { width: min(100%, 260px); min-width: 0; margin: 0; justify-self: end; }
-  .featured-proof-visual img { display: block; width: 100%; height: auto; }
+  .practice-evidence-item--case { display: block; margin-top: -1px; color: inherit; text-decoration: none; background: rgba(180,83,9,.06); border-top: 2px solid var(--color-amber); transition: background .2s ease; }
+  .practice-evidence-item--case:hover { background: rgba(180,83,9,.1); }
+  .practice-evidence-item--case:focus-visible { outline: 2px solid var(--color-amber); outline-offset: 3px; }
+  .practice-evidence-item--case h3 { font-size: 14px; }
+  .case-eyebrow { display: block; margin-bottom: .5rem; color: var(--color-amber); font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .case-body { display: flex; align-items: flex-start; gap: .85rem; }
+  .case-text { min-width: 0; flex: 1; }
+  .case-thumb { width: 40px; height: 40px; flex: 0 0 auto; margin-top: .1rem; object-fit: contain; }
+  .case-cta { display: inline-flex; gap: .35rem; align-items: center; margin-top: .6rem; color: var(--color-amber); font-size: 12px; font-weight: 600; }
   :global(.leadership-context) { --editorial-image-margin: 0; width: 100%; max-width: 400px; justify-self: end; }
   :global(.leadership-context .editorial-image__media) { aspect-ratio: 4 / 5; }
   :global(.leadership-context img) {
@@ -187,7 +174,6 @@ const isEnglish = language === "en";
     .leadership-intro { grid-template-columns: 1fr; gap: 2rem; padding: 1rem 0 3rem; }
     :global(.leadership-context) { width: min(100%, 520px); max-width: none; justify-self: start; }
     :global(.leadership-context .editorial-image__media) { aspect-ratio: 5 / 4; }
-    .featured-proof-link { grid-template-columns: minmax(0, 1fr) minmax(220px, .58fr); gap: 2rem; }
   }
 
   @media (max-width: 760px) {
@@ -198,11 +184,7 @@ const isEnglish = language === "en";
     .practice-evidence-list { grid-template-columns: 1fr; }
     .practice-evidence-item { padding: 1.15rem 0 1.25rem; }
     .practice-evidence-item + .practice-evidence-item { border-top: 1px solid var(--color-border-soft); border-left: 0; }
-    .featured-proof { padding: 1.75rem 0; }
-    .featured-proof-link { grid-template-columns: 1fr; gap: 1rem; padding: 1.2rem; }
-    .featured-proof h2 { font-size: 28px; }
-    .featured-proof-copy > p { font-size: 14.5px; }
-    .featured-proof-visual { width: min(100%, 280px); justify-self: start; }
+    .practice-evidence-list .practice-evidence-item--case { border-top: 2px solid var(--color-amber); }
     .communication-principle h2 { font-size: 20px; }
     .leadership-intro + :global(.field-section) { padding-top: 3.5rem; }
   }
