@@ -24,7 +24,7 @@ const copy = isEnglish ? {
   bio: "As an E-Commerce Executive at bonprix, I scaled the international online business across more than 20 markets to €1.6bn in revenue. Most recently, I was responsible for a broad digital organisation and the interplay of E-Commerce, Digital Marketing, CRM, Data and Digital Product.",
 } : {
   headline: ["Digital Commerce skalieren.", "Strategie wirksam machen."],
-  subtitle: "Wachstum im Digital Commerce entsteht, wenn Marketing, Digital Sales, CRM und Product als ein System arbeiten, mit klaren Zielen, guter Zusammenarbeit und echter Verantwortung. Genau dieses Zusammenspiel gestalte ich. Data, AI und Digital Products setze ich dort ein, wo sie Entscheidungen verbessern und sich im Ergebnis zeigen.",
+  subtitle: "Wachstum im Digital Commerce entsteht, wenn Marketing, Digital Sales, CRM und Product als ein System zusammenwirken. Dieses System habe ich aufgebaut, fachlich weiterentwickelt und international skaliert: von Digital Marketing und Customer Journey über CRM und Measurement bis zu Data & AI.",
   profileLabel: "Kurzprofil",
   proofs: [
     ["€1,6 Mrd.", "Online Business skaliert"],
@@ -34,7 +34,7 @@ const copy = isEnglish ? {
   about: "DIGITAL COMMERCE & GROWTH EXECUTIVE",
   profileEyebrow: "EXECUTIVE PROFILE",
   portraitAlt: "Portrait Karsten Uhlig",
-  bio: "Als E-Commerce Executive habe ich bei bonprix das internationale Online-Geschäft in mehr als 20 Märkten auf €1,6 Mrd. Umsatz skaliert. Zuletzt verantwortete ich eine Digitalorganisation mit über 100 Mitarbeitenden und das Zusammenspiel von E-Commerce, Digital Marketing, CRM, Data und Digital Product. Dabei verbinde ich kommerzielle Klarheit mit einer Arbeitsweise, in der Entscheidungen nah an der fachlichen Expertise fallen, Verantwortung klar verankert ist und Teams eigenständig handeln.",
+  bio: "Bei bonprix habe ich zuletzt eine Digitalorganisation mit über 100 Mitarbeitenden geführt und das Zusammenspiel von E-Commerce, Digital Marketing, CRM, Data und Digital Product gestaltet.\n\nDie Marketingsteuerung habe ich von historienbasierter Planung auf daten- und KI-gestütztes Decisioning umgestellt und die Wirkungsmessung durch Attribution, Zeitreihenanalysen und modellgestützte Bewertungen des Marketing-Mix ausgebaut. Prädiktive Modelle für Kaufwahrscheinlichkeit, Kundenwert und Personalisierung lösten zunehmend statische Segmente ab, und ich habe sie in unser CRM und die digitalen Kundeninteraktionen integriert. Mit demselben Anspruch an messbare Wirkung habe ich die Customer Journey von der Homepage bis zu Checkout und Payment weiterentwickelt.",
 };
 ---
 
@@ -79,7 +79,7 @@ const copy = isEnglish ? {
         />
       </div>
       <div class="bio">
-        <p>{copy.bio}</p>
+        {copy.bio.split("\n\n").map(paragraph => <p>{paragraph}</p>)}
       </div>
     </div>
     <slot />
