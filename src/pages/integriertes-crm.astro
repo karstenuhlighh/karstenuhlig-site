@@ -32,13 +32,7 @@ const visuals = {
     </nav>
 
     <section id="wirtschaftlicher-wert" class="crm-section" aria-labelledby="value-title">
-      <div class="section-intro">
-        <div class="section-kicker">01 · Wirtschaftlicher Wert</div>
-        <div>
-          <h2 id="value-title">Kundenbeziehungen als wirtschaftliches System steuern.</h2>
-          <p>Eine wachsende Kundenbasis ist nicht automatisch eine gesunde Kundenbasis. Entscheidend sind Größe, Qualität, Dynamik und zukünftiger Wert – und die Frage, welche Intervention die Beziehung tatsächlich verbessert.</p>
-        </div>
-      </div>
+      <h2 id="value-title" class="sr-only">Wirtschaftlicher Wert</h2>
       <figure class="visual">
         <a href={visuals.value} target="_blank" rel="noreferrer" aria-label="Visual Kundenbasis entwickeln in voller Größe öffnen">
           <img src={visuals.value} width="1680" height="945" alt="Die Kundenbasis entwickeln: Kundenbasis, Kundenpotenziale, Investitionen und Kundenwege gemeinsam auf Kundenwert und Deckungsbeitrag ausrichten." fetchpriority="high" />
@@ -48,13 +42,7 @@ const visuals = {
     </section>
 
     <section id="steuerungsmodell" class="crm-section" aria-labelledby="steering-title">
-      <div class="section-intro">
-        <div class="section-kicker">02 · Steuerungsmodell</div>
-        <div>
-          <h2 id="steering-title">Von Daten zur Entscheidung – und zurück zur Realität.</h2>
-          <p>Technologie und AI sind Enabler. Wert entsteht erst, wenn Erkenntnisse operative Entscheidungen verändern, über Touchpoints konsistent aktiviert und anhand tatsächlicher Verhaltens- und Geschäftseffekte überprüft werden.</p>
-        </div>
-      </div>
+      <h2 id="steering-title" class="sr-only">Steuerungsmodell</h2>
       <figure class="visual">
         <a href={visuals.steering} target="_blank" rel="noreferrer" aria-label="Visual Steuerungsmodell in voller Größe öffnen">
           <img src={visuals.steering} width="1680" height="945" alt="Steuerungsmodell von Kundendaten über Verstehen, Entscheiden und Aktivieren bis zu Messen und Lernen, gemeinsam verantwortet durch Marketing, CRM, Sales, Commerce und Service." loading="lazy" />
@@ -64,13 +52,7 @@ const visuals = {
     </section>
 
     <section id="bonprix-praxis" class="crm-section" aria-labelledby="bonprix-title">
-      <div class="section-intro">
-        <div class="section-kicker">03 · Praxisbeispiel bonprix</div>
-        <div>
-          <h2 id="bonprix-title">Eine integrierte Kundensteuerung maßgeblich aufgebaut und weiterentwickelt.</h2>
-          <p>Ich habe den Aufbau der integrierten Kundensteuerung bei bonprix maßgeblich vorangetrieben – von der wirtschaftlichen Priorisierung und dem gemeinsamen Zielbild über den Aufbau der Daten- und Marketingplattform bis zur Entwicklung und Skalierung operativer Anwendungsfälle. Dabei war mir besonders wichtig, fachliche und technologische Kompetenzen zusammenzubringen und aus einzelnen Lösungen dauerhaft nutzbare Fähigkeiten für eine datengetriebene Kundensteuerung zu entwickeln.</p>
-        </div>
-      </div>
+      <h2 id="bonprix-title" class="sr-only">Praxisbeispiel bonprix</h2>
       <figure class="visual">
         <a href={visuals.bonprix} target="_blank" rel="noreferrer" aria-label="Visual integrierte Kundensteuerung bei bonprix in voller Größe öffnen">
           <img src={visuals.bonprix} width="1680" height="945" alt="Aufbau und Weiterentwicklung der integrierten Kundensteuerung bei bonprix von Priorisierung und Datenfundament über operative Nutzung bis zur Skalierung." loading="lazy" />
@@ -103,13 +85,7 @@ const visuals = {
     </section>
 
     <section id="aufbauansatz" class="crm-section" aria-labelledby="approach-title">
-      <div class="section-intro">
-        <div class="section-kicker">04 · Mein Aufbauansatz</div>
-        <div>
-          <h2 id="approach-title">Nicht mit der Plattform beginnen.</h2>
-          <p>Der Einstieg ist die wirtschaftliche Frage: Wie entwickelt sich die Kundenbasis, welche Beziehungen sollten wir gezielt stärken und wo verhindern Daten-, Prozess- oder Verantwortungsgrenzen bessere Entscheidungen?</p>
-        </div>
-      </div>
+      <h2 id="approach-title" class="sr-only">Mein Aufbauansatz</h2>
       <figure class="visual">
         <a href={visuals.approach} target="_blank" rel="noreferrer" aria-label="Visual iterativer Aufbauansatz in voller Größe öffnen">
           <img src={visuals.approach} width="1680" height="945" alt="Iterativer Aufbauansatz zur Kundensteuerung: Verstehen, fokussieren, pilotieren, Wirkung belegen und erfolgreiche Ansätze skalieren." loading="lazy" />
@@ -141,10 +117,8 @@ const visuals = {
   .jump-nav a { color: var(--color-ink-2); font-size: 12px; font-weight: 600; text-decoration: none; }
   .jump-nav a:hover { color: var(--color-ink); }
   .jump-nav a:focus-visible, .visual a:focus-visible, .evidence-note a:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 4px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
   .crm-section { padding: 5rem 0; border-bottom: 1px solid var(--color-border); scroll-margin-top: 1.5rem; }
-  .section-intro { display: grid; grid-template-columns: minmax(190px,.32fr) minmax(0,1fr); gap: clamp(2rem,5vw,5rem); margin-bottom: 2.5rem; }
-  .section-intro h2 { max-width: 940px; margin: 0; color: var(--color-ink); font-size: clamp(30px,3.2vw,43px); font-weight: 500; letter-spacing: -.04em; line-height: 1.12; }
-  .section-intro p { max-width: 880px; margin: 1rem 0 0; color: var(--color-body); font-size: 15.5px; line-height: 1.75; }
   .visual { margin: 0; }
   .visual a { display: block; background: rgba(255,255,255,.55); border: 1px solid var(--color-border-soft); box-shadow: 0 18px 45px rgba(35,65,100,.08); }
   .visual img { display: block; width: 100%; height: auto; }
@@ -172,9 +146,7 @@ const visuals = {
     .jump-nav { align-items: flex-start; }
     .jump-nav > span { width: 100%; margin: 0 0 .25rem; }
     .crm-section { padding: 3.5rem 0; }
-    .section-intro, .closing { grid-template-columns: 1fr; gap: 1rem; }
-    .section-intro { margin-bottom: 2rem; }
-    .section-intro h2 { font-size: 30px; }
+    .closing { grid-template-columns: 1fr; gap: 1rem; }
     .visual { margin-inline: calc(var(--page-padding, 1.25rem) * -.35); }
     .visual figcaption { padding-inline: .45rem; }
     .result-band, .evidence-note { grid-template-columns: 1fr; }
