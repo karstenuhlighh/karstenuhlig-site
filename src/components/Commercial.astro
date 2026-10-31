@@ -71,14 +71,9 @@ const selectedPractice = isEnglish ? {
   caseHref: "/en/data-ai-digital-product",
   explorationLabel: "Current AI Explorations",
   explorationTitle: "AI-enabled decisioning, measurement and knowledge systems.",
-  explorationBody: "Current practical tests in AI-enabled decisioning, measurement and knowledge systems, with maturity and evidence made explicit.",
+  explorationBody: "Current practical tests in AI-enabled decisioning, measurement and knowledge systems — with maturity and evidence made explicit.",
   explorationAction: "Explore current work",
   explorationHref: "/en/data-ai-digital-product#current-proof-title",
-  commerceCaseLabel: "Signature Case",
-  commerceCaseTitle: "Webshop & App Modernisation",
-  commerceCaseBody: "Modernising a commerce platform built over many years so that webshop and app could evolve more independently while sharing commerce and data capabilities.",
-  commerceCaseAction: "Explore the case",
-  commerceCaseHref: "/en/digital-product-customer-experience#commerce-case-title",
 } : {
   sectionLabel: "Practice & Proof",
   caseLabel: "Signature Case",
@@ -89,14 +84,9 @@ const selectedPractice = isEnglish ? {
   caseHref: "/data-ai-digital-product#marketing-decisioning-case-title",
   explorationLabel: "Current AI Explorations",
   explorationTitle: "AI-enabled Decisioning, Measurement und Knowledge Systems.",
-  explorationBody: "Aktuelle Praxistests zu AI-enabled Decisioning, Measurement und Knowledge Systems. Prototyping und Enterprise-Scale-Erfahrung bleiben klar getrennt.",
+  explorationBody: "Aktuelle Praxistests zu AI-enabled Decisioning, Measurement und Knowledge Systems — mit klarer Trennung zwischen Prototyping und Enterprise-Scale-Erfahrung.",
   explorationAction: "Explorations ansehen",
   explorationHref: "/data-ai-digital-product#current-proof-title",
-  commerceCaseLabel: "Signature Case",
-  commerceCaseTitle: "Webshop & App Modernisierung",
-  commerceCaseBody: "Eine über Jahre gewachsene Commerce-Plattform modernisiert, damit Webshop und App unabhängiger weiterentwickelt und gemeinsame Commerce- und Datenfähigkeiten genutzt werden konnten.",
-  commerceCaseAction: "Case ansehen",
-  commerceCaseHref: "/digital-product-customer-experience#commerce-case-title",
 };
 
 const enablerVisuals = {
@@ -198,23 +188,23 @@ const enablerVisuals = {
         <span class="text-link case-link">{selectedPractice.caseAction} <span aria-hidden="true">→</span></span>
       </a>
 
-      <a class="secondary-practice" id={`commerce-signature-case-${language}`} href={selectedPractice.commerceCaseHref}>
-        <figure class="commerce-case-visual" aria-hidden="true">
+      <a class="practice-exploration" id={`current-ai-explorations-${language}`} href={selectedPractice.explorationHref}>
+        <div class="exploration-copy">
+          <div class="card-eyebrow">{selectedPractice.explorationLabel}</div>
+          <h3>{selectedPractice.explorationTitle}</h3>
+          <p>{selectedPractice.explorationBody}</p>
+          <span class="text-link">{selectedPractice.explorationAction} <span aria-hidden="true">→</span></span>
+        </div>
+        <figure class="exploration-visual" aria-hidden="true">
           <img
-            src="/images/homepage/06-webshop-app-modernisation.webp"
+            src="/images/homepage/05-ai-explorations.png"
             alt=""
-            width="900"
-            height="330"
+            width="504"
+            height="432"
             loading="lazy"
             decoding="async"
           />
         </figure>
-        <div class="practice-copy commerce-case-copy">
-          <div class="card-eyebrow">{selectedPractice.commerceCaseLabel}</div>
-          <h2>{selectedPractice.commerceCaseTitle}</h2>
-          <p>{selectedPractice.commerceCaseBody}</p>
-        </div>
-        <span class="text-link case-link">{selectedPractice.commerceCaseAction} <span aria-hidden="true">→</span></span>
       </a>
     </aside>
   </div>
@@ -223,24 +213,6 @@ const enablerVisuals = {
 
   <CommercialManagementLoop language={language} />
 
-  <a class="practice-exploration" id={`current-ai-explorations-${language}`} href={selectedPractice.explorationHref}>
-    <div class="exploration-copy">
-      <div class="card-eyebrow">{selectedPractice.explorationLabel}</div>
-      <h3>{selectedPractice.explorationTitle}</h3>
-      <p>{selectedPractice.explorationBody}</p>
-      <span class="text-link">{selectedPractice.explorationAction} <span aria-hidden="true">→</span></span>
-    </div>
-    <figure class="exploration-visual" aria-hidden="true">
-      <img
-        src="/images/homepage/05-ai-explorations.png"
-        alt=""
-        width="504"
-        height="432"
-        loading="lazy"
-        decoding="async"
-      />
-    </figure>
-  </a>
 </section>
 
 <style>
@@ -270,7 +242,6 @@ const enablerVisuals = {
   }
   .commercial-intro,
   .selected-practice,
-  .secondary-practice,
   .practice-exploration {
     color: inherit;
     text-decoration: none;
@@ -278,7 +249,6 @@ const enablerVisuals = {
   .commercial-intro,
   .enabler-card,
   .selected-practice,
-  .secondary-practice,
   .practice-exploration {
     min-width: 0;
     border: 1px solid rgba(30,60,100,.17);
@@ -289,19 +259,16 @@ const enablerVisuals = {
     background: rgba(255,255,255,.43);
   }
   .selected-practice,
-  .secondary-practice,
   .practice-exploration {
     background: linear-gradient(135deg, rgba(255,255,255,.5), rgba(255,248,242,.52));
   }
   .commercial-intro:hover,
   .selected-practice:hover,
-  .secondary-practice:hover,
   .practice-exploration:hover {
     border-color: rgba(180,83,9,.3);
   }
   .commercial-intro:focus-visible,
   .selected-practice:focus-visible,
-  .secondary-practice:focus-visible,
   .practice-exploration:focus-visible,
   .enabler-links a:focus-visible {
     outline: 3px solid rgba(180,83,9,.4);
@@ -367,7 +334,6 @@ const enablerVisuals = {
   .commercial-visual,
   .enabler-visual,
   .practice-visual,
-  .commerce-case-visual,
   .exploration-visual {
     margin: 0;
   }
@@ -512,36 +478,6 @@ const enablerVisuals = {
     min-width: 0;
     min-height: 190px;
   }
-  .secondary-practice {
-    display: grid;
-    grid-template-areas:
-      "visual"
-      "copy"
-      "cta";
-    grid-template-rows: auto auto auto;
-    min-height: 0;
-    padding: 1.15rem 1.35rem 1.2rem;
-    overflow: hidden;
-  }
-  .commerce-case-visual {
-    grid-area: visual;
-    min-width: 0;
-    aspect-ratio: 900 / 330;
-    margin: 0 0 1rem;
-    overflow: hidden;
-    background: #eef3f7;
-    border: 1px solid rgba(30,60,100,.1);
-  }
-  .commerce-case-visual img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-  .commerce-case-copy {
-    grid-area: copy;
-  }
   .outcome-strip {
     grid-area: outcome;
     display: grid;
@@ -573,12 +509,9 @@ const enablerVisuals = {
   .practice-exploration {
     display: grid;
     grid-template-columns: minmax(0, 1.12fr) minmax(150px, .88fr);
-    width: 100%;
-    max-width: 1072px;
-    min-height: 310px;
-    gap: 1rem;
-    margin: 4.5rem auto 0;
-    padding: 1.7rem 1.55rem 1.5rem;
+    min-height: 0;
+    gap: .75rem;
+    padding: 1.35rem 1.35rem 1.2rem;
     overflow: hidden;
   }
   .exploration-copy {
@@ -599,8 +532,9 @@ const enablerVisuals = {
       grid-template-rows: auto repeat(2, minmax(0, 1fr));
     }
     .proof-column .selected-practice,
-    .proof-column .secondary-practice { padding: 1.15rem; }
+    .proof-column .practice-exploration { padding: 1.15rem; }
     .proof-column .practice-visual { min-height: 140px; }
+    .proof-column .exploration-visual { height: 150px; }
   }
   @media (min-width: 1161px) and (max-width: 1400px) {
     #data-ai-digital-product .enabler-visual {
@@ -620,7 +554,6 @@ const enablerVisuals = {
       padding-left: 1.65rem;
     }
     .selected-practice,
-    .secondary-practice,
     .practice-exploration {
       grid-template-columns: 1fr;
     }
@@ -655,7 +588,7 @@ const enablerVisuals = {
     .commercial-intro { order: 1; }
     .proof-heading { order: 2; margin-top: .75rem; }
     .selected-practice { order: 3; }
-    .secondary-practice { order: 4; }
+    .practice-exploration { order: 4; }
     .enablers { order: 5; }
     .selected-practice {
       grid-template-columns: minmax(0, 1.1fr) minmax(250px, .9fr);
@@ -689,7 +622,6 @@ const enablerVisuals = {
       padding: 0 1rem 1rem;
     }
     .selected-practice,
-    .secondary-practice,
     .practice-exploration {
       grid-template-columns: 1fr;
       padding: 1.5rem;
@@ -717,7 +649,6 @@ const enablerVisuals = {
       width: 45%;
       height: 150px;
     }
-    .practice-exploration { margin-top: 3.5rem; }
   }
   @media (max-width: 430px) {
     .card-eyebrow {
@@ -733,3 +664,4 @@ const enablerVisuals = {
     }
   }
 </style>
+
