@@ -1,5 +1,6 @@
 ---
 import PageHeader from "./PageHeader.astro";
+import type { Language } from "../i18n/routes";
 
 interface Props {
   title: string;
@@ -8,11 +9,12 @@ interface Props {
   eyebrow: string; // Themen-Label, z.B. "MarTech"
   backHref: string; // z.B. "/martech"
   backLabel: string; // z.B. "MarTech"
+  language?: Language;
 }
 
-const { title, excerpt, date, eyebrow, backHref, backLabel } = Astro.props;
+const { title, excerpt, date, eyebrow, backHref, backLabel, language = "de" } = Astro.props;
 
-const dateFmt = new Intl.DateTimeFormat("de-DE", {
+const dateFmt = new Intl.DateTimeFormat(language === "en" ? "en-GB" : "de-DE", {
   year: "numeric",
   month: "long",
 });

@@ -1,10 +1,42 @@
+---
+interface Props {
+  language?: "de" | "en";
+}
+
+const { language = "de" } = Astro.props;
+const isEnglish = language === "en";
+const ui = isEnglish ? {
+  kicker: "Steering model",
+  title: "How I steer digital businesses.",
+  intro: "My steering model connects market understanding, clear decisions and consistent execution. It shows how signals become priorities — and how capabilities, data, product and organisation translate them into growth, Customer Value and profitability.",
+  enlarge: "Enlarge model",
+  enlargeAria: "Enlarge steering model",
+  dialogTitle: "Steer digital commerce effectively.",
+  close: "Close",
+  closeAria: "Close enlarged view",
+  image: "/images/commercial-management/steering-digital-commerce-effectively.png",
+  alt: "Overview: steering digital commerce effectively — from typical tensions through Commercial Management and its enablers to growth, Customer Value, profitability and competitiveness.",
+} : {
+  kicker: "Steuerungsmodell",
+  title: "Wie ich digitale Geschäfte steuere.",
+  intro: "Mein Steuerungsmodell verbindet Marktverständnis, klare Entscheidungen und konsequente Umsetzung. Es zeigt, wie aus Signalen Prioritäten werden – und wie diese über Capabilities, Daten, Produkt und Organisation wirksam in Wachstum, Kundenwert und Profitabilität münden.",
+  enlarge: "Modell vergrößern",
+  enlargeAria: "Steuerungsmodell vergrößern",
+  dialogTitle: "Digital Commerce wirksam steuern.",
+  close: "Schließen",
+  closeAria: "Vergrößerte Ansicht schließen",
+  image: "/images/commercial-management/digital-commerce-steuerungsmodell.png",
+  alt: "Übersicht: Digital Commerce wirksam steuern – von typischen Spannungsfeldern über Commercial Management und seine Enabler bis zu Wachstum, Kundenwert, Profitabilität und Wettbewerbsfähigkeit.",
+};
+---
+
 <section class="steering-section" id="steuerungsmodell" aria-labelledby="steering-model-title">
   <div class="steering-copy">
-    <div class="steering-kicker">Steuerungsmodell</div>
-    <h2 id="steering-model-title">Wie ich digitale Geschäfte steuere.</h2>
-    <p>Mein Steuerungsmodell verbindet Marktverständnis, klare Entscheidungen und konsequente Umsetzung. Es zeigt, wie aus Signalen Prioritäten werden – und wie diese über Capabilities, Daten, Produkt und Organisation wirksam in Wachstum, Kundenwert und Profitabilität münden.</p>
+    <div class="steering-kicker">{ui.kicker}</div>
+    <h2 id="steering-model-title">{ui.title}</h2>
+    <p>{ui.intro}</p>
     <button class="enlarge-button" type="button" data-open-steering-model>
-      Modell vergrößern <span aria-hidden="true">↗</span>
+      {ui.enlarge} <span aria-hidden="true">↗</span>
     </button>
   </div>
 
@@ -12,11 +44,11 @@
     class="overview-preview"
     type="button"
     data-open-steering-model
-    aria-label="Steuerungsmodell vergrößern"
+    aria-label={ui.enlargeAria}
   >
     <img
-      src="/images/commercial-management/digital-commerce-steuerungsmodell.png"
-      alt="Übersicht: Digital Commerce wirksam steuern – von typischen Spannungsfeldern über Commercial Management und seine Enabler bis zu Wachstum, Kundenwert, Profitabilität und Wettbewerbsfähigkeit."
+      src={ui.image}
+      alt={ui.alt}
       width="1672"
       height="941"
       loading="lazy"
@@ -26,13 +58,13 @@
 
 <dialog class="model-dialog" id="steering-model-dialog" aria-labelledby="steering-dialog-title">
   <div class="dialog-header">
-    <h2 id="steering-dialog-title">Digital Commerce wirksam steuern.</h2>
-    <button class="dialog-close" type="button" aria-label="Vergrößerte Ansicht schließen">Schließen <span aria-hidden="true">×</span></button>
+    <h2 id="steering-dialog-title">{ui.dialogTitle}</h2>
+    <button class="dialog-close" type="button" aria-label={ui.closeAria}>{ui.close} <span aria-hidden="true">×</span></button>
   </div>
   <div class="dialog-image-wrap">
     <img
-      src="/images/commercial-management/digital-commerce-steuerungsmodell.png"
-      alt="Übersicht: Digital Commerce wirksam steuern – von typischen Spannungsfeldern über Commercial Management und seine Enabler bis zu Wachstum, Kundenwert, Profitabilität und Wettbewerbsfähigkeit."
+      src={ui.image}
+      alt={ui.alt}
       width="1672"
       height="941"
     />

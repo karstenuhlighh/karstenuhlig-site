@@ -126,11 +126,14 @@ const modelChips: { label: string; opt: boolean }[] = [
 ---
 
 <SubPageLayout
+  editorial
+  variant="agentic"
   title="sem-agentic · Karsten Uhlig"
   description="Google-Ads-SEM-Kampagnensteuerung als agentisches System: Keyword-Strategie, Performance-Analyse und Budget-relevante Empfehlungen durchgängig abgebildet, mit derselben Mess-Disziplin wie signal-steering."
 >
   <!-- ============================ SCOPE-STECKBRIEF (Workflow rechts oben im Header) ============================ -->
   <ScopeSteckbrief
+    editorial
     eyebrow="Commercial · Google-Ads-SEM-Kampagnensteuerung"
     title="sem-agentic"
     titleAs="h1"
@@ -2285,5 +2288,67 @@ const modelChips: { label: string; opt: boolean }[] = [
     .refl-title br {
       display: none;
     }
+  }
+
+  /* Redaktionelle Oberflaeche: offene Flaechen statt Dashboard-Kartenraster. */
+  .dash-figure,
+  .panel,
+  .feature,
+  .aug-band,
+  .aug-core,
+  .aug-foot-card,
+  .arc-agent-card,
+  .arc-coordinator,
+  .arc-data-layer,
+  .pdf-viewer {
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .dash-figure,
+  .panel,
+  .aug-band,
+  .aug-core,
+  .aug-foot-card,
+  .arc-agent-card,
+  .pdf-viewer {
+    background: rgba(255, 255, 255, .42);
+  }
+  .dash-figure {
+    padding: 1rem;
+    border-top: 2px solid rgba(30, 60, 100, .34);
+  }
+  .dash-figure img { border-radius: 0; }
+  .features {
+    margin-top: 3rem;
+    padding-top: 3rem;
+  }
+  .feature {
+    min-height: 9rem;
+    padding: 1.1rem 1.2rem;
+    border-left-width: 2px;
+  }
+  .feature-title { font-size: 14px; }
+  .feature-body { font-size: 12.5px; line-height: 1.6; }
+  .arc-agent-grid { gap: 1rem; }
+  .arc-agent-card {
+    padding: 1.2rem 1rem 1rem;
+    border-top: 2px solid rgba(30, 60, 100, .34);
+  }
+  .arc-agent-number {
+    top: 0;
+    left: 0;
+    border-radius: 0;
+    background: var(--color-ink-2);
+  }
+  .arc-coordinator {
+    border-left: 3px solid var(--color-amber);
+  }
+  .arc-coord-icon,
+  .arc-mode-toggle,
+  .arc-mode-toggle span,
+  .arc-coord-pill,
+  .arc-output-box,
+  .arc-input-box {
+    border-radius: 2px;
   }
 </style>

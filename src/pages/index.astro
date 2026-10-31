@@ -11,8 +11,9 @@ import TrackRecord from "../components/TrackRecord.astro";
   description="Digital Commerce skalieren. Strategie wirksam machen. €1,6 Mrd. Online-Geschäft, 20+ Jahre Erfahrung und 20+ Märkte – Commercial Management, Leadership, Data & AI."
 >
   <Hero>
-    <Commercial />
+    <Commercial>
+      <TrackRecord slot="before-steering" />
+    </Commercial>
     <MarketOffers />
-    <TrackRecord />
   </Hero>
 </Layout>

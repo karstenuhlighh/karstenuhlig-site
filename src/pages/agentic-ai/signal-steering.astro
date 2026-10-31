@@ -69,11 +69,14 @@ const scopeGeltung = {
 ---
 
 <SubPageLayout
+  editorial
+  variant="agentic"
   title="signal-steering · Karsten Uhlig"
   description="Drei etablierte Methoden messen denselben Werbekanal und kommen zu drei Antworten. Ein Prototyp, der mit bekannter Wahrheit prüfbar macht, welcher man trauen kann."
 >
   <!-- SCOPE-STECKBRIEF (Header; Projektziel + Scope gehen hier auf) -->
   <ScopeSteckbrief
+    editorial
     eyebrow="Commercial · Marketing Measurement"
     title="signal-steering"
     titleAs="h1"
@@ -82,6 +85,7 @@ const scopeGeltung = {
     geltungsbereich={scopeGeltung}
   />
 
+  <div class="signal-story">
   <!-- ÜBERSICHT ZUM START -->
   <section class="overview">
     <MeasurementTriangulationSchaubild />
@@ -204,6 +208,7 @@ const scopeGeltung = {
     </p>
     <p class="tieback-link">Die Steuerungsseite dazu: <a href="/agentic-ai/sem-agentic">sem-agentic — Google-Ads-SEM-Kampagnensteuerung →</a></p>
   </div>
+  </div>
 </SubPageLayout>
 
 <!-- Robuster JS-Tooltip (CSS-Pseudo wurde geclippt) -->
@@ -270,9 +275,18 @@ const scopeGeltung = {
 </style>
 
 <style>
+  .signal-story {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 4rem clamp(1.5rem, 3.2vw, 3.5rem);
+    align-items: start;
+  }
   /* ---------- Übersicht ---------- */
   .overview {
-    margin: 0 0 3rem;
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 0 0 4rem;
+    border-bottom: 1px solid var(--color-border);
   }
   .overview-cap {
     max-width: 760px;
@@ -286,9 +300,12 @@ const scopeGeltung = {
 
   /* ---------- Generische Sektion ---------- */
   .sec {
-    max-width: 720px;
-    margin: 0 0 2.75rem;
+    max-width: none;
+    margin: 0;
   }
+  .signal-story > .sec:nth-of-type(2) { grid-column: 1 / 6; }
+  .signal-story > .sec:nth-of-type(4) { grid-column: 1 / 7; }
+  .signal-story > .sec:nth-of-type(5) { grid-column: 7 / 13; }
   .sec-eyebrow {
     font-size: 12px;
     color: var(--color-amber);
@@ -324,7 +341,7 @@ const scopeGeltung = {
   .sec-kicker {
     background: rgba(180, 83, 9, 0.06);
     border-left: 3px solid var(--color-amber);
-    border-radius: 0 6px 6px 0;
+    border-radius: 0;
     padding: 0.95rem 1.15rem;
     font-size: 1rem;
     line-height: 1.65;
@@ -344,8 +361,13 @@ const scopeGeltung = {
 
   /* ---------- Balken ---------- */
   .chart-block {
-    max-width: 640px;
-    margin: 0 0 3rem;
+    grid-column: 7 / 13;
+    max-width: none;
+    margin: 0;
+    padding: 1.5rem 1.75rem 1.75rem;
+    background: rgba(255, 255, 255, .38);
+    border: 1px solid var(--color-border-soft);
+    border-top: 2px solid rgba(30, 60, 100, .34);
   }
   .chart-title {
     font-size: 15px;
@@ -385,7 +407,7 @@ const scopeGeltung = {
     font-size: 9.5px;
     font-weight: 600;
     padding: 1px 6px;
-    border-radius: 999px;
+    border-radius: 2px;
   }
   .bar-col {
     display: flex;
@@ -403,7 +425,7 @@ const scopeGeltung = {
   .bar {
     width: 100%;
     max-width: 96px;
-    border-radius: 5px 5px 0 0;
+    border-radius: 0;
   }
   .bar-warn {
     background: linear-gradient(180deg, #d98a3d, #c5742a);
@@ -431,8 +453,9 @@ const scopeGeltung = {
 
   /* ---------- Fußzeile / Stack ---------- */
   .footer-block {
-    max-width: 760px;
-    margin: 3rem 0 0;
+    grid-column: 1 / -1;
+    max-width: none;
+    margin: 0;
     padding-top: 2rem;
     border-top: 1px solid var(--color-border);
   }
@@ -448,10 +471,12 @@ const scopeGeltung = {
 
   /* ---------- Tie-back ---------- */
   .tieback {
-    max-width: 720px;
-    margin: 2.5rem 0 1.5rem;
-    padding-top: 1.5rem;
+    grid-column: 1 / -1;
+    max-width: none;
+    margin: 0 0 1.5rem;
+    padding: 2rem 0 0 2rem;
     border-top: 1px solid var(--color-border);
+    border-left: 2px solid var(--color-amber);
   }
   .tieback p {
     font-size: 1.05rem;
@@ -473,6 +498,19 @@ const scopeGeltung = {
   }
 
   @media (max-width: 600px) {
+    .signal-story {
+      display: block;
+    }
+    .overview,
+    .sec,
+    .chart-block,
+    .footer-block,
+    .tieback {
+      margin-bottom: 2.75rem;
+    }
+    .overview { padding-bottom: 2.75rem; }
+    .chart-block { padding: 1.2rem 1rem 1.4rem; }
+    .tieback { padding-left: 1.25rem; }
     .sec-h2 {
       font-size: 22px;
     }

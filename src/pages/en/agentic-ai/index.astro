@@ -1,0 +1,128 @@
+---
+import SubPageLayout from "../../../layouts/SubPageLayout.astro";
+import PageHeader from "../../../components/PageHeader.astro";
+---
+
+<SubPageLayout
+  title="Agentic AI | Karsten Uhlig"
+  description="A market thesis on the implementation wave and hands-on work with agentic systems for search marketing and decision support."
+  language="en"
+>
+  <PageHeader
+    eyebrow="Area"
+    headline="Agentic AI"
+    intro="A market thesis on the implementation wave and hands-on work with agentic systems for search marketing and decision support."
+  />
+
+  <section class="featured">
+    <div class="featured-eyebrow">Featured</div>
+    <a href="/en/agentic-ai/sem-agentic" class="featured-card">
+      <div class="featured-title">sem-agentic</div>
+      <div class="featured-desc">
+        Working product map, patterns and engineering insights. An agentic AI pilot
+        developed hands-on and documented openly.
+      </div>
+      <div class="featured-meta">View detail page →</div>
+    </a>
+    <a href="/en/agentic-ai/signal-steering" class="featured-card">
+      <div class="featured-title">signal-steering</div>
+      <div class="featured-desc">
+        Three measurement methods, the same channel, three answers. A prototype with
+        known ground truth that makes it possible to test which method captures the
+        real value contribution and where the next budget should go.
+      </div>
+      <div class="featured-meta">View detail page →</div>
+    </a>
+  </section>
+
+  <section class="featured featured-secondary">
+    <div class="featured-eyebrow">Behind the work</div>
+    <a href="/en/agentic-ai/how-i-work-with-ai" class="featured-card featured-card-secondary">
+      <div class="featured-title">How I work with AI</div>
+      <div class="featured-desc">
+        Not commercial proof, but the AI engineering practice behind it: Claude Chat
+        and Claude Code as a pair, an honest maturity tracker and patterns from the
+        Augur engineering work.
+      </div>
+      <div class="featured-meta">View detail page →</div>
+    </a>
+  </section>
+
+  <section class="featured featured-secondary">
+    <div class="featured-eyebrow">Perspective</div>
+    <a href="/en/agentic-ai/awareness-was-never-the-bottleneck" class="featured-card featured-card-secondary">
+      <div class="featured-title">Awareness was never the bottleneck</div>
+      <div class="featured-desc">
+        The distance between a technology demo and measurable impact is where the actual work begins.
+      </div>
+      <div class="featured-meta">Read perspective →</div>
+    </a>
+  </section>
+</SubPageLayout>
+
+<style>
+  .featured {
+    margin-bottom: 3rem;
+  }
+  .featured-secondary {
+    margin-bottom: 2.5rem;
+    max-width: 640px;
+  }
+  .featured-card-secondary {
+    padding: 1.35rem 1.5rem;
+    background: rgba(255, 255, 255, 0.35);
+  }
+  .featured-card-secondary .featured-title {
+    font-size: 18px;
+    margin-bottom: 0.5rem;
+  }
+  .featured-card-secondary .featured-desc {
+    font-size: 14px;
+    margin-bottom: 0.75rem;
+  }
+  .featured-eyebrow {
+    font-size: 11px;
+    color: var(--color-ink-3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .featured-card {
+    display: block;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 3px;
+    padding: 2rem 1.75rem;
+    text-decoration: none;
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+  .featured-card:hover {
+    border-color: rgba(180, 83, 9, 0.45);
+    background: rgba(255, 255, 255, 0.75);
+    transform: translateY(-2px);
+  }
+  .featured-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: -0.015em;
+    margin-bottom: 0.75rem;
+  }
+  .featured-desc {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--color-ink-2);
+    margin-bottom: 1.25rem;
+  }
+  .featured-meta {
+    font-size: 11px;
+    color: var(--color-amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+</style>

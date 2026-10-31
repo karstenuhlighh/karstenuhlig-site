@@ -14,8 +14,8 @@ const germanEnablers = [
   {
     id: "leadership",
     title: "Leadership & Transformation",
-    thesis: "Strategie in Organisation und Umsetzung übersetzen.",
-    body: "Richtung geben, Verantwortung klären und die Organisation auf die entscheidenden Prioritäten ausrichten. Vor dem Instrument steht die Klärung: Was ist die Ursache, welche Entscheidung fehlt, wer steht für das Ergebnis gerade?",
+    thesis: "Orientierung geben. Verantwortung ermöglichen.",
+    body: "Gute Führung macht klar, worauf es ankommt, schafft echte Entscheidungsräume und misst sich am Ergebnis. Klare Erwartungen, eigenständiges Handeln und verbindliche Verantwortung gehören für mich zusammen. Bei bonprix habe ich eine Digitalorganisation mit mehr als 100 Mitarbeitenden über mehrere Führungsebenen und crossfunktionale Teams geführt.",
     links: [{ href: "/leadership", label: "Leadership vertiefen" }],
   },
   {
@@ -63,40 +63,46 @@ const intro = isEnglish ? {
 
 const selectedPractice = isEnglish ? {
   sectionLabel: "Practice & Proof",
-  caseLabel: "Signature Case",
+  caseLabel: "Transformation Case",
   caseTitle: "Marketing Decisioning Capability",
   caseBody: "From fragmented marketing steering to an integrated Decisioning Capability connecting data foundation, analytics, predictive models and activation.",
   outcome: "Double-digit millions less advertising spend with stable revenue.",
   caseAction: "Explore the capability",
   caseHref: "/en/data-ai-digital-product",
-  explorationLabel: "Current AI Explorations",
-  explorationTitle: "AI-enabled decisioning, measurement and knowledge systems.",
-  explorationBody: "Current practical tests in AI-enabled decisioning, measurement and knowledge systems, with maturity and evidence made explicit.",
-  explorationAction: "Explore current work",
-  explorationHref: "/en/data-ai-digital-product#current-proof-title",
-  commerceCaseLabel: "Signature Case",
-  commerceCaseTitle: "Webshop & App Modernisation",
-  commerceCaseBody: "Modernising a commerce platform built over many years so that webshop and app could evolve more independently while sharing commerce and data capabilities.",
-  commerceCaseAction: "Explore the case",
-  commerceCaseHref: "/en/digital-product-customer-experience#commerce-case-title",
+  explorationLabel: "Performance Marketing Steering",
+  explorationTitle: "Measure impact. Steer budgets. Lead platforms.",
+  explorationBody: "Modern performance steering connects business goals, value signals, measurement and AI-enabled decisions – from Google Ads to cross-channel budget allocation.",
+  explorationAction: "Explore Performance Marketing Steering",
+  explorationHref: "/en/performance-marketing-steering",
 } : {
   sectionLabel: "Practice & Proof",
-  caseLabel: "Signature Case",
+  caseLabel: "Transformation Case",
   caseTitle: "Marketing Decisioning Capability",
   caseBody: "Von fragmentierter Marketingsteuerung zu einer integrierten Decisioning Capability: gemeinsame Datenbasis, Analytics, Predictive Models und Aktivierung als kommerzielles System verbunden.",
   outcome: "Zweistelliger Mio.-Betrag weniger Werbekosten bei stabilem Umsatz.",
   caseAction: "Case ansehen",
   caseHref: "/data-ai-digital-product#marketing-decisioning-case-title",
-  explorationLabel: "Current AI Explorations",
-  explorationTitle: "AI-enabled Decisioning, Measurement und Knowledge Systems.",
-  explorationBody: "Aktuelle Praxistests zu AI-enabled Decisioning, Measurement und Knowledge Systems. Prototyping und Enterprise-Scale-Erfahrung bleiben klar getrennt.",
-  explorationAction: "Explorations ansehen",
-  explorationHref: "/data-ai-digital-product#current-proof-title",
-  commerceCaseLabel: "Signature Case",
-  commerceCaseTitle: "Webshop & App Modernisierung",
-  commerceCaseBody: "Eine über Jahre gewachsene Commerce-Plattform modernisiert, damit Webshop und App unabhängiger weiterentwickelt und gemeinsame Commerce- und Datenfähigkeiten genutzt werden konnten.",
-  commerceCaseAction: "Case ansehen",
-  commerceCaseHref: "/digital-product-customer-experience#commerce-case-title",
+  explorationLabel: "Performance Marketing Steering",
+  explorationTitle: "Wirkung messen. Budgets steuern. Plattformen führen.",
+  explorationBody: "Moderne Performance-Steuerung verbindet Business-Ziele, Value Signals, Measurement und AI-gestützte Entscheidungen – von Google Ads bis zur kanalübergreifenden Budgetallokation.",
+  explorationAction: "Performance Marketing Steering ansehen",
+  explorationHref: "/performance-marketing-steering",
+};
+
+const productTransformationCase = isEnglish ? {
+  caseLabel: "Transformation Case",
+  caseTitle: "From projects to product teams with end-to-end accountability",
+  caseBody: "Evolved a functionally and project-oriented e-commerce organisation into cross-functional product teams with clear end-to-end accountability.",
+  outcome: "Delivery capability increased tenfold.",
+  caseAction: "View case",
+  caseHref: "/en/transformation/product-organisation",
+} : {
+  caseLabel: "Transformation Case",
+  caseTitle: "Von Projekten zu Produktteams mit Ergebnisverantwortung",
+  caseBody: "Eine funktional und projektorientiert arbeitende E-Commerce-Organisation zu crossfunktionalen Produktteams mit klarer End-to-End-Verantwortung weiterentwickelt.",
+  outcome: "Lieferfähigkeit um Faktor 10 gesteigert.",
+  caseAction: "Case ansehen",
+  caseHref: "/transformation/product-organisation",
 };
 
 const enablerVisuals = {
@@ -112,20 +118,6 @@ const enablerVisuals = {
   },
 };
 
-const keyVisuals = {
-  de: {
-    src: "/images/digital_commerce_wirksam_steuern.png?v=20260906",
-    alt: "Digital Commerce führen: Commercial Management verbindet Verstehen, Entscheiden, Umsetzen und Lernen mit acht Commercial Management Capabilities. Data, AI & Decisioning, Digital Product & CX sowie Leadership & Transformation ermöglichen Wachstum, Kundenwert, Profitabilität und Wettbewerbsfähigkeit.",
-    linkLabel: "Digital Commerce führen: Grafik in Originalgröße öffnen (neuer Tab)",
-  },
-  en: {
-    src: "/images/steering_digital_commerce_effectively.png?v=20260907",
-    alt: "Steering Digital Commerce Effectively: typical tensions feed into a Commercial Management system of Understand, Decide, Drive Impact and Learn, supported by eight capabilities, Data, AI & Decisioning, Digital Product & CX, and Leadership & Transformation. The system targets growth, customer value, profitability and competitiveness and is grounded in multi-market leadership experience.",
-    linkLabel: "Steering Digital Commerce Effectively: open graphic at original size (new tab)",
-  },
-};
-
-const activeKeyVisual = keyVisuals[language];
 ---
 
 <section class="commercial-pillar" id="commercial-management">
@@ -205,69 +197,60 @@ const activeKeyVisual = keyVisuals[language];
             decoding="async"
           />
         </figure>
-        <div class="outcome-strip"><strong>{selectedPractice.outcome}</strong></div>
+        <div class="outcome-strip">
+          <span class="outcome-icon" aria-hidden="true">↗</span>
+          <strong>{selectedPractice.outcome}</strong>
+        </div>
         <span class="text-link case-link">{selectedPractice.caseAction} <span aria-hidden="true">→</span></span>
       </a>
 
-      <a class="secondary-practice" id={`commerce-signature-case-${language}`} href={selectedPractice.commerceCaseHref}>
-        <figure class="commerce-case-visual" aria-hidden="true">
+      <a class="selected-practice product-transformation" href={productTransformationCase.caseHref}>
+          <div class="practice-copy">
+            <div class="card-eyebrow">{productTransformationCase.caseLabel}</div>
+            <h2>{productTransformationCase.caseTitle}</h2>
+            <p>{productTransformationCase.caseBody}</p>
+          </div>
+          <figure class="transformation-visual" aria-hidden="true">
+            <img
+              src="/images/homepage/06-product-organisation-transformation.png"
+              alt=""
+              width="1254"
+              height="1254"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <div class="outcome-strip">
+            <span class="outcome-icon" aria-hidden="true">↗</span>
+            <strong>{productTransformationCase.outcome}</strong>
+          </div>
+          <span class="text-link case-link">{productTransformationCase.caseAction} <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="practice-exploration" href={selectedPractice.explorationHref}>
+        <div class="exploration-copy">
+          <div class="card-eyebrow">{selectedPractice.explorationLabel}</div>
+          <h3>{selectedPractice.explorationTitle}</h3>
+          <p>{selectedPractice.explorationBody}</p>
+          <span class="text-link">{selectedPractice.explorationAction} <span aria-hidden="true">→</span></span>
+        </div>
+        <figure class="exploration-visual" aria-hidden="true">
           <img
-            src="/images/homepage/06-webshop-app-modernisation.webp"
+            src="/images/homepage/05-ai-explorations.png"
             alt=""
-            width="900"
-            height="420"
+            width="504"
+            height="432"
             loading="lazy"
             decoding="async"
           />
         </figure>
-        <div class="practice-copy commerce-case-copy">
-          <div class="card-eyebrow">{selectedPractice.commerceCaseLabel}</div>
-          <h2>{selectedPractice.commerceCaseTitle}</h2>
-          <p>{selectedPractice.commerceCaseBody}</p>
-        </div>
-        <span class="text-link case-link">{selectedPractice.commerceCaseAction} <span aria-hidden="true">→</span></span>
       </a>
     </aside>
   </div>
 
-  <figure class="signature-visual">
-    <a
-      href={activeKeyVisual.src}
-      target="_blank"
-      rel="noopener"
-      aria-label={activeKeyVisual.linkLabel}
-    >
-      <img
-        src={activeKeyVisual.src}
-        alt={activeKeyVisual.alt}
-        width="1672"
-        height="941"
-        loading="lazy"
-        decoding="async"
-      />
-    </a>
-  </figure>
+  <slot name="before-steering" />
 
   <CommercialManagementLoop language={language} />
-
-  <a class="practice-exploration" id={`current-ai-explorations-${language}`} href={selectedPractice.explorationHref}>
-    <div class="exploration-copy">
-      <div class="card-eyebrow">{selectedPractice.explorationLabel}</div>
-      <h3>{selectedPractice.explorationTitle}</h3>
-      <p>{selectedPractice.explorationBody}</p>
-      <span class="text-link">{selectedPractice.explorationAction} <span aria-hidden="true">→</span></span>
-    </div>
-    <figure class="exploration-visual" aria-hidden="true">
-      <img
-        src="/images/homepage/05-ai-explorations.png"
-        alt=""
-        width="504"
-        height="432"
-        loading="lazy"
-        decoding="async"
-      />
-    </figure>
-  </a>
 </section>
 
 <style>
@@ -297,7 +280,6 @@ const activeKeyVisual = keyVisuals[language];
   }
   .commercial-intro,
   .selected-practice,
-  .secondary-practice,
   .practice-exploration {
     color: inherit;
     text-decoration: none;
@@ -305,7 +287,6 @@ const activeKeyVisual = keyVisuals[language];
   .commercial-intro,
   .enabler-card,
   .selected-practice,
-  .secondary-practice,
   .practice-exploration {
     min-width: 0;
     border: 1px solid rgba(30,60,100,.17);
@@ -316,19 +297,16 @@ const activeKeyVisual = keyVisuals[language];
     background: rgba(255,255,255,.43);
   }
   .selected-practice,
-  .secondary-practice,
   .practice-exploration {
     background: linear-gradient(135deg, rgba(255,255,255,.5), rgba(255,248,242,.52));
   }
   .commercial-intro:hover,
   .selected-practice:hover,
-  .secondary-practice:hover,
   .practice-exploration:hover {
     border-color: rgba(180,83,9,.3);
   }
   .commercial-intro:focus-visible,
   .selected-practice:focus-visible,
-  .secondary-practice:focus-visible,
   .practice-exploration:focus-visible,
   .enabler-links a:focus-visible {
     outline: 3px solid rgba(180,83,9,.4);
@@ -394,7 +372,7 @@ const activeKeyVisual = keyVisuals[language];
   .commercial-visual,
   .enabler-visual,
   .practice-visual,
-  .commerce-case-visual,
+  .transformation-visual,
   .exploration-visual {
     margin: 0;
   }
@@ -405,6 +383,7 @@ const activeKeyVisual = keyVisuals[language];
   .commercial-visual img,
   .enabler-visual img,
   .practice-visual img,
+  .transformation-visual img,
   .exploration-visual img {
     display: block;
     width: 100%;
@@ -490,6 +469,16 @@ const activeKeyVisual = keyVisuals[language];
     height: 1px;
     background: rgba(30,60,100,.2);
   }
+  .proof-column .card-eyebrow {
+    margin-bottom: .75rem;
+  }
+  .proof-column .text-link {
+    padding-top: .75rem;
+  }
+  .practice-exploration .card-eyebrow,
+  .practice-exploration .text-link {
+    white-space: nowrap;
+  }
   .selected-practice {
     display: grid;
     grid-template-columns: minmax(0, 1.2fr) minmax(145px, .8fr);
@@ -497,9 +486,9 @@ const activeKeyVisual = keyVisuals[language];
       "copy visual"
       "outcome outcome"
       "cta cta";
-    gap: 1rem 1.1rem;
-    min-height: 405px;
-    padding: 1.7rem 1.55rem 1.5rem;
+    gap: .75rem 1rem;
+    min-height: 0;
+    padding: 1.35rem 1.35rem 1.2rem;
     overflow: hidden;
   }
   .practice-copy {
@@ -519,7 +508,7 @@ const activeKeyVisual = keyVisuals[language];
   }
   .practice-copy p,
   .exploration-copy p {
-    margin: 1rem 0 0;
+    margin: .75rem 0 0;
     color: var(--color-ink-2);
     font-size: 13px;
     line-height: 1.58;
@@ -527,22 +516,30 @@ const activeKeyVisual = keyVisuals[language];
   .practice-visual {
     grid-area: visual;
     min-width: 0;
-    min-height: 220px;
+    min-height: 190px;
+  }
+  .product-transformation {
+    grid-template-columns: minmax(0, 1fr) minmax(170px, .95fr);
+  }
+  .transformation-visual {
+    grid-area: visual;
+    min-width: 0;
+    min-height: 190px;
   }
   .outcome-strip {
     grid-area: outcome;
-    display: flex;
-    gap: .75rem;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    gap: .6rem;
+    align-items: start;
     align-self: end;
-    padding: .25rem 0;
+    padding: .1rem 0 0;
   }
-  .outcome-strip::before {
-    flex: 0 0 auto;
+  .outcome-icon {
     color: var(--color-amber);
-    font-size: 15px;
-    line-height: 1.35;
-    content: "↗";
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.15;
   }
   .outcome-strip strong {
     display: block;
@@ -555,47 +552,14 @@ const activeKeyVisual = keyVisuals[language];
     grid-area: cta;
     justify-self: start;
     margin-top: 0;
-    padding-top: .35rem;
-  }
-  .secondary-practice {
-    display: grid;
-    grid-template-areas:
-      "visual"
-      "copy"
-      "cta";
-    grid-template-rows: auto auto auto;
-    min-height: 405px;
-    padding: 1.15rem 1.55rem 1.5rem;
-    overflow: hidden;
-  }
-  .commerce-case-visual {
-    grid-area: visual;
-    min-width: 0;
-    aspect-ratio: 900 / 330;
-    margin: -.1rem -.5rem 1.15rem;
-    overflow: hidden;
-    background: #eef3f7;
-    border: 1px solid rgba(30,60,100,.1);
-  }
-  .commerce-case-visual img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-  .commerce-case-copy {
-    grid-area: copy;
+    padding-top: 0;
   }
   .practice-exploration {
     display: grid;
     grid-template-columns: minmax(0, 1.12fr) minmax(150px, .88fr);
-    width: 100%;
-    max-width: 1072px;
-    min-height: 310px;
-    gap: 1rem;
-    margin: 4.5rem auto 0;
-    padding: 1.7rem 1.55rem 1.5rem;
+    min-height: 0;
+    gap: .75rem;
+    padding: 1.35rem 1.35rem 1.2rem;
     overflow: hidden;
   }
   .exploration-copy {
@@ -609,25 +573,23 @@ const activeKeyVisual = keyVisuals[language];
   .exploration-visual {
     min-width: 0;
     align-self: center;
-    height: 240px;
+    height: 200px;
   }
-  .signature-visual {
-    width: 100%;
-    max-width: 1072px;
-    margin: 3.75rem auto 0;
+  @media (min-width: 1161px) {
+    .proof-column {
+      grid-template-rows: auto repeat(3, minmax(0, 1fr));
+    }
+    .proof-column .selected-practice,
+    .proof-column .practice-exploration { padding: 1.15rem; }
+    .proof-column .practice-visual,
+    .proof-column .transformation-visual { min-height: 140px; }
+    .proof-column .exploration-visual { height: 150px; }
   }
-  .signature-visual a {
-    display: block;
-    cursor: zoom-in;
-  }
-  .signature-visual a:focus-visible {
-    outline: 3px solid var(--color-amber);
-    outline-offset: 4px;
-  }
-  .signature-visual img {
-    display: block;
-    width: 100%;
-    height: auto;
+  @media (min-width: 1161px) and (max-width: 1400px) {
+    #data-ai-digital-product .enabler-visual {
+      width: 40%;
+      height: 130px;
+    }
   }
   @media (max-width: 1160px) {
     .showcase-grid {
@@ -641,7 +603,6 @@ const activeKeyVisual = keyVisuals[language];
       padding-left: 1.65rem;
     }
     .selected-practice,
-    .secondary-practice,
     .practice-exploration {
       grid-template-columns: 1fr;
     }
@@ -660,7 +621,7 @@ const activeKeyVisual = keyVisuals[language];
       height: 180px;
     }
   }
-  @media (max-width: 940px) {
+  @media (max-width: 1100px) {
     .showcase-grid {
       display: flex;
       flex-direction: column;
@@ -676,8 +637,9 @@ const activeKeyVisual = keyVisuals[language];
     .commercial-intro { order: 1; }
     .proof-heading { order: 2; margin-top: .75rem; }
     .selected-practice { order: 3; }
-    .secondary-practice { order: 4; }
-    .enablers { order: 5; }
+    .product-transformation { order: 4; }
+    .practice-exploration { order: 5; }
+    .enablers { order: 6; }
     .selected-practice {
       grid-template-columns: minmax(0, 1.1fr) minmax(250px, .9fr);
       grid-template-areas:
@@ -689,6 +651,7 @@ const activeKeyVisual = keyVisuals[language];
       grid-template-columns: minmax(0, 1.2fr) minmax(240px, .8fr);
     }
     .practice-visual,
+    .transformation-visual,
     .exploration-visual {
       height: 220px;
     }
@@ -710,7 +673,6 @@ const activeKeyVisual = keyVisuals[language];
       padding: 0 1rem 1rem;
     }
     .selected-practice,
-    .secondary-practice,
     .practice-exploration {
       grid-template-columns: 1fr;
       padding: 1.5rem;
@@ -723,6 +685,7 @@ const activeKeyVisual = keyVisuals[language];
         "cta";
     }
     .practice-visual,
+    .transformation-visual,
     .exploration-visual {
       height: 210px;
     }
@@ -738,8 +701,6 @@ const activeKeyVisual = keyVisuals[language];
       width: 45%;
       height: 150px;
     }
-    .signature-visual { margin-top: 3rem; }
-    .practice-exploration { margin-top: 3.5rem; }
   }
   @media (max-width: 430px) {
     .card-eyebrow {

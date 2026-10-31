@@ -9,25 +9,123 @@ const isEnglish = language === "en";
 ---
 
 <SubPageLayout
+  editorial
   language={language}
   title="Leadership & Transformation | Karsten Uhlig"
-  description={isEnglish ? "Leadership as a discipline of diagnosis and decision-making: seven recurring leadership problems and the models I use to address them." : "Leadership als Diagnose- und Entscheidungshandwerk: sieben wiederkehrende Führungsprobleme und die Modelle, mit denen ich sie löse."}
+  description={isEnglish ? "For me, leadership begins with clarity, trust and accountability, and with an understanding of what people and organisations need in a specific situation." : "Führung mit klaren Erwartungen, echtem Handlungsspielraum und hohem Anspruch an Ergebnisse. Aus der Führung einer Digitalorganisation mit mehr als 100 Mitarbeitenden."}
 >
   <article class="leadership-landing">
-    <header class="landing-hero">
-      <div class="hero-eyebrow">Leadership & Transformation</div>
-      <h1>Leadership & Transformation</h1>
-      <p class="hero-subheadline">{isEnglish ? "Turning strategy into organisation and execution." : "Strategie in Organisation und Umsetzung übersetzen."}</p>
-      <p class="hero-copy">{isEnglish ? "For me, leadership is not reducible to style or intuition. Leadership shows up in recurring situations: clarifying accountability, developing performance, resolving conflicts, enabling decisions and getting change moving. That requires diagnosis before intervention. Understand the actual cause first, then choose the appropriate leadership instrument." : "Führung reduziert sich für mich nicht auf Stil oder Intuition. Führung zeigt sich in wiederkehrenden Situationen: Verantwortung klären, Performance entwickeln, Konflikte lösen, Entscheidungen ermöglichen und Veränderung in Bewegung bringen. Dafür braucht es Diagnose vor Intervention. Erst die tatsächliche Ursache verstehen, dann das passende Führungsinstrument wählen."}</p>
-    </header>
+    {isEnglish ? (
+      <>
+        <div class="leadership-intro">
+          <header class="landing-hero">
+            <div class="hero-eyebrow">Leadership & Transformation</div>
+            <h1>Leadership takes both principles and practice.</h1>
+            <p class="hero-copy">For me, leadership begins with clarity, trust and accountability, and with an understanding of what people and organisations need in a specific situation. Good leadership provides direction, creates room for decisions, brings different perspectives together and enables people to act independently. My principle: understand first, then act.</p>
+            <div class="communication-principle">
+              <h2>Turn complexity into clarity.</h2>
+              <p>In complex organisations, I see it as part of leadership to distil complex relationships so that direction emerges and decisions become possible. This does not mean oversimplifying complexity, but making what matters visible.</p>
+            </div>
+          </header>
 
-    <EditorialImage
-      class="leadership-context"
-      src="/images/karsten-uhlig-leadership-stage.png"
-      alt={isEnglish ? "Karsten Uhlig speaking on stage" : "Karsten Uhlig bei einem Vortrag"}
-      width={1536}
-      height={1024}
-    />
+          <EditorialImage
+            class="leadership-context"
+            src="/images/karsten-uhlig-leadership-stage.png"
+            alt="Karsten Uhlig speaking on stage"
+            width={1536}
+            height={1024}
+          />
+        </div>
+
+        <section class="practice-evidence" aria-labelledby="practice-evidence-title">
+          <h2 id="practice-evidence-title">Leadership in practice</h2>
+          <div class="practice-evidence-list">
+            <div class="practice-evidence-item">
+              <h3>100+ employees · 8 leaders · 20+ teams</h3>
+              <p>Leadership across several levels in an international digital organisation.</p>
+            </div>
+            <a class="practice-evidence-item practice-evidence-item--case" href="/en/transformation/product-organisation">
+              <span class="case-eyebrow">Leadership Case</span>
+              <div class="case-body">
+                <div class="case-text">
+                  <h3>From projects to product teams with end-to-end accountability</h3>
+                  <p>Cross-functional teams with clear end-to-end accountability.</p>
+                  <span class="case-cta">View case <span aria-hidden="true">→</span></span>
+                </div>
+                <img
+                  class="case-thumb"
+                  src="/images/homepage/06-product-organisation-transformation.png"
+                  alt=""
+                  width="1254"
+                  height="1254"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </a>
+            <div class="practice-evidence-item">
+              <h3>International matrix · 20+ markets</h3>
+              <p>Steered priorities and digital initiatives jointly with market and functional leaders.</p>
+            </div>
+          </div>
+        </section>
+      </>
+    ) : (
+      <>
+        <div class="leadership-intro">
+          <header class="landing-hero">
+            <div class="hero-eyebrow">Leadership & Transformation</div>
+            <h1>Führung braucht Haltung und Handwerk.</h1>
+            <p class="hero-copy">Für mich beginnt Führung mit Klarheit über Ziele, Erwartungen und Verantwortung. Dazu gehören verlässliche Entscheidungsräume, hohe Ansprüche an Ergebnisse und ein Umgang, in dem unterschiedliche Perspektiven offen eingebracht werden können. Führung zeigt sich für mich darin, Entscheidungen nachvollziehbar zu machen, Verantwortung klar zu verankern und in der Umsetzung verbindlich zu bleiben.</p>
+            <div class="communication-principle">
+              <h2>Komplexität in Klarheit verwandeln.</h2>
+              <p>In komplexen Organisationen gehört es für mich zu Führung, Zusammenhänge so zu verdichten, dass Entscheidungen möglich werden. Oft heißt das ganz konkret, eine unübersichtliche Lage auf eine Seite zu bringen: Ausgangslage, Optionen, Empfehlung und nächste Schritte.</p>
+            </div>
+          </header>
+
+          <EditorialImage
+            class="leadership-context"
+            src="/images/karsten-uhlig-leadership-stage.png"
+            alt="Karsten Uhlig bei einem Vortrag"
+            width={1536}
+            height={1024}
+          />
+        </div>
+
+        <section class="practice-evidence" aria-labelledby="practice-evidence-title">
+          <h2 id="practice-evidence-title">Aus der Praxis</h2>
+          <div class="practice-evidence-list">
+            <div class="practice-evidence-item">
+              <h3>100+ Mitarbeitende · 8 Führungskräfte · 20+ Teams</h3>
+              <p>Führung über mehrere Ebenen in einer internationalen Digitalorganisation.</p>
+            </div>
+            <a class="practice-evidence-item practice-evidence-item--case" href="/transformation/product-organisation">
+              <span class="case-eyebrow">Leadership Case</span>
+              <div class="case-body">
+                <div class="case-text">
+                  <h3>Von Projekten zu Produktteams mit Ergebnisverantwortung</h3>
+                  <p>Crossfunktionale Teams mit klarer End-to-End-Verantwortung.</p>
+                  <span class="case-cta">Case ansehen <span aria-hidden="true">→</span></span>
+                </div>
+                <img
+                  class="case-thumb"
+                  src="/images/homepage/06-product-organisation-transformation.png"
+                  alt=""
+                  width="1254"
+                  height="1254"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </a>
+            <div class="practice-evidence-item">
+              <h3>Internationale Matrix · 20+ Märkte</h3>
+              <p>Prioritäten und digitale Initiativen gemeinsam mit Markt- und Funktionsverantwortlichen gesteuert.</p>
+            </div>
+          </div>
+        </section>
+      </>
+    )}
 
     <LeadershipFieldExplorer language={language} />
   </article>
@@ -35,34 +133,61 @@ const isEnglish = language === "en";
 
 <style>
   .leadership-landing { min-width: 0; }
-  .landing-hero { padding: 2.25rem 0 5.75rem; }
-  .hero-eyebrow { margin-bottom: 1rem; color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
-  h1 { max-width: 900px; margin: 0; color: var(--color-ink); font-size: clamp(46px, 7vw, 82px); font-weight: 500; letter-spacing: -.055em; line-height: .98; }
-  .hero-subheadline { max-width: 860px; margin: 1.55rem 0 0; color: var(--color-ink); font-size: clamp(22px, 2.7vw, 34px); font-weight: 400; letter-spacing: -.025em; line-height: 1.25; }
-  .hero-copy { max-width: 810px; margin: 1.55rem 0 0; color: var(--color-body); font-size: 16px; line-height: 1.8; }
-  :global(.leadership-context) { --editorial-image-margin: 0 auto 2rem 0; width: min(76%, 860px); }
-  :global(.leadership-context .editorial-image__media) { aspect-ratio: 16 / 9; }
+  .leadership-intro { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(300px, 1fr); gap: clamp(2.5rem, 4vw, 4rem); align-items: start; padding: 2rem 0 4rem; border-bottom: 1px solid var(--color-border-soft); }
+  .landing-hero { min-width: 0; }
+  .hero-eyebrow { display: flex; gap: .85rem; align-items: center; margin-bottom: 1.1rem; color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+  .hero-eyebrow::before { content: ""; width: 2.25rem; height: 2px; flex: 0 0 auto; background: var(--color-amber); }
+  h1 { max-width: 720px; margin: 0; color: var(--color-ink); font-size: clamp(46px, 5.2vw, 64px); font-weight: 500; letter-spacing: -.045em; line-height: 1; }
+  .hero-copy { max-width: 640px; margin: 1.35rem 0 0; color: var(--color-body); font-size: 15.5px; line-height: 1.72; }
+  .practice-evidence { padding: 2.7rem 0 3rem; border-bottom: 1px solid var(--color-border-soft); }
+  .practice-evidence > h2 { margin: 0 0 1.65rem; color: var(--color-ink); font-size: 25px; font-weight: 500; letter-spacing: -.025em; line-height: 1.25; }
+  .practice-evidence-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--color-border-soft); border-bottom: 1px solid var(--color-border-soft); }
+  .practice-evidence-item { min-width: 0; padding: 1.35rem 1.5rem 1.45rem; }
+  .practice-evidence-item:first-child { padding-left: 0; }
+  .practice-evidence-item + .practice-evidence-item { border-left: 1px solid var(--color-border-soft); }
+  .practice-evidence-item h3 { margin: 0; color: var(--color-ink); font-size: 15px; font-weight: 600; letter-spacing: -.01em; line-height: 1.4; }
+  .practice-evidence-item p { margin: .55rem 0 0; color: var(--color-body); font-size: 14px; line-height: 1.62; }
+  .practice-evidence-item--case { display: block; margin-top: -1px; color: inherit; text-decoration: none; background: rgba(180,83,9,.06); border-top: 2px solid var(--color-amber); transition: background .2s ease; }
+  .practice-evidence-item--case:hover { background: rgba(180,83,9,.1); }
+  .practice-evidence-item--case:focus-visible { outline: 2px solid var(--color-amber); outline-offset: 3px; }
+  .practice-evidence-item--case h3 { font-size: 14px; }
+  .case-eyebrow { display: block; margin-bottom: .5rem; color: var(--color-amber); font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .case-body { display: flex; align-items: center; gap: 1rem; }
+  .case-text { min-width: 0; flex: 1; }
+  .case-thumb { width: 144px; height: 144px; flex: 0 0 auto; object-fit: contain; }
+  .case-cta { display: inline-flex; gap: .35rem; align-items: center; margin-top: .6rem; color: var(--color-amber); font-size: 12px; font-weight: 600; }
+  :global(.leadership-context) { --editorial-image-margin: 0; width: 100%; max-width: 400px; justify-self: end; }
+  :global(.leadership-context .editorial-image__media) { aspect-ratio: 4 / 5; }
   :global(.leadership-context img) {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% top;
-    transform: scale(1.06);
-    transform-origin: 58% top;
+    object-position: 57% center;
     filter: saturate(.82) contrast(.96) brightness(.98);
   }
-  :global(.leadership-context) + :global(.field-section) { padding-top: 3.75rem; }
+  .communication-principle { max-width: 640px; margin-top: 2.15rem; }
+  .communication-principle h2 { margin: 0; color: var(--color-ink); font-size: 21px; font-weight: 500; letter-spacing: -.02em; line-height: 1.25; }
+  .communication-principle p { margin: .65rem 0 0; color: var(--color-body); font-size: 15px; line-height: 1.68; }
+  .leadership-intro + :global(.field-section) { padding-top: 4rem; }
 
-  @media (max-width: 760px) {
-    .landing-hero { padding: 1rem 0 3.25rem; }
-    h1 { font-size: 48px; }
-    .hero-subheadline { font-size: 24px; }
-    .hero-copy { font-size: 15px; }
-    :global(.leadership-context) { --editorial-image-margin: 0 0 1.5rem; width: 100%; }
-    :global(.leadership-context .editorial-image__media) { aspect-ratio: 4 / 3; }
-    :global(.leadership-context img) { object-position: 58% top; transform: none; }
-    :global(.leadership-context) + :global(.field-section) { padding-top: 3rem; }
+  @media (max-width: 900px) {
+    .leadership-intro { grid-template-columns: 1fr; gap: 2rem; padding: 1rem 0 3rem; }
+    :global(.leadership-context) { width: min(100%, 520px); max-width: none; justify-self: start; }
+    :global(.leadership-context .editorial-image__media) { aspect-ratio: 5 / 4; }
   }
 
-  @media (max-width: 430px) { h1 { font-size: 41px; } }
+  @media (max-width: 760px) {
+    h1 { font-size: 42px; }
+    .hero-copy { font-size: 15px; }
+    .practice-evidence { padding: 2.35rem 0 2.6rem; }
+    .practice-evidence > h2 { font-size: 23px; }
+    .practice-evidence-list { grid-template-columns: 1fr; }
+    .practice-evidence-item { padding: 1.15rem 0 1.25rem; }
+    .practice-evidence-item + .practice-evidence-item { border-top: 1px solid var(--color-border-soft); border-left: 0; }
+    .practice-evidence-list .practice-evidence-item--case { border-top: 2px solid var(--color-amber); }
+    .communication-principle h2 { font-size: 20px; }
+    .leadership-intro + :global(.field-section) { padding-top: 3.5rem; }
+  }
+
+  @media (max-width: 430px) { h1 { font-size: 38px; } }
 </style>

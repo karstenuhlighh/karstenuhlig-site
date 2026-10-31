@@ -49,28 +49,26 @@ const navMenus = [
   {
     id: "leadership",
     label: "Leadership",
-    ariaLabel: isEnglish ? "Leadership" : "Leadership",
+    ariaLabel: "Leadership",
     items: [
       {
         href: leadershipPath,
-        title: "Leadership & Transformation",
-        subline: isEnglish ? "Overview and leadership approach" : "Übersicht und Führungsansatz",
+        title: isEnglish ? "Leadership Approach" : "Führungsverständnis",
+        subline: isEnglish
+          ? "Orientation, accountability and collaboration."
+          : "Orientierung, Verantwortung und Zusammenarbeit.",
       },
       {
-        href: `${leadershipPath}#leadership-autonomy-performance`,
-        title: isEnglish ? "Autonomy & Performance" : "Autonomie & Performance",
+        href: `${leadershipPath}#leadership-accountability-autonomy`,
+        title: isEnglish ? "Accountability" : "Verantwortung",
       },
       {
-        href: `${leadershipPath}#leadership-direction-decisions`,
-        title: isEnglish ? "Direction & Decisions" : "Richtung & Entscheidungen",
+        href: `${leadershipPath}#leadership-openness-conflict`,
+        title: isEnglish ? "Collaboration" : "Zusammenarbeit",
       },
       {
-        href: `${leadershipPath}#leadership-matrix-stakeholders`,
-        title: isEnglish ? "Matrix & Stakeholders" : "Matrix & Stakeholder",
-      },
-      {
-        href: `${leadershipPath}#leadership-transformation-change`,
-        title: "Transformation & Change",
+        href: `${leadershipPath}#leadership-transformation-change-learning`,
+        title: isEnglish ? "Change" : "Veränderung",
       },
     ],
   },

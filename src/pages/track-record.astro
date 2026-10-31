@@ -12,6 +12,7 @@ const phases = isEnglish ? trackRecordPhasesEn : trackRecordPhases;
 ---
 
 <SubPageLayout
+  editorial
   language={language}
   title="Track Record | Karsten Uhlig | Commercial & Digital Commerce Executive"
   description={isEnglish ? "From Offer Management and Digital Marketing through CRM to end-to-end steering of an international E-Commerce business. Four phases of building and scaling at bonprix since 2004." : "Von Angebotssteuerung und Digital Marketing über CRM bis zur End-to-End-Steuerung eines internationalen E-Commerce-Geschäfts. Vier Aufbau- und Skalierungsphasen bei bonprix ab 2004."}
@@ -48,15 +49,16 @@ const phases = isEnglish ? trackRecordPhasesEn : trackRecordPhases;
 </SubPageLayout>
 
 <style>
-  .tr-intro { display: grid; grid-template-columns: clamp(300px, 29%, 330px) minmax(0, 1fr); grid-template-areas: "portrait copy" "divider divider"; column-gap: clamp(55px, 4.5vw, 65px); row-gap: 0; align-items: start; padding: 1.5rem 0 0; }
-  .tr-eyebrow { margin-bottom: 30px; color: var(--color-amber); font-size: 12px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; }
+  .tr-intro { display: grid; grid-template-columns: clamp(300px, 29%, 330px) minmax(0, 1fr); grid-template-areas: "portrait copy" "divider divider"; column-gap: clamp(55px, 4.5vw, 65px); row-gap: 0; align-items: start; padding: 2rem 0 0; }
+  .tr-eyebrow { display: flex; gap: .85rem; align-items: center; margin-bottom: 1.1rem; color: var(--color-amber); font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+  .tr-eyebrow::before { content: ""; width: 2.25rem; height: 2px; flex: 0 0 auto; background: var(--color-amber); }
   .tr-copy { grid-area: copy; min-width: 0; }
-  .tr-headline { margin: 0 0 28px; color: var(--color-ink); font-size: 44px; font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }
+  .tr-headline { max-width: 800px; margin: 0 0 1.35rem; color: var(--color-ink); font-size: clamp(42px, 4.5vw, 58px); font-weight: 500; letter-spacing: -.045em; line-height: 1; }
   .tr-body { max-width: 100%; }
-  .tr-body p { font-size: 17px; line-height: 1.75; color: var(--color-ink-2); margin: 0 0 1.5rem; }
+  .tr-body p { max-width: 800px; font-size: 15.5px; line-height: 1.72; color: var(--color-body); margin: 0 0 1.5rem; }
   .tr-body p:last-child { margin-bottom: 0; }
   :global(.tr-portrait) { --editorial-image-margin: 0; grid-area: portrait; width: 100%; justify-self: start; }
-  .tr-divider { grid-area: divider; width: 100%; margin-top: 1.25rem; border-top: 1px solid var(--color-border); }
+  .tr-divider { grid-area: divider; width: 100%; margin-top: 2rem; border-top: 1px solid var(--color-border-soft); }
   :global(.page-main > .perspectives) { margin-top: 0; }
   :global(.page-main > .perspectives .perspective-column:first-child) { border-top: 0; }
   .tr-arc-period { margin-bottom: .55rem; font-size: 13px; font-weight: 500; color: var(--color-amber); }
@@ -71,7 +73,7 @@ const phases = isEnglish ? trackRecordPhasesEn : trackRecordPhases;
     .tr-divider { margin-top: 0; }
   }
   @media (max-width: 768px) {
-    .tr-headline { font-size: 32px; }
+    .tr-headline { font-size: 38px; }
     h2 { font-size: 24px; }
     .tr-now { margin-top: 1.75rem; padding-top: 1.25rem; }
   }
