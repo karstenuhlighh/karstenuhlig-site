@@ -10,6 +10,7 @@ const { language = getLanguage(Astro.url.pathname), homepage = false } = Astro.p
 const isEnglish = language === "en";
 const homePath = isEnglish ? "/en/" : "/";
 const commercialPath = isEnglish ? "/en/commercial-management" : "/commercial-management";
+const crmPath = isEnglish ? "/en/integrated-crm" : "/integriertes-crm";
 const dataPath = isEnglish ? "/en/data-ai-digital-product" : "/data-ai-digital-product";
 const productPath = isEnglish ? "/en/digital-product-customer-experience" : "/digital-product-customer-experience";
 const leadershipPath = isEnglish ? "/en/leadership" : "/leadership";
@@ -28,11 +29,11 @@ const navMenus = [
         title: "Commercial Management",
         subline: isEnglish ? "Overview and management system" : "Übersicht und Managementsystem",
       },
-      ...(!isEnglish ? [{
-        href: "/integriertes-crm",
-        title: "Integriertes CRM & Customer Value",
-        subline: "Kundenbeziehungen wirtschaftlich entwickeln",
-      }] : []),
+      {
+        href: crmPath,
+        title: isEnglish ? "Integrated CRM & Customer Value" : "Integriertes CRM & Customer Value",
+        subline: isEnglish ? "Develop customer relationships economically" : "Kundenbeziehungen wirtschaftlich entwickeln",
+      },
       {
         href: `${commercialPath}#commercial-fields`,
         title: isEnglish ? "8 Management Areas" : "8 Handlungsfelder",
