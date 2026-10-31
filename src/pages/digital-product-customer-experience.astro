@@ -1,6 +1,7 @@
 ---
 import SubPageLayout from "../layouts/SubPageLayout.astro";
 import DigitalProductCapabilityGrid from "../components/DigitalProductCapabilityGrid.astro";
+import CommerceModernisationCase from "../components/CommerceModernisationCase.astro";
 import { getLanguage } from "../i18n/routes";
 
 const language = getLanguage(Astro.url.pathname);
@@ -88,6 +89,8 @@ const enterpriseProofs = isEnglish ? [
       <p class="hero-subheadline">{isEnglish ? "Turning commercial direction into effective digital products and journeys." : "Kommerzielle Richtung in wirksame digitale Produkte und Journeys übersetzen."}</p>
       <p class="hero-copy">{isEnglish ? "For me, Digital Product is not a specialist or technology field detached from the business. Commercial Management remains the starting point: which customer or business problem needs to be solved better? Product translates this direction into Customer Journeys, Product decisions, enduring ownership and learning systems — and remains accountable for impact across the full lifecycle." : "Digital Product ist für mich kein vom Geschäft gelöstes Spezialisten- oder Tech-Feld. Ausgangspunkt bleibt Commercial Management: Welches Kunden- oder Geschäftsproblem muss besser gelöst werden? Product übersetzt diese Richtung in Customer Journeys, Product-Entscheidungen, dauerhafte Ownership und lernfähige Systeme — und verantwortet die Wirkung über den gesamten Lebenszyklus."}</p>
     </header>
+
+    <CommerceModernisationCase language={language} />
 
     <section class="logic-section" aria-labelledby="product-logic-title">
       <div class="section-heading logic-heading">

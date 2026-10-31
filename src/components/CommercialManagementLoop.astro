@@ -127,4 +127,8 @@ const outcomes = isEnglish
     .movement { padding: 1.5rem 1.35rem 1.7rem; }
     .outcomes { line-height: 1.9; }
   }
+  @media (max-width: 430px) {
+    .outcomes { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 .5rem; }
+    .outcomes span { padding: 0 .15rem; }
+  }
 </style>

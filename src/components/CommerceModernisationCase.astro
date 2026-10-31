@@ -1,0 +1,741 @@
+---
+import type { Language } from "../i18n/routes";
+
+interface Props {
+  language?: Language;
+}
+
+const { language = "de" } = Astro.props;
+const isEnglish = language === "en";
+
+const assetBase = "/images/digital-product-cx/webshop-app-modernisierung";
+
+const copy = isEnglish ? {
+  kicker: "Enterprise Case · bonprix: Webshop & App Modernisation",
+  title: "Webshop & App Modernisation",
+  intro: [
+    "At bonprix, Springtime was a powerful shop platform that had grown over many years. At the same time, the app was becoming an increasingly important customer touchpoint.",
+    "We wanted to evolve the webshop and app more independently and use commerce capabilities and customer data across different touchpoints. That required a fundamental transformation of the existing platform.",
+  ],
+  open: "Open full-size visual",
+  close: "Close",
+  storyTrigger: "Read full case story",
+  storyMeta: "6 chapters · approx. 7 min read",
+  storyTopline: "FULL CASE STORY · WEBSHOP & APP MODERNISATION",
+  storyClose: "Close full case story",
+  items: [
+    {
+      number: "01",
+      title: "Digital Experience Platform",
+      body: "We developed commerce, customer data and marketing as one connected system. The webshop, app and further touchpoints could use shared capabilities. Fashion Connect used only the shared tracking and analytics infrastructure.",
+      image: "01-digital-experience-platform",
+      alt: "German infographic showing digital touchpoints connected to a distinct e-commerce platform and Marketing Data Platform through shared platform services.",
+    },
+    {
+      number: "02",
+      title: "Commerce Modernisation",
+      body: "We modernised the shop platform step by step while the international business kept running. Shopping and the complex country-specific checkouts were deliberately separated. In parallel, we evolved our product organisation and the collaboration with IT and technology partners.",
+      image: "02-commerce-transformation",
+      alt: "German infographic describing the step-by-step transformation from a shop monolith to a Digital Experience Platform during live international operations.",
+    },
+    {
+      number: "03",
+      title: "The App as a Customer Touchpoint",
+      body: "Our app deliberately started as a hybrid solution and initially used the existing mobile shop. The app team moved into my area in 2018. Permanent login, push, a persistent basket and the connection to CRM, customer data and personalisation allowed us to develop it into a customer touchpoint in its own right.",
+      image: "03-app-strategie-kundenbeziehung",
+      alt: "German infographic positioning the shopping app as a distinct customer touchpoint connected with CRM, personalisation and marketing activation.",
+    },
+  ],
+} : {
+  kicker: "Enterprise Case · bonprix: Webshop & App Modernisierung",
+  title: "Webshop & App Modernisierung",
+  intro: [
+    "Bei bonprix hatten wir mit Springtime eine leistungsfähige, aber über viele Jahre gewachsene Shopplattform. Gleichzeitig wurde die App zu einem immer wichtigeren Kundenkontaktpunkt.",
+    "Wir wollten Webshop und App unabhängiger voneinander weiterentwickeln und Commerce-Funktionen sowie Kundendaten über unterschiedliche Kontaktpunkte hinweg nutzen. Dafür mussten wir unsere bestehende Plattform grundlegend verändern.",
+  ],
+  open: "Visual in voller Größe öffnen",
+  close: "Schließen",
+  storyTrigger: "Full Case Story lesen",
+  storyMeta: "6 Kapitel · ca. 7 Min. Lesezeit",
+  storyTopline: "FULL CASE STORY · WEBSHOP & APP MODERNISIERUNG",
+  storyClose: "Full Case Story schließen",
+  items: [
+    {
+      number: "01",
+      title: "Digital Experience Plattform",
+      body: "Commerce, Kundendaten und Marketing haben wir als zusammenhängendes System entwickelt. Webshop, App und weitere Kontaktpunkte sollten auf gemeinsame Fähigkeiten zugreifen können. Fashion Connect nutzte ausschließlich die gemeinsame Tracking- und Analytics-Infrastruktur.",
+      image: "01-digital-experience-platform",
+      alt: "Infografik einer Digital Experience Plattform mit digitalen Touchpoints, getrennter E-Commerce-Plattform und Marketing Data Platform sowie gemeinsamen Plattform-Services.",
+    },
+    {
+      number: "02",
+      title: "Commerce-Modernisierung",
+      body: "Die Modernisierung unserer Shopplattform haben wir schrittweise bei laufendem internationalem Geschäft umgesetzt. Shopping und die komplexen länderspezifischen Checkouts wurden bewusst getrennt. Gleichzeitig haben wir unsere Produktorganisation und die Zusammenarbeit mit IT und Technologiepartnern weiterentwickelt.",
+      image: "02-commerce-transformation",
+      alt: "Infografik der schrittweisen Commerce-Transformation vom Shop-Monolithen zur Digital Experience Plattform bei laufendem internationalem Geschäft.",
+    },
+    {
+      number: "03",
+      title: "Die App als eigenständiger Kundenkontaktpunkt",
+      body: "Unsere App startete bewusst hybrid und nutzte zunächst den bestehenden Mobile Shop. Das App-Team wechselte 2018 in meinen Bereich. Mit Permanent Login, Push, persistentem Warenkorb und der Verbindung zu CRM, Kundendaten und Personalisierung konnten wir die App als eigenständigen Kundenkontaktpunkt weiterentwickeln.",
+      image: "03-app-strategie-kundenbeziehung",
+      alt: "Infografik zur Shopping-App als eigenständigem Kundenkontaktpunkt im Zusammenspiel mit CRM, Personalisierung und Marketing-Aktivierung.",
+    },
+  ],
+};
+
+const story = isEnglish ? {
+  title: "Webshop & App Modernisation",
+  subtitle: "From a browser-centric shop architecture to a platform on which the webshop, app and further digital customer experiences can evolve independently.",
+  intro: [
+    "At bonprix, Springtime was a powerful e-commerce platform that had evolved over many years. It was tailored to our business model and formed the foundation of the international online business.",
+    "As mobile applications became more important, however, a fundamental question emerged: how could we develop new digital customer touchpoints without rebuilding the existing shop logic for every channel?",
+    "Our goal was therefore a platform on which different frontends such as the webshop and app could use shared commerce capabilities. In time, this was also intended to support further devices and new forms of customer interaction.",
+    "We developed the modernisation of the commerce platform consistently from these business requirements. The decisive challenge was to introduce the new architecture while the international business continued to operate and, at the same time, create the foundation for faster development of our digital products.",
+  ],
+  chapters: [
+    {
+      title: "1. The starting point: a successful platform reaches its limits",
+      paragraphs: [
+        "Springtime had been continuously developed since 2005. Over the years, extensive business logic, international specifics and numerous functions had accumulated. The shop monolith ultimately comprised more than 400,000 lines of code.",
+        "Presentation, business logic and data storage were closely coupled. Mobile and desktop used different frontend structures. Integrating new technologies and additional touchpoints was therefore becoming increasingly complex.",
+        "The international checkout was particularly demanding. The various payment methods, delivery options and country-specific processes had reached a level of complexity that had to be considered in every fundamental change.",
+        "At the same time, we continued to develop our shopping app. We wanted to use its specific capabilities and, over time, move beyond the constraints of a browser-centric shop architecture.",
+      ],
+    },
+    {
+      title: "2. The platform decision: modernise the custom platform deliberately",
+      paragraphs: [
+        "We decided to modernise our existing custom-built platform step by step rather than replace it in full.",
+        "The close integration of the platform with our business model was the main reason. A complete replacement would have required us to reproduce large parts of the accumulated business logic and numerous integrations in a new system. At the same time, we were convinced that a modularised custom platform could provide the flexibility we needed in the long term.",
+        "The target architecture separated the frontends clearly from shared commerce services. Product information, search, basket, customer functions and checkout integrations were to evolve independently of individual user interfaces. We used backend-for-frontend layers and APIs where they provided meaningful domain separation, not as an architectural end in themselves.",
+        "In parallel, we viewed the e-commerce platform and Marketing Data Platform as one connected Digital Experience Platform. It linked commerce with tracking, analytics, customer data and personalisation. Fashion Connect used only this shared tracking and analytics infrastructure; this does not imply responsibility for designing the store's physical-digital Customer Journey.",
+        "Custom development was not a principle for every capability. With Contentful, for example, we deliberately introduced a standard product to give our creative and campaign teams substantially greater autonomy in developing and maintaining content.",
+      ],
+    },
+    {
+      title: "3. The migration: deliberately separate shopping and checkout",
+      paragraphs: [
+        "One of the most important decisions was to separate migration of the shopping journey from modernisation of the international checkouts.",
+        "We did not want new shopping functions, especially further development of the app, to depend on the prior migration of every country-specific checkout process.",
+        "We therefore developed an architecture with domain-specific services and temporary facades. They allowed new shopping components to operate with existing backend and checkout functions.",
+        "We divided the migration into manageable steps. These included removing unnecessary functions, increasing international standardisation, limiting further development in the legacy environment and separating the core migration from later country migrations.",
+        "The first parts of the new platform, including the channel homepage and wish list, went into production early. For the new checkout, we initially implemented a deliberately reduced MVP and technical end-to-end slice to test the interaction of central components under real conditions.",
+        "This approach allowed us to validate architectural assumptions step by step while continuing to run the existing business.",
+      ],
+    },
+    {
+      title: "4. Webshop and app as different customer experiences",
+      paragraphs: [
+        "From the outset, the shopping app had its own strategic significance at bonprix. It had initially been created in Business Development and deliberately used a hybrid approach: a native shell accessed the existing mobile shop. This allowed us to develop app functions without building a second complete shop in parallel.",
+        "When the app team moved into my organisation in 2018, the app became increasingly integrated into our overall Digital Product strategy.",
+        "Its additional customer value came particularly from permanent login, push notifications, a persistent basket and app-specific interaction options. Connecting the app with CRM, customer data, analytics and personalisation enabled more targeted customer engagement.",
+        "Commercial steering therefore did not focus on downloads and app revenue alone. We considered the full path from install through activation and purchase to repeat purchase. Equally important was whether the app generated incremental business or merely shifted existing mobile-web usage.",
+        "Commerce modernisation created the technical foundation for the webshop and app to evolve more independently over time.",
+      ],
+    },
+    {
+      title: "5. Evolve architecture and organisation together",
+      paragraphs: [
+        "The new architecture also changed the demands on our organisation.",
+        "Until then, software development had been strongly shaped by functional specialisation, projects and shared development resources. Many changes required coordination across several teams.",
+        "We therefore developed a product organisation step by step, with more stable cross-functional teams and clearer accountability for individual products and services. Team Topologies provided one source of orientation, adapted to bonprix's actual conditions.",
+        "Technical decoupling was an important prerequisite. At the same time, Product accountability, decision rights and development and operations processes had to evolve. Internal teams and technology partners had to work within the same product and platform logic.",
+        "Implementation also showed that a new architecture alone does not enable independent development. Remaining dependencies on the monolith, shared session handling, tracking and the frontend infrastructure required additional work.",
+        "The later migration to AWS was part of this evolution. It was intended to give Product teams a more automated platform operation that they could use and run with greater autonomy.",
+      ],
+    },
+    {
+      title: "6. Outcomes and experience",
+      paragraphs: [
+        "The original shop monolith gradually evolved into a modular commerce platform whose services could be used by different frontends.",
+        "This created an important foundation for the further development of the webshop and app. Commerce, customer data and marketing could also continue to be integrated within one shared platform strategy.",
+        "The implementation equally demonstrated how important it is to retire technical interim solutions consistently. Temporary facades and parallel systems initially make migration easier. If they remain for too long, they create new dependencies and additional effort.",
+        "For me, connecting architecture, migration strategy and Product organisation was therefore particularly important. The new technical foundation becomes effective in day-to-day work only when teams can develop and operate their products with substantial autonomy.",
+      ],
+    },
+  ],
+} : {
+  title: "Webshop & App Modernisierung",
+  subtitle: "Von einer browserzentrierten Shoparchitektur zu einer Plattform, auf der Webshop, App und weitere digitale Kundenerlebnisse unabhängig weiterentwickelt werden können.",
+  intro: [
+    "Bei bonprix hatten wir mit Springtime eine leistungsfähige, über viele Jahre gewachsene E-Commerce-Plattform. Sie war auf unser Geschäftsmodell zugeschnitten und bildete die Grundlage für das internationale Onlinegeschäft.",
+    "Mit der zunehmenden Bedeutung mobiler Anwendungen stellte sich allerdings eine grundsätzliche Frage: Wie können wir neue digitale Kundenzugänge entwickeln, ohne für jeden Kanal die vorhandene Shoplogik erneut aufbauen zu müssen?",
+    "Unser Ziel war deshalb eine Plattform, auf der unterschiedliche Frontends wie Webshop und App auf gemeinsame Commerce-Funktionen zugreifen können. Perspektivisch sollte dies auch für weitere Endgeräte und neue Formen der Kundeninteraktion möglich sein.",
+    "Die Modernisierung unserer Commerce-Plattform haben wir konsequent aus diesen fachlichen Anforderungen heraus entwickelt. Entscheidend war, die neue Architektur bei laufendem internationalen Geschäft einzuführen und gleichzeitig die Grundlage für eine schnellere Weiterentwicklung unserer digitalen Produkte zu schaffen.",
+  ],
+  chapters: [
+    {
+      title: "1. Die Ausgangslage: Eine erfolgreiche Plattform stößt an ihre Grenzen",
+      paragraphs: [
+        "Springtime wurde seit 2005 kontinuierlich weiterentwickelt. Über die Jahre waren umfangreiche Geschäftslogiken, internationale Besonderheiten und zahlreiche Funktionen entstanden. Der Shopmonolith umfasste schließlich mehr als 400.000 Codezeilen.",
+        "Präsentation, Geschäftslogik und Datenhaltung waren eng miteinander verbunden. Für Mobile und Desktop existierten unterschiedliche Frontend-Strukturen. Neue Technologien und zusätzliche Touchpoints ließen sich dadurch zunehmend aufwendig integrieren.",
+        "Besonders anspruchsvoll war der internationale Checkout. Die unterschiedlichen Zahlungsarten, Lieferoptionen und landesspezifischen Prozesse hatten eine Komplexität erreicht, die bei jeder grundlegenden Veränderung berücksichtigt werden musste.",
+        "Gleichzeitig entwickelten wir unsere Shopping-App weiter. Wir wollten ihre spezifischen Möglichkeiten nutzen und uns langfristig von der Abhängigkeit einer browserzentrierten Shoparchitektur lösen.",
+      ],
+    },
+    {
+      title: "2. Die Plattformentscheidung: Eigenentwicklung gezielt modernisieren",
+      paragraphs: [
+        "Wir haben uns für die schrittweise Modernisierung unserer bestehenden Eigenentwicklung entschieden.",
+        "Dafür sprach vor allem die enge Verzahnung der Plattform mit unserem Geschäftsmodell. Eine vollständige Ablösung hätte bedeutet, große Teile der gewachsenen Geschäftslogik und zahlreiche Integrationen in einem neuen System abzubilden. Gleichzeitig waren wir überzeugt, dass eine modularisierte Eigenentwicklung uns langfristig die notwendige Flexibilität bieten konnte.",
+        "Das Zielbild sah eine klare Trennung zwischen den Frontends und gemeinsam nutzbaren Commerce-Services vor. Produktinformationen, Suche, Warenkorb, Kundenfunktionen und Checkout-Anbindungen sollten unabhängig von einzelnen Benutzeroberflächen entwickelt werden können. Backend-for-Frontend-Schichten und APIs setzten wir dort ein, wo sie fachlich sinnvolle Entkopplung ermöglichten, nicht als architektonischen Selbstzweck.",
+        "Parallel dazu haben wir unsere E-Commerce- und Marketing Data Platform als zusammenhängende Digital Experience Plattform betrachtet. Sie verband Commerce mit Tracking, Analytics, Kundendaten und Personalisierung. Fashion Connect nutzte dabei ausschließlich die gemeinsame Tracking- und Analytics-Infrastruktur; daraus folgt kein Anspruch auf die Gestaltung der stationär-digitalen Customer Journey des Stores.",
+        "Eigenentwicklung war dabei kein Grundsatz für jede einzelne Fähigkeit. Mit Contentful haben wir beispielsweise bewusst eine Standardlösung eingeführt, um unseren Creative- und Kampagnenteams deutlich mehr Eigenständigkeit bei der Entwicklung und Pflege von Inhalten zu ermöglichen.",
+      ],
+    },
+    {
+      title: "3. Die Migration: Shopping und Checkout bewusst trennen",
+      paragraphs: [
+        "Eine der wichtigsten Entscheidungen war, die Migration der Shoppingstrecke von der Modernisierung der internationalen Checkouts zu trennen.",
+        "Wir wollten neue Shopping-Funktionen und insbesondere die Weiterentwicklung der App nicht davon abhängig machen, dass zuvor sämtliche landesspezifischen Checkout-Prozesse vollständig migriert waren.",
+        "Dafür haben wir eine Architektur mit fachlich getrennten Services und temporären Fassaden entwickelt. Diese ermöglichten es, neue Shopping-Komponenten bereits mit bestehenden Backend- und Checkout-Funktionen zu betreiben.",
+        "Die Migration wurde in überschaubare Schritte zerlegt. Dazu gehörten die Reduzierung unnötiger Funktionen, die internationale Standardisierung, die Begrenzung weiterer Entwicklungen in der Altwelt sowie die Trennung der Kernmigration von späteren Länderumstellungen.",
+        "Erste Teile der neuen Plattform, darunter die Kanalhomepage und die Wunschliste, konnten früh produktiv genutzt werden. Für den neuen Checkout wurde zunächst ein bewusst reduziertes MVP als technischer Durchstich umgesetzt, mit dem wir das Zusammenspiel zentraler Komponenten unter realen Bedingungen prüfen konnten.",
+        "Dieser Ansatz gab uns die Möglichkeit, Architekturannahmen schrittweise zu überprüfen und gleichzeitig das bestehende Geschäft weiterzuführen.",
+      ],
+    },
+    {
+      title: "4. Webshop und App als unterschiedliche Kundenerlebnisse",
+      paragraphs: [
+        "Die Shopping-App hatte bei bonprix von Beginn an eine eigenständige strategische Bedeutung. Sie war zunächst im Business Development entstanden und nutzte bewusst einen hybriden Ansatz: Ein nativer Rahmen griff auf den bestehenden Mobile Shop zurück. Dadurch konnten wir App-Funktionen entwickeln, ohne parallel einen zweiten vollständigen Shop aufbauen zu müssen.",
+        "Mit der Übernahme des App-Teams in meinen Bereich 2018 wurde die App zunehmend in unsere gesamte Digital-Product-Strategie eingebunden.",
+        "Ihr zusätzlicher Kundennutzen lag insbesondere in Permanent Login, Push-Nachrichten, einem persistenten Warenkorb und app-spezifischen Interaktionsmöglichkeiten. Die Verbindung mit CRM, Kundendaten, Analytics und Personalisierung ermöglichte eine gezieltere Kundenansprache.",
+        "Für die kommerzielle Steuerung betrachteten wir dabei nicht allein Downloads und App-Umsatz. Relevant war der gesamte Weg von der Installation über Aktivierung und Kauf bis zum Wiederkauf. Ebenso wichtig war die Frage, in welchem Umfang die App tatsächlich zusätzliches Geschäft erzeugte oder bestehende Mobile-Web-Nutzung verlagerte.",
+        "Die Commerce-Modernisierung schuf die technischen Voraussetzungen, um Web und App langfristig unabhängiger voneinander weiterentwickeln zu können.",
+      ],
+    },
+    {
+      title: "5. Architektur und Organisation gemeinsam weiterentwickeln",
+      paragraphs: [
+        "Mit der neuen Architektur veränderten sich auch die Anforderungen an unsere Organisation.",
+        "Bis dahin war die Softwareentwicklung stark durch funktionale Spezialisierung, Projekte und gemeinsame Entwicklungsressourcen geprägt. Viele Änderungen erforderten Abstimmungen zwischen mehreren Teams.",
+        "Wir haben deshalb schrittweise eine Produktorganisation mit stabileren, cross-funktionalen Teams und klarer Verantwortung für einzelne Produkte und Services entwickelt. Orientierung bot unter anderem das Team-Topologies-Modell, das wir an die tatsächlichen Rahmenbedingungen bei bonprix angepasst haben.",
+        "Die technische Entkopplung war dafür eine wichtige Voraussetzung. Gleichzeitig mussten Produktverantwortung, Entscheidungsrechte, Entwicklungs- und Betriebsprozesse weiterentwickelt werden. Interne Teams und Technologiepartner mussten in derselben Produkt- und Plattformlogik zusammenarbeiten.",
+        "In der Umsetzung zeigte sich allerdings, dass eine neue Architektur allein noch keine unabhängige Entwicklung ermöglicht. Insbesondere verbliebene Abhängigkeiten zum Monolithen, das gemeinsame Sessionhandling, Tracking und die Frontend-Infrastruktur erforderten zusätzliche Arbeit.",
+        "Auch die spätere Migration auf AWS war Teil dieser Weiterentwicklung. Sie sollte unseren Produktteams einen stärker automatisierten und eigenständig nutzbaren Plattformbetrieb ermöglichen.",
+      ],
+    },
+    {
+      title: "6. Ergebnisse und Erfahrungen",
+      paragraphs: [
+        "Aus dem ursprünglichen Shopmonolithen entstand schrittweise eine modulare Commerce-Plattform, deren Services von unterschiedlichen Frontends genutzt werden konnten.",
+        "Damit wurde eine wichtige Grundlage für die Weiterentwicklung von Webshop und App geschaffen. Auch die Integration von Commerce, Kundendaten und Marketing ließ sich auf einer gemeinsamen Plattformstrategie fortführen.",
+        "Die Umsetzung hat aber ebenso gezeigt, wie wichtig es ist, technische Zwischenlösungen konsequent wieder zurückzubauen. Temporäre Fassaden und parallele Systeme erleichtern zunächst die Migration. Bleiben sie zu lange bestehen, entstehen neue Abhängigkeiten und zusätzliche Aufwände.",
+        "Für mich war deshalb die Verbindung von Architektur, Migrationsstrategie und Produktorganisation besonders wichtig. Erst wenn Teams ihre Produkte weitgehend eigenständig entwickeln und betreiben können, wird die neue technische Grundlage im Alltag tatsächlich wirksam.",
+      ],
+    },
+  ],
+};
+---
+
+<section class="commerce-case" aria-labelledby="commerce-case-title">
+  <header class="case-opening">
+    <div class="case-kicker">{copy.kicker}</div>
+    <h2 id="commerce-case-title">{copy.title}</h2>
+    <div class="case-intro">
+      {copy.intro.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+    <div class="case-story-entry">
+      <button
+        class="commerce-story-trigger"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="commerce-modernisation-story-dialog"
+        aria-expanded="false"
+      >
+        {copy.storyTrigger} <span aria-hidden="true">→</span>
+      </button>
+      <span class="case-story-meta">{copy.storyMeta}</span>
+    </div>
+  </header>
+
+  <div class="visual-sequence">
+    {copy.items.map((item) => {
+      const visualId = `commerce-visual-${item.number}`;
+      const png = `${assetBase}/${item.image}.png`;
+      const webp1100 = `${assetBase}/${item.image}-1100.webp`;
+      const webpFull = `${assetBase}/${item.image}.webp`;
+
+      return (
+        <article class="visual-chapter" aria-labelledby={`${visualId}-title`}>
+          <header class="chapter-heading">
+            <div class="case-kicker">{item.number}</div>
+            <div>
+              <h3 id={`${visualId}-title`}>{item.title}</h3>
+              <p>{item.body}</p>
+            </div>
+          </header>
+
+          <figure class="visual-figure">
+            <button class="visual-trigger" type="button" data-visual-open={visualId} aria-label={`${copy.open}: ${item.title}`}>
+              <picture>
+                <source srcset={`${webp1100} 1100w, ${webpFull} 1672w`} type="image/webp" />
+                <img src={png} width="1672" height="941" loading="lazy" decoding="async" alt={item.alt} />
+              </picture>
+            </button>
+            <figcaption>
+              <button class="visual-zoom" type="button" data-visual-open={visualId} aria-haspopup="dialog">
+                <span aria-hidden="true">↗</span>{copy.open}
+              </button>
+            </figcaption>
+          </figure>
+
+          <dialog class="visual-dialog" id={visualId} aria-labelledby={`${visualId}-title`}>
+            <form method="dialog">
+              <button class="dialog-close" value="close" aria-label={copy.close}>{copy.close} <span aria-hidden="true">×</span></button>
+            </form>
+            <div class="dialog-canvas">
+              <img data-full-src={png} width="1672" height="941" alt={item.alt} />
+            </div>
+          </dialog>
+        </article>
+      );
+    })}
+  </div>
+</section>
+
+<dialog
+  class="story-dialog"
+  id="commerce-modernisation-story-dialog"
+  aria-labelledby="commerce-modernisation-story-title"
+  aria-describedby="commerce-modernisation-story-subtitle"
+>
+  <article class="story-layer">
+    <header class="story-layer-topline">
+      <span>{copy.storyTopline}</span>
+      <button class="story-close" type="button" aria-label={copy.storyClose}>×</button>
+    </header>
+
+    <div class="story-scroll">
+      <div class="story-content">
+        <header class="story-masthead">
+          <h2 id="commerce-modernisation-story-title">{story.title}</h2>
+          <p id="commerce-modernisation-story-subtitle">{story.subtitle}</p>
+        </header>
+
+        <div class="story-intro">
+          {story.intro.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+
+        {story.chapters.map((chapter, index) => (
+          <section class="story-chapter" aria-labelledby={`commerce-story-chapter-${index + 1}`}>
+            <h3 id={`commerce-story-chapter-${index + 1}`}><span>{index + 1}.</span> {chapter.title.replace(/^\d+\.\s*/, "")}</h3>
+            {chapter.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+          </section>
+        ))}
+      </div>
+    </div>
+  </article>
+</dialog>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[data-visual-open]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const dialog = document.getElementById(button.dataset.visualOpen ?? "");
+      if (dialog instanceof HTMLDialogElement) {
+        const image = dialog.querySelector<HTMLImageElement>("[data-full-src]");
+        if (image && !image.getAttribute("src")) image.src = image.dataset.fullSrc ?? "";
+        dialog.showModal();
+      }
+    });
+  });
+
+  document.querySelectorAll<HTMLDialogElement>(".visual-dialog").forEach((dialog) => {
+    dialog.addEventListener("click", (event) => {
+      const bounds = dialog.getBoundingClientRect();
+      const outside = event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom;
+      if (outside) dialog.close();
+    });
+  });
+
+  const storyDialog = document.querySelector<HTMLDialogElement>("#commerce-modernisation-story-dialog");
+  const storyTrigger = document.querySelector<HTMLButtonElement>(".commerce-story-trigger");
+  const storyClose = storyDialog?.querySelector<HTMLButtonElement>(".story-close");
+  const storyScroll = storyDialog?.querySelector<HTMLElement>(".story-scroll");
+
+  storyTrigger?.addEventListener("click", () => {
+    if (!storyDialog) return;
+    storyDialog.showModal();
+    if (storyScroll) storyScroll.scrollTop = 0;
+    storyTrigger.setAttribute("aria-expanded", "true");
+    document.body.classList.add("story-dialog-open");
+    storyClose?.focus();
+  });
+
+  storyClose?.addEventListener("click", () => storyDialog?.close());
+
+  storyDialog?.addEventListener("click", (event) => {
+    if (event.target === storyDialog) storyDialog.close();
+  });
+
+  storyDialog?.addEventListener("close", () => {
+    document.body.classList.remove("story-dialog-open");
+    storyTrigger?.setAttribute("aria-expanded", "false");
+    storyTrigger?.focus();
+  });
+</script>
+
+<style>
+  .commerce-case {
+    min-width: 0;
+    padding: 5.5rem 0 4.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .case-opening {
+    max-width: 760px;
+    padding-bottom: 4.5rem;
+  }
+
+  .case-kicker {
+    color: var(--color-amber);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  .case-opening h2 {
+    max-width: 760px;
+    margin: 1.1rem 0 0;
+    color: var(--color-ink);
+    font-size: clamp(38px, 4.8vw, 60px);
+    font-weight: 500;
+    letter-spacing: -.047em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  .case-intro { margin-top: 1.55rem; }
+
+  .case-opening p {
+    margin: 0;
+    color: var(--color-ink-2);
+    font-size: 18px;
+    line-height: 1.65;
+  }
+
+  .case-opening p + p { margin-top: .9rem; }
+
+  .case-story-entry {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .65rem 1.1rem;
+    align-items: baseline;
+    margin-top: 1.4rem;
+  }
+
+  .commerce-story-trigger {
+    display: inline-flex;
+    gap: .45rem;
+    align-items: center;
+    padding: 0;
+    color: var(--color-amber);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(180,83,9,.32);
+    transition: color .18s ease, border-color .18s ease;
+  }
+
+  .commerce-story-trigger:hover { color: var(--color-ink); border-color: currentColor; }
+  .commerce-story-trigger:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 4px; }
+  .case-story-meta { color: var(--color-muted); font-size: 12px; letter-spacing: .01em; }
+
+  .story-dialog {
+    position: fixed;
+    inset: 5dvh 0 5dvh auto;
+    width: min(980px, calc(100vw - 3rem));
+    max-width: none;
+    height: 90dvh;
+    max-height: 90dvh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: var(--color-ink);
+    background: transparent;
+    border: 0;
+  }
+
+  .story-dialog::backdrop {
+    background: rgba(15,23,41,.42);
+    backdrop-filter: blur(3px);
+  }
+
+  .story-layer {
+    display: grid;
+    height: 100%;
+    grid-template-rows: auto minmax(0, 1fr);
+    background: linear-gradient(180deg, #f9fbfd 0%, #eef3f8 100%);
+    border: 1px solid rgba(30,60,100,.2);
+    box-shadow: -18px 0 50px rgba(15,23,41,.14);
+  }
+
+  .story-layer-topline {
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 72px;
+    padding: .85rem 2.5rem;
+    background: rgba(249,251,253,.96);
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+
+  .story-layer-topline > span {
+    color: var(--color-amber);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .story-close {
+    display: inline-grid;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 auto;
+    place-items: center;
+    padding: 0;
+    color: var(--color-ink-2);
+    font: inherit;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+    background: rgba(255,255,255,.7);
+    border: 1px solid var(--color-border-soft);
+    transition: color .2s ease, border-color .2s ease;
+  }
+
+  .story-close:hover { color: var(--color-amber); border-color: rgba(180,83,9,.35); }
+  .story-close:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 3px; }
+  .story-scroll { min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+  .story-content { width: 100%; margin: 0; padding: 3.25rem 3rem 4.5rem; }
+
+  .story-masthead {
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .story-masthead h2 {
+    width: calc(100% + 3rem);
+    margin: 0;
+    color: var(--color-ink);
+    font-size: clamp(38px, 5vw, 56px);
+    font-weight: 500;
+    letter-spacing: -.045em;
+    line-height: 1.04;
+    text-wrap: balance;
+  }
+
+  .story-masthead p {
+    width: calc(100% + 3rem);
+    margin: 1.25rem 0 0;
+    color: var(--color-ink-2);
+    font-size: 18px;
+    line-height: 1.55;
+    text-wrap: balance;
+  }
+
+  .story-intro { padding: 2.35rem 0 .2rem; }
+
+  .story-intro p,
+  .story-chapter > p {
+    max-width: 72ch;
+    margin: 0;
+    color: var(--color-body);
+    font-size: 16px;
+    line-height: 1.72;
+  }
+
+  .story-intro p:first-child { color: var(--color-ink); font-size: 17px; }
+  .story-intro p + p,
+  .story-chapter > p + p { margin-top: 1rem; }
+
+  .story-chapter {
+    padding: 3rem 0 0;
+    margin-top: 2.8rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .story-chapter h3 {
+    width: calc(100% + 3rem);
+    margin: 0 0 1.65rem;
+    color: var(--color-ink);
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -.025em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .story-chapter h3 span { display: contents; color: var(--color-amber); }
+  :global(body.story-dialog-open) { overflow: hidden; }
+
+  .visual-chapter {
+    padding: 4rem 0 5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .chapter-heading {
+    display: grid;
+    max-width: 760px;
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+    margin-bottom: 2.25rem;
+  }
+
+  .chapter-heading h3 {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: clamp(30px, 3.3vw, 43px);
+    font-weight: 500;
+    letter-spacing: -.038em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+
+  .chapter-heading p {
+    margin: 1rem 0 0;
+    color: var(--color-body);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .visual-figure { margin: 0; }
+
+  .visual-trigger {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #eef5fb;
+    border: 1px solid rgba(30,60,100,.14);
+    box-shadow: 0 24px 64px rgba(19,42,65,.11);
+    cursor: zoom-in;
+  }
+
+  .visual-trigger:focus-visible,
+  .visual-zoom:focus-visible,
+  .dialog-close:focus-visible {
+    outline: 3px solid rgba(180,83,9,.46);
+    outline-offset: 4px;
+  }
+
+  .visual-trigger picture,
+  .visual-trigger img {
+    display: block;
+    width: 100%;
+  }
+
+  .visual-trigger img { height: auto; }
+
+  figcaption {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: .8rem;
+  }
+
+  .visual-zoom,
+  .dialog-close {
+    display: inline-flex;
+    gap: .5rem;
+    align-items: center;
+    padding: .55rem .8rem;
+    color: var(--color-ink-2);
+    background: rgba(255,255,255,.58);
+    border: 1px solid var(--color-border-soft);
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+  }
+
+  .visual-zoom:hover,
+  .dialog-close:hover { color: var(--color-amber); border-color: rgba(180,83,9,.32); }
+
+  .visual-dialog {
+    width: min(96vw, 1760px);
+    max-width: none;
+    height: min(96vh, 1060px);
+    max-height: none;
+    padding: 0;
+    overflow: hidden;
+    background: #f4f7fa;
+    border: 1px solid rgba(255,255,255,.7);
+    box-shadow: 0 30px 100px rgba(5,17,33,.42);
+  }
+
+  .visual-dialog::backdrop { background: rgba(5,17,33,.82); backdrop-filter: blur(5px); }
+  .visual-dialog form { position: absolute; top: .75rem; right: .75rem; z-index: 2; }
+  .dialog-close { color: #0b2440; background: rgba(255,255,255,.94); box-shadow: 0 5px 24px rgba(5,17,33,.18); }
+  .dialog-close span { font-size: 20px; line-height: 1; }
+
+  .dialog-canvas {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    place-items: center;
+  }
+
+  .dialog-canvas img {
+    display: block;
+    width: 100%;
+    min-width: 1100px;
+    height: auto;
+  }
+
+  @media (max-width: 760px) {
+    .commerce-case { padding-top: 4rem; }
+    .case-opening { padding-bottom: 3.5rem; }
+    .case-opening h2 { font-size: 36px; }
+    .case-opening p { font-size: 16px; }
+    .case-story-entry { display: grid; justify-items: start; }
+    .visual-chapter { padding: 3.25rem 0 4rem; }
+
+    .story-dialog {
+      inset: 0;
+      width: 100vw;
+      height: 100dvh;
+      max-height: none;
+    }
+
+    .story-layer { border: 0; box-shadow: none; }
+    .story-layer-topline { min-height: 64px; padding: .7rem 1rem .7rem 1.25rem; }
+    .story-layer-topline > span { max-width: calc(100% - 58px); font-size: 10px; line-height: 1.35; }
+    .story-content { padding: 2.4rem 1.35rem 3.5rem; }
+    .story-masthead { padding-bottom: 2rem; }
+    .story-masthead h2 { font-size: 32px; line-height: 1.08; }
+    .story-masthead h2,
+    .story-masthead p,
+    .story-chapter h3 { width: 100%; }
+    .story-masthead p { font-size: 16px; }
+    .story-intro { padding-top: 2rem; }
+    .story-intro p,
+    .story-chapter > p { font-size: 15.5px; }
+    .story-intro p:first-child { font-size: 16px; }
+    .story-chapter { padding-top: 2.4rem; margin-top: 2.3rem; }
+    .story-chapter h3 { font-size: 23px; line-height: 1.18; }
+
+    .chapter-heading {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .chapter-heading h3 { font-size: 29px; }
+    figcaption { justify-content: flex-start; }
+    .visual-dialog { width: 100vw; height: 100vh; border: 0; }
+  }
+
+  @media (max-width: 430px) {
+    .case-opening h2 { font-size: 32px; }
+    .chapter-heading h3 { font-size: 27px; }
+  }
+</style>
