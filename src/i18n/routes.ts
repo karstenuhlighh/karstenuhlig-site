@@ -8,6 +8,7 @@ export interface RoutePair {
 export const coreRoutePairs: RoutePair[] = [
   { de: "/", en: "/en/" },
   { de: "/commercial-management", en: "/en/commercial-management" },
+  { de: "/integriertes-crm", en: "/en/integrated-crm" },
   { de: "/data-ai-digital-product", en: "/en/data-ai-digital-product" },
   { de: "/digital-product-customer-experience", en: "/en/digital-product-customer-experience" },
   { de: "/leadership", en: "/en/leadership" },
