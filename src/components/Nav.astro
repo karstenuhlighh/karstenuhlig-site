@@ -44,6 +44,13 @@ const navMenus = [
         href: `${commercialPath}#tensions-title`,
         title: isEnglish ? "Executive Tensions" : "Executive-Spannungsfelder",
       },
+      ...(!isEnglish
+        ? [{
+            href: "/integriertes-crm",
+            title: "Integriertes CRM & Customer Value",
+            subline: "Kundenbasis und Kundenwert entwickeln",
+          }]
+        : []),
     ],
   },
   {
