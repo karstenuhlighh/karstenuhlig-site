@@ -60,28 +60,6 @@ const visuals = {
         <figcaption>Originalvisual · In voller Größe öffnen</figcaption>
       </figure>
 
-      <div class="result-bands" aria-label="Ergebnisse des Aufbaus bei bonprix">
-        <div class="result-band result-band--build">
-          <strong>Aufbau &amp; Weiterentwicklung</strong>
-          <span>Wirtschaftliche Priorisierung · Zielbild · Plattformaufbau · Use-Case-Entwicklung · Organisatorische Verankerung</span>
-        </div>
-        <div class="result-band result-band--capabilities">
-          <strong>Geschaffene Fähigkeiten</strong>
-          <span>Gemeinsame Kundensicht · Segmentierung · Personalisierung · Experimentation · Predictive Analytics &amp; Decisioning</span>
-        </div>
-      </div>
-
-      <div class="evidence-note">
-        <div>
-          <span>Was die Erfahrung belegt</span>
-          <p>Aufbau und internationale Skalierung einer integrierten Customer- und Marketing-Data-Capability; operative Nutzung von Segmentierung, Scoring, Personalisierung und Predictive Models.</p>
-        </div>
-        <div>
-          <span>Was daraus nicht behauptet wird</span>
-          <p>Kein isolierter CRM-Uplift und kein pauschaler Customer-Lifetime-Value-Erfolg. Belegte Geschäftseffekte der breiteren Marketing-Decisioning-Transformation sind separat dokumentiert.</p>
-        </div>
-        <a href="/data-ai-digital-product#marketing-decisioning-case-title">Marketing-Decisioning-Case ansehen <span aria-hidden="true">→</span></a>
-      </div>
     </section>
 
     <section id="aufbauansatz" class="crm-section" aria-labelledby="approach-title">
@@ -105,7 +83,7 @@ const visuals = {
   :global(html) { scroll-behavior: smooth; }
   .crm-page { min-width: 0; }
   .crm-hero { max-width: 900px; padding: 1.5rem 0 4.5rem; }
-  .eyebrow, .section-kicker, .evidence-note span { color: var(--color-amber); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+  .eyebrow, .section-kicker { color: var(--color-amber); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
   .eyebrow { display: flex; gap: .85rem; align-items: center; margin-bottom: 1.2rem; }
   .eyebrow::before { width: 2.25rem; height: 2px; flex: 0 0 auto; background: var(--color-amber); content: ""; }
   h1 { margin: 0; color: var(--color-ink); font-size: clamp(46px, 5.1vw, 70px); font-weight: 500; letter-spacing: -.05em; line-height: .98; }
@@ -116,29 +94,15 @@ const visuals = {
   .jump-nav > span { margin-right: auto; color: var(--color-amber); font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
   .jump-nav a { color: var(--color-ink-2); font-size: 12px; font-weight: 600; text-decoration: none; }
   .jump-nav a:hover { color: var(--color-ink); }
-  .jump-nav a:focus-visible, .visual a:focus-visible, .evidence-note a:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 4px; }
+  .jump-nav a:focus-visible, .visual a:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 4px; }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
   .crm-section { padding: 5rem 0; border-bottom: 1px solid var(--color-border); scroll-margin-top: 1.5rem; }
   .visual { margin: 0; }
   .visual a { display: block; background: rgba(255,255,255,.55); border: 1px solid var(--color-border-soft); box-shadow: 0 18px 45px rgba(35,65,100,.08); }
   .visual img { display: block; width: 100%; height: auto; }
   .visual figcaption { margin-top: .65rem; color: var(--color-ink-3); font-size: 10px; letter-spacing: .08em; text-align: right; text-transform: uppercase; }
-  .result-bands { display: grid; gap: .6rem; margin-top: 2rem; }
-  .result-band { display: grid; grid-template-columns: minmax(230px,.32fr) minmax(0,1fr); gap: 1.5rem; align-items: center; padding: 1.1rem 1.3rem; border-left: 3px solid; }
-  .result-band strong { color: var(--color-ink); font-size: 14px; }
-  .result-band span { color: var(--color-ink-2); font-size: 13px; line-height: 1.55; }
-  .result-band--build { background: rgba(214,228,241,.9); border-color: var(--color-amber); }
-  .result-band--capabilities { background: rgba(255,255,255,.58); border-color: #477cae; }
-  .evidence-note { display: grid; grid-template-columns: 1fr 1fr auto; gap: 2rem; align-items: start; margin-top: 1.5rem; padding: 1.7rem; color: #fff; background: var(--color-ink); }
-  .evidence-note span { color: #f7a46f; }
-  .evidence-note p { margin: .65rem 0 0; color: rgba(255,255,255,.83); font-size: 12.5px; line-height: 1.65; }
-  .evidence-note a { align-self: end; color: #fff; font-size: 12px; font-weight: 600; text-decoration: none; white-space: nowrap; }
   .closing { display: grid; grid-template-columns: minmax(190px,.32fr) minmax(0,1fr); gap: clamp(2rem,5vw,5rem); padding: 5rem 0 2rem; }
   .closing blockquote { max-width: 940px; margin: 0; color: var(--color-ink); font-size: clamp(25px,3.1vw,40px); font-weight: 500; letter-spacing: -.035em; line-height: 1.27; }
-  @media (max-width: 900px) {
-    .evidence-note { grid-template-columns: 1fr 1fr; }
-    .evidence-note a { grid-column: 1 / -1; }
-  }
   @media (max-width: 760px) {
     .crm-hero { padding: .75rem 0 3rem; }
     h1 { font-size: 42px; }
@@ -149,9 +113,6 @@ const visuals = {
     .closing { grid-template-columns: 1fr; gap: 1rem; }
     .visual { margin-inline: calc(var(--page-padding, 1.25rem) * -.35); }
     .visual figcaption { padding-inline: .45rem; }
-    .result-band, .evidence-note { grid-template-columns: 1fr; }
-    .result-band { gap: .45rem; }
-    .evidence-note a { grid-column: auto; white-space: normal; }
     .closing { padding: 3.5rem 0 1rem; }
     .closing blockquote { font-size: 27px; }
   }

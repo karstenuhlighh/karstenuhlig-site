@@ -178,7 +178,7 @@
 - Neue deutsche Vertiefungsseite `/integriertes-crm` innerhalb der bestehenden Astro-Architektur und des bestehenden Corporate Designs.
 - Die vier abgestimmten Originalvisuals werden als unveränderte PNG-Dateien eingebunden; keine nachgebauten HTML- oder SVG-Diagramme.
 - Die bonprix-Positionierung lautet „maßgeblich vorangetrieben“. Die Darstellung trennt nicht künstlich zwischen persönlicher Verantwortung und Teamumsetzung.
-- Zwei Ergebnisbänder machen „Aufbau & Weiterentwicklung“ und „Geschaffene Fähigkeiten“ zusätzlich als zugänglichen Webtext lesbar.
+- Die zunächst zusätzlich unter dem bonprix-Visual angelegten zwei Ergebnisbänder und der dunkle Evidence-/Case-Block wurden auf direkte Rückmeldung entfernt. Das Originalvisual bleibt die alleinige Darstellung an dieser Stelle.
 - Die Seite wird im deutschen Dropdown „Commercial Management“ verlinkt. Eine englische Fassung ist nicht Teil dieses Auftrags.
 - Umsetzung auf separatem Feature-Branch; kein Merge und keine Live-Veröffentlichung ohne Freigabe.
 ---
