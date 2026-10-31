@@ -1,0 +1,370 @@
+---
+import SubPageLayout from "../layouts/SubPageLayout.astro";
+
+const drivers = [
+  { number: "01", title: "Kundenbasis entwickeln", detail: "Passende Neukunden gewinnen, bestehende Kunden halten und ehemalige Kunden zurückgewinnen.", mechanism: "Gewinnung · Bindung · Reaktivierung", metric: "Aktive Kunden · Churn" },
+  { number: "02", title: "Kundenpotenziale nutzen", detail: "Wiederkauf, Kaufhäufigkeit und zusätzliche Produktkategorien aus tatsächlichen Kundenbedürfnissen entwickeln.", mechanism: "Wiederkauf · Cross-Selling", metric: "Kauffrequenz · CLV" },
+  { number: "03", title: "Investitionen verbessern", detail: "Budgets und Incentives dort einsetzen, wo sie zusätzliche Nachfrage und Deckungsbeitrag erzeugen.", mechanism: "Inkrementalität · Allokation", metric: "Inkrementeller Deckungsbeitrag" },
+  { number: "04", title: "Kundenwege vereinfachen", detail: "Hürden bei Kauf, Nachbestellung und Service beseitigen. Einfachere Journeys verbessern Kundenerlebnis und Wirtschaftlichkeit.", mechanism: "Convenience · weniger Abbrüche", metric: "Conversion · Retouren" },
+];
+
+const phases = [
+  { number: "01", title: "Ausgangslage & Priorisierung", body: "Getrennte Daten und unterschiedliche Kanallogiken. Handlungsfelder nach wirtschaftlichem Nutzen und Machbarkeit priorisieren." },
+  { number: "02", title: "Gemeinsames Datenfundament", body: "Kunden-, Transaktions-, Web- und E-Mail-Daten in einer integrierten Marketingplattform verbinden." },
+  { number: "03", title: "Operative Nutzung", body: "Segmentierung, verhaltensbasierte Kommunikation, Warenkorbabbruch, Onsite-Personalisierung und Experimentation nutzen." },
+  { number: "04", title: "Weiterentwicklung", body: "Prädiktive Modelle, Customer Lifetime Value, Churn, Recommendations und Realtime Decisioning stärker in Entscheidungen integrieren." },
+];
+---
+
+<SubPageLayout
+  editorial
+  title="Integriertes CRM & Customer Value | Karsten Uhlig"
+  description="Integrierte Kundensteuerung: Kundenbasis, Kundenwert und Marketinginvestitionen wirtschaftlich entwickeln. Mein Ansatz und die Aufbau-Erfahrung bei bonprix."
+>
+  <article class="crm-page">
+    <header class="crm-hero">
+      <div class="eyebrow">Commercial Management / Customer Value</div>
+      <h1>Integriertes CRM <span>&amp; Customer Value</span></h1>
+      <p class="hero-lead">Kundenbeziehungen wirtschaftlich entwickeln.</p>
+      <div class="hero-intro">
+        <p>CRM beginnt für mich nicht mit einer Kampagne. Es beginnt mit der Frage, welche Kunden wir gewinnen, halten oder weiterentwickeln wollen – und was wir dafür investieren sollten.</p>
+        <p>Damit daraus mehr wird als die Optimierung einzelner Kanäle, müssen Marketing, CRM, Sales, Commerce und Service auf einer gemeinsamen Kunden- und Ergebnislogik arbeiten.</p>
+      </div>
+      <p class="hero-thesis">Der Kunde erlebt ein Unternehmen. Wir organisieren uns meist in Funktionen. Integriertes CRM muss diese Lücke schließen.</p>
+      <nav class="section-nav" aria-label="Auf dieser Seite">
+        <a href="#wirtschaftlicher-wert"><span>01</span>Wirtschaftlicher Wert</a>
+        <a href="#steuerungsmodell"><span>02</span>Steuerungsmodell</a>
+        <a href="#bonprix"><span>03</span>bonprix-Praxisbeleg</a>
+        <a href="#aufbauansatz"><span>04</span>Mein Aufbauansatz</a>
+      </nav>
+    </header>
+
+    <section class="crm-section" id="wirtschaftlicher-wert" aria-labelledby="wert-title">
+      <div class="section-intro">
+        <div class="section-label">01 / Wirtschaftlicher Wert</div>
+        <div>
+          <h2 id="wert-title">Die Kundenbasis entwickeln – nicht nur Kampagnen optimieren.</h2>
+          <p>Mehr Neukunden bedeuten nicht automatisch mehr wirtschaftlichen Erfolg. Entscheidend ist, wie sich die Kundenbasis entwickelt: Wer bleibt, wer kauft erneut, wer wandert ab? Und welchen Ergebnisbeitrag leisten diese Kunden über die Zeit?</p>
+        </div>
+      </div>
+      <div class="value-diagram" role="group" aria-label="Vier wirtschaftliche CRM-Werttreiber mit gemeinsamer Steuerung als Fundament">
+        <div class="value-goal">
+          <span class="goal-eyebrow">Wirtschaftliches Ziel</span>
+          <strong>Kundenwert und Deckungsbeitrag</strong>
+          <span>Langfristigen Wert entwickeln – zusätzlichen Beitrag erzielen</span>
+        </div>
+        <div class="tree-lines" aria-hidden="true"><span></span></div>
+        <div class="driver-grid">
+          {drivers.map((driver) => (
+            <article class="driver">
+              <span class="driver-number">{driver.number}</span>
+              <h3>{driver.title}</h3>
+              <div class="driver-mechanism">{driver.mechanism}</div>
+              <p>{driver.detail}</p>
+              <div class="driver-kpi"><span>Messgröße</span><strong>{driver.metric}</strong></div>
+            </article>
+          ))}
+        </div>
+        <div class="foundation">
+          <span class="foundation-label">Gemeinsame Steuerung</span>
+          <span>Kundenverständnis <i>·</i> Ziele <i>·</i> Entscheidungsrechte <i>·</i> Zusammenarbeit</span>
+        </div>
+      </div>
+      <p class="section-conclusion">Die vier Hebel entfalten ihre Wirkung nur dann vollständig, wenn die beteiligten Bereiche ihre Daten, Ziele und Entscheidungen aufeinander abstimmen.</p>
+    </section>
+
+    <section class="crm-section" id="steuerungsmodell" aria-labelledby="model-title">
+      <div class="section-intro">
+        <div class="section-label">02 / Steuerungsmodell</div>
+        <div>
+          <h2 id="model-title">Von Kundendaten zu besseren Entscheidungen.</h2>
+          <p>Eine gemeinsame Datenbasis ist wichtig. Aber sie verbessert noch keine Kundenbeziehung. Entscheidend ist, was wir mit dem Wissen anfangen: Welche Kunden sprechen wir an? Welches Angebot ist sinnvoll? Über welchen Kanal? Und was wäre vermutlich auch ohne unsere Maßnahme passiert?</p>
+        </div>
+      </div>
+      <div class="cycle-layout">
+        <div class="cycle-visual" role="img" aria-label="Geschlossener CRM-Steuerungskreislauf: Daten und Identity, Verstehen, Entscheiden, Aktivieren, Messen und Lernen, zurück zu Daten und Identity. Im Zentrum steht der Kunde.">
+          <svg class="cycle-arrows" viewBox="0 0 540 500" aria-hidden="true" focusable="false">
+            <defs><marker id="crm-cycle-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#557fa6" /></marker></defs>
+            <path d="M318 109 Q362 114 399 150" />
+            <path d="M471 254 Q466 313 428 349" />
+            <path d="M328 441 Q270 472 212 441" />
+            <path d="M112 349 Q74 314 69 254" />
+            <path d="M141 150 Q178 114 222 109" />
+          </svg>
+          <div class="cycle-center"><strong>Kunde</strong><span>Bedürfnisse verstehen.<br />Wert entwickeln.</span></div>
+          <ol class="cycle-nodes">
+            <li class="node n1"><span>01</span><strong>Daten &amp; Identity</strong><small>Verbinden</small></li>
+            <li class="node n2"><span>02</span><strong>Verstehen</strong><small>Analysieren</small></li>
+            <li class="node n3"><span>03</span><strong>Entscheiden</strong><small>Priorisieren</small></li>
+            <li class="node n4"><span>04</span><strong>Aktivieren</strong><small>Umsetzen</small></li>
+            <li class="node n5"><span>05</span><strong>Messen &amp; Lernen</strong><small>Verbessern</small></li>
+          </ol>
+        </div>
+        <div class="cycle-explanation">
+          <h3>Ein Kreislauf statt isolierter Maßnahmen.</h3>
+          <ol>
+            <li><b>01 · Daten &amp; Identity</b><span>Kunden-, Transaktions-, Verhaltens- und Servicedaten sinnvoll zusammenführen.</span></li>
+            <li><b>02 · Verstehen</b><span>Bedürfnisse, Kaufverhalten, Kundenwert und Abwanderungsrisiken analysieren.</span></li>
+            <li><b>03 · Entscheiden</b><span>Maßnahmen nach erwartetem Kunden- und Ergebnisbeitrag priorisieren.</span></li>
+            <li><b>04 · Aktivieren</b><span>Entscheidungen in Marketing, CRM, Sales, Commerce und Service umsetzen.</span></li>
+            <li><b>05 · Messen &amp; Lernen</b><span>Die tatsächliche Wirkung prüfen und die nächste Entscheidung verbessern.</span></li>
+          </ol>
+        </div>
+      </div>
+      <div class="collaboration">
+        <span>Gemeinsam verantwortlich</span>
+        <strong>Marketing</strong><strong>CRM</strong><strong>Sales</strong><strong>Commerce</strong><strong>Service</strong>
+      </div>
+      <p class="section-conclusion">Analytics und AI können diese Steuerung erheblich verbessern. Ihr Wert liegt für mich aber nicht in der Anzahl der Modelle, sondern darin, welche Entscheidungen damit besser werden.</p>
+    </section>
+
+    <section class="crm-section" id="bonprix" aria-labelledby="bonprix-title">
+      <div class="section-intro">
+        <div class="section-label">03 / Praxisbeispiel bonprix</div>
+        <div>
+          <h2 id="bonprix-title">Integrierte Kundensteuerung bei bonprix aufgebaut und weiterentwickelt.</h2>
+          <p>Ich habe den Aufbau der integrierten Kundensteuerung bei bonprix maßgeblich vorangetrieben – von der wirtschaftlichen Priorisierung und dem gemeinsamen Zielbild über den Aufbau der Daten- und Marketingplattform bis zur Entwicklung und Skalierung operativer Anwendungsfälle.</p>
+          <p>Dabei war mir besonders wichtig, fachliche und technologische Kompetenzen zusammenzubringen und aus einzelnen Lösungen dauerhaft nutzbare Fähigkeiten für eine datengetriebene Kundensteuerung zu entwickeln.</p>
+        </div>
+      </div>
+      <div class="transformation">
+        <ol class="timeline">
+          {phases.map((phase) => (
+            <li>
+              <span class="timeline-number">{phase.number}</span>
+              <h3>{phase.title}</h3>
+              <p>{phase.body}</p>
+            </li>
+          ))}
+        </ol>
+        <div class="outcome-band band-build">
+          <strong>Aufbau &amp; Weiterentwicklung</strong>
+          <span>Wirtschaftliche Priorisierung · Zielbild · Plattformaufbau · Use-Case-Entwicklung · Organisatorische Verankerung</span>
+        </div>
+        <div class="outcome-band band-capabilities">
+          <strong>Geschaffene Fähigkeiten</strong>
+          <span>Gemeinsame Kundensicht · Segmentierung · Personalisierung · Experimentation · Predictive Analytics &amp; Decisioning</span>
+        </div>
+      </div>
+      <div class="bonprix-bottom">
+        <div>
+          <h3>Was daraus entstanden ist</h3>
+          <p>Eine gemeinsame Kundensicht, eine belastbare Daten- und Marketingplattform sowie die Fähigkeit, Kundenbeziehungen differenzierter und wirtschaftlich gezielter zu entwickeln. Die wirtschaftlichen Effekte dieser Entwicklung sind Teil der umfassenderen Marketing-Decisioning-Transformation – keine pauschalen isolierten CRM- oder CLV-Erfolgszahlen.</p>
+          <a class="deep-link" href="/data-ai-digital-product#marketing-decisioning-case-title">Marketing-Decisioning-Case ansehen <span aria-hidden="true">↗</span></a>
+        </div>
+        <blockquote>
+          <span>Meine wichtigste Erkenntnis</span>
+          <p>Technische Integration schafft die Voraussetzungen. Entscheidend wird sie erst, wenn gemeinsame Ziele, klare Entscheidungsrechte und fachliche Verantwortung daraus eine wirksame Kundensteuerung machen.</p>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="crm-section" id="aufbauansatz" aria-labelledby="approach-title">
+      <div class="section-intro">
+        <div class="section-label">04 / Mein Aufbauansatz</div>
+        <div>
+          <h2 id="approach-title">Nicht mit der Plattform beginnen.</h2>
+          <p>Wenn ich eine integrierte Kundensteuerung neu aufbauen oder weiterentwickeln soll, beginne ich nicht mit einer Systemauswahl. Zuerst möchte ich verstehen, wie sich die Kundenbasis tatsächlich entwickelt, wo wirtschaftliche Potenziale liegen und welche Entscheidungen heute nicht gut genug getroffen werden können.</p>
+        </div>
+      </div>
+      <div class="approach-flow" role="group" aria-label="Iterativer Aufbauprozess mit Entscheidung über die Skalierung">
+        <div class="approach-stages">
+          <article class="approach-step"><span>01</span><h3>Verstehen</h3><p>Kundenstruktur, Verhalten, Prozesse und Entscheidungswege analysieren. Fachliche Verantwortliche einbeziehen.</p></article>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <article class="approach-step"><span>02</span><h3>Fokussieren</h3><p>Wenige relevante Anwendungsfälle auswählen. Nutzen, Machbarkeit und Aufwand abwägen.</p></article>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <article class="approach-step"><span>03</span><h3>Pilotieren</h3><p>Gemeinsam umsetzen, Wirkung möglichst mit Kontrollgruppe messen und daraus lernen.</p></article>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="decision-wrap"><div class="decision"><strong>Wirkung<br />belegt?</strong></div></div>
+          <span class="flow-arrow is-yes" aria-hidden="true">Ja →</span>
+          <article class="approach-step scale-step"><span>04</span><h3>Skalieren</h3><p>Bewährte Lösungen dauerhaft in Systemen, Prozessen und Verantwortlichkeiten verankern.</p></article>
+        </div>
+        <div class="feedback-path" aria-label="Wenn die Wirkung nicht belegt ist, Hypothese, Zielgruppe oder Umsetzung überarbeiten und erneut testen.">
+          <svg viewBox="0 0 1000 68" preserveAspectRatio="none" aria-hidden="true"><defs><marker id="crm-feedback-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b45309" /></marker></defs><path d="M770 0 V45 H340 V6" fill="none" stroke="#b45309" stroke-width="2" stroke-linejoin="round" marker-end="url(#crm-feedback-arrow)" /></svg>
+          <span><b>Nein:</b> Hypothese, Zielgruppe oder Umsetzung überarbeiten – anschließend erneut testen.</span>
+        </div>
+      </div>
+      <p class="section-conclusion">Ich halte wenig davon, zuerst eine große Zielarchitektur zu entwerfen und den praktischen Nutzen auf später zu verschieben. Umgekehrt werden aus guten Einzelprojekten noch keine dauerhaften Fähigkeiten. Beides muss zusammenkommen: früh konkrete Ergebnisse erzielen und erfolgreiche Lösungen wiederholbar machen.</p>
+    </section>
+
+    <aside class="closing-thesis">
+      <div class="section-label">Mein Grundsatz</div>
+      <p>Eine gemeinsame Datenbasis ist der Anfang. Entscheidend wird sie erst, wenn die beteiligten Bereiche gemeinsam bessere Entscheidungen treffen.</p>
+      <a href="/commercial-management">Zurück zu Commercial Management <span aria-hidden="true">↗</span></a>
+    </aside>
+  </article>
+</SubPageLayout>
+
+<style>
+  :global(html) { scroll-behavior: smooth; }
+  .crm-page { min-width: 0; color: var(--color-ink); }
+  .crm-hero { padding: 2rem 0 3.5rem; }
+  .eyebrow, .section-label, .goal-eyebrow { color: var(--color-amber); font-size: 11px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+  .eyebrow { display: flex; gap: .85rem; align-items: center; margin-bottom: 1.25rem; }
+  .eyebrow::before { content: ""; display: block; width: 2.25rem; height: 2px; background: var(--color-amber); }
+  h1, h2, h3, p { margin-top: 0; }
+  h1 { max-width: 1050px; margin-bottom: 1.1rem; font-size: clamp(43px, 5vw, 70px); font-weight: 500; line-height: 1.04; letter-spacing: -.05em; }
+  h1 span { display: block; }
+  .hero-lead { margin-bottom: 1.6rem; font-size: clamp(23px, 2.5vw, 34px); font-weight: 500; letter-spacing: -.03em; line-height: 1.25; }
+  .hero-intro { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.5rem, 5vw, 5rem); max-width: 1020px; }
+  .hero-intro p { margin: 0; font-size: 16px; line-height: 1.75; color: var(--color-body); }
+  .hero-thesis { max-width: 930px; margin: 2rem 0 0; padding: .4rem 0 .4rem 1.25rem; border-left: 3px solid var(--color-amber); font-size: clamp(18px, 2vw, 24px); font-weight: 500; line-height: 1.45; letter-spacing: -.025em; }
+  .section-nav { display: flex; flex-wrap: wrap; gap: 0; margin-top: 3rem; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+  .section-nav a { display: flex; flex: 1 1 190px; gap: .55rem; align-items: center; padding: 1rem .9rem; color: var(--color-ink-2); text-decoration: none; font-size: 12px; border-right: 1px solid var(--color-border-soft); }
+  .section-nav a:last-child { border-right: 0; }
+  .section-nav a span { color: var(--color-amber); font-weight: 600; }
+  .section-nav a:hover, .deep-link:hover, .closing-thesis a:hover { color: var(--color-amber); }
+  .section-nav a:focus-visible, .deep-link:focus-visible, .closing-thesis a:focus-visible { outline: 2px solid var(--color-amber); outline-offset: 4px; }
+
+  .crm-section { padding: 4.25rem 0 4.5rem; border-top: 1px solid var(--color-border); scroll-margin-top: 1rem; }
+  .crm-section:first-of-type { border-top: none; }
+  .section-intro { display: grid; grid-template-columns: .32fr 1fr; gap: clamp(2rem, 5vw, 5rem); margin-bottom: 2.5rem; }
+  .section-label { padding-top: .4rem; }
+  .section-intro h2 { max-width: 920px; margin: 0 0 1.1rem; font-size: clamp(30px, 3.25vw, 43px); line-height: 1.16; font-weight: 500; letter-spacing: -.042em; }
+  .section-intro p { max-width: 875px; margin: 0 0 1rem; font-size: 15.5px; color: var(--color-body); line-height: 1.78; }
+  .section-conclusion { max-width: 1000px; margin: 1.6rem 0 0; font-size: 16px; line-height: 1.75; color: var(--color-ink-2); }
+
+  /* 01 — Genuine value-driver tree, foundation is an enabler rather than a fifth driver. */
+  .value-diagram { min-width: 0; padding: clamp(1rem, 2.5vw, 2.25rem); background: rgba(255,255,255,.36); border: 1px solid var(--color-border-soft); }
+  .value-goal { display: grid; width: min(100%, 520px); margin: 0 auto; padding: 1.25rem 2rem; gap: .2rem; background: #10243f; color: #fff; text-align: center; }
+  .value-goal .goal-eyebrow { color: #e3ab83; }
+  .value-goal strong { font-size: clamp(19px, 2.15vw, 27px); font-weight: 500; letter-spacing: -.025em; }
+  .value-goal > span:last-child { color: #ccdbec; font-size: 12px; line-height: 1.5; }
+  .tree-lines { position: relative; width: 75%; height: 53px; margin: 0 auto; border-bottom: 2px solid #8aa9c3; }
+  .tree-lines::before { content:""; position:absolute; top:0; left:50%; height:100%; border-left:2px solid #8aa9c3; }
+  .driver-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1rem; }
+  .driver { position: relative; display: flex; flex-direction: column; min-width: 0; min-height: 252px; padding: 1.45rem 1.35rem 1.1rem; background: rgba(249,252,254,.9); border: 1px solid var(--color-border-soft); border-top: 3px solid #7599bc; }
+  .driver::before { content:""; position:absolute; top:-18px; left:50%; height:15px; border-left:2px solid #8aa9c3; }
+  .driver-number { margin-bottom: 1.1rem; color: var(--color-amber); font-size: 13px; font-weight: 600; }
+  .driver h3 { margin: 0 0 .65rem; font-size: 19px; font-weight: 600; line-height: 1.25; letter-spacing: -.025em; }
+  .driver-mechanism { color: #3f6788; font-size: 12px; font-weight: 600; }
+  .driver p { margin: .85rem 0 1rem; color: var(--color-body); font-size: 13px; line-height: 1.55; }
+  .driver-kpi { display: grid; gap: .15rem; margin-top: auto; padding-top: .7rem; border-top: 1px solid var(--color-border-soft); }
+  .driver-kpi span { color: var(--color-ink-3); text-transform: uppercase; font-size: 10px; letter-spacing: .08em; }
+  .driver-kpi strong { color: var(--color-ink-2); font-size: 11.5px; font-weight: 600; }
+  .foundation { display:flex; align-items: center; flex-wrap: wrap; gap: .6rem 1.8rem; margin-top: 1.4rem; padding: 1.2rem 1.4rem; background: #deebf5; border-left: 4px solid var(--color-amber); color: #18334e; }
+  .foundation-label { font-weight: 600; font-size: 15px; }
+  .foundation > span:last-child { font-size: 13px; }
+  .foundation i { font-style: normal; color: var(--color-amber); margin: 0 .3rem; }
+
+  /* 02 — True circular learning loop, with separate readable descriptions. */
+  .cycle-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(310px, .78fr); align-items: center; gap: clamp(1.4rem, 4vw, 4rem); }
+  .cycle-visual { position: relative; width: min(100%, 540px); aspect-ratio: 540 / 500; margin: 0 auto; }
+  .cycle-arrows { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+  .cycle-arrows path:not(marker path) { fill:none; stroke: #557fa6; stroke-width: 3.5; marker-end: url(#crm-cycle-arrow); }
+  .cycle-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); display: grid; align-content: center; width: 31.5%; aspect-ratio: 1; background: #122947; color: #fff; text-align: center; border-radius: 50%; box-shadow: 0 0 0 10px rgba(230,239,248,.8); }
+  .cycle-center strong { font-size: clamp(20px, 2.2vw, 28px); font-weight: 600; }
+  .cycle-center span { margin-top: .6rem; color: #d8e6f2; font-size: clamp(9px, 1.1vw, 13px); line-height: 1.35; }
+  .cycle-nodes { list-style:none; margin:0; padding:0; }
+  .node { position:absolute; display:flex; flex-direction:column; align-items:center; justify-content:center; width:23%; aspect-ratio: 1; background:#f6fafd; border: 1px solid #9dbbd3; border-radius: 50%; text-align:center; box-shadow: 0 5px 17px rgba(27,64,96,.06); }
+  .node span { color:var(--color-amber); font-weight:600; font-size:14px; }
+  .node strong { display:block; max-width:100px; margin-top:.35rem; font-size:clamp(10px,1.25vw,14px); line-height:1.18; font-weight:600; }
+  .node small { margin-top:.35rem; color:var(--color-ink-3); font-size:clamp(9px,.95vw,11px); }
+  .n1 { left:38.5%; top:2%; }.n2 { left:70.5%; top:26.5%; }.n3 { left:58.5%; top:70%; }.n4 { left:18.5%; top:70%; }.n5 { left:6.5%; top:26.5%; }
+  .cycle-explanation { padding: 1.8rem; background: rgba(255,255,255,.48); border: 1px solid var(--color-border-soft); }
+  .cycle-explanation h3 { margin:0 0 1.2rem; font-size:19px; font-weight:600; letter-spacing:-.02em; }
+  .cycle-explanation ol { list-style:none; margin:0; padding:0; }
+  .cycle-explanation li { display:grid; gap:.22rem; padding:.75rem 0; border-top:1px solid var(--color-border-soft); }
+  .cycle-explanation li b { font-size:12.5px; font-weight:600; color:var(--color-ink); }
+  .cycle-explanation li span { color:var(--color-body); font-size:12.5px; line-height:1.6; }
+  .collaboration { display:flex; align-items:center; flex-wrap:wrap; justify-content:space-between; gap:.8rem 1.25rem; margin-top:1.5rem; padding:1.2rem 1.4rem; background:#e0ebf4; }
+  .collaboration > span { color:var(--color-amber); font-size:12px; font-weight:600; }
+  .collaboration strong { font-size:13px; font-weight:600; }
+
+  /* 03 — Four-stage build history, no artificial separation between ownership and teams. */
+  .transformation { padding:clamp(1rem,2.5vw,2.25rem); background:rgba(255,255,255,.35); border:1px solid var(--color-border-soft); }
+  .timeline { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; list-style:none; padding:2.35rem 0 0; margin:0 0 1.5rem; position:relative; }
+  .timeline::before { content:""; position:absolute; top:1.25rem; left:12%; right:12%; border-top:2px solid #779cbc; }
+  .timeline li { position:relative; min-height:205px; padding:1.4rem 1.2rem; background:rgba(249,252,254,.9); border:1px solid var(--color-border-soft); border-top:3px solid #7298b7; }
+  .timeline li::before { content:""; position:absolute; top:-2.35rem; left:50%; width:12px; height:12px; transform:translate(-50%,-50%); border-radius:50%; background:var(--color-amber); box-shadow:0 0 0 4px #eaf2f8; }
+  .timeline-number { color:var(--color-amber); font-size:13px; font-weight:600; }
+  .timeline h3 { margin:.7rem 0 .8rem; font-size:18px; font-weight:600; letter-spacing:-.025em; line-height:1.25; }
+  .timeline p { font-size:13px; line-height:1.6; color:var(--color-body); margin:0; }
+  .outcome-band { display:grid; grid-template-columns:minmax(180px,.42fr) 1fr; gap:1.25rem; align-items:center; padding:1rem 1.3rem; border-left:4px solid var(--color-amber); background:#dfeaf4; }
+  .outcome-band + .outcome-band { margin-top:.55rem; }
+  .outcome-band strong { font-size:13px; font-weight:600; }
+  .outcome-band span { font-size:12.5px; color:var(--color-ink-2); line-height:1.6; }
+  .band-capabilities { background:rgba(255,255,255,.75); border-left-color:#4c7da4; }
+  .bonprix-bottom { display:grid; grid-template-columns:1fr .84fr; gap:2rem; margin-top:1.7rem; }
+  .bonprix-bottom > div { padding:1.3rem 0; }
+  .bonprix-bottom h3 { font-size:19px; font-weight:600; }
+  .bonprix-bottom p { color:var(--color-body); font-size:14px; line-height:1.75; }
+  .deep-link { display:inline-block; margin-top:.5rem; color:var(--color-amber); font-size:13px; font-weight:600; text-decoration:none; }
+  .bonprix-bottom blockquote { margin:0; padding:1.8rem; background:#10243f; color:#fff; }
+  .bonprix-bottom blockquote span { color:#eab385; font-size:11px; letter-spacing:.13em; text-transform:uppercase; }
+  .bonprix-bottom blockquote p { margin:1rem 0 0; color:#e8f0f8; font-size:17px; line-height:1.65; letter-spacing:-.015em; }
+
+  /* 04 — Decision gate with visible negative feedback loop. */
+  .approach-flow { padding:clamp(1rem,2.5vw,2rem); background:rgba(255,255,255,.42); border:1px solid var(--color-border-soft); }
+  .approach-stages { display:grid; grid-template-columns: 1fr 26px 1fr 26px 1fr 26px .85fr 45px 1fr; align-items:center; gap:0; }
+  .approach-step { min-width:0; min-height:195px; padding:1.2rem 1rem; background:rgba(249,252,254,.92); border:1px solid var(--color-border-soft); border-top:3px solid #80a4c1; }
+  .approach-step > span { color:var(--color-amber); font-size:13px; font-weight:600; }
+  .approach-step h3 { margin:.9rem 0 .75rem; font-size:18px; letter-spacing:-.025em; line-height:1.2; font-weight:600; }
+  .approach-step p { margin:0; color:var(--color-body); font-size:12.5px; line-height:1.6; }
+  .scale-step { background:#18334f; color:#fff; border-top-color:#bd7848; }
+  .scale-step h3 { color:white; }
+  .scale-step p { color:#d7e5f0; }
+  .flow-arrow { color:var(--color-amber); font-size:22px; text-align:center; }
+  .flow-arrow.is-yes { font-size:13px; color:#25684e; white-space:nowrap; }
+  .decision-wrap { display:grid; place-items:center; padding:1rem; }
+  .decision { display:grid; place-items:center; width:104px; aspect-ratio:1; background:#e7f0f7; border:2px solid #719bbd; transform:rotate(45deg); }
+  .decision strong { transform:rotate(-45deg); text-align:center; font-size:14px; line-height:1.25; font-weight:600; }
+  .feedback-path { position:relative; margin:0 7.5% 0 18%; height:80px; }
+  .feedback-path svg { width:100%; height:61px; }
+  .feedback-path span { position:absolute; left:24%; bottom:0; color:var(--color-body); font-size:12.5px; }
+  .feedback-path b { color:var(--color-amber); }
+
+  .closing-thesis { display:grid; grid-template-columns:.28fr 1fr; gap:2.5rem; margin:1.5rem 0 2.5rem; padding:2.5rem; background:#10243f; color:#fff; }
+  .closing-thesis .section-label { color:#e7ad83; }
+  .closing-thesis p { margin:0; color:#fff; font-size:clamp(22px,2.4vw,33px); letter-spacing:-.025em; line-height:1.4; }
+  .closing-thesis a { grid-column:2; color:#ebc29f; text-decoration:none; font-size:13px; }
+
+  @media (max-width: 1100px) {
+    .driver-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .tree-lines, .driver::before { display:none; }
+    .driver-grid { margin-top:1.25rem; }
+    .cycle-layout { grid-template-columns:1fr; }
+    .cycle-explanation { width:100%; }
+    .approach-stages { grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; align-items:stretch; }
+    .approach-stages > .flow-arrow { display:none; }
+    .decision-wrap { min-height:170px; }
+    .feedback-path { margin:0; padding-top:1rem; height:auto; }
+    .feedback-path svg { display:none; }
+    .feedback-path span { position:static; }
+  }
+  @media (max-width: 800px) {
+    .crm-hero { padding-top:1rem; }
+    .hero-intro, .section-intro { grid-template-columns:1fr; gap:1rem; }
+    .section-intro { margin-bottom:1.75rem; }
+    .crm-section { padding:3.25rem 0; }
+    .timeline { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .timeline::before, .timeline li::before { display:none; }
+    .bonprix-bottom { grid-template-columns:1fr; gap:1rem; }
+    .closing-thesis { grid-template-columns:1fr; gap:1rem; }
+    .closing-thesis a { grid-column:1; }
+    .outcome-band { grid-template-columns:1fr; gap:.35rem; }
+  }
+  @media (max-width: 560px) {
+    h1 { font-size:clamp(37px,10vw,49px); }
+    .hero-lead { font-size:24px; }
+    .hero-intro p { font-size:15px; }
+    .section-nav a { flex-basis:50%; font-size:11px; }
+    .driver-grid, .timeline, .approach-stages { grid-template-columns:1fr; }
+    .driver { min-height:0; }
+    .timeline { padding-top:0; }
+    .timeline li { min-height:0; }
+    .cycle-visual { aspect-ratio:auto; min-height:0; width:100%; padding:0; }
+    .cycle-arrows, .cycle-center { display:none; }
+    .cycle-nodes { display:grid; grid-template-columns:1fr; gap:.6rem; }
+    .node { position:static; width:auto; aspect-ratio:auto; min-height:65px; border-radius:2px; flex-direction:row; gap:.8rem; align-items:center; justify-content:flex-start; padding:.85rem 1rem; }
+    .node strong { max-width:none; margin:0; font-size:14px; }
+    .node small { margin:0 0 0 auto; font-size:11px; }
+    .cycle-explanation { padding:1.2rem; }
+    .collaboration { justify-content:flex-start; }
+    .collaboration > span { flex-basis:100%; }
+    .approach-step { min-height:0; }
+    .decision-wrap { min-height:140px; }
+    .closing-thesis { padding:1.6rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { :global(html) { scroll-behavior:auto; } }
+</style>
