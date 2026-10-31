@@ -28,6 +28,11 @@ const navMenus = [
         title: "Commercial Management",
         subline: isEnglish ? "Overview and management system" : "Übersicht und Managementsystem",
       },
+      ...(!isEnglish ? [{
+        href: "/integriertes-crm",
+        title: "Integriertes CRM & Customer Value",
+        subline: "Kundenbeziehungen wirtschaftlich entwickeln",
+      }] : []),
       {
         href: `${commercialPath}#commercial-fields`,
         title: isEnglish ? "8 Management Areas" : "8 Handlungsfelder",
