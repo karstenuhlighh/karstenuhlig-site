@@ -55,6 +55,15 @@ const landingTensions = [
     </header>
 
     <CommercialFieldExplorer />
+
+    <section class="crm-feature" aria-labelledby="crm-feature-title">
+      <div class="crm-feature-label">Vertiefung / Customer Value</div>
+      <div>
+        <h2 id="crm-feature-title">Integriertes CRM: Kundenbeziehungen wirtschaftlich entwickeln.</h2>
+        <p>Wie Kundenbasis, Kundenwert, Investitionen und Customer Experience zusammenwirken – und wie ich diese Fähigkeiten bei bonprix aufgebaut und weiterentwickelt habe.</p>
+      </div>
+      <a href="/integriertes-crm">Integriertes CRM vertiefen <span aria-hidden="true">↗</span></a>
+    </section>
     <CommercialSteeringModel />
     <CommercialDeepDives />
     <CommercialManagementLoop
@@ -87,6 +96,13 @@ const landingTensions = [
   .hero-visual { min-width: 0; margin: 0; }
   .hero-visual img { display: block; width: 100%; height: auto; max-height: 610px; object-fit: contain; object-position: center; }
 
+  .crm-feature { display:grid; grid-template-columns:.34fr 1.5fr auto; align-items:start; gap:2rem; margin:1.5rem 0 4.5rem; padding:2rem 1.8rem; background:rgba(255,255,255,.48); border:1px solid var(--color-border-soft); border-left:3px solid var(--color-amber); }
+  .crm-feature-label { color:var(--color-amber); font-size:11px; font-weight:600; letter-spacing:.13em; text-transform:uppercase; }
+  .crm-feature h2 { margin:0 0 .65rem; color:var(--color-ink); font-size:24px; font-weight:500; letter-spacing:-.025em; line-height:1.2; }
+  .crm-feature p { max-width:620px; margin:0; color:var(--color-body); font-size:14px; line-height:1.7; }
+  .crm-feature a { color:var(--color-amber); font-size:13px; font-weight:600; white-space:nowrap; text-decoration:none; }
+  .crm-feature a:focus-visible { outline:2px solid var(--color-amber); outline-offset:4px; }
+  @media (max-width: 1100px) { .crm-feature { grid-template-columns:1fr; gap:1rem; } }
   @media (max-width: 980px) {
     .landing-hero { grid-template-columns: 1fr; gap: 2.25rem; }
     .hero-copy-column { max-width: 720px; }
