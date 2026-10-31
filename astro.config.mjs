@@ -18,6 +18,7 @@ export default defineConfig({
           "/",
           "/track-record",
           "/commercial-management",
+          "/integriertes-crm",
           "/performance-marketing-steering",
           "/digital-product-customer-experience",
           "/data-ai-digital-product",
