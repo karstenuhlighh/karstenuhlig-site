@@ -1,0 +1,120 @@
+---
+import SubPageLayout from "../../layouts/SubPageLayout.astro";
+
+const visuals = {
+  value: "/images/integriertes-crm/01-kundenbasis-entwickeln.png",
+  steering: "/images/integriertes-crm/02-steuerungsmodell.png",
+  bonprix: "/images/integriertes-crm/03-bonprix-kundensteuerung.png",
+  approach: "/images/integriertes-crm/04-iterativer-aufbauansatz.png",
+};
+---
+
+<SubPageLayout
+  editorial
+  language="en"
+  title="Integrated CRM & Customer Value | Karsten Uhlig"
+  description="Steering customer relationships as an economic system by connecting customer base, customer value, decisioning and cross-functional execution."
+>
+  <article class="crm-page">
+    <header class="crm-hero">
+      <div class="eyebrow">Commercial Management / Customer</div>
+      <h1>Integrated CRM<br />&amp; Customer Value</h1>
+      <p class="hero-lead">Develop customer relationships. Increase customer value. Connect functions.</p>
+      <p class="hero-copy">CRM is not a campaign channel. It is the shared steering of customer relationships across marketing, commerce, sales and service, based on a robust customer understanding and clear economic objectives.</p>
+      <p class="hero-principle">Individual channels do not optimise in isolation. The customer strategy determines where to invest, which next action makes sense and how impact is measured.</p>
+    </header>
+
+    <nav class="jump-nav" aria-label="On this page">
+      <span>On this page</span>
+      <a href="#economic-value">Economic value</a>
+      <a href="#steering-model">Steering model</a>
+      <a href="#bonprix-practice">bonprix practice</a>
+      <a href="#build-approach">Build approach</a>
+    </nav>
+
+    <section id="economic-value" class="crm-section" aria-labelledby="value-title">
+      <h2 id="value-title" class="sr-only">Economic value</h2>
+      <figure class="visual">
+        <a href={visuals.value} target="_blank" rel="noreferrer" aria-label="Open customer-base visual at full size">
+          <img src={visuals.value} width="1680" height="945" alt="Developing the customer base by aligning customer growth, customer potential, investment and customer journeys around customer value and contribution margin." fetchpriority="high" />
+        </a>
+        <figcaption>Original visual in German · Open at full size</figcaption>
+      </figure>
+    </section>
+
+    <section id="steering-model" class="crm-section" aria-labelledby="steering-title">
+      <h2 id="steering-title" class="sr-only">Steering model</h2>
+      <figure class="visual">
+        <a href={visuals.steering} target="_blank" rel="noreferrer" aria-label="Open steering-model visual at full size">
+          <img src={visuals.steering} width="1680" height="945" alt="Steering model from customer data through understanding, deciding and activating to measuring and learning, with shared accountability across marketing, CRM, sales, commerce and service." loading="lazy" />
+        </a>
+        <figcaption>Original visual in German · Open at full size</figcaption>
+      </figure>
+    </section>
+
+    <section id="bonprix-practice" class="crm-section" aria-labelledby="bonprix-title">
+      <h2 id="bonprix-title" class="sr-only">bonprix practice example</h2>
+      <figure class="visual">
+        <a href={visuals.bonprix} target="_blank" rel="noreferrer" aria-label="Open bonprix integrated customer-steering visual at full size">
+          <img src={visuals.bonprix} width="1680" height="945" alt="Building and developing integrated customer steering at bonprix, from prioritisation and a shared data foundation through operational use to scaling." loading="lazy" />
+        </a>
+        <figcaption>Original visual in German · Open at full size</figcaption>
+      </figure>
+    </section>
+
+    <section id="build-approach" class="crm-section" aria-labelledby="approach-title">
+      <h2 id="approach-title" class="sr-only">My build approach</h2>
+      <figure class="visual">
+        <a href={visuals.approach} target="_blank" rel="noreferrer" aria-label="Open iterative build-approach visual at full size">
+          <img src={visuals.approach} width="1680" height="945" alt="Iterative build approach for customer steering: understand, focus, pilot, prove impact and scale successful approaches." loading="lazy" />
+        </a>
+        <figcaption>Original visual in German · Open at full size</figcaption>
+      </figure>
+    </section>
+
+    <section class="closing" aria-label="Principle">
+      <div class="section-kicker">My principle</div>
+      <blockquote>Integrated CRM means steering customer relationships as a shared economic responsibility, rather than optimising them from the perspective of individual channels or systems.</blockquote>
+    </section>
+  </article>
+</SubPageLayout>
+
+<style>
+  :global(html) { scroll-behavior: smooth; }
+  .crm-page { min-width: 0; }
+  .crm-hero { max-width: 900px; padding: 1.5rem 0 4.5rem; }
+  .eyebrow, .section-kicker { color: var(--color-amber); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+  .eyebrow { display: flex; gap: .85rem; align-items: center; margin-bottom: 1.2rem; }
+  .eyebrow::before { width: 2.25rem; height: 2px; flex: 0 0 auto; background: var(--color-amber); content: ""; }
+  h1 { margin: 0; color: var(--color-ink); font-size: clamp(46px, 5.1vw, 70px); font-weight: 500; letter-spacing: -.05em; line-height: .98; }
+  .hero-lead { max-width: 760px; margin: 1.5rem 0 0; color: var(--color-ink); font-size: clamp(21px, 2.25vw, 29px); font-weight: 500; letter-spacing: -.025em; line-height: 1.25; }
+  .hero-copy { max-width: 760px; margin: 1.35rem 0 0; color: var(--color-body); font-size: 16px; line-height: 1.75; }
+  .hero-principle { max-width: 720px; margin: 1.5rem 0 0; padding-left: 1.15rem; color: var(--color-ink); font-size: 14px; font-weight: 500; line-height: 1.65; border-left: 2px solid var(--color-amber); }
+  .jump-nav { display: flex; flex-wrap: wrap; gap: .65rem 1.5rem; align-items: center; padding: 1.1rem 0; border-block: 1px solid var(--color-border); }
+  .jump-nav > span { margin-right: auto; color: var(--color-amber); font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .jump-nav a { color: var(--color-ink-2); font-size: 12px; font-weight: 600; text-decoration: none; }
+  .jump-nav a:hover { color: var(--color-ink); }
+  .jump-nav a:focus-visible, .visual a:focus-visible { outline: 3px solid rgba(180,83,9,.4); outline-offset: 4px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+  .crm-section { padding: 5rem 0; border-bottom: 1px solid var(--color-border); scroll-margin-top: 1.5rem; }
+  .visual { margin: 0; }
+  .visual a { display: block; background: rgba(255,255,255,.55); border: 1px solid var(--color-border-soft); box-shadow: 0 18px 45px rgba(35,65,100,.08); }
+  .visual img { display: block; width: 100%; height: auto; }
+  .visual figcaption { margin-top: .65rem; color: var(--color-ink-3); font-size: 10px; letter-spacing: .08em; text-align: right; text-transform: uppercase; }
+  .closing { display: grid; grid-template-columns: minmax(190px,.32fr) minmax(0,1fr); gap: clamp(2rem,5vw,5rem); padding: 5rem 0 2rem; }
+  .closing blockquote { max-width: 940px; margin: 0; color: var(--color-ink); font-size: clamp(25px,3.1vw,40px); font-weight: 500; letter-spacing: -.035em; line-height: 1.27; }
+  @media (max-width: 760px) {
+    .crm-hero { padding: .75rem 0 3rem; }
+    h1 { font-size: 42px; }
+    .hero-lead { font-size: 23px; }
+    .jump-nav { align-items: flex-start; }
+    .jump-nav > span { width: 100%; margin: 0 0 .25rem; }
+    .crm-section { padding: 3.5rem 0; }
+    .closing { grid-template-columns: 1fr; gap: 1rem; padding: 3.5rem 0 1rem; }
+    .visual { margin-inline: calc(var(--page-padding, 1.25rem) * -.35); }
+    .visual figcaption { padding-inline: .45rem; }
+    .closing blockquote { font-size: 27px; }
+  }
+  @media (max-width: 430px) { h1 { font-size: 37px; } }
+  @media (prefers-reduced-motion: reduce) { :global(html) { scroll-behavior: auto; } }
+</style>
