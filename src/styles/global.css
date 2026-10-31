@@ -40,8 +40,7 @@ body {
   min-height: 100vh;
 }
 
-body.is-homepage,
-body.is-editorial-subpage {
+body.is-homepage {
   background: #EEF2F7;
 }
 

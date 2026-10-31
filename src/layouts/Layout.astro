@@ -8,7 +8,6 @@ interface Props {
   description?: string;
   ogImage?: string;
   language?: Language;
-  bodyClass?: string;
 }
 
 const {
@@ -16,7 +15,6 @@ const {
   description = "Commercial und Digital Commerce Executive für wirtschaftliches Wachstum, Customer Journey und CRM, mit Leadership sowie Data, AI und Digital Products als Enabler.",
   ogImage = "/og-card.jpg",
   language = getLanguage(Astro.url.pathname),
-  bodyClass,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -107,7 +105,7 @@ const websiteSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
     {isRootHomepage && <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />}
   </head>
-  <body class:list={[bodyClass, { "is-homepage": isHomepage }]}>
+  <body class:list={{ "is-homepage": isHomepage }}>
     <slot />
     <Footer language={language} />
   </body>
