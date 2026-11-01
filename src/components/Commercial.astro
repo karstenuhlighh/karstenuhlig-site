@@ -8,7 +8,7 @@ const { language = "de" } = Astro.props;
 const isEnglish = language === "en";
 
 const sectionCopy = isEnglish ? {
-  capabilitiesLabel: "My competencies",
+  capabilitiesLabel: "My focus areas",
   practiceLabel: "Practice & Proof",
   deepen: "Explore competency",
   viewCase: "View case",
@@ -24,8 +24,8 @@ const rows = isEnglish ? [
     capabilityTitle: "E-Commerce, Growth & CRM",
     capabilityBody: "Steer customer base, growth, margin and marketing investment as one system.",
     capabilityHref: "/en/commercial-management",
-    visual: "/images/integriertes-crm/02-steuerungsmodell.png",
-    visualPosition: "center bottom",
+    visual: "/images/homepage/20-crm-lifecycle-category.png",
+    visualFit: "contain",
     caseTitle: "Integrated CRM",
     caseBody: "Building integrated CRM and customer steering across the full lifecycle.",
     caseHref: "/en/integrated-crm",
@@ -35,7 +35,7 @@ const rows = isEnglish ? [
     capabilityTitle: "Data, AI & Decisioning",
     capabilityBody: "Translate customer data, analytics and AI into better operational and commercial decisions.",
     capabilityHref: "/en/data-ai-digital-product",
-    visual: "/images/data-ai-decisioning-case/en/marketing-decisioning-transition.png",
+    visual: "/images/homepage/12-data-ai-category.png",
     visualFit: "contain",
     caseTitle: "Marketing Decisioning Capability",
     caseBody: "From fragmented marketing steering to an integrated Data and Decisioning Capability.",
@@ -46,8 +46,8 @@ const rows = isEnglish ? [
     capabilityTitle: "Digital Product & Customer Experience",
     capabilityBody: "Advance webshop, app, customer journeys and commerce platforms.",
     capabilityHref: "/en/digital-product-customer-experience",
-    visual: "/images/homepage/06-webshop-app-modernisation.webp",
-    visualPosition: "center top",
+    visual: "/images/homepage/22-digital-product-category.png",
+    visualFit: "contain",
     caseTitle: "Webshop & App Modernisation",
     caseBody: "A new commerce architecture, phased migration and the app as a distinct customer touchpoint.",
     caseHref: "/en/digital-product-customer-experience#commerce-case-title",
@@ -56,8 +56,8 @@ const rows = isEnglish ? [
     capabilityTitle: "Leadership & Transformation",
     capabilityBody: "Lead teams, clarify accountability and make change effective.",
     capabilityHref: "/en/leadership",
-    visual: "/images/homepage/06-product-organisation-transformation.png",
-    visualPosition: "center 48%",
+    visual: "/images/homepage/14-leadership-category.png",
+    visualFit: "contain",
     caseTitle: "From projects to product teams with outcome accountability",
     caseBody: "A cross-functional product organisation with clear end-to-end accountability.",
     caseHref: "/en/transformation/product-organisation",
@@ -158,27 +158,25 @@ const rows = isEnglish ? [
   .commercial-pillar { position: relative; padding-top: 2rem; }
   .editorial-showcase { padding: 1rem 0 4.5rem; border-bottom: 1px solid var(--color-border); }
   .showcase-header { padding: 0 1rem 1rem; }
-  .column-labels { display: grid; grid-template-columns: minmax(340px, .95fr) minmax(330px, 1.05fr) minmax(330px, 1.1fr); padding-bottom: .9rem; border-bottom: 1px solid rgba(30,60,100,.16); color: var(--color-ink); font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+  .column-labels { display: grid; grid-template-columns: minmax(340px, .95fr) minmax(330px, 1.05fr) minmax(330px, 1.1fr); padding-bottom: .9rem; border-bottom: 1px solid rgba(30,60,100,.16); color: var(--color-ink); font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
   .column-labels span:last-child { grid-column: 3; padding-left: 1.55rem; }
   .editorial-rows { display: grid; gap: .75rem; }
   .editorial-row { display: grid; grid-template-columns: minmax(340px, .95fr) minmax(330px, 1.05fr) minmax(330px, 1.1fr); min-height: 190px; overflow: hidden; background: linear-gradient(112deg, rgba(255,249,245,.8) 0%, rgba(255,255,255,.72) 34%, rgba(247,251,255,.78) 100%); border: 1px solid rgba(30,60,100,.1); border-radius: 16px; box-shadow: 0 12px 28px rgba(26,53,84,.07); }
   .capability { display: flex; min-width: 0; padding: 1.6rem 1.1rem 1.45rem 1.35rem; }
   .capability-copy { display: flex; min-width: 0; height: 100%; flex-direction: column; }
-  .capability-copy h2, .case-copy h3 { margin: 0; color: var(--color-ink); font-weight: 600; letter-spacing: -.035em; line-height: 1.08; }
-  .capability-copy h2 { font-size: clamp(20px, 1.8vw, 27px); }
-  .capability-copy p, .case-copy p { margin: .65rem 0 0; color: var(--color-body); font-size: 13px; line-height: 1.45; }
-  .capability-copy > a, .case-links a { display: inline-flex; gap: .4rem; align-items: center; color: #d84b00; font-size: 12.5px; font-weight: 600; line-height: 1.35; text-decoration: none; }
+  .capability-copy h2, .case-copy h3 { margin: 0; color: var(--color-ink); font-size: 25px; font-weight: 600; letter-spacing: -.035em; line-height: 1.12; }
+  .capability-copy p, .case-copy p { margin: .65rem 0 0; color: var(--color-body); font-size: 14px; font-weight: 400; line-height: 1.48; }
+  .capability-copy > a, .case-links a { display: inline-flex; gap: .4rem; align-items: center; color: #d84b00; font-size: 13px; font-weight: 500; line-height: 1.35; text-decoration: none; }
   .capability-copy > a { align-self: flex-start; margin-top: auto; padding-top: 1rem; }
   .capability-copy a:hover, .case-links a:hover { opacity: .72; }
   .capability-copy a:focus-visible, .row-visual:focus-visible, .case-links a:focus-visible { outline: 3px solid rgba(216,75,0,.34); outline-offset: 3px; }
   .row-visual { position: relative; min-width: 0; min-height: 0; margin: .75rem 0; overflow: hidden; background: rgba(238,244,249,.9); border-radius: 12px; }
   .row-visual img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; transition: transform .35s ease; }
   .row-visual:hover img { transform: scale(1.018); }
-  .editorial-row:nth-child(3) .row-visual img { transform: scale(1.12); transform-origin: center top; }
-  .editorial-row:nth-child(3) .row-visual:hover img { transform: scale(1.14); }
+  .editorial-row:nth-child(3) .row-visual img { transform: translate(-2.5%, -2%) scale(1.12); transform-origin: center top; }
+  .editorial-row:nth-child(3) .row-visual:hover img { transform: translate(-2.5%, -2%) scale(1.14); }
   .case-copy { display: flex; min-width: 0; flex-direction: column; justify-content: center; padding: 1.35rem 1.55rem 1.3rem; }
-  .case-copy h3 { font-size: clamp(21px, 2vw, 29px); }
-  .case-copy p { max-width: 450px; font-size: 14px; line-height: 1.48; }
+  .case-copy p { max-width: 450px; }
   .case-links { display: flex; flex-wrap: wrap; gap: .55rem 1rem; align-items: center; margin-top: auto; padding-top: 1rem; }
   .link-divider { width: 1px; height: 1rem; background: rgba(30,60,100,.25); }
   @media (max-width: 1180px) {
@@ -186,9 +184,7 @@ const rows = isEnglish ? [
     .column-labels, .editorial-row { grid-template-columns: minmax(285px, .92fr) minmax(280px, 1.02fr) minmax(315px, 1.06fr); }
     .column-labels span:last-child { padding-left: 1.2rem; }
     .capability { padding-inline: 1rem; }
-    .capability-copy h2 { font-size: 21px; }
     .case-copy { padding-inline: 1.2rem; }
-    .case-copy h3 { font-size: 23px; }
   }
   @media (max-width: 900px) {
     .column-labels { grid-template-columns: 1fr; }
@@ -198,6 +194,7 @@ const rows = isEnglish ? [
     .capability-copy > a { margin-top: .9rem; padding-top: 0; }
     .row-visual { grid-area: visual; min-height: 190px; margin: .85rem 0 .85rem .85rem; }
     .case-copy { grid-area: case; min-height: 210px; }
+    .capability-copy h2, .case-copy h3 { font-size: 22px; }
   }
   @media (max-width: 768px) {
     .commercial-pillar { padding-top: 1.5rem; }
@@ -205,15 +202,12 @@ const rows = isEnglish ? [
     .editorial-rows { gap: 1rem; }
     .editorial-row { display: flex; min-height: 0; flex-direction: column; border-radius: 14px; }
     .capability { display: flex; padding: 1.3rem 1.15rem; }
-    .capability-copy h2 { font-size: 21px; }
-    .capability-copy p { font-size: 13.5px; }
     .row-visual { width: auto; height: 205px; min-height: 0; margin: .85rem 1rem 0; }
     .case-copy { min-height: 0; padding: 1.25rem 1.15rem 1.4rem; }
-    .case-copy h3 { font-size: 23px; }
-    .case-copy p { font-size: 14px; }
     .case-links { margin-top: .9rem; padding-top: 0; }
   }
   @media (max-width: 390px) {
+    .capability-copy h2, .case-copy h3 { font-size: 21px; }
     .capability { padding-inline: .9rem; }
     .row-visual { height: 180px; margin-inline: .75rem; }
     .case-copy { padding-inline: .95rem; }
