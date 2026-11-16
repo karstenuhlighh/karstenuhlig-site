@@ -9,6 +9,7 @@ const { language = "de" } = Astro.props;
 const isEnglish = language === "en";
 
 const assetBase = "/images/digital-product-cx/webshop-app-modernisierung";
+const imageSuffix = isEnglish ? "-en" : "";
 
 const copy = isEnglish ? {
   kicker: "Enterprise Case · bonprix: Webshop & App Modernisation",
@@ -29,21 +30,21 @@ const copy = isEnglish ? {
       title: "Digital Experience Platform",
       body: "We developed commerce, customer data and marketing as one connected system. The webshop, app and further touchpoints could use shared capabilities. Fashion Connect used only the shared tracking and analytics infrastructure.",
       image: "01-digital-experience-platform",
-      alt: "German infographic showing digital touchpoints connected to a distinct e-commerce platform and Marketing Data Platform through shared platform services.",
+      alt: "Infographic showing digital touchpoints connected to a distinct e-commerce platform and Marketing Data Platform through shared platform services.",
     },
     {
       number: "02",
       title: "Commerce Modernisation",
       body: "We modernised the shop platform step by step while the international business kept running. Shopping and the complex country-specific checkouts were deliberately separated. In parallel, we evolved our product organisation and the collaboration with IT and technology partners.",
       image: "02-commerce-transformation",
-      alt: "German infographic describing the step-by-step transformation from a shop monolith to a Digital Experience Platform during live international operations.",
+      alt: "Infographic describing the step-by-step transformation from a shop monolith to a Digital Experience Platform during live international operations.",
     },
     {
       number: "03",
       title: "The App as a Customer Touchpoint",
       body: "Our app deliberately started as a hybrid solution and initially used the existing mobile shop. The app team moved into my area in 2018. Permanent login, push, a persistent basket and the connection to CRM, customer data and personalisation allowed us to develop it into a customer touchpoint in its own right.",
       image: "03-app-strategie-kundenbeziehung",
-      alt: "German infographic positioning the shopping app as a distinct customer touchpoint connected with CRM, personalisation and marketing activation.",
+      alt: "Infographic positioning the shopping app as a distinct customer touchpoint connected with CRM, personalisation and marketing activation.",
     },
   ],
 } : {
@@ -253,9 +254,9 @@ const story = isEnglish ? {
   <div class="visual-sequence">
     {copy.items.map((item) => {
       const visualId = `commerce-visual-${item.number}`;
-      const png = `${assetBase}/${item.image}.png`;
-      const webp1100 = `${assetBase}/${item.image}-1100.webp`;
-      const webpFull = `${assetBase}/${item.image}.webp`;
+      const png = `${assetBase}/${item.image}${imageSuffix}.png`;
+      const webp1100 = `${assetBase}/${item.image}${imageSuffix}-1100.webp`;
+      const webpFull = `${assetBase}/${item.image}${imageSuffix}.webp`;
 
       return (
         <article class="visual-chapter" aria-labelledby={`${visualId}-title`}>
